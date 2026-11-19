@@ -1,0 +1,99 @@
+{
+  "role": "semver-defender",
+  "overall": "The proposal is right that 8.4 as drafted in 0.9.0 protects only a format: 'follow Semantic Versioning' with no definition of breaking for a document gives the number no shared meaning, and 0.9.0's removal of the per-document 'state what counts as breaking' was correct only if a KADS-wide definition replaces it. The proposal supplies one, but the definition it puts in the normative text is the weakest part of the package: a modal sentence ('could be incorrect') whose whole bite comes from the defined term 'material', while the concrete enumeration that would let two maintainers agree stays in section 3 and the case table, which the proposal sends to an informative guide. The test is also one-sided and the case table does not follow from it: rows 10 to 12 classify from the perspective of an author who must conform (strengthen is breaking, relax is minor, mirroring 8.3 c), rows 16 to 18 from the perspective of a reader who relies on the claim (weaken the claim is breaking), and the two perspectives give opposite answers for an exception added or ended and for a profile added, so the drafter chose a side row by row without saying so. Section 7 calls its signals commitments, but nothing in the proposed 8.4 makes them so: there is no immutability or no-reuse rule for a declared version (SemVer item 3, the analog of 8.3 b), no required place for the pre-1.0 breaking mark, and section 2 adopts the SemVer 0.y.z 'anything may change' rule that 8.3 (d) deliberately does not. Making the adoption note's version optional removes the one derived document on which 8.4 (c) could ever bite. The fix is not more prose; it is a slightly longer 8.4 that enumerates breaking for both sides, requires the adoption note to be versioned, keeps a declared version immutable, and defaults a pin move across a breaking KADS release to breaking unless the document records why it is not.",
+  "case_disagreements": [
+    {
+      "case": 5,
+      "proposal": "MINOR (new content to read); KADS itself MINOR under 8.3 (e)",
+      "yours": "MINOR only where the example is material, that is, it settles how an existing rule is read; PATCH where it only illustrates a reading the text already fixes. When in doubt, MINOR.",
+      "reason": "The agent signal the proposal wants from MINOR is 'something new that could change how you act'. A blanket MINOR for every example dilutes that into 'a new version exists', which the number already says. The term 'material' (error could change a reader's action, interpretation, or trust) is the test the proposal already relies on for PATCH; apply it here too, so that MINOR means material content added and PATCH means no material content changed. Under-signaling costs the agent correctness, over-signaling costs a read, hence the default."
+    },
+    {
+      "case": 14,
+      "proposal": "MINOR, unless the KADS release is marked breaking for something the corpus uses",
+      "yours": "MINOR, always, for a KADS pin from 1.x to 1.y: 8.3 (d) forbids a breaking change in a MINOR release from 1.0.0. The 'unless' branch is a 0.y.z case (for example 0.8.0 to 0.9.0) that the table lacks, and there the default is breaking.",
+      "reason": "The row conflates two regimes. From 1.0 the KADS release class is the decision; before 1.0 the changelog mark is. A maintainer reading the row as written will look for a breaking mark in a 1.5.0 changelog, where by 8.3 (d) there cannot be one, and another will treat a 0.9.0 pin as MINOR because the row's headline says MINOR. Add a 0.y.z row and make 1.x to 1.y unconditional."
+    },
+    {
+      "case": 15,
+      "proposal": "Breaking where the KADS breaking changes reach the corpus; otherwise MINOR",
+      "yours": "Breaking by default. MINOR only where the document records that none of the breaking changes the KADS changelog identifies applies to the covered corpus (the adoption guide's current rule, which already allows 'unless the note's exceptions already cover it').",
+      "reason": "'Reach the corpus' is decidable by the maintainer only by a corpus-wide review, and its result is invisible to an agent: a maintainer who misjudges emits MINOR for a change after which the corpus may be nonconformant, and the number then lies in the one direction an agent cannot recover from. With the burden inverted the number is conservative, the downgrade is a recorded statement that 3.4 (a) governs, and an agent can check it."
+    },
+    {
+      "case": 17,
+      "proposal": "Added: MINOR. Removed: breaking",
+      "yours": "Added: breaking where the profile binds existing content in the paths it is applied to; MINOR where it binds only content written after it (the same test the proposal uses for case 10). Removed: breaking.",
+      "reason": "Applying a profile to existing paths is a new set of rules binding existing content; by the proposal's own case 10 that is breaking, and by 8.3 (c) mirrored it 'could make a conformant corpus nonconformant'. Row 17 silently switches to the reader-of-the-claim perspective, where a stronger claim is good news. Two maintainers will split here. The same note applies to case 16 widened: MINOR only where the added paths hold no existing content now bound."
+    },
+    {
+      "case": 18,
+      "proposal": "Added or widened: breaking. Narrowed or ended: MINOR. Date renewed: PATCH",
+      "yours": "Added or widened: breaking (claim weakened). Narrowed or ended: breaking (content that relied on the exception may now be nonconformant, which is the 8.3 c test). Date renewed: MINOR, never PATCH.",
+      "reason": "This row is the clearest case of the one-sided test. 8.3 (c), which the proposal says it mirrors, makes ending an exception breaking (conformant content becomes nonconformant) and adding one not breaking (a relaxation); the row says the opposite, because it reasons from the reader of the claim. Both audiences read an adoption note: authors following its exceptions and readers relying on its claim. An agent deciding whether to re-read needs the signal in both directions. Renewal is a widening in time of a mandatory field (conformance.md makes lapse a distinct state), so the row's own 'widened: breaking' contradicts 'renewed: PATCH'; MINOR is the least that is defensible."
+    },
+    {
+      "case": 19,
+      "proposal": "PATCH, or no new version",
+      "yours": "PATCH whenever the changed presentation is part of the versioned document; 'no new version' only where the generated view lies outside it.",
+      "reason": "A versioned document whose content changes without a version change breaks the invariant the proposal says it protects: the number no longer identifies content, and an agent that cached version N cannot tell it is stale. SemVer item 3 and 8.3 (b) both make a released version immutable; the proposal adopts neither for derived documents. The row as written licenses silent change."
+    },
+    {
+      "case": 20,
+      "proposal": "MINOR",
+      "yours": "Not a class. MINOR where material content was added or changed without invalidating prior reliance; PATCH otherwise.",
+      "reason": "'Meaningful to humans, not compatibility-breaking' is a residual bucket with no test; it is where a maintainer parks whatever did not fit, which is how MINOR stops meaning anything. Every change resolves under the material test; the row should say so or go."
+    },
+    {
+      "case": 4,
+      "proposal": "Breaking (the signal is about reliance, not about whether the old text was right)",
+      "yours": "Breaking. Same classification; the rationale belongs in the normative text or the clause guide, not only in a table cell.",
+      "reason": "This is the row that best serves an agent: the agent holds the old statement as a premise, and the premise is now contradicted; whether the premise was ever true is irrelevant to the agent's state. The boundary with PATCH is exactly 8.3 (f): a correction that does not change meaning is patch, one that does is breaking. The clause text should make that derivable ('a material statement reversed or changed in meaning'), otherwise a second maintainer reads 'correction' in 8.3 (f) and emits PATCH."
+    }
+  ],
+  "objections": [
+    {
+      "unit": "Section 3 and proposed 8.4 (b): the breaking test",
+      "objection": "'A change after which what was correct or conformant under the previous version could be incorrect or nonconformant' is not circular but it is unbounded: any change to material text satisfies 'could'. Its bite comes entirely from 'material' (Terms), which is itself modal (error 'could' change action). Stacked, the two modals make the effective test 'material content changed other than by addition or relaxation', which is usable only when stated as an enumeration, as 8.3 (c) does for KADS (conformant corpus made nonconformant; meaning of a clause, status, or relation changed). The proposal has the enumeration in section 3 and drops it from the clause. It also leaves unstated whose reliance counts, which is why the case table is inconsistent.",
+      "proposed_text": "(d) A change is breaking when a material statement, local rule, mapping, or template is reversed, strengthened, or changed in meaning, so that content conformant under the previous version could be nonconformant, or when what the document claims for its corpus is weakened: a covered path or profile withdrawn, or an exception added or widened. Material content added, or a local rule, mapping, or template relaxed, is minor. A change that preserves material meaning is patch."
+    },
+    {
+      "unit": "Section 2: what is adopted from SemVer",
+      "objection": "The proposal adopts 'the 0.y.z rule that anything may change before 1.0'. KADS 8.3 (d) deliberately does not: before 1.0 a breaking change increments MINOR and is marked. Adopting the SemVer free-for-all for derived documents would let a 0.y.z adoption note change breakingly in a PATCH, which contradicts section 3's own 'MINOR marked breaking before 1.0' and destroys the agent signal for the regime almost every adoption note will live in.",
+      "proposed_text": "Adopted: the three-part number and the meaning of its parts. The pre-1.0 regime is that of 8.3 (d), not SemVer item 4."
+    },
+    {
+      "unit": "Section 7 and proposed 8.4: immutability of a declared version",
+      "objection": "The proposal's invariant ('tell without diffing which of three things a later version did') assumes that a version identifies one content. Nothing in the proposed 8.4 says a declared version is not reused for changed content; case 19 even licenses it. SemVer item 3 and 8.3 (b) both require immutability. Without it the number is a label, not a commitment.",
+      "proposed_text": "(g) A declared version MUST NOT be reused for different content."
+    },
+    {
+      "unit": "Section 7: the pre-1.0 breaking mark has nowhere to live",
+      "objection": "Section 3 says 'MINOR marked breaking before 1.0' and section 7 says the agent reads 'version + pin + changelog', but no derived document is required to have a changelog, and the proposed 8.4 (b) does not say where the mark goes. A 0.y.z MINOR on an adoption note is then undecidable for an agent, and 0.y.z is the common case. 8.3 (d) solves this for KADS by requiring the mark in the changelog; 8.4 needs the analog, with the location left open (the document or its history) so that it costs one line.",
+      "proposed_text": "(e) While the major version is 0, a breaking change MUST increment the minor version and MUST be identified as breaking in the document or in its recorded history; from 1.0.0 it MUST increment the major version."
+    },
+    {
+      "unit": "Section 7: 'a misclassified change is an error under 3.3'",
+      "objection": "3.3 (a) enumerates what must not be invented: sources, execution results, collection dates, approval, confidence. A version class is none of them, and stretching 3.3 to cover it weakens 3.3. The commitment comes from 8.4 itself once (c) to (g) are MUSTs; cite 8.4 only.",
+      "proposed_text": "A misclassified change is a departure from 8.4 (c) and (d); it is recorded and corrected like any other nonconformance, and an agent treats a version whose class it cannot trust as it treats an unverified claim."
+    },
+    {
+      "unit": "Section 5 and proposed 8.4 (c): the asymmetry and the pin",
+      "objection": "Two points. First, 'breaking where the new KADS version's breaking changes reach the corpus' puts the burden on the maintainer to prove reach, and the result is invisible to an agent; the adoption guide's existing rule (breaking unless the note's exceptions already cover it) is decidable by inspection and should be the default, with a recorded downgrade. Second, the pin bump must never be PATCH: the pin is the one dependency an agent cannot evaluate from the document and must follow out of it, so even a KADS PATCH (which by 8.3 f changes no normative meaning) moves the agent's baseline and warrants the MINOR signal. The proposal gets this right in case 13 but should say why in the clause guide so no project argues it down.",
+      "proposed_text": "(f) A change of the pinned KADS version is at least minor, and is breaking when the new KADS version identifies a breaking change, unless the document records that none of those changes applies to the covered corpus."
+    },
+    {
+      "unit": "Section 6 and section 8: adoption note version made optional",
+      "objection": "The adoption note is the one derived document every conformant project has (8.1) and the one an agent reads first; it holds the pin, the corpus, the profiles, the mappings, and the exceptions, which is the whole compatibility surface of section 3. If its version is optional, 8.4 (c) ('a pin change is at least minor to it') has no object in the common case and the entire proposal becomes advice for projects that opt in. J-034 flagged the inconsistency between 8.4 and conformance.md; the proposal resolves it by relaxing both, the wrong direction. Resolve it by putting the requirement in 8.4 where it belongs and letting conformance.md repeat it.",
+      "proposed_text": "(b) An adoption note MUST declare a version of its own; any other derived document MAY."
+    },
+    {
+      "unit": "Section 6: placement and the clause guide row",
+      "objection": "Agreed that the case table and the agent signal belong in the adoption guide and the classes in the specification: an agent may rely only on normative text, and CONTRIBUTING's 'interpretation' function covers a definition without which 8.4 cannot be read. But the clause guide row 8.4 today says only 'if they carry a version of their own, it is Semantic Versioning', which restates the format and not the classes; the row must restate the three classes and the two-sided breaking test in plain words, otherwise the plain-words reading an agent is told to keep open beside the spec contradicts the spec.",
+      "proposed_text": "Clause guide 8.4: Your adoption note carries a version and pins the KADS version it follows; other derived documents pin it and may carry a version. The number is a promise about change: patch means nothing material changed; minor means something material was added or a local rule was relaxed, and what you relied on still holds; a breaking change (major from 1.0, a marked minor before) means a rule was strengthened or changed, or the claim for the corpus was weakened, so what you relied on may be wrong. Moving the pin is at least minor, and breaking when the new KADS version is, unless the note says why not."
+    }
+  ],
+  "minimum_normative_text": "**8.4** *Derived documents* (maintainer). (a) A document derived from KADS, such as an adoption note, a local extension, or an adapted template or guide, MUST pin the KADS version it derives from. (b) An adoption note MUST declare a version of its own; any other derived document MAY. (c) A declared version MUST follow Semantic Versioning 2.0.0 in the meaning of MAJOR, MINOR, and PATCH; what counts as breaking is defined in (d), not by that document. (d) A change is breaking when a material statement, local rule, mapping, or template is reversed, strengthened, or changed in meaning, so that content conformant under the previous version could be nonconformant, or when what the document claims for its corpus is weakened: a covered path or profile withdrawn, or an exception added or widened. Material content added, or a local rule, mapping, or template relaxed, is minor. A change that preserves material meaning is patch. (e) While the major version is 0, a breaking change MUST increment the minor version and MUST be identified as breaking in the document or in its recorded history; from 1.0.0 it MUST increment the major version. (f) A change of the pinned KADS version is at least minor, and is breaking when the new KADS version identifies a breaking change, unless the document records that none of those changes applies to the covered corpus. (g) A declared version MUST NOT be reused for different content.",
+  "adoption_note_version": "mandatory",
+  "reason_for_that": "Without a number on the adoption note an agent loses the only change-class signal on the one document it must read before touching the corpus: the note is where the pin, the covered corpus, the profiles, the mappings, and the exceptions live, which is exactly the compatibility surface section 3 defines. A git revision or a content hash tells the agent that the note changed, not whether its prior reliance still holds; it must then diff and re-derive, which is the cost SemVer exists to remove. The pin rule in 8.4 (c) is vacuous for a note with no version, so making the version optional makes the proposal's one clause-level commitment optional in practice. The cost of keeping it mandatory is one line that the outline, CONTRIBUTING's accounting, and KADS's own adoption note already carry, and one integer bump per change. Other derived documents (a copied template, a local extension) may reasonably ride on the note's version and the corpus revision, so optionality is right for them and wrong for the note."
+}

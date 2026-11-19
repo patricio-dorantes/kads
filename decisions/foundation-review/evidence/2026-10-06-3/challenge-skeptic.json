@@ -1,0 +1,276 @@
+{
+  "role": "skeptical-reader",
+  "basis": "Committed state of branch release/0.9.0 at 8fe6a11, read from README.md following links only. The working tree also held uncommitted edits to docs/specification.md (a new 3.1 d), docs/foundations.md (an objective section and a proposition-to-failure table), docs/conformance.md, docs/clause-guide.md, and docs/knowledge-model.md while this review ran; they are not part of the draft reviewed, but where one of them would change a finding the entry says so under 'note'.",
+  "level_a": {
+    "path_breaks": [
+      {
+        "question": "Is this copy a release or a draft, and does the cited tag exist?",
+        "reached": "README 'About this repository' says Version 0.9.0, 'Status: draft, before 1.0', and 'How to cite: ... tag v0.9.0'. git tag -l shows v0.4.0 to v0.8.0; v0.9.0 does not exist. CONTRIBUTING says the status line 'Draft, pre-1.0' is for readers who do not know the 0.y.z convention, so 'draft' in the README means pre-1.0, not unreleased. The specification's closing section and the adoption note do say 'draft of this version, not yet released; the release is the tag'. The changelog entry 0.9.0 is dated 2026-10-06 with no draft mark and reads as released.",
+        "breaks_at": "README.md, rows Version, Status, How to cite; CHANGELOG.md heading '0.9.0 - 2026-10-06'",
+        "missing": "A statement beside the version in the entry point that this copy is unreleased and that tag v0.9.0 does not yet exist. 8.4 (b), which CONTRIBUTING release step 1 applies to KADS's own documents, is met in the specification and adoption note and not in the README or changelog. A reader who starts at the README and cites 'tag v0.9.0' cites a reference that does not resolve."
+      },
+      {
+        "question": "Why does clause 1.2 (purpose and scope), 1.3 (answer first), 2.1 (one home), 2.2 a to c, 3.1 a and b, 3.2, 3.3, 3.6, 4.2, 4.3, 5.1, 5.2, 6.1, 6.3, 7.1.1 to 7.1.4, 7.2.1 to 7.2.5, 8.1, or 8.5 exist; what was considered, what evidence, what was rejected?",
+        "reached": "README -> 'Why the rules are what they are' -> docs/foundations.md (general design constraint, boundaries) -> decisions/README.md (five evaluations: 0.6.0, 0.7.0, 0.8.0, 0.9.0 x2). The standards evaluation J-001 to J-031 says 'no change' or 'already carried' for most of these clauses; J-034 assigns each unit an 'invariant protected' label, which is a retrospective classification, not the reason the rule was admitted. The changelog entries 0.1.0 to 0.3.0 list additions without reasons. The adoption note discloses: 'the review that shaped 0.3.0 was not preserved'. The Why paragraph under each proposition is one sentence.",
+        "breaks_at": "decisions/README.md (coverage starts at 0.6.0); CHANGELOG.md 0.1.0-draft to 0.3.0-draft; docs/adoption-note.md Exceptions row",
+        "missing": "For roughly two thirds of the clauses there is no record of the alternatives considered, the evidence or precedent relied on, or what was rejected. The reasoning can be reconstructed only as 'this clause protects invariant X' (J-034) and 'the proposition's Why'. The README's 'decision records of what was considered, accepted, and rejected' is true from 0.6.0 onward and not before. KADS discloses the gap honestly in the adoption note, so this is a disclosed limitation rather than a hidden one, but the path from rule to origin breaks."
+      },
+      {
+        "question": "Why does 1.1 exist (self-explanatory documents)?",
+        "reached": "decisions/self-explanation/README.md (J-033): observed case (the maintainer's reading of 0.7.0), four objections, resolution, rejected definitions, admission test. Fully reconstructable.",
+        "breaks_at": "J-033 cites 'Clause 3.1.5 (a)', 'clause 6.5', and 'clause 1.5'. decisions/README.md says a record's numbers are those of the version the record names (0.8.0) and the changelog maps them. 0.8.0 has no 3.1.5; its changelog maps 0.7.0 numbers and mentions only a draft 1.5 and 6.5, not 3.1.5.",
+        "missing": "A map from J-033's intermediate-draft numbers to 0.8.0 numbers (3.1.5 -> 1.1, 6.5 -> 8.6, 1.5 -> preface Roles). The reader infers it from the clause names; the promised map does not cover it."
+      },
+      {
+        "question": "Why does 1.3 now hold one sentence, and was the dropped evidence-path sentence a safe simplification?",
+        "reached": "CHANGELOG 0.9.0 'Removed: 1.3 evidence path and learning content'; J-034 row 1.3: removed as 'a duplicate of 3.1 a and 7.2.1', guardian objection noted in one line; the evidence bundle path exists (decisions/necessity-review/evidence/2026-10-06-1/).",
+        "breaks_at": "J-034 row 1.3: the stated ground, duplication, does not hold on the text. 3.1 (a) names kinds of basis (code, reference, observation, derivation, assumption) and requires that the basis be identifiable; it says nothing about context, reasoning, or method, and nothing about the path from the answer being explicit. 7.2.1 names reasoning and method but binds only under the research-report profile.",
+        "missing": "A reason that survives reading the two clauses it cites. On the committed text, for a Core-only corpus the 0.8.0 sentence 'the evidence path from answer to context, reasoning, method, and sources SHOULD be explicit where those layers are relevant' was the only text naming reasoning and method; removing it is an intentional-looking reduction justified by an incorrect duplication claim, so it reads as an accidental loss. See level_b adversarial cases 1 and 2. Note: the uncommitted working-tree edit adding 3.1 (d) as a SHOULD would restore the guarantee at its 0.8.0 strength, placed under proposition 3."
+      },
+      {
+        "question": "Why does 3.5 (a) and (b) exist (author of record; generated versus verified)?",
+        "reached": "CHANGELOG 0.4.0: 'Clause 3.3.4: agent-drafted content must name an author of record ... Breaking'. J-029 and J-030 (0.6.0) discuss 3.3.4 (c) and the AI authoring profile; J-033 defines the term agent-drafted with rejected alternatives.",
+        "breaks_at": "CHANGELOG.md 0.4.0 'Added'; no decision record for the 0.4.0 admission of 3.3.4 (a) and (b)",
+        "missing": "The reason, alternatives, and observed case for the MUST in 3.5 (a). The term's definition is well documented (J-033); the rule's admission is not."
+      },
+      {
+        "question": "Why does 3.4 exist (verification claims)?",
+        "reached": "J-010: observed case 'the 0.3.0 changelog claimed a specialist review with no record of what was reviewed or when'; challengers' placement votes; gate reviewer's rewording. Reconstructable.",
+        "breaks_at": "J-010 points at 'the 0.3.0 changelog'. The committed 0.3.0 entry says 'Evaluated the standard through practical application and specialist-agent critique'; the correction is described in the 0.4.0 entry ('Claims about the 0.3.0 specialist review now identify it as an unpreserved authoring review').",
+        "missing": "Nothing material; the case is reachable with one inference. Recorded as friction, not a break."
+      },
+      {
+        "question": "Why is 2.6 (freshness of copied figures) gone, and what is the current state of the mechanical-freshness advice?",
+        "reached": "foundations.md 'Manual review first': 'projects that already generate content are advised to check freshness mechanically. ADR-003 records that choice and its limit.' -> docs/adr/ADR-003: Status proposed, proposes a SHOULD at 'specification clause 3.6.4'. CHANGELOG 0.9.0 and J-034: 2.6 removed to the artifact guide; J-034 'Unresolved': 'ADR-003 ... should be marked rejected or superseded by the maintainer'.",
+        "breaks_at": "docs/adr/ADR-003-mechanical-freshness-checks.md (status proposed; cites 3.6.4, a 0.5.0 number); docs/foundations.md sentence 'ADR-003 records that choice'",
+        "missing": "A current status on ADR-003 and a supersession or disposition note. The repository claims the tracked-record profile for docs/adr/, so 7.1.5 (a) and 4.1 apply to its own record: a reader arriving at ADR-003 cannot tell that the clause it proposed was adopted in 0.6.0 and removed in 0.9.0. ADR-001 and ADR-002 are likewise 'proposed' with no later disposition, and ADR-002 says the evidence path is 'defined in specification section 2', which it no longer is."
+      },
+      {
+        "question": "Why do 7.1.5 (c) (reasons of a decision), 7.2.6 (c) (no failure observed), and the exception expiry rule exist?",
+        "reached": "CHANGELOG 0.7.0 and J-032: proposal, seven challengers, deferral of a profile, three attachments, precedents (NASA, Rogers Commission, SRE) with inspection status on the sources page, dissent, reopening conditions. Fully reconstructable, including that 7.1.5 (c) is anticipated only with no observed case.",
+        "breaks_at": "none",
+        "missing": "none"
+      },
+      {
+        "question": "Why does 8.4 read as it does, and what remains contested?",
+        "reached": "J-035: question, strongest arguments on both sides, twenty classified cases, two edge cases, preserved dissent (defender wanted a mandatory note version; minimalist wanted drafts handled in guidance). Fully reconstructable. Contested points are identifiable here and in J-032 'Reopen when' and J-034 'Unresolved'.",
+        "breaks_at": "none",
+        "missing": "none"
+      },
+      {
+        "question": "Why does 4.1 exist (superseded content says so where met)?",
+        "reached": "J-027: precedent ISO 9001:2008 from secondary sources, marked as uninspected on the sources page; challenger rewrites; anticipated only, no observed case; reopening condition. Reconstructable.",
+        "breaks_at": "none",
+        "missing": "none"
+      },
+      {
+        "question": "Why do 6.2 (irreversible steps) and 1.4 second sentence (one meaning per scope) exist?",
+        "reached": "J-004 and J-002: problem, alternatives (a Procedure profile; a terminology clause), placement votes, what was rejected, reopening conditions. Reconstructable. Both are admitted on anticipated failure, which J-033 and J-034 say when reviewing them.",
+        "breaks_at": "none",
+        "missing": "none"
+      },
+      {
+        "question": "Which statements are normative, and which source is authoritative for each subject?",
+        "reached": "Specification preface 'Which documents are rules'; README 'What is required'; adoption note 'Canonical homes' row. Reachable and consistent. One admitted duplication: design rationale has two homes, docs/foundations.md with docs/adr/ and decisions/ (J-033 'Not done'), and the adoption note lists both without saying which wins when they differ (ADR-003 versus J-034 is such a case).",
+        "breaks_at": "none",
+        "missing": "none"
+      },
+      {
+        "question": "What changed between versions and why?",
+        "reached": "CHANGELOG with counts, renumbering maps, migration steps, and a link to the evaluation record for each version from 0.6.0. For earlier versions the entries list changes without reasons. Reading a 0.6.0 record against 0.9.0 numbers takes two hops (0.7.0 -> 0.8.0 map, then 0.8.0 -> 0.9.0 map); the maps exist.",
+        "breaks_at": "none",
+        "missing": "none"
+      },
+      {
+        "question": "What does KADS adopt from its external sources, and was the source inspected?",
+        "reached": "docs/sources.md. The specification's keyword meanings rest on RFC 2119 'cited from prior knowledge; the keyword definitions in the preface were not re-read' and RFC 8174 'section 2 was not read for the claim'. Disclosed, so not a break; a skeptical reader notes that the one borrowed mechanism every clause depends on is the one marked uninspected.",
+        "breaks_at": "none",
+        "missing": "none"
+      }
+    ],
+    "draft_state": "This copy is a draft: VERSION says 0.9.0, the specification's closing section and the adoption note say the version is unreleased until tag v0.9.0 exists, and no such tag exists (tags end at v0.8.0). The README, the entry point, does not say so: its 'Status: draft, before 1.0' means pre-1.0 by CONTRIBUTING's own gloss, its Version row says tags are published 'when the maintainer releases' without saying this one has not been, and its 'How to cite' names tag v0.9.0 as if it existed. The changelog's 0.9.0 entry is dated and unmarked. A reader who starts at the README and does not open the specification's last section or run git tag cannot tell that this copy is a draft; this is the state that 8.4 (b)'s observed case in J-035 (a project pinning '0.8.0' while it was a branch draft) was meant to prevent, and KADS's own entry point repeats it."
+  },
+  "level_b": {
+    "corpora": [
+      {
+        "corpus": "billing-ops: a small operations repository. Files: README.md (entry point with the adoption note inline: KADS 0.9.0 pinned at a tag, corpus docs/, common core only, maintainer the on-call lead, review on release and incident; canonical homes named: runbooks for procedures, reference/config.md for settings; an archive/ directory identified as unreviewed legacy), runbooks/restore-database.md (opens with what it is and 'Applies to billing service 3.x'; prerequisites, steps, completion check 'status reports serving'; 'this step overwrites the live database and cannot be undone' before step 2 with the recovery route; 'Verified: steps 1 to 3 executed against staging 3.2 on 2026-09-28; not executed against production'), runbooks/rotate-signing-key.md (same shape), reference/config.md (a table of every setting with type, default, effect; 'Applies to 3.x'; 'Generated from config/schema.json at commit 9f2c1e; edit the schema, not this page'; the note at the top because the reader must act on it), reference/capacity.md ('p99 restore time 18 min, measured 2026-09-01 on staging with a 40 GB snapshot, source: ops dashboard link; production not measured'), archive/restore-database-v2.md (top heading 'Superseded on 2026-08-01 by runbooks/restore-database.md', content preserved unaltered).",
+        "conforms_by": "1.1 a b c (each page opens with what it is and its scope; notes last; the generated notice is a notice, not a note about the document, per the clause guide); 1.2 a b (README directs to current guidance and names archive/ as unreviewed, 4.1 d); 1.3; 2.1 a b c (README names homes; config table is the home and its context is on the page); 2.2 (README summaries link and keep 'not executed against production'); 2.3 (all pages linked from README); 2.4 a b; 3.1 a b (default values cite the schema at a commit; the 18 min figure cites the dashboard); 3.2 (nothing combined that would mislead; the unmeasured production case is disclosed under 3.2 c); 3.3; 3.4 a (the Verified line says what, against what, when; and what is not recorded); 3.6 (schema location, commit, role, limits); 4.1 a b c on the archived page; 4.3 a (the 18 min figure is dated); 6.1 a b; 6.2 a b; 6.3; 8.1 a to e; 8.4 a; 8.5 (a review record in the README: scope, date, reviewer, self-review identified). Propositions 5 and 7 ask nothing: no evidence stored, no profiles declared.",
+        "reader_can_determine": "Current answer (the runbook steps, the setting defaults); scope (Applies to lines); canonical authority (README's homes row; the generated page names its source); current versus historical (archive heading, README boundary); statement kind where it matters (verified versus not executed; measured versus not measured); basis for material factual claims (schema commit, dashboard); verification state (3.4 line); limitations that the author knew (production not exercised); the path from a setting's default to the schema and from the 18 min figure to the dashboard.",
+        "reader_cannot_determine": "Why the procedure is ordered as it is (why the importer is stopped first): a procedure's design rationale is not a material factual claim under 3.1 and no Core clause asks for it. Why a default is 30 s: no decision is tracked, 7.1 is not declared, and 4.2 (b) bites only when a decision is reversed. How the 18 min figure was measured (one run or a median of five; warm or cold cache): 6.1 (b) requires units, scope, time, source, and denominators 'when needed', and 4.3 (b) requires method only where it differs from current conditions; a single measurement with no stated method conforms. Whether the staging verification is still valid after the 3.3 release: 3.4 (b) says an edit does not revalidate, but nothing requires the Verified line to be revisited on a release unless the adoption note's review triggers are honored, which the reader cannot check. Whether 'Verified' was done by a person or an agent: 3.5 (c) applies to a review statement, and a self-review identified as such satisfies it; nothing says who ran the steps if the author is a role."
+      },
+      {
+        "corpus": "pricing-decisions: a product-decision repository. Files: README.md (entry point; adoption note: KADS 0.9.0 at a tag; corpus decisions/ and research/; profiles 7.1 for decisions/ and conclusions, 7.2 for research/; namespace PRC; run identity scheme research/evidence/<date>-<n>/; review route the product lead, triggers each quarter and on new data), decisions/DEC-001-tiered-pricing.md (ID, type, title, status superseded, updated; top heading 'Superseded by DEC-002'; original reasons and authorizer kept), decisions/DEC-002-usage-pricing.md (status accepted; 'Authorized by the pricing committee on 2026-09-15, effective 2026-11-01'; 'Reasons: churn analysis INV-001 shows ... ; supported-by CON-001; supersedes DEC-001'; 'Dissent: the sales lead expected ... recorded in the committee minutes, linked'), conclusions/CON-001-churn-driver.md (status provisional; 'certainty: moderate, see INV-001 limitations' kept separate from status), research/INV-001-churn-analysis.md (question and scope; method: cohort analysis over 2026-01 to 2026-06, inputs the billing export at revision r2026-07-02, tool versions; observations in a table separate from interpretation; reasoning from each result to each conclusion; 'inherited: the vendor's churn definition, not re-derived' marked; 'not found: no price-related churn in the enterprise tier, inspected only through the support-ticket export, not interviews'; limitations and conflicting evidence; current answer), research/evidence/2026-08-14-1/README.md (run id, collection time stated separately from the directory name, 'customer IDs replaced by hashes on 2026-08-15 for privacy; counts unaffected; the raw export is not in the repository'), research/evidence/2026-08-21-1/ (a second run; the first not overwritten).",
+        "conforms_by": "Core as in the first corpus; 7.1.1 (fields once); 7.1.2 a b c (PRC namespace; nomenclature prefixes DEC, CON, INV); 7.1.3 (supported-by, supersedes, with resolvable targets); 7.1.4 and 4.1 a b c (DEC-001 marked and linked both ways); 7.1.5 a b c (status is lifecycle; certainty separate; authority, effective date, reasons); 4.2 b (prior meaning preserved); 7.2.1 (all seven items in one page); 7.2.2 a b (method and the barrier that the raw export is not shipped); 7.2.5 (vendor churn definition marked inherited); 7.2.6 a (the not-found scoped to the ticket export); 5.1 a b c (redaction note where the reader meets it, kind, when, why, effect, gap described); 5.2 a b c (distinct run ids, no overwrite, label is not collection time); 3.4 and 8.5 (review record names the revision reviewed); 3.5 if any record was agent-drafted.",
+        "reader_can_determine": "All items in the brief's list: subject and scope; which description is authoritative (the accepted decision; the provisional conclusion marked so); current versus superseded; statement kind (observed, inherited, inferred, decided, with dissent); basis for each material claim (the evidence runs); method where it matters (7.2.1, 7.2.2); evidence and its redaction; limitations, contradictions, uncertainty (7.2.1, 3.2 c); verification state; the rationale for the consequential decision and who authorized it; and the path DEC-002 -> CON-001 -> INV-001 -> evidence run -> redaction note, which 7.2.1 makes a requirement rather than a courtesy.",
+        "reader_cannot_determine": "Whether the stated reasons were the operative ones (KADS cannot). Which part of INV-001 supports which sentence of DEC-002: 7.1.3 gives the relation a meaning (supported-by) and a target, not a mapping from evidence to each clause of the decision; the reader must reread INV-001 to find it. Whether CON-001's 'moderate' certainty has a defined basis: the knowledge model advises defining a scale locally, and 1.4 bites only if 'moderate' drives a score or an action. Whether the quarterly review happened on schedule: 8.5 records one review; nothing requires the record to show that the triggers fired."
+      }
+    ],
+    "adversarial": [
+      {
+        "case": "Every claim cited, reasoning absent (Core only). A migration page states: 'Moving to Postgres 16 will not increase checkout latency. Observed: benchmark p99 110 ms on 2026-09-10 (results/2026-09-10-1/, commit 3fa2, role: load test, limits: synthetic traffic). Inferred from that observation.' The warrant is missing: what the current p99 is, what threshold 'will not increase' is measured against, why one synthetic run bears on production. 3.1 a b, 3.2 a, 3.6 a, 4.3 a, 6.1 b are all satisfied. 1.4 does not reach it because 'will not increase' is a prediction, not an evaluative term or score. 7.2.1 would require the reasoning, but the page is not a research report and 7.2 is not declared.",
+        "prevented_by": "none in Core. 7.2.1 under the research-report profile only.",
+        "smallest_change": "One SHOULD under 3.1, author role: where a material claim rests on reasoning or a method that the document does not itself contain, the document SHOULD say where that reasoning or method is recorded, or that it is not recorded. This is the 0.8.0 1.3 sentence at its original strength, under the proposition it protects. Belongs in Core: a Core page can carry a material inference. Burden on a ten-line how-to: none unless it states a material inferred claim, and then one clause of one sentence. Note: the uncommitted working-tree edit to docs/specification.md adds exactly this as 3.1 (d); it would prevent this case at SHOULD strength, which matches the 0.8.0 strength and the J-033 reasoning for keeping self-explanation a SHOULD."
+      },
+      {
+        "case": "Answer clear, method unreachable (Core only). 'Backups restore in under 20 minutes (measured 2026-09-01, staging, 40 GB, source: ops dashboard, link)'. Units, scope, time, source present (6.1 b, 4.3 a). The dashboard link shows a number, not how it was produced; whether it is one run or a median, whether the clock includes the importer stop, is unrecorded. 4.3 (b) does not bite because the method does not differ from current conditions; it is simply absent. 3.6 (a) asks for the dashboard's location, version, role, and interpretation limits, which can be met with 'limits: staging only' and still say nothing about method.",
+        "prevented_by": "none in Core. 7.2.2 under the research-report profile.",
+        "smallest_change": "The same 3.1 (d) SHOULD as case 1 covers it: the method is 'not contained' and the page says where it is or that it is not recorded. No second rule; the brief's admission rule asks for one invariant, and 'reasoning or method' in one sentence is that invariant. Burden: the author of the figure writes 'method not recorded' or links the dashboard's query definition."
+      },
+      {
+        "case": "Evidence present, relation to the conclusion implicit. A page under 7.2 has a results table, three conclusions, and a Sources section listing twelve artifacts with locations and versions; nothing says which artifact supports which conclusion. 3.1 (a) 'identifiable basis' is arguably satisfied by the list, 3.1 (b) is a SHOULD about citation precision, 3.6 is satisfied per artifact.",
+        "prevented_by": "7.2.1 (reasoning from results to each material conclusion; sources and provenance sufficient to assess the evidence) under the profile; the conformance question 'Does each material conclusion follow from the evidence within its stated scope?' makes it reviewable. In Core: partly, by reading 3.1 (a) as per claim ('claims MUST have an identifiable basis' is plural over claims, so a basis identifiable for the page but not for the claim fails it); that reading is not stated anywhere a reader will find it. The research guide's 'a long source list alone does not show which source supports which claim' is advice.",
+        "smallest_change": "No new rule. One sentence in the clause guide row for 3.1: 'a basis is identifiable for the claim, not only for the page; a source list that does not say which entry supports which claim is not one.' If the Core reading must be testable without the guide, add 'for that claim' after 'identifiable basis' in 3.1 (a), a clarification under 8.3 (f) if the editors hold that it changes no meaning, otherwise a patch that J-034's reviewer test would have to classify."
+      },
+      {
+        "case": "Decision with authorization and no rationale. Under 7.1: 'DEC-007. Status: accepted. Authorized by the CTO on 2026-09-20, effective 2026-10-01.' No reasons, and no statement that they are not recorded. Under Core only: a page says 'We decided to drop support for the v2 API in March' with no authority, date, or reason.",
+        "prevented_by": "Under 7.1, partly: 7.1.5 (c) makes reasons a SHOULD, and the preface says a departure from a SHOULD carries its reason, so the bare record is nonconformant only if the reviewer treats the missing reason as an unstated departure; 'reasons not recorded' is conformant by design. Under Core: none. 3.2 (a) only keeps the decision distinguishable from a finding; nothing in Core asks who decided or why. This is intentional and recorded: J-032 deferred an assurance profile, foundations says KADS 'asks in proportion to the consequence', and 7.1.5 (c) is marked anticipated only in J-033 and J-034.",
+        "smallest_change": "If the maintainer wants the guarantee: 7.1.5 (c) 'SHOULD state the reasons ... or state that they are not recorded' becomes a MUST with the same three options; the 'not recorded' option keeps the cost at one line and a reviewer can detect the violation by reading one record. It stays in the profile; a Core rule would reach every how-to that mentions a choice. Under the admission rule it waits for an observed case, which none of the records reports; until then, leave it and say in the README that the rule against 'a decision recorded and nobody can tell why' is a recommendation under an optional profile, not a Core guarantee (see readme audit)."
+      },
+      {
+        "case": "Provenance lost through derived views. A generated status page lists 'Postgres migration: safe to proceed' and 'restore time: 18 min', citing 'generated from reports/ nightly' (2.4 a). The README summarizes the status page and links it (2.2). Each hop names its source; the chain README -> status page -> 'reports/' ends at a directory of fourteen reports, and the reader cannot find which run the 18 min came from without reading them all.",
+        "prevented_by": "For the figure: 6.1 (b) requires a quantitative result to expose its source, and the result on the status page is a quantitative result, so a per-figure source is required wherever the figure appears; 2.2 (c) requires a snapshot to identify its source and revision. For the qualitative label: 1.4 (criteria for 'safe to proceed' must be discoverable) and 2.2 (d) (not firmer than the source) prevent promotion but not the loss of the path to the particular report. 2.4 (a) is satisfied by a collective source statement.",
+        "smallest_change": "No new rule. One sentence in the clause guide row for 2.4: 'where a view merges several sources, identify the source for each claim it carries that a reader would act on, not only the directory it was built from.' If the editors want it in the specification, 2.4 (a) 'identify its maintained sources' becomes 'identify its maintained sources, for each material claim it carries where they differ', a clarification that a reviewer can test by picking one figure and following it."
+      },
+      {
+        "case": "Every requirement passes and the reader still cannot tell why a material conclusion deserves confidence (Core). 'Root cause: the connection pool exhausted (inferred from the incident log, link).' Kind stated, basis cited, nothing invented, no known contradiction. The strength of the inference (one log line versus a reproduced exhaustion) is not stated and no clause asks for it.",
+        "prevented_by": "none in Core, and intentionally: the knowledge model says lifecycle is not certainty and declines to require a confidence scale; 3.2 (b) and (c) require marking what is unsupported and disclosing known limitations, not rating support. Under 7.2.1, limitations and reasoning are required and the reader can judge strength from them.",
+        "smallest_change": "None beyond case 1's 3.1 (d): once the reasoning is reachable or declared unrecorded, the reader can assess strength; KADS should not rate it. Record in foundations that KADS makes support inspectable and does not grade it, so a reader does not look for a guarantee that was never offered."
+      }
+    ]
+  },
+  "readme": [
+    {
+      "statement": "A document that follows KADS lets a reader who arrives with no other context tell four things: what the document is, whether it applies to them, where each important claim comes from, and whether it is still current.",
+      "source": "1.1 (a) and 1.2 (a); 3.1 (a); 4.1 (a) to (d)",
+      "classification": "strengthened",
+      "replacement": "...where each important claim comes from, and whether it has been replaced. 4.1 (d) says the absence of a supersession mark does not establish currency; a reader can tell that content was replaced when its author marked it, not that unmarked content is current."
+    },
+    {
+      "statement": "Technical documentation usually fails in a few recurring ways:",
+      "source": "none; the standards evaluation 'Limits' says no adopter other than one has used KADS and most changes rest on argument; docs/standard-evaluation.md says its cases are constructed, not reported events",
+      "classification": "unsupported",
+      "replacement": "KADS is written against seven ways documentation fails its reader: (an authorial framing, not an empirical claim about how documentation usually fails)."
+    },
+    {
+      "statement": "A decision is recorded, and nobody can tell why it was made. (seventh failure in the list)",
+      "source": "7.1.5 (c), a SHOULD under the optional tracked-record profile; J-032 deferred a profile for decision assurance",
+      "classification": "strengthened",
+      "replacement": "Keep the bullet, and under 'Each KADS rule...' say that the rule for this one is a recommendation under the tracked-record profile, or move the bullet to the proposition 7 gloss: 'and, for tracked decisions, a record of who decided and why, or that the reasons are lost'."
+    },
+    {
+      "statement": "Each KADS rule exists to prevent one of these.",
+      "source": "none in the committed tree; docs/foundations.md has no mapping from rules to failures; propositions 7 and 8 and clauses 5.2, 8.3, 8.4 prevent failures not on the list (runs overwriting each other; structure that costs more than it saves; 'we follow KADS' with no version, corpus, or exceptions)",
+      "classification": "canonical-source missing",
+      "replacement": "Each proposition below answers one or more of these; the specification gives the reason under each heading, and the design rationale maps them. Then either add the two missing failures to the list (a second run overwrites the first; 'we follow KADS' means nothing without a version, a corpus, and the exceptions) or drop 'each'. Note: the uncommitted working-tree edit to docs/foundations.md adds a proposition-to-failure table that would become the canonical source; the README should then link it."
+    },
+    {
+      "statement": "The answer comes before the background, and notes about the document itself come last. (proposition 1 gloss)",
+      "source": "1.3 (SHOULD); 1.1 (b): 'history, authorship, and contribution instructions SHOULD follow the content'; clause guide row 1.1 and the adoption-guide snippet: a notice the reader must act on, such as 'generated, edit the source', goes first",
+      "classification": "strengthened",
+      "replacement": "The answer comes before the background, and the document's history, authorship, and how to contribute come last. ('notes about the document itself' is broader than the clause and contradicts the generated-notice exception the guides state.)"
+    },
+    {
+      "statement": "Maintain each subject in one place, within a stated scope, and link to it from everywhere else. (proposition 2 gloss)",
+      "source": "2.1 (a) one home; 2.1 (b) other pages MAY summarize or quote with a link and MUST NOT present copies as equally authoritative; 2.3 reachability from the entry point (SHOULD, maintainer)",
+      "classification": "strengthened",
+      "replacement": "Maintain each subject in one place, within a stated scope; other pages point to it instead of keeping a rival copy. ('link to it from everywhere else' states a duty no clause imposes; 2.3 links from the entry point, 2.1 (b) permits summaries with a link.)"
+    },
+    {
+      "statement": "Mark what has been replaced, say what replaced it, and date facts that change. (proposition 4 gloss)",
+      "source": "4.1 (a) (b); 4.3 (a): 'Where the date ... is material to a fact that changes over time, the fact MUST identify it'",
+      "classification": "strengthened",
+      "replacement": "Mark what has been replaced, say what replaced it, and date a changing fact where the date matters to reading it."
+    },
+    {
+      "statement": "Runs do not overwrite one another, and a redaction is recorded where the reader of the evidence will see it. (proposition 5 gloss)",
+      "source": "5.2 (b); 5.1 (b); proposition 5 Why: 'Clauses 5.1 and 5.2 bind only where a corpus holds evidence'",
+      "classification": "preserved",
+      "replacement": "None required. Optionally: 'Where a project keeps evidence, runs do not overwrite...' so a three-page repository sees that it asks nothing of it, the point the guardian made in J-034."
+    },
+    {
+      "statement": "A reader may follow the path Index -> What -> Why -> How -> Sources from an entry point to an answer and its basis. It is a navigation aid, not a required set of files or headings; one page may answer all five.",
+      "source": "none in the committed tree. 0.8.0 defined 'evidence path' in the specification; 0.9.0 removed the term and the 1.3 sentence (J-034). foundations.md 'Flexible reading paths' says readers should reach an answer and inspect its basis without naming the five steps; ADR-002 still says the path is 'defined in specification section 2', which is stale",
+      "classification": "canonical-source missing",
+      "replacement": "Keep the sentence and give it a home: the design rationale states the traversal property (an answer can be traversed to its basis) and names the path as one way of reading it; the README links there. Note: the uncommitted working-tree edit to docs/foundations.md does this. Also correct ADR-002's reference."
+    },
+    {
+      "statement": "A project does not edit its own copy of KADS. (Where to go, Proposals row)",
+      "source": "8.6 (a): SHOULD NOT alter that copy, beyond adding a proposal file by the route KADS names, provided the declared version stays a released one",
+      "classification": "strengthened",
+      "replacement": "A project should not edit its own copy of KADS; the one thing it adds is a proposal file (clause 8.6)."
+    },
+    {
+      "statement": "Only the specification, the conformance page, and, for projects that track records, the two registries state rules. Everything else is advice: adopting KADS does not mean filling in every guide or outline.",
+      "source": "specification preface 'Which documents are rules'",
+      "classification": "preserved",
+      "replacement": ""
+    },
+    {
+      "statement": "No linter, schema, generated index, or pipeline is required. ... An optional link check covers link resolution and reachability from the entry point, and nothing more.",
+      "source": "conformance 'Manual review'; CONTRIBUTING 'Review a change'",
+      "classification": "preserved",
+      "replacement": ""
+    },
+    {
+      "statement": "This edition is in English; adopting projects may use their readers' language while keeping identifiers and the meanings of adopted terms.",
+      "source": "0.8.0 1.4 had a MAY on translations, removed in 0.9.0 as 'a permission nothing denies' (J-034); the condition 'keeping identifiers and the meanings' now lives in docs/learning-and-terminology.md and the authoring guide as advice",
+      "classification": "local guidance",
+      "replacement": "Acceptable as advice in the entry point; link the learning and terminology guide so the reader can find the conditions, or drop the condition clause since no rule states it."
+    },
+    {
+      "statement": "KADS and documents derived from it follow Semantic Versioning 2.0.0, so pin a release tag when adopting.",
+      "source": "8.3 (a) for KADS; 8.4 (b): a derived document that declares a version of its own follows it; adoption guide: a version of your own is optional; J-035: the maintainer's position that a derived document need not declare a version",
+      "classification": "strengthened",
+      "replacement": "KADS follows Semantic Versioning 2.0.0, and so does a document derived from it that declares a version of its own (clause 8.4). Pin a release tag when adopting."
+    },
+    {
+      "statement": "Status: draft, before 1.0. Requirements can change between minor versions; the changelog marks each breaking change and gives migration steps.",
+      "source": "8.3 (d); CONTRIBUTING 'the status line says Draft, pre-1.0 for readers who do not know that convention'; specification closing section: 'draft of this version, not yet released; the release is the tag'",
+      "classification": "stale",
+      "replacement": "Status: 0.9.0 is a draft until tag v0.9.0 exists. Before 1.0, requirements can change between minor versions; the changelog marks each breaking change and gives migration steps. (CONTRIBUTING release step 1 lists the specification's closing section as the place that says 'draft until the tag exists'; the entry point should say it too, since 8.4 (b) is about every copy a reader holds.)"
+    },
+    {
+      "statement": "How to cite: Knowledge Administration and Documentation Standard (KADS), version 0.9.0, tag v0.9.0. 2026. https://git.ulfratech.com/ulfra/kads-tka. Licensed CC BY 4.0.",
+      "source": "git tag -l: v0.4.0 to v0.8.0; no v0.9.0. 8.3 (b) requires a released version to be identifiable by an immutable reference; 6.3 (b) requires a material reference to be identifiable",
+      "classification": "unsupported",
+      "replacement": "How to cite: KADS, version 0.9.0 (draft; cite tag v0.9.0 once it exists, or the commit you read). 2026. URL. Licensed CC BY 4.0. Or keep the line and add 'the tag exists only after release' beside it, which is what 8.4 (b) asks of a copy carrying an unreleased version."
+    },
+    {
+      "statement": "Why the rules are what they are: design rationale, and the decision records of what was considered, accepted, and rejected.",
+      "source": "docs/foundations.md; decisions/README.md (records from 0.6.0); adoption note: the review that shaped 0.3.0 was not preserved; changelog 0.1.0 to 0.5.0 lists changes without reasons",
+      "classification": "strengthened",
+      "replacement": "Why the rules are what they are: design rationale, and the decision records of what was considered, accepted, and rejected from 0.6.0 onward; earlier choices are listed in the changelog without their reasons."
+    },
+    {
+      "statement": "KADS applied to itself: the adoption note of this repository, including who reviewed it and how.",
+      "source": "docs/adoption-note.md review record: automated review only; the maintainer's examination is not recorded",
+      "classification": "preserved",
+      "replacement": ""
+    },
+    {
+      "statement": "Specification: ... Eleven clauses belong to two optional rule sets, called profiles.",
+      "source": "7.1.1 to 7.1.5 and 7.2.1 to 7.2.6",
+      "classification": "preserved",
+      "replacement": ""
+    },
+    {
+      "statement": "Clause guide: every rule in plain words, who acts on it, and examples",
+      "source": "docs/clause-guide.md: every clause in the tables; 21 example sections for 39 clauses; J-033 'Not every clause has an example in the clause guide'",
+      "classification": "preserved",
+      "replacement": "Optionally 'and examples for most' if the editors want the entry point exact."
+    },
+    {
+      "statement": "The second version says what it is and who it is for, warns at the step that destroys data, says how to tell it worked, and says exactly what 'verified' means. Nothing in it needs an identifier, a template, or a tool.",
+      "source": "1.1, 1.2, 6.2 (a), 6.1 (a), 3.4 (a); proposition 7 Why",
+      "classification": "preserved",
+      "replacement": ""
+    },
+    {
+      "statement": "The rules follow eight propositions, from the general to the specific. Each is the heading of a part of the specification, where its reason and its clauses follow it.",
+      "source": "specification 'How to read this document'",
+      "classification": "preserved",
+      "replacement": ""
+    }
+  ],
+  "verdict": "KADS passes its own test unevenly. A reader starting at the README can find what KADS claims, which documents are normative, and, for every rule admitted or changed since 0.6.0, the reason, the alternatives, the dissent, and the reopening condition; that part is exemplary and is honest about automated review and uninspected sources. The same reader cannot reconstruct why roughly two thirds of the Core clauses were admitted, because the pre-0.6.0 reasoning was never preserved and the README overstates what the decision records cover; the entry point also cites a tag that does not exist and does not say that this copy is a draft, which is the exact failure 8.4 (b) was written against, and KADS's own ADRs sit at 'proposed' while the rule one of them proposed has been removed. A conforming Core corpus lets a reader reach the basis of a material factual claim but not the reasoning or method behind a material inference or figure; the 0.8.0 sentence that asked for that was dropped on a duplication claim that the cited clauses do not support, so a Core page can be clear, cited, and unassessable while conforming. The research-report profile closes that gap; one SHOULD under 3.1, saying where the reasoning or method is recorded or that it is not, would close it for Core at no cost to a ten-line how-to, and the working tree already carries such a sentence."
+}

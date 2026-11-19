@@ -1,0 +1,389 @@
+{
+  "role": "implementation",
+  "overall": "As files and systems, the package does not work as written. All four record kinds have a native home in real teams (pull request or change ticket for the decision to proceed; suppression comment, policy waiver or risk register for the exception; incident tracker and its action items for lessons; path rules, labels or change types for level criteria), yet only 7.3 carries the phrase 'on the page or through links', 7.4 and 7.5 say 'MUST identify' and 'MUST state', the corpus is declared as paths, and two of the three templates are tracked Markdown records with D and J identifiers, so an adopter ends up writing a second document. Every lifecycle rule depends on manually maintained state that nothing brings anyone back to: an exception becomes nonconformant by the passage of time with no edit, example 5 has the expired exception silently drop off a hand-kept index (the unrenewed departure becomes less visible, the opposite of the Rogers lesson), a 'pending' disposition typed into a table is stale the day the ticket closes, and the outcome check is a promise in a merged pull request that no system will remind anyone of. Expiry can be derived from one date field by a search (tested: a ten-line shell loop classifies in force, expired and no-date records) but only if the field holds a date alone, which the template's free-text 'Expires:' line prevents. The assurance block duplicates prompts the decision and ADR outlines already have (assumptions, evidence, risks, dissent, validation, revisit), and its instruction lines such as '<Critical only.>' are shaped like HTML tags, so if left in they are likely to render as nothing. 'Exception to:' is a material labeled link and under clause 4.4 is a relation in everything but registry entry; the spelling the proposal says KADS already uses is in fact 'Exception to clause 3.5.4(a):', which a search for 'Exception to:' does not match. Numbering this as section 7 burns five permanent identifiers (clause 1.4) on text with no adopter, reuses a section number that the preserved 0.6.0 draft evidence already uses for the dropped Procedure profile, and 'experimental' has no meaning under clause 6.2 without an added sentence. My recommendation: adopt the 4.6 sentence (reworded to allow a link), publish the rest as one unnumbered informative guide with snippets meant for native systems, add no template files and no script, and record section 7 as a deferred proposal in one file.",
+  "clause_verdicts": [
+    {
+      "clause": "4.6 sentence",
+      "verdict": "REWORD",
+      "reason": "Implementable and cheap, but reasons usually live in the RFC thread, pull request or ADR context section, so 'state' forces a restatement. The escape needs a fixed spelling so a search lists reconstructed decisions. Note that this repository has no accepted decision record (ADR-001 to ADR-003 are 'proposed', J records are investigations), so the sentence has no in-repo case and costs this repository nothing. Ripple: conformance.md checklist row for 4.6, a clause-examples.md entry, the agent snippet in the adoption guide, changelog marked breaking. Not script-checkable; human reading only.",
+      "replacement": "An accepted decision MUST state the reasons for the choice, link to where they are recorded, or state that they are not recorded. (Guide: write the last case verbatim as 'Reasons not recorded.' so that a text search finds every such decision.)"
+    },
+    {
+      "clause": "7.1",
+      "verdict": "MOVE",
+      "reason": "Do not allocate a clause number. Publish as the opening paragraph of an informative docs/assurance-guide.md. If a numbered profile is retained anyway, 7.1 must say where a record may live, because clause 2 defines the corpus as the documentation covered by the adoption statement and the adoption note declares it as paths; a pull request or change ticket is outside those paths and the profile would not reach it or would require a copy.",
+      "replacement": "Add to the paragraph: A record under this profile may be held in any system the adoption note names for that kind of record, such as a pull request, a change ticket, a pipeline approval, an incident tracker, or a risk register. What that system already shows need not be restated in the corpus."
+    },
+    {
+      "clause": "7.2(a)",
+      "verdict": "REWORD",
+      "reason": "Criteria that work in practice are path rules, labels, change types or severity classes kept in a configuration file or ticket system. Requiring them to be stated in the adoption note creates a hand copy (clause 3.6.4 discourages exactly that). 'Who assigns them' excludes assignment by automation from changed paths, which is the only form that makes under-classification detectable.",
+      "replacement": "A project applying this profile MUST state in its adoption note, or link from it, the criteria by which it assigns the levels routine, significant, and critical, and who or what assigns them."
+    },
+    {
+      "clause": "7.2(b)",
+      "verdict": "REWORD",
+      "reason": "In a native system the level is a label, a ticket field, or a commit trailer, not a sentence. 'The factor that decided it' is free text nobody can check and is redundant when a path rule assigned the level. A missing level line is indistinguishable from a routine change, so this requirement is detectable only on records that already admit a level.",
+      "replacement": "A record made under clause 7.3 MUST show its level and the criterion that decided it. A label or field of the system holding the record satisfies this."
+    },
+    {
+      "clause": "7.2(c)",
+      "verdict": "DOWNGRADE",
+      "reason": "A SHOULD costs a recorded reason for each departure (clause 1.2) and a reviewer cannot see a violation without redoing the classification. Guidance sentence only. The MAY about mapping local classes is the useful half and belongs in the adoption note outline as a 'Level mapping' line.",
+      "replacement": "Guide: when criteria point to different levels, take the higher."
+    },
+    {
+      "clause": "7.3(a)-(e)",
+      "verdict": "REWORD",
+      "reason": "The stem says 'on the page or through links', which presumes a page and a single record. In practice the claim is in the pull request, the approval is a pipeline or review event, and the risk acceptance is a ticket comment. Evidence links to pipeline logs commonly expire within months, so the six-month reconstruction test fails silently unless the guide says to link a retained artifact or preserve the run (clauses 3.4.4, 3.5.1). Presence of the five labels is script-checkable when the fixed labels are used; adequacy is not and must stay human.",
+      "replacement": "A record of a decision to make or proceed with a change at the significant or critical level MUST make the following discoverable, in the record or through links from it: ... (list unchanged). The record may be a pull request, change ticket, or other native record named in the adoption note; an approval, review, or run that the system already records is linked, not restated."
+    },
+    {
+      "clause": "7.3(f)",
+      "verdict": "DOWNGRADE",
+      "reason": "Pure prose judgment. No automation can assist beyond checking that a label exists, and 'could fail in unknown ways; monitoring' conforms. As a MUST it produces a filled line, not thought. Keep as a prompt in the guide snippet for critical changes.",
+      "replacement": "Guide prompt: 'Failure and detection: how this could fail, and what would show it.'"
+    },
+    {
+      "clause": "7.3(g)",
+      "verdict": "REWORD",
+      "reason": "The native record of examination is the review on the pull request or ticket. An approval click with no comment is the commonest form and is not 'what they found'. The wording should let the native review satisfy the clause and make the empty-approval case explicit, otherwise authors copy reviewer names into the description, which goes stale when a later review is added.",
+      "replacement": "(g) who other than its authors examined the reasoning and what they found, or that no one did; the review record of the system holding the decision satisfies this where it shows both. An approval without recorded findings is stated as such."
+    },
+    {
+      "clause": "7.3(h)",
+      "verdict": "REWORD",
+      "reason": "'Recorded before acceptance' does not say where. Objections live in review threads, chat, and meeting notes. Detection needs comparison with those sources, which no reviewer of one page can do. Bound it to what the record itself links to, and allow a link to the thread in place of a summary.",
+      "replacement": "(h) each disagreement that could change the choice and that appears in the record or in a discussion it links to, with the reason it did not prevail; a link to the thread where both appear satisfies this."
+    },
+    {
+      "clause": "7.3(i)",
+      "verdict": "REWORD",
+      "reason": "Wording is fine. Position is wrong: it follows the critical-only list but applies from the significant level, so a citation '7.3(i)' reads as critical-only, and letters are permanent once published (clause 1.4). Fix the order before any publication: make it (f) and shift the critical items to (g), (h), (i).",
+      "replacement": "Place directly after (e), before 'At the critical level': (f) where the evidence in (b) is that no failure has been observed, what was observed, over what period or exposure, and how a failure would have been detected."
+    },
+    {
+      "clause": "7.4(a)",
+      "verdict": "REWORD",
+      "reason": "No 'through links' allowance, so a suppression comment, a policy-as-code waiver, or a risk-register entry cannot satisfy it without a second document. The six fields are named with a third vocabulary: conformance.md says 'clause, scope, reason, consequence, responsible role, condition for review', the adoption note outline says 'requirement, scope, reason, consequence, owner, revisit condition', and 7.4 says 'risk accepted, who accepted it, expiry date or review condition'. 'Expiry date or review condition' in one field defeats any date comparison.",
+      "replacement": "An exception MUST make discoverable, in its record or through links from it: the requirement departed from, its scope, the reason, the consequence accepted, who accepted it, and either an expiry date or a review condition. An expiry date is written as a date alone, in the form YYYY-MM-DD."
+    },
+    {
+      "clause": "7.4(b)",
+      "verdict": "DOWNGRADE",
+      "reason": "Template prompt, not a clause. Undetectable as a SHOULD and it puts three alternatives into the one 'Expires:' line of the template.",
+      "replacement": "Guide: an exception with no end date says why the requirement is not changed instead."
+    },
+    {
+      "clause": "7.4(c)",
+      "verdict": "REWORD",
+      "reason": "As written the exception record itself becomes nonconformant on the expiry date with no edit by anyone, because its own page still says 'Status: accepted'. Conformance that decays by the clock needs a scheduled human action, which KADS cannot supply. And 'not presented as in force' is implemented in example 5 as removal from the index, which hides the dangerous state: departure continuing, cover lapsed. Put the semantics on the reader side, as clause 3.1.4(d) does, so the date is the state and no status edit is needed; bind only derived views; and require the lapsed state to be shown.",
+      "replacement": "An exception whose stated expiry date has passed, and which records no renewal, is not in force; the date itself tells the reader so. A list, index, or summary MUST NOT present such an exception as in force, and SHOULD show it as expired until it is renewed or ended. A renewal replaces the expiry date in place and leaves the earlier date discoverable (clause 3.4.1)."
+    },
+    {
+      "clause": "7.4(d)",
+      "verdict": "REWORD",
+      "reason": "A hand-maintained 'exceptions in force' list is a derived view that goes stale in both directions and falls under 3.2.2. The implementable form is a search or query declared once. With the fixed label and a date-only field, listing is one grep; in a tracker it is a saved filter.",
+      "replacement": "The adoption note SHOULD say how to list the project's exceptions and their expiry dates: a text search, a query in the system that holds them, or a maintained list."
+    },
+    {
+      "clause": "7.5(a)",
+      "verdict": "REWORD",
+      "reason": "Incident tools and issue trackers already hold each action item with owner and state. 'MUST state ... one disposition' makes the document copy a volatile state: 'pending' written in a Markdown table is false the day the ticket closes and nothing updates it. Only 'risk accepted' and 'no change' lack a native item and need text. An investigation record can be 'complete' with pending lessons, so the record's own status gives no follow-up signal; the tracker does.",
+      "replacement": "A record of an incident investigation MUST make discoverable, for each lesson it draws, its disposition: a change made, a change pending, a risk accepted and by whom, or no change and why. A link to a change or to a tracked item whose own state shows the disposition satisfies this; that state is not copied into the record."
+    },
+    {
+      "clause": "7.5(b)",
+      "verdict": "DOWNGRADE",
+      "reason": "Undetectable (the proposal says so), presumes the earlier decision was recorded, and the reverse direction is what the next reader of the decision needs. Guidance prompt in the incident snippet is enough.",
+      "replacement": "Guide: where an incident shows that a recorded decision's assumption or evidence did not hold, link the decision from the incident record and add a dated line to the decision pointing to the incident."
+    },
+    {
+      "clause": "7.5(c)",
+      "verdict": "MOVE",
+      "reason": "A future check written into a merged pull request or an accepted record is remembered by nobody; Markdown has no reminders. 'Later what was observed' means editing a closed record weeks afterwards. The only implementable form is a dated item in a system that can notify. Guidance, and it should name that mechanism.",
+      "replacement": "Guide: for a critical change, open a dated follow-up item in the project's tracker for the outcome check and link it from the record; the result is written on that item."
+    }
+  ],
+  "candidates": [
+    {
+      "id": "P-01",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Proportionality only becomes real when the level is derived from something observable such as changed paths, a ticket type, or a deployment target. A level typed by the author into the same record it governs is a self-assessment that costs effort at every change.",
+      "counterexample": "A team applies the block to every pull request through the default pull request template; routine changes carry an empty 'Assurance' heading and reviewers learn to scroll past it, including on the one critical change.",
+      "gaming": "Everything is routine; nothing is recorded; nothing is detectably wrong.",
+      "recommended_change": "Keep the foundations sentence but drop 'the assurance profile (section 7) is the only place' since no numbered section should be created now."
+    },
+    {
+      "id": "P-02",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "It binds only tracked decision records, of which this repository has none in accepted status, so the rule is adopted without a single in-repo instance to test the wording against. Both decision outlines already carry a rationale section, so the template change is nil and the rule adds only the escape sentence.",
+      "counterexample": "An ADR whose reasons are a forty-comment RFC thread: 'state the reasons' pushes the author to write a lossy summary that then diverges from the thread; a link would have been better.",
+      "gaming": "'Reasons: agreed in planning.' Or 'Reasons not recorded.' written on a decision made last week.",
+      "recommended_change": "Allow 'or link to where they are recorded'; fix the spelling 'Reasons not recorded.'; add the conformance checklist row and a clause-examples entry showing the gamed form as non-compliant only if the guide can say why, otherwise accept presence-only openly."
+    },
+    {
+      "id": "P-03",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "In a pull request the 'choice to proceed' is the merge and approval event the system already records; the 'claim' is the description. The separation the clause wants already exists structurally in the native system, and restating both in a block duplicates it.",
+      "counterexample": "A change ticket system with mandatory 'test evidence' and 'approver' fields already satisfies (a) and (b); a team told to add a Markdown decision record per significant change maintains two records that disagree after the ticket is amended.",
+      "gaming": "'Claim: ready. Evidence: CI green (link).' The link points to a log that expires in 90 days.",
+      "recommended_change": "Guide text that names the native mapping (description = claim and evidence; approval event = choice and authority) and says to link retained artifacts, not expiring logs."
+    },
+    {
+      "id": "P-04",
+      "validity": "VALID",
+      "expression": "SHOULD",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Most real exceptions are born inline: a lint suppression, a scanner ignore entry, a policy waiver object, a skipped pipeline job. Six fields cannot live there, and 7.4 has no 'through links' allowance, so each one needs a separate Markdown decision record with a D identifier. Teams will not write those; they will write the suppression.",
+      "counterexample": "A vulnerability scanner ignore file that already takes an expiry date and a reason per entry and fails the pipeline when the date passes. It enforces expiry mechanically, which is stronger than 7.4, yet does not conform because it lacks 'who accepted' and a scope field in the record.",
+      "gaming": "One blanket exception record with a wide scope and a review condition instead of a date.",
+      "recommended_change": "Let the native object be the record when it links to, or carries, the six items; align the six field names with conformance.md; give a five-line snippet in the guide instead of a template file."
+    },
+    {
+      "id": "P-05",
+      "validity": "VALID",
+      "expression": "SHOULD",
+      "placement": "GUIDANCE",
+      "strongest_objection": "It is clause 5.7 and 3.3.1 applied to a decision record; as a separate lettered MUST it is one more label to fill. Its letter (i) is misplaced after the critical-only items.",
+      "counterexample": "none found: scoping a no-failure claim costs one sentence and I found no case where writing it is worse than omitting it.",
+      "gaming": "'Observed: production, 30 days, no alerts.' with no statement that any alert covers the failure in question.",
+      "recommended_change": "Fold into the evidence prompt of the guide snippet and cross-reference clause 5.7; if kept as a clause, reletter before publication."
+    },
+    {
+      "id": "P-06",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Not assistable by any check and satisfied by a platitude. A MUST that only verifies a label is present encodes form.",
+      "counterexample": "A critical change made under an emergency: the author fills 'Failure and detection' afterwards with what actually happened, dated honestly, and the field reads as foresight to a later skimmer.",
+      "gaming": "'Could fail unexpectedly; existing monitoring.'",
+      "recommended_change": "Prompt in the guide snippet only."
+    },
+    {
+      "id": "P-07",
+      "validity": "VALID",
+      "expression": "SHOULD",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The implementable evidence for recovery is a link to an executed rollback or restore run; the block asks for prose plus 'whether it has been executed', and the run link will usually have expired. In expand-and-contract migrations the reversible step is 'significant' and the later one-line column drop is 'critical' although the real decision was made in the first step.",
+      "counterexample": "Example 2 says the migration 'can be reversed from the retained old column'. That is true only until the cleanup change. The cleanup pull request is a single statement, classified critical by the definition, and must now carry examiner, dissent and failure analysis for a step everyone decided weeks earlier.",
+      "gaming": "'Undo: revert the commit.' for a change with a data migration.",
+      "recommended_change": "Guide: state the point after which the change cannot be undone and which later change crosses it; link a preserved run for 'executed'."
+    },
+    {
+      "id": "P-08",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The hosting system already records who reviewed. What it does not record is whether the reviewer examined the reasoning or clicked approve. 7.3(g) asks the author to characterize someone else's review, which the author cannot verify and has an interest in overstating.",
+      "counterexample": "Required-reviewer rules (code owners) produce an approval from another team on every change to a path. The author truthfully writes 'Examined by: platform team, approved', and the record reads as independent challenge when it was a rubber stamp.",
+      "gaming": "Name the approver as the examiner; 'found nothing'.",
+      "recommended_change": "Link the review; say explicitly when an approval carries no findings; keep clause 3.3.4 as the only MUST."
+    },
+    {
+      "id": "P-09",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "'Recorded before acceptance' has no stated location, so a reviewer cannot tell which sources to compare. The ADR outline already says 'dissent that could change the choice' and the decision guide already advises recording it; the assurance block adds a second place for the same text.",
+      "counterexample": "A review thread with twelve objections, eleven resolved by changes. Copying 'each' into the record duplicates the thread; a link is the faithful record.",
+      "gaming": "'Disagreement: none recorded.' while the objection was made in chat.",
+      "recommended_change": "Link the thread; limit the duty to what the record or its linked discussion contains; do not add a second dissent prompt to adr.md."
+    },
+    {
+      "id": "P-10",
+      "validity": "VALID",
+      "expression": "SHOULD",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Follow-up state belongs in the issue tracker that already exists. A disposition column typed into a document is a hand copy of live state, and the record's status 'complete' coexists with 'pending' rows forever. The worked example avoids the problem by having no pending lesson.",
+      "counterexample": "A postmortem in an incident tool with five linked action items, each with owner and due date and automatic reminders. To conform, the team re-types five dispositions into a Markdown table; three weeks later the table says 'pending' for items that are closed and for one that was closed as 'will not do' with no reason.",
+      "gaming": "'Pending, tracked at <link to a backlog epic>' for every lesson.",
+      "recommended_change": "Disposition is the linked item's own state; only 'risk accepted' and 'no change' are written in the record. Add a pending lesson to the worked example and show what a reader sees six months later."
+    },
+    {
+      "id": "M-11",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The definitions are not operational. 'Could cause an effect that cannot be undone' makes every dropped column, sent message, published package version and pushed release tag critical; this repository's own CONTRIBUTING says a pushed tag is treated as permanent, so each KADS release would be critical. Levels become usable only as path, label or ticket-type rules, which are local and belong in project configuration.",
+      "counterexample": "A weekly job that sends a digest email is changed. The email cannot be unsent, so the change is critical by the definition and needs an examiner and a dissent statement for a wording fix.",
+      "gaming": "No level line is written; absence is read as routine.",
+      "recommended_change": "Add 'material' to the critical definition; let the adoption note link to machine-readable criteria (path or label rules); say in the guide that deriving the level from changed paths is preferred where the repository layout allows, and that this is the adopter's pipeline, not a KADS tool."
+    },
+    {
+      "id": "M-12",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Inserted into templates/decision.md and templates/adr.md, the block duplicates existing prompts: 'assumptions, and supporting evidence' (Context and rationale), 'risks, and accepted uncertainty' (Alternatives and consequences), validation (Implementation and validation), review triggers (Revisit and history), and 'dissent that could change the choice' (adr.md). An author meets each question twice.",
+      "counterexample": "An ADR with a careful 'Rationale and consequences' section listing assumptions and risks. With the block added, the author either repeats them under 'Assurance' or writes 'see above' nine times.",
+      "gaming": "All nine labels present, each with 'n/a' or 'see PR'.",
+      "recommended_change": "Do not add a section to the two outlines. Add one line to each: 'For a significant or critical change, also answer the prompts in the assurance guide, inside the sections above.' Publish the block once, in the guide, as a snippet for pull request and ticket descriptions."
+    },
+    {
+      "id": "M-13",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The realistic home is the pull request or change ticket, which is outside the declared corpus, mutable without visible history on some hosts, and lost on a host migration. The proposal says 'the pull request description can be the record' in a tradeoff line but the clause text and adoption note outline give no way to declare that.",
+      "counterexample": "A team migrates Git hosts; merged pull request descriptions do not migrate. Every significant-level record is gone while the repository is intact.",
+      "gaming": "The block is pasted into the default pull request template and left unfilled.",
+      "recommended_change": "Adoption note line 'Assurance records: <system per record kind>'; guide advice to carry the block into the squash commit message or to use commit trailers such as 'Assurance-Level: critical' so the record travels with the repository and 'git log' lists it."
+    },
+    {
+      "id": "M-14",
+      "validity": "REFINE",
+      "expression": "SHOULD",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Lifecycle is unimplementable as drafted. 'Expires:' accepts a date, a condition, or a permanence argument on one line, so it cannot be compared with today. Renewal is a prose note in another section, leaving the header date stale. The reuse table maps an expired exception to status 'deprecated', which the template does not list and whose registry meaning ('should no longer guide new work') does not fit; it also collapses 'ended, compliance restored' and 'lapsed, departure continues' into one state.",
+      "counterexample": "Example 5 after the date passes: the legacy service still does not rotate credentials, nobody edited anything, the record still says 'Status: accepted', and the index (if someone remembered to edit it) no longer lists it. A reader of the rule now believes it holds everywhere.",
+      "gaming": "'Expires: when the service is retired.' No date, so 7.4(c) never applies.",
+      "recommended_change": "Date-only 'Expires:' field plus a separate 'Review condition:' field; renewal replaces the date in place with history in version control; listing by search with lapsed exceptions shown first as EXPIRED. I tested a ten-line shell loop over '**Expires:** ' lines on 2026-10-03 against four sample files in a temporary directory: it reported in force, expired, and no-date correctly, and a mixed free-text value was parseable only because the date came first. Give it as a guide snippet, not as a tools/ script."
+    },
+    {
+      "id": "M-15",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Nothing to implement. The functions are already identities in the hosting system (author, reviewer, approver, code owner); the paragraph should map to those instead of introducing five nouns.",
+      "counterexample": "none found: a guide paragraph imposes no mechanical behavior.",
+      "gaming": "Not applicable; no requirement.",
+      "recommended_change": "Shorten to two sentences and name the native equivalents."
+    },
+    {
+      "id": "M-16",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "templates/incident.md declares 'Type: investigation' but drops the investigation outline's shape (current answer, method, observations, analysis) and demands a J identifier where the incident tracker already issued one. The nomenclature says to keep existing identifiers through a mapping. The section 'What we believed and what was true' is forced even when no recorded decision is involved.",
+      "counterexample": "An organization whose postmortems live in an incident tool with identifiers like INC-1234. The template asks for a second identity (J-012) and a second document for the same incident.",
+      "gaming": "One lesson, 'no change', reason 'one-off'.",
+      "recommended_change": "No incident.md. Add one prompt to the 'Result and follow-up' section of templates/investigation.md: 'For an incident: each lesson with a link to the change or tracked item, or who accepted the risk, or why nothing changes.' Keep the tracker identifier."
+    },
+    {
+      "id": "M-17",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Under clause 4.4 a material relationship written as a labeled link must use the registry vocabulary or a documented local extension. 'Exception to:' followed by a link is exactly that, so 'zero relations added' is true only by not counting it; every tracked-record adopter would have to declare it locally. The claim that KADS already uses this spelling is wrong: docs/clause-examples.md writes 'Exception to clause 3.5.4(a):', which a search for 'Exception to:' does not find.",
+      "counterexample": "A reader asks 'which exceptions exist against the credential rule?'. With no reverse link and no registry relation, the answer needs a search for the rule's identifier across all files, including systems outside the repository.",
+      "gaming": "The label is written without a link, or with a link to a section heading that later moves.",
+      "recommended_change": "Either give 'Exception to' one informative line in registry/relationships.md as a fixed field label with its exact spelling and anchor form (line start, bold, colon inside the bold), or admit it as a relation under question 7 when a real document shows the need. Do not use 'answers' for mitigation. Fix the clause-examples spelling claim."
+    },
+    {
+      "id": "M-18",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Section 7 is the wrong container and the wrong time. Identifiers are permanent once published (1.4); with no adopter the wording will change, and each removed item retires a number. 'Section 7, clauses 7.2 to 7.6' already names the dropped Procedure profile in the preserved 0.6.0 evidence and in the 'Draft numbering' table, so '7.3' would mean two things inside this repository. Placing a profile after section 6 breaks the layout that conformance.md relies on ('sections 1, 3, and 6' are common; 4 and 5 are profiles). The ripple touches at least twelve files.",
+      "counterexample": "At 0.8.0 an adopter shows that 7.4 needs a split and 7.5(c) is dead. Clause 7.5(c) is retired, 7.4 gains letters out of reading order, and a five-clause profile has three retired or reshaped identifiers before 1.0.",
+      "gaming": "Not applicable.",
+      "recommended_change": "No section 7. Add docs/assurance-guide.md (informative, unnumbered prompts, native-system mapping, snippets). Record the clause text as a deferred proposal in one file under decisions/ with the reopening condition 'first adopter report using the guide'. If a numbered profile is ever published, add to clause 6.2: 'A clause marked experimental MAY be changed or removed in a minor version; the change is listed in the changelog. A conformance claim that relies on an experimental clause says so.' Without that sentence, 'experimental' means nothing before 1.0 (every breaking change is already a marked minor bump) and is a breaking major change after 1.0."
+    },
+    {
+      "id": "M-19",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The template texts contain instructions that will be left in and sections that will be empty. '<Significant and critical. One or two sentences each; link, do not copy.>' and '<Critical only.>' are not placeholders; by the CommonMark inline HTML grammar a line like '<Critical only.>' is shaped like a tag and is likely to render as nothing (reasoned from the grammar; not executed, no renderer was available), so an unfilled field shows a bare label that reads as 'none'. 'Renewal and end' is empty on the day every exception is written. The three alternatives in 'Expires:' and the 'Level: X, because Y' sentence are not parseable fields.",
+      "counterexample": "An exception record copied from the template with 'Renewal and end' left as the placeholder: rendered, the heading has no body, and a reader cannot tell 'never renewed' from 'not filled in'.",
+      "gaming": "Templates copied, labels kept, placeholders left; rendered output looks complete.",
+      "recommended_change": "Add no template files. Put three short snippets in the guide (assurance prompts, exception fields, lesson rows). Mark optional parts 'Omit until relevant' as templates/question.md does. Use date-only and level-only values on their own lines: 'Level: critical' then 'Level criterion: ...'."
+    },
+    {
+      "id": "M-20",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "A 'basis: observed or anticipated' column in the changelog is another hand-maintained state with no trigger: nothing fires when an adopter report arrives. And 'candidate for removal at each release review' collides with CONTRIBUTING's table, where removing a clause is a breaking change that retires a number.",
+      "counterexample": "Three releases later the column still says 'anticipated' for a clause that an adopter report confirmed, because the report was filed under docs/reviews/ and nobody revisited the 0.7.0 changelog entry, which is history and should not be edited anyway.",
+      "gaming": "Every rule cites a public incident as its 'observed case', as this proposal does.",
+      "recommended_change": "Keep the basis where it already is: the 'Reopen when' column of the decisions index, which is current state, not the changelog, which is history. Define 'observed' as observed in a corpus using KADS."
+    },
+    {
+      "id": "M-21",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Several signals are derivable by script from a repository (broken references, orphan files, expired exceptions, placeholders left in copied templates, records not edited in a year) and several are not derivable at all (time to locate a decision, repeated questions). Listing ten without separating the two kinds invites a metrics exercise nobody runs.",
+      "counterexample": "none found for the two CONTRIBUTING sentences; the ten-signal list is the risk, not the review.",
+      "gaming": "The release review says 'all clauses reviewed, none retired' in one line.",
+      "recommended_change": "In the adoption guide list only the signals an adopter can produce with a search, each with the search. Leave the rest out."
+    },
+    {
+      "id": "M-22",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "TOOLING",
+      "strongest_objection": "The counts are derived figures copied by hand into the changelog, which clause 3.6.4 says should be generated or checked mechanically where practical. Clause and keyword counts are a grep away; 'required fields' is a judgment and should not be in the table.",
+      "counterexample": "The proposal's own count: 'Specification goes from 48 to 53 clauses' and '8 MUST' are hand tallies; nobody can reproduce '17 required fields' without the author's reading.",
+      "gaming": "A long clause with nine lettered items counts as one clause.",
+      "recommended_change": "Give the counting commands in CONTRIBUTING release step 2 (count of lines matching the clause-identifier pattern; count of each uppercase keyword) so the figures are reproducible; count lettered items as well as clauses; drop 'required fields'. No new script file is needed for two grep commands."
+    }
+  ],
+  "existing_rules_to_challenge": [
+    {
+      "clause_or_artifact": "templates/*.md placeholder convention: angle brackets around instructions and values",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "A placeholder shaped like an HTML tag (letters first, no comma or quote, for example '<D-ID>' or '<Critical only.>') is likely to be treated as inline HTML by CommonMark renderers and shown as nothing, while one containing a comma is shown literally. An unfilled template can therefore look complete when rendered. Reasoned from the grammar; not executed. templates/README.md asks authors to 'remove instructions' but nothing reveals the ones left in. A marker that always renders (for example 'TODO:' or italic text) makes leftovers visible and searchable with one grep."
+    },
+    {
+      "clause_or_artifact": "templates/*.md metadata block held together by two trailing spaces per line",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "Editors and formatters commonly strip trailing whitespace, after which Type, Status and Updated merge into one rendered line. The exception template would add four more such lines. A list item per field renders the same everywhere and keeps 'one field per source line' for searches."
+    },
+    {
+      "clause_or_artifact": "Exception fields: docs/conformance.md 'Review outcome' versus the 'Exceptions:' line of the adoption note outline in docs/adoption-guide.md",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "The same six fields are named two ways today ('consequence, responsible role, condition for review' versus 'consequence, owner, revisit condition') and the proposal adds a third ('risk accepted, who accepted it, expiry date or review condition'). One list, in conformance.md, quoted by the other two."
+    },
+    {
+      "clause_or_artifact": "Clause 4.2 'updated date' as a manually maintained field",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "For a corpus under version control the last edit date is derived state; the hand-typed field drifts from it and is the kind of copy clause 3.6.4 discourages. Allow the version history to supply it ('recorded once in visible text, metadata, or the version history of the record') and keep the typed field for corpora without history."
+    },
+    {
+      "clause_or_artifact": "CONTRIBUTING.md versioning table row 'A clause is removed ... Minor, marked breaking' against clause 6.2",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "Clause 6.2 defines breaking as a change that could make a conformant corpus nonconformant or that changes the meaning of an existing clause. Removing a requirement does neither, yet the table calls removal breaking. The two texts disagree, and the disagreement decides whether an experimental clause can be withdrawn quietly. Settle it in 6.2 before any experimental marking is used."
+    },
+    {
+      "clause_or_artifact": "decisions/standards/: one file per evaluated candidate (31 J records) plus an index table that repeats them",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "Four challengers dissented in the last round and J-019's own reopening condition anticipates collapsing into the index. This round would add 22 more files for a 153-line specification. Record this evaluation as one file with a table and the evidence bundle; consider collapsing the 31."
+    },
+    {
+      "clause_or_artifact": "README.md sentence 'An optional link check covers the one requirement a script can verify, and nothing more'",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "It is no longer accurate: the script already covers 3.5.5 with --orphans, and field presence (4.2), identifier uniqueness (4.3), reverse supersession links (4.5), and date comparisons are all mechanically checkable. Say 'covers link resolution and reachability; other mechanical checks are left to adopters' so the sentence does not have to be falsified by each future aid."
+    },
+    {
+      "clause_or_artifact": "docs/adoption-guide.md agent instruction snippet with its trailing clause list",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "It is a hand-copied summary of the specification pinned to a version, which every release must re-edit and which adopters copy and then never update. Reduce it to the first paragraph (where to read the rules) and drop the restated rules and clause list."
+    }
+  ],
+  "dissent_to_preserve": [
+    "Do not publish clause numbers 7.1 to 7.5 in this release. Identifiers are permanent (clause 1.4), no adopter has used the text, and section 7 already denotes the dropped Procedure profile in the preserved 0.6.0 evidence. An unnumbered informative guide loses nothing and burns nothing.",
+    "An expired, unrenewed exception whose departure continues is the most dangerous state the profile addresses, and the proposed design makes it disappear from the list. Any design that is adopted must show that state as EXPIRED, derived from the date, without requiring anyone to edit a file.",
+    "Files that should NOT be added to this repository: templates/exception.md, templates/incident.md, an 'Assurance' section inside templates/decision.md or templates/adr.md, any tools/ script for assurance checks, an exceptions index or risk register file, a pull request template, and 22 new J record files.",
+    "Files to add or change if my recommendation is followed: add docs/assurance-guide.md (informative; three snippets; a table mapping each record kind to its usual native system; the tested expiry search as a snippet); add one record under decisions/ holding the deferred section 7 text and the dispositions of P-01 to M-22; change docs/specification.md clause 4.6 only; change docs/conformance.md (4.6 checklist row), docs/clause-examples.md (4.6 entry), templates/investigation.md (one lesson prompt), docs/decision-guide.md (two sentences), docs/adoption-guide.md (one optional outline line 'Assurance records: <system per record kind; level criteria or link; how to list exceptions>'), README.md (start-here row; adoption note unchanged because no profile is created), CHANGELOG.md, CONTRIBUTING.md (counting commands).",
+    "Which checks could be scripted and which must stay human, if a profile is ever adopted. Scriptable, and suitable for an optional aid: expiry date earlier than today on a date-only field; presence of the fixed labels a stated level requires; a lesson row with no link and no text; placeholders left in a copied template. Adopter pipeline only, never a KADS tool: deriving or checking the level from changed paths or labels. Human only: whether the level is right, whether evidence supports the claim, whether an examination was real, whether all dissent is present, whether an incident touches an earlier decision.",
+    "Canonical home in practice, per record kind: decision to proceed is the pull request or change ticket plus the approval event; exception is the suppression, waiver object or risk-register entry; incident lessons are the incident tracker's action items; level criteria are path, label or change-type rules in configuration. For all four the native system is canonical and a Markdown file is the fallback for teams without one. The proposal's wording lets only 7.3 be satisfied natively.",
+    "The six worked examples avoid every hard lifecycle case: no pending lesson, no exception after its expiry with the departure continuing, no outcome check coming due, no evidence link that has expired, no irreversible follow-up step to a reversible change. Each example should be rewritten as the actual file or description text and then shown again six months later."
+  ]
+}

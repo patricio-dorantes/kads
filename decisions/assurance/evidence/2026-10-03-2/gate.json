@@ -1,0 +1,209 @@
+{
+ "verdict": "RELEASE_AFTER_FIXES",
+ "summary": "The normative text is nearly coherent, the link and orphan checks pass, no em dash or stale templates/adr.md link remains, placeholder escaping is correct, and nothing in the evidence bundle exposes paths, names, addresses, or tokens. The release is not honest enough yet by its own clauses 3.2.2 and 3.3.3: the record says five of seven challengers recommended against a profile when two did so outright and its own matrix shows four profile placements, it says five challengers preferred MUST for 4.6 when six retained it, and the README review record silently drops an unresolved item. Clause 5.7 gains requirements under an existing MUST without a keyword and without the breaking mark that clause 6.2 requires, the nomenclature registry and a checklist row still contradict the new 4.2 MAY, and a clause example calls not compliant something no clause forbids. The changelog table matches the printed commands except the conformance MUST row (5 to 6, not 6 to 7), and several rows have no printed command. The release does not show the review of anticipated-only rules or the review-trigger conditions that the new CONTRIBUTING rules require, and the bundle manifest lists a gate.json that is not in the bundle. All findings are wording or bookkeeping fixes; none requires redesign. This is automated review by a single agent, not verification by a person.",
+ "findings": [
+  {
+   "severity": "major",
+   "file": "decisions/assurance/README.md",
+   "location": "\"Five of the seven challengers recommended against putting a numbered profile into the specification now, and the synthesis agrees.\"",
+   "problem": "Stated more firmly than the challenger files support (clause 3.2.2). Only principle and implementation recommend against a profile outright. Cognitive load prefers deferral for this release but accepts a reduced four-clause profile with retirements; domain transfer offers \"publish section 7 marked as anticipated-only ... or defer\"; architecture offers \"a reduced profile of at most three clauses ... or guidance only\". Abuse and normative language recommend shipping a reduced, reworded profile. The record's own matrix row M-18 says \"Challenger placements: profile 4, guidance 3\".",
+   "fix": "Replace the sentence with: \"Two of the seven challengers (principle, implementation) recommended against a numbered profile outright. Three more (cognitive load, domain transfer, architecture consistency) gave deferral or guidance-only as their preferred or alternative outcome for this release. Two (failure mode and abuse, normative language) recommended a reduced and reworded profile. On candidate M-18 four challengers placed the content in a profile and three in guidance. The synthesis sides with deferral.\""
+  },
+  {
+   "severity": "major",
+   "file": "decisions/assurance/README.md",
+   "location": "three places: matrix row P-02 \"the MUST five challengers preferred\"; synthesis rejected_objections \"\\\"The 4.6 sentence should be a MUST\\\" (five challengers)\"; dissent disposition \"should be a MUST (five challengers)\"",
+   "problem": "Wrong count and wrong characterization. In clause_verdicts for \"4.6 sentence\", six challengers keep MUST (abuse, architecture, domain, cognitive, implementation, principle: two KEEP, four REWORD with MUST in the replacement) and one (normative language) says DOWNGRADE to SHOULD. P-02 expression field: MUST 6, SHOULD 1. None of the six argued for MUST against SHOULD; they retained the keyword of the proposal.",
+   "fix": "In all three places change \"five challengers\" to \"six challengers\". In rejected_objections change the quoted objection to: \"Keep the 4.6 sentence as a MUST, as proposed (six challengers retained the keyword; none argued it against a SHOULD)\". In the disposition paragraph use: \"that the reasons sentence in clause 4.6 keep its MUST (retained by six challengers)\"."
+  },
+  {
+   "severity": "major",
+   "file": "docs/specification.md; CHANGELOG.md; decisions/assurance/README.md",
+   "location": "clause 5.7, added sentence \"its scope includes what was observed, over what period or exposure, and how a failure would have been detected\"; CHANGELOG \"Clarification of the existing clause\"; CHANGELOG \"One item is **breaking**\"",
+   "problem": "The sentence carries no keyword but extends what the first MUST of 5.7 requires (period or exposure, means of detection), and the conformance checklist now asks for \"period\". The record row P-05 says it \"Binds only where the research-report profile is applied\". A 0.6.0-conformant research-report corpus with \"no failure observed\" scoped to interface, version, credentials and location only becomes nonconformant, which clause 6.2 defines as breaking and requires to be identified as breaking. The architecture challenger's wording had an explicit MUST; dropping the keyword keeps the MUST count at 68 while adding requirements, the practice the normative challenger objected to. The rule is also missing from the anticipated-only basis table.",
+   "fix": "CHANGELOG: change \"One item is **breaking**\" to \"Two items are **breaking**\". Append to the 5.7 bullet, replacing \"Clarification of the existing clause.\": \"The sentence has no keyword of its own and binds through the first MUST of the clause. **Breaking** for corpora under the research-report profile whose no-failure statements omit the period or exposure or the means of detection.\" Add under Migration, Required: \"2. Under the research-report profile, give each statement that no failure was observed its period or exposure and how a failure would have been detected.\" Add a note under the table: \"MUST stays at 68 although clause 5.7 gained three scope items under its existing MUST.\" In the record: row P-05 change \"clause 5.7, clarification\" to \"clause 5.7, extension of the existing MUST; breaking\"; add the same required migration line to section I; add a basis-table row \"5.7, no-failure statements | 0.7.0 | Harm to a reader who takes absence of failure as evidence of correctness | this record\". In the root README nothing changes."
+  },
+  {
+   "severity": "major",
+   "file": "README.md",
+   "location": "Review record: \"Unresolved: no review by a person other than the maintainer; no adopter has used the consequence guide; ADR-001 to ADR-003 remain in proposed status.\"",
+   "problem": "The 0.6.0 record listed \"no reader trial of the teaching material\" as unresolved. The 0.7.0 record drops it without any trial having been recorded. An unresolved item removed without resolution misstates the review (clauses 6.4, 3.3.3).",
+   "fix": "Use: \"Unresolved: no review by a person other than the maintainer; no reader trial of the teaching material; no adopter has used the consequence guide; ADR-001 to ADR-003 remain in proposed status.\""
+  },
+  {
+   "severity": "major",
+   "file": "registry/nomenclature.md; docs/conformance.md",
+   "location": "nomenclature \"Minimum record information\": \"Each tracked record MUST identify `id`, `type`, `title`, `status`, and `updated`. A heading can supply the title and ID; a short labeled block can supply the rest.\"; conformance row \"Are the required identity, lifecycle, and edit-date fields present? | 4.2\"",
+   "problem": "Clause 4.2 now says version history MAY supply `updated`, but the normative registry still requires the record to identify `updated` with no such allowance, and the checklist still asks whether an edit-date field is present. A record relying on the new MAY fails the registry MUST and the checklist question.",
+   "fix": "nomenclature: after \"a short labeled block can supply the rest.\" add \"Where the corpus is under version control, the version history MAY supply `updated` (clause 4.2).\" conformance: change the row to \"Are the required identity and lifecycle fields present, and is the edit date present or supplied by version history? | 4.2\". Mention the registry sentence in the CHANGELOG 4.2 bullet."
+  },
+  {
+   "severity": "major",
+   "file": "docs/clause-examples.md; decisions/assurance/README.md",
+   "location": "clause-examples heading \"Conformance: a list of exceptions shows dates, and lapse is visible\" and \"Not compliant: ... (the second exception was deleted from the list when its date passed)\"; record accepted_objections \"a lapsed exception stays visible (all seven)\"",
+   "problem": "No normative sentence requires a lapsed exception to remain listed. Conformance requires only that a list show each expiry date or review condition, and defines lapse. The example labels deletion \"Not compliant\" although no clause forbids it (the block is noncompliant only because the remaining entry shows no date). The record presents the objection as accepted without saying it was implemented as guidance, which is weaker than the domain transfer challenger's \"MUST NOT be removed\".",
+   "fix": "clause-examples: retitle \"Conformance: a list of exceptions shows dates\". In the Not compliant block delete the parenthetical line. Replace the Why with: \"Why: a list without dates cannot show that an acceptance has lapsed. Keeping a lapsed exception in the list, as the compliant example does, is advice in the consequence guide; no clause requires it.\" Record: after \"(all seven)\" add \"; implemented as a MUST that lists show dates and a definition of lapse, with keeping the lapsed entry listed as guidance only\"."
+  },
+  {
+   "severity": "major",
+   "file": "CHANGELOG.md; CONTRIBUTING.md",
+   "location": "CHANGELOG \"CONTRIBUTING no longer calls the retirement of a clause breaking; under clause 6.2 it cannot make a conformant corpus nonconformant.\"; CONTRIBUTING row \"A clause or lettered requirement is retired or relaxed, so that no conformant corpus is affected | Minor | Minor\"",
+   "problem": "Clause 6.2 has two limbs: a change that could make a conformant corpus nonconformant, \"or that changes the meaning of an existing clause, status, or relation\". The changelog argues from the first limb only. The 4.2 MAY, the \"expiry date or\" relaxation, and the removal of 3.5.4 (c) change what existing clauses mean. The implementation challenger asked that this be settled in 6.2; it was settled only in CONTRIBUTING, which is not normative, so CONTRIBUTING and 6.2 can be read as disagreeing.",
+   "fix": "Do not edit 6.2 at the gate. CHANGELOG: replace the bullet with \"CONTRIBUTING no longer calls the retirement or relaxation of a requirement breaking. Clause 6.2 also calls a change of meaning of an existing clause breaking; this version reads a retirement or relaxation as leaving the meaning of what remains unchanged. A reader who takes the stricter reading should treat the changes to 3.5.3, 3.5.4 (c), 4.2, and the exception fields as breaking with no migration step. Settling the wording of 6.2 is left to the next release.\" Add the same open point to follow_up in the record."
+  },
+  {
+   "severity": "major",
+   "file": "decisions/assurance/README.md; CONTRIBUTING.md",
+   "location": "section \"Basis of rules admitted without an observed case\" (table columns Rule, Admitted in, Ground, Record)",
+   "problem": "CONTRIBUTING \"Basis\" requires the mark \"with the condition that will trigger its review\"; the table has no such condition for the two 0.7.0 rules. \"Review before growth\" requires that before a release that adds a rule, every rule still marked anticipated only is reviewed with \"would we add this today?\"; the record shows no such review of 3.1.4, 3.5.4 (a)(b), 3.3.4, or 3.5.5. The release therefore does not fully follow the rule it introduces, and says nothing about that.",
+   "fix": "Add a column \"Review when\". For 4.6: \"Next minor release; sooner if an adopter reports \\\"Reasons not recorded.\\\" used as boilerplate\". For the exception rule: \"Next minor release; sooner when any adopter keeps a list of exceptions\". For the 0.6.0 rows: \"Next minor release\". Add below the table: \"The four rules admitted in 0.6.0 were not re-examined in this round except where a challenger nominated them; the review that CONTRIBUTING asks for is owed at the next minor release.\""
+  },
+  {
+   "severity": "major",
+   "file": "decisions/assurance/evidence/2026-10-03-2/README.md",
+   "location": "table row \"`gate.json` | The final gate reviewer's findings on the integrated result\"",
+   "problem": "The bundle manifest lists gate.json but no such file exists in the bundle; the gate output is written to workbench/assurance/gate.json, and workbench/ is ignored by git. As it stands the manifest describes a file that will not be published.",
+   "fix": "Copy workbench/assurance/gate.json to decisions/assurance/evidence/2026-10-03-2/gate.json before committing, unmodified. It contains only repository-relative paths."
+  },
+  {
+   "severity": "minor",
+   "file": "CHANGELOG.md",
+   "location": "table row \"MUST in conformance | 6 | 7 | 1 (exception lists) | 0\"",
+   "problem": "With the keyword command printed in CONTRIBUTING applied to docs/conformance.md, the counts are MUST 5 at HEAD and 6 in the working tree, with MUST NOT 1 in both. The row counts MUST NOT as MUST, unlike the specification rows. All other rows reproduce: clauses 48 with 0 and 1 retired (47 active), lettered 7 including 1 retired (6 active), MUST 68/68, MUST NOT 11/11, SHOULD 21/20, SHOULD NOT 1/1, MAY 10/11, terms 15, record types 6, relations 11, outlines 11/10, guides 7/8, adoption-note lines 18/18.",
+   "fix": "Change the row to \"| MUST in conformance | 5 | 6 | 1 (exception lists) | 0 |\" and add \"| MUST NOT in conformance | 1 | 1 | 0 | 0 |\"."
+  },
+  {
+   "severity": "minor",
+   "file": "CONTRIBUTING.md",
+   "location": "\"The counts come from these commands, so that anyone can reproduce them:\" and the six commands",
+   "problem": "The table rows for conformance keywords, retired lettered items, record types, outlines, guides, and adoption-note lines have no printed command, so those counts cannot be reproduced as claimed.",
+   "fix": "Add to the block: \"grep -oE '\\([a-z]\\) Retired' docs/specification.md | wc -l          of which retired\"; \"grep -oE 'MUST NOT|SHOULD NOT|MUST|SHOULD|MAY' docs/conformance.md | sort | uniq -c\"; \"grep -c '^| `[A-Z]` |' registry/nomenclature.md               record types\"; \"ls templates/*.md | grep -vc README                              outlines\"; \"ls docs/*-guide.md | wc -l                                       guides\"; \"sed -n '/^Adoption note version:/,/^Review record:/p' docs/adoption-guide.md | wc -l   adoption-note lines\". These give 1, (MUST 6, MUST NOT 1, SHOULD 1, MAY 2), 6, 10, 8, 18 on the working tree."
+  },
+  {
+   "severity": "minor",
+   "file": "CONTRIBUTING.md",
+   "location": "release step 2 \"the complexity table described below\"; paragraph \"For v0.6.0, steps 1 to 3 were executed ...\"",
+   "problem": "The table is described above the release steps (\"Keeping the standard small\" precedes \"Versioning and releases\"). The execution note says nothing about v0.7.0.",
+   "fix": "Change \"described below\" to \"described under Keeping the standard small\". Append: \"For v0.7.0, steps 1 to 3 were executed on 2026-10-03 by the drafting agent and step 4 is left to the maintainer.\""
+  },
+  {
+   "severity": "minor",
+   "file": "docs/conformance.md",
+   "location": "line 5: \"examples for the clauses added or strengthened in 0.6.0 are in [clause examples]\"",
+   "problem": "Stale version reference; clause-examples now covers 0.6.0 and 0.7.0.",
+   "fix": "Change \"in 0.6.0\" to \"in 0.6.0 and 0.7.0\"."
+  },
+  {
+   "severity": "minor",
+   "file": "README.md",
+   "location": "\"The task-specific guides, ADR outlines, artifact catalogs, and learning aids are optional\"",
+   "problem": "Refers to ADR outlines; the ADR outline was retired in this version. No other tracked file outside the changelog history and the evidence bundle still links or refers to templates/adr.md.",
+   "fix": "Change \"ADR outlines\" to \"outlines\"."
+  },
+  {
+   "severity": "minor",
+   "file": "README.md",
+   "location": "Review record: \"one automated agent proposed, seven challenged independently\"",
+   "problem": "The record itself says all agents share a model, \"which limits their independence\". \"independently\" is firmer than that.",
+   "fix": "Change to \"seven challenged it without seeing each other's reports\"."
+  },
+  {
+   "severity": "minor",
+   "file": "docs/consequence-guide.md; decisions/assurance/README.md",
+   "location": "guide: \"The last example is ten lines.\"; record section G: \"an irreversible table drop that records ten lines\"",
+   "problem": "Example 6 has nine lines.",
+   "fix": "Change \"ten lines\" to \"nine lines\" in both places."
+  },
+  {
+   "severity": "minor",
+   "file": "docs/consequence-guide.md; decisions/assurance/README.md",
+   "location": "guide: \"NASA's formal dissent process works because it also carries a right to escalate\"; record section A: \"The escalation right that makes it work is governance\"",
+   "problem": "The fact check for NPR 7120.5F section 3.4 supports what the process contains (record, right to take the issue upward, \"no suppression or retribution\"), not that it works or why. The principle challenger notes NASA's regime did not prevent either accident. The non-retribution duty is omitted.",
+   "fix": "Guide: \"NASA's formal dissent process pairs the record with a right to take the issue upward and a rule against suppression or retribution; those are governance, which KADS does not provide.\" Record: \"The escalation right and the rule against retribution that accompany it are governance and stay outside KADS.\""
+  },
+  {
+   "severity": "minor",
+   "file": "docs/consequence-guide.md",
+   "location": "\"Clause 5.7 scopes it: say what was watched ...\" and \"the choice needs its authority (clause 4.6)\"",
+   "problem": "Clauses 5.7 and 4.6 bind only where the research-report or tracked-record profile is applied. The guide states them as applying to any decision to proceed, which implies a requirement while claiming to add none. The guide is careful about this for clause 5.2 but not here.",
+   "fix": "Change to \"Where the research-report profile is applied, clause 5.7 requires its scope; elsewhere the same is good advice: say what was watched ...\" and \"the choice needs its authority (clause 4.6, where tracked records are used)\"."
+  },
+  {
+   "severity": "minor",
+   "file": "docs/consequence-guide.md",
+   "location": "\"NASA's software requirements scale the number of applicable requirements by software class, and Google's account of launch reviews reports ...\"",
+   "problem": "The quotation and the paraphrase match fact checks 0 and 15 exactly. Both fact checks add a caveat the guide omits: NASA classifies a system once, and Google defined low risk by category in advance; neither is a per-change judgment by the author, which is what the two questions are. The domain challenger preserved this as dissent.",
+   "fix": "Add after the Google sentence: \"In both, the class is set in advance for a system or a category of launch, not judged per change by its author, so neither is precedent for self-assessment.\""
+  },
+  {
+   "severity": "minor",
+   "file": "docs/consequence-guide.md; decisions/assurance/README.md",
+   "location": "guide: \"The waivers existed; they did not travel.\"; record section H: \"A lapsed exception that looks current is the failure the Rogers finding describes\"",
+   "problem": "Fact check 7: finding 2 is \"about visibility to all management levels only\"; it does not concern expiry or lapse, and \"did not travel\" is the proposal's gloss (the fact check applies it to the written recommendation, not to waivers). The domain and principle dissents ask that the report not be cited as evidence that record rules address the failure.",
+   "fix": "Guide: replace \"The waivers existed; they did not travel.\" with \"That finding is about visibility, not expiry, and it is precedent for the problem, not evidence that a list prevents it.\" Record H row: \"A lapsed exception that looks current is invisible in the way the Rogers finding on waivers describes; the finding concerns visibility to management, not expiry\"."
+  },
+  {
+   "severity": "minor",
+   "file": "docs/consequence-guide.md",
+   "location": "Example 3 (authentication change) and Example 5 (\"Responsible role: platform lead. Expires: 2026-12-31.\")",
+   "problem": "Example 3 is reversible (behind a flag) and its failure is detected (an alert), so by the table it is a row-two change, yet it shows only row-three items and none of the row-two items (evidence and what it does not cover, assumptions, undo). Example 5 ends the date with a period in mid-line although the guide says to write the date alone so that it can be compared.",
+   "fix": "Example 3: add two lines before \"Could fail\": \"Evidence: staged rollout at 5 percent for 7 days (link); did not cover the mobile clients below version 4.\" and \"Undo: turn the flag off; sessions already shortened are not restored.\" and change the lead-in to \"Shortening session lifetime for all users. Other teams' clients are affected, and a logged-out user cannot be un-logged-out.\" Example 5: put \"Expires: 2026-12-31\" on its own last line with no period."
+  },
+  {
+   "severity": "minor",
+   "file": "docs/sources.md",
+   "location": "last seven rows, column \"Cited in\"",
+   "problem": "Verdicts, citations, and dates match fact checks 0, 5, 7, 15, 16, 17, 22. Three \"Cited in\" cells do not match the tree: CONTRIBUTING does not cite RFC 2026 or RFC 6410; conformance does not cite the Rogers report (\"conformance rationale\"); the consequence guide does not cite SRE chapter 15 or workbook chapter 16.",
+   "fix": "RFC row: \"Decision J-032\". Rogers row: \"Consequence guide; decision J-032\". SRE chapter 15 row and workbook chapter 16 row: \"Decision J-032\"."
+  },
+  {
+   "severity": "minor",
+   "file": "decisions/assurance/README.md",
+   "location": "Answer item 3: \"so that the specification is smaller than before\"",
+   "problem": "docs/specification.md grew from 2940 to 3006 words (wc -w); keyword total is unchanged at 111. Only the active clause and lettered counts fell.",
+   "fix": "Change to \"so that the specification has one fewer active clause and one fewer lettered requirement than before, although its text is about 66 words longer\"."
+  },
+  {
+   "severity": "minor",
+   "file": "decisions/assurance/README.md",
+   "location": "\"Two did not prevail and stand as dissent: ... (five challengers) or, from the other side, was already too strong as a MUST (normative language, which prevailed).\"",
+   "problem": "The sentence lists as not prevailing an objection it then says prevailed. It also understates: other preserved dissents were not adopted and are not disposed of, for example that reopening conditions have one home in decisions/standards/ (architecture), that clause 5.7 should apply outside research reports (architecture), that each example be shown again six months later (implementation), and that the shuttle reports not be cited in support of record rules (domain, principle).",
+   "fix": "Replace with: \"The normative language objection that the 4.6 sentence should not be a MUST prevailed. These did not prevail and stand as dissent: that a documentation standard should carry none of this even as guidance (principle); that the 4.6 sentence keep its MUST (retained by six challengers); that reopening conditions live only in decisions/standards/ (architecture); that clause 5.7 reach beyond the research-report profile (architecture); that each example be shown again six months later (implementation); that the shuttle reports not be cited for record rules (domain transfer, principle). Dissent not named here was neither adopted nor rejected.\""
+  },
+  {
+   "severity": "minor",
+   "file": "decisions/assurance/README.md",
+   "location": "section \"Existing rules challenged\": \"Outcomes:\" table",
+   "problem": "The seven files hold 53 nominations; the table disposes of about half. Not shown, among others: clause 3.3.4 second half and clause 6.4 self-review (abuse), moving clause 5.7 to the core (architecture, domain), the ADR sentence in 4.6 (domain), the repeated \"absence of X does not establish Y\" sentences (principle), the trailing-space metadata block in outlines (implementation), docs/adr/ beside decisions/standards/ (architecture). The table reads as complete.",
+   "fix": "Add after the table: \"Nominations not listed above were not examined in this round and remain in the challenger files: clause 3.3.4 second half; clause 6.4 self-review; placement of clause 5.7; the ADR sentence in clause 4.6; the repeated non-inference sentences; the metadata block of the outlines; two homes for design decisions; the limitation field list in the evaluation guide.\""
+  },
+  {
+   "severity": "minor",
+   "file": "decisions/assurance/README.md",
+   "location": "section A: \"Canary with an abort condition (Google SRE workbook)\"",
+   "problem": "Fact check 17 is PARTLY: the workbook supports \"a partial and time-limited deployment ... and its evaluation\"; an abort condition stated beforehand is \"the proposal's gloss\".",
+   "fix": "Change to \"Canary (Google SRE workbook: a partial, time-limited deployment and its evaluation; stating the abort condition beforehand is the proposal's addition)\"."
+  },
+  {
+   "severity": "minor",
+   "file": "docs/conformance.md",
+   "location": "\"the adoption note and any list of exceptions use these words\"; \"Evidence that is unavailable or unknown must remain visibly limited\"",
+   "problem": "The first is a new requirement-shaped sentence with no keyword in a normative document; read literally it obliges every adoption note to use exact words, and the consequence guide itself paraphrases them. The second is a lowercase \"must\" carrying a requirement; it predates this release.",
+   "fix": "Change the first to \"This is the only definition of an exception in KADS; the adoption-note outline and the guides refer to it.\" Leave the second for the lettering pass before 1.0 and list it in follow_up of the record, or change \"must\" to \"MUST\" and count it (conformance MUST becomes 7)."
+  },
+  {
+   "severity": "minor",
+   "file": "templates/technical-document.md",
+   "location": "\"or `Not executed as written`\"",
+   "problem": "The prompt comes from retired clause 3.5.4 (c). It is harmless as optional advice but is the only live prompt left that depends on the retired text. Placeholder escaping is otherwise correct in all ten outlines: every angle bracket outside code spans is escaped and none inside code spans or fences is.",
+   "fix": "Keep the prompt and no action is required, or shorten to \"For a procedure that was run: `Executed as written on <date> against <version or environment>` (clause 3.3.5).\""
+  },
+  {
+   "severity": "minor",
+   "file": "README.md",
+   "location": "Review record: \"checked with `tools/check-links.sh` and its `--orphans` mode on 2026-10-03 against the working tree from which the 0.7.0 commit was made\"",
+   "problem": "Both checks pass on the tree reviewed here (run by the gate reviewer on 2026-10-03). The statement is about the tree that will be committed, which will differ after these findings are applied.",
+   "fix": "Run both commands again after applying the fixes and before committing; no wording change if they pass."
+  }
+ ]
+}

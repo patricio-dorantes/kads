@@ -1,0 +1,285 @@
+{
+ "role": "minimalist",
+ "overall": "The author's package adds ten clauses (3.1.4, 3.1.5, 3.3.5, 3.5.4, 3.5.5 and 7.2 to 7.6), about 8 new MUST or MUST NOT and 7 new SHOULD, to a 43-clause spec that already carries 64 MUSTs: roughly a quarter more structure in one release, in the same release that adopts a restraint rule (J-001) and an admission test (J-031). Most of it is restatement: 3.3.5 repeats 3.2.2 and 3.3.2, 3.1.4 repeats 3.1.3 and the authoring guide, 3.5.4 contradicts the tooling neutrality of 1.1 and 3.5.3, and 7.5 and 7.6 repeat 3.5.2, 3.3.3 and the template. My counter-package adds zero clause numbers and no profile: four sentence amendments (3.1.1 for superseded material, 3.2.2 for epistemic role, 3.5.1 for reachability, 3.5.2 for hazard-before-step), for a net of about 3 MUSTs and 1 SHOULD, with everything else in existing guide sections. Cut outright: 3.1.4, 3.5.4, section 7, the two-axis table of J-012, the new section 2 terms of J-015, and the 'Writing for retrieval' section as a separate section. The author's rejections (J-005 to J-007, J-011, J-013, J-016 to J-018, J-022, J-024, J-025, J-028 to J-030) are sound and I found no credible case against them; the weakness is in the accepts, and in guidance additions that duplicate text the guides and templates already contain. The honest cost of my approach is denser paragraphs, which sharpens J-026; that is a cheaper problem than a third profile and five new clause numbers that 1.4 makes permanent.",
+ "candidates": [
+  {
+   "id": "J-001",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "A written restraint rule gives reviewers a reason to refuse a MUST, and RFC 2119 section 6 itself asks for sparing use. It costs one sentence.",
+   "argument_against": "As proposed it is prospective only, and the same package then adds about 8 MUST or MUST NOT and 7 SHOULD, so the rule is broken by the release that introduces it. It also duplicates J-031 and J-023: three admission rules in CONTRIBUTING for one idea.",
+   "failure_mode": "The sentence sits in CONTRIBUTING, every proposer asserts that their rule 'protects a property the standard exists for', and the MUST count keeps rising from 64.",
+   "recommended_change": "Merge J-001, J-023 and J-031 into one CONTRIBUTING paragraph. Make it checkable: 'A proposed MUST names the observed failure it prevents and the existing clause that fails to prevent it; without both it is a SHOULD or guidance.' Apply it to this release first: publish the before and after MUST and clause counts in the changelog."
+  },
+  {
+   "id": "J-002",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "Synonym drift is a real reader cost, and a SHOULD with no dictionary is the lightest normative form available.",
+   "argument_against": "3.1.3 already covers the cases that matter (terms that affect interpretation, and local terms or translations with a preserving mapping), and the authoring guide already says 'prefer consistent terms within a stated scope'. Clause 3.1.4 adds three SHOULDs that no manual reviewer can check across a corpus, and under 1.2 each departure needs a recorded reason.",
+   "failure_mode": "Reviewers either ignore 3.1.4 or use it to bikeshed wording in every review; nobody records the departures that 1.2 asks for, so the clause teaches adopters that SHOULDs are decorative.",
+   "recommended_change": "Cut 3.1.4. Keep the existing authoring-guide sentence and add at most: 'When a synonym or vendor term must appear, say once which preferred term it maps to.' If the author insists on normative weight, append that sentence to 3.1.3 instead of opening a new clause number."
+  },
+  {
+   "id": "J-003",
+   "stance": "REJECT",
+   "layer": "GUIDANCE",
+   "argument_for": "The author's rejection of a normative rule is right: sentence-level style cannot be reviewed for conformance and KADS governs knowledge organization, not prose style.",
+   "argument_against": "The author rejects it here and then re-admits it as a MUST in 7.2 ('each step MUST state one action'). That is the same rule under a profile label. Also the spec itself packs three or four MUSTs per paragraph (J-026), so guidance telling authors to do otherwise is not self-applied.",
+   "failure_mode": "Guidance that the standard's own text ignores gets cited selectively in reviews and has no authority.",
+   "recommended_change": "One sentence in the authoring guide under 'Procedures and reference': 'Prefer one action per step.' Nothing about normative statements until J-026 is resolved. Delete 7.2."
+  },
+  {
+   "id": "J-004",
+   "stance": "MODIFY",
+   "layer": "CORE",
+   "argument_for": "Hidden hazards and conditions stated after the action are a real, recurring cause of wrongly executed runbooks; warning-before-step is the one rule here with a safety payoff.",
+   "argument_against": "A third profile adds five clauses and five MUSTs for something 3.5.2 already half covers, while foundations still lists 'whether the profiles are easy to select' as an open question. 7.2 is style policing ('stop the service and confirm it stopped' fails it), 7.3 is unreviewable in prose, 7.5 restates the completion condition of 3.5.2, and 7.6 duplicates 3.3.3 plus the template line 'whether displayed commands are examples or tested procedures'.",
+   "failure_mode": "Nobody selects the profile because selecting it only adds liabilities; or a team selects it and 7.6 execution stamps go stale after the first edit, giving false assurance that a changed procedure 'was executed as written'.",
+   "recommended_change": "Cut section 7 entirely. Add one sentence to 3.5.2: 'A step with a hazardous or irreversible effect MUST be preceded, not followed, by a statement of that effect.' Net one MUST instead of five. Move 7.2, 7.3, 7.5 to the authoring guide as plain advice; 7.6 becomes the existing template prompt, reworded 'Executed as written on <date> against <version>, or: not executed'."
+  },
+  {
+   "id": "J-005",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "The rejection is correct: a controlled dictionary and word limits need tooling and training that KADS explicitly does not require.",
+   "argument_against": "No credible counterargument to rejecting. The only objection is to the consolation prize: an 'informative note' about short active sentences is generic writing advice that every style guide already gives and that KADS has no reason to own.",
+   "failure_mode": "The informative note grows into a style section, and reviewers start counting words.",
+   "recommended_change": "Reject without the note. Add nothing to the authoring guide."
+  },
+  {
+   "id": "J-006",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "The knowledge model already says to keep content together unless splitting enables independent maintenance, reuse, provenance or review. That is the principle at the right strength.",
+   "argument_against": "No credible counterargument: any stronger rule forces file splitting, which the design rationale explicitly warns against ('a chain of tiny pages').",
+   "failure_mode": "n/a if rejected; if adopted, corpora fragment into single-paragraph files with ID overhead.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-007",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Stable opaque IDs (4.3) survive reorganization; meaning-bearing codes do not.",
+   "argument_against": "No credible counterargument. The nomenclature already encodes the one stable attribute worth encoding (record type prefix) and forbids encoding location.",
+   "failure_mode": "n/a if rejected.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-008",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "A visible 'Applies to:' line is cheap and makes 3.1.1 scope easy to find.",
+   "argument_against": "The technical-document template already has a 'Purpose and scope' section that asks for 'applicable versions or environment'. A second, fixed-label line duplicates it and, shown 'consistently' in template and guide, becomes a de facto required field.",
+   "failure_mode": "Authors fill it with 'Applies to: all' on every page; the line carries no information and readers learn to skip it, including on the pages where scope matters.",
+   "recommended_change": "No change. 3.1.1 plus the existing template section already implement applicability. If anything, show one worked 'Applies to' line inside an example document, not in the template or the guide."
+  },
+  {
+   "id": "J-009",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "3.2.1, 3.6.2 and the 'derived view' term already separate maintained source from views.",
+   "argument_against": "No credible counterargument to rejecting a new rule. The objection is to 'record the mapping': a standards-to-clauses mapping table is a new maintained document that must be updated at every clause change.",
+   "failure_mode": "A mapping page listing S1000D, DITA and CSDB against clause numbers goes stale at the next release and nobody notices.",
+   "recommended_change": "Keep the mapping only inside the retained candidate record (J-019). Do not add a mapping table to docs/."
+  },
+  {
+   "id": "J-010",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "Separating 'verified' from 'edited' is real: 3.3.3 says editing does not establish revalidation, and readers do mistake a recent commit for a recent check.",
+   "argument_against": "Everything proposed already exists: 3.3.3, 3.4.3 (date or revision for changing facts), the authoring guide ('an edit date alone must not suggest a procedure was rerun') and the template ('record verification dates'). 7.6 turns that into two MUSTs and a per-procedure field that must be re-edited after every change.",
+   "failure_mode": "'Last verified' dates are bumped by reflex during unrelated edits, which is exactly the false signal 3.3.3 exists to prevent, now with a normative field behind it.",
+   "recommended_change": "Drop 7.6. No new guidance paragraph; the existing authoring-guide and template sentences are the canonical statement. At most reword the template prompt to 'last checked on <date> against <version>'."
+  },
+  {
+   "id": "J-011",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Clause 1.1 excludes repository layout by design; a shared chapter scheme only pays off across many adopters with interchangeable readers.",
+   "argument_against": "No credible counterargument. Even recording 'what would change the answer' is optional; one line in the retained candidate record is enough.",
+   "failure_mode": "n/a if rejected.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-012",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Authors do confuse a kind of document with a kind of knowledge, and one sentence saying a document may carry several kinds helps.",
+   "argument_against": "An 'informative' two-axis table of 8 epistemic kinds by 7 document kinds is a 56-cell ontology introduced through guidance, in a standard whose rationale says it adds no 'universal ontology'. The knowledge model already defines four reasoning terms and the authoring guide already has the reader-need table; this would be a third classification of the same material.",
+   "failure_mode": "The table becomes the vocabulary people classify with: reviewers ask 'which cell is this page?', and hypothesis, assumption and 'procedure knowledge' drift toward record types, which is J-016 by the back door.",
+   "recommended_change": "No table. The knowledge model already says 'a document may contain several objects'; if needed extend that sentence: 'and several kinds of statement (observation, inference, conclusion, decision)'. Nothing else."
+  },
+  {
+   "id": "J-013",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Transclusion needs tooling; link plus scope qualifier (3.2.1) works in any format, and 3.6.2 covers projects that already transclude.",
+   "argument_against": "No credible counterargument.",
+   "failure_mode": "n/a if rejected.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-014",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "Deep links, search and retrieved chunks are how pages are actually reached now; an opening that states subject and scope is cheap and helps humans as much as retrievers.",
+   "argument_against": "A new section titled 'Writing for retrieval' duplicates the existing 'Write a usable first answer' section and the 'titles that describe the information sought' paragraph. 'Restate the referent each section depends on' is also in tension with 3.2.1: it invites repeated context that then needs maintenance.",
+   "failure_mode": "Authors paste a scope preamble at the top of every section; the corpus grows by duplication and the copies diverge.",
+   "recommended_change": "No new section. Add two sentences to 'Write a usable first answer': 'Assume the reader arrived by search or deep link: the opening says what the page answers and for which scope. Avoid references such as \"as above\" that only work when reading in order.'"
+  },
+  {
+   "id": "J-015",
+   "stance": "MODIFY",
+   "layer": "CORE",
+   "argument_for": "Status laundering through summaries is a real and damaging failure, and 'hypothesis' is not named anywhere normative today.",
+   "argument_against": "A summary that presents an inference as an observation already violates 3.3.2 (roles MUST remain distinguishable where combining them would mislead) and 3.2.2 (a summary MUST preserve material qualifications). 3.3.5 is a third MUST over the same act, and adding five terms to section 2 makes an epistemic vocabulary normative, contradicting the rejection in J-016. 'The role travels with it' has no limit: taken literally every index line and table cell needs a role marker.",
+   "failure_mode": "Reviewers cannot tell whether a finding belongs to 3.2.2, 3.3.2 or 3.3.5, so exceptions cite all three; or indexes fill with '(inference)' tags that nobody maintains.",
+   "recommended_change": "Cut 3.3.5 and the new terms. Amend 3.2.2 first sentence to: 'A summary MUST preserve material qualifications, including whether a statement is an observation, an inference, an assumption or hypothesis, or a decision.' Zero new MUSTs, zero new clause numbers, hypothesis is now named normatively."
+  },
+  {
+   "id": "J-016",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Six record types are already an open question in the rationale ('whether the vocabulary is small enough'); per-statement labels would be pure ceremony.",
+   "argument_against": "No credible counterargument to rejecting. Note the inconsistency: J-012 and J-015 as proposed bring most of this list back as a table and as section 2 terms.",
+   "failure_mode": "n/a if rejected, provided J-012 and J-015 are trimmed as recommended.",
+   "recommended_change": "none, but hold J-012 and J-015 to this decision."
+  },
+  {
+   "id": "J-017",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "3.6.1 and 3.3.4 already cover provenance that readers use; PROV triples serve tools KADS does not require.",
+   "argument_against": "No credible counterargument.",
+   "failure_mode": "n/a if rejected.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-018",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Eleven relations already exceed what most authors remember; inverses and near-synonyms add choice without adding meaning.",
+   "argument_against": "No credible counterargument to rejecting the additions. Mild objection to carrying 'refines' as a standing DEFER: an open deferred item invites reopening without new evidence.",
+   "failure_mode": "A deferred 'refines' gets adopted at the next round by default because it is 'already on the list'.",
+   "recommended_change": "Reject all, including refines, with the stated reopening condition (an adopter case that supersedes or related-to cannot express). A rejection with a reopening condition is cheaper to maintain than a deferral."
+  },
+  {
+   "id": "J-019",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "Keeping the reasons for rejection prevents the same proposals returning every release; the nomenclature already says to retain the reason.",
+   "argument_against": "'Keeping the rejected candidates as records' can mean about twenty tracked records with ID, type, title, status and updated date under 4.2, for proposals that will never be touched again. Section 4 is optional precisely so that this is not required.",
+   "failure_mode": "Twenty-plus rejected records clutter the registry, each needing link maintenance, and the next evaluation adds twenty more.",
+   "recommended_change": "One ADR or one page with a table: candidate, source, decision, one-line reason, reopening condition. No per-candidate records. Respect the CONTRIBUTING boundary on evaluation material."
+  },
+  {
+   "id": "J-020",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "Knowledge locked in a proprietary tool cannot be diffed or reviewed, and it is lost when the tool goes; this is a real cost.",
+   "argument_against": "Clause 1.1 says KADS does not prescribe a publishing platform or tooling, and 3.5.3 says it does not require a format. 3.5.4 is a tooling preference in Core: every adopter on a wiki, a drawing tool or a slide deck is in standing departure from a SHOULD and owes a recorded reason under 1.2. The fallback sentence is already covered by 3.5.1 (access restrictions stated) and 3.6.2 (generated views identify maintained sources).",
+   "failure_mode": "Adopters with wiki-based corpora either file a permanent blanket exception or quietly ignore the clause; neither changes where the knowledge lives.",
+   "recommended_change": "Cut 3.5.4. The adoption guide already advises keeping knowledge in the consuming repository; add one sentence there: 'Prefer sources that can be compared between revisions without proprietary tooling; where that is not possible, say where the maintained source lives.'"
+  },
+  {
+   "id": "J-021",
+   "stance": "MODIFY",
+   "layer": "CORE",
+   "argument_for": "Orphan pages are real, they rot unseen, and this is one of the few rules a script can check, so it is cheap to keep true.",
+   "argument_against": "It does not need its own clause number and conformance row. 'Each maintained document' is undefined against the corpus term (are evidence files, run bundles and generated reference pages documents?), and large corpora navigated by search will fail it for thousands of files.",
+   "failure_mode": "Projects satisfy it with a generated 'all pages' list linked from the index, which makes every page reachable and none findable.",
+   "recommended_change": "No 3.5.5. Append to 3.5.1: 'Maintained documents SHOULD be reachable by links from the corpus entry point; preserved evidence and generated material may be reached through the document that uses them.' One SHOULD, no new clause."
+  },
+  {
+   "id": "J-022",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Version 0.2.0 removed the schema and linter on evidence; front matter is optional and labeled links suffice.",
+   "argument_against": "No credible counterargument. ADR-001 already records the deferral, so no further record is needed.",
+   "failure_mode": "n/a if rejected.",
+   "recommended_change": "none; do not add a second deferral note, ADR-001 is the canonical home."
+  },
+  {
+   "id": "J-023",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "Vocabularies do grow by analogy, and asking what reader question a new term answers is a cheap filter.",
+   "argument_against": "It is the vocabulary case of the J-031 admission test, proposed for three homes (two registries and CONTRIBUTING). Three copies of one sentence violates 3.2.1 in the standard's own repository, and 'competency question' is jargon KADS would then have to define.",
+   "failure_mode": "The sentence is updated in CONTRIBUTING and not in the registries, or proposers write a ritual 'question' line that nobody evaluates.",
+   "recommended_change": "One sentence, in the merged CONTRIBUTING admission paragraph only: 'A new type, status or relation names the reader question that the existing vocabulary cannot answer.' Registries link to it; do not use the term competency question."
+  },
+  {
+   "id": "J-024",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "3.3.1, 3.5.1, 6.2 and 6.3 already pin versions wherever pinning matters.",
+   "argument_against": "No credible counterargument.",
+   "failure_mode": "n/a if rejected.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-025",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "5.4, 5.2 and 5.7 already cover post-hoc criteria and negative results; preregistration proper would be research method, which 1.1 excludes.",
+   "argument_against": "No credible counterargument.",
+   "failure_mode": "n/a if rejected.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-026",
+   "stance": "DEFER",
+   "layer": "NONE",
+   "argument_for": "Paragraph-level IDs with three or four MUSTs each do make an exception citing '3.3.2' ambiguous, and 6.4 relies on clause citation.",
+   "argument_against": "Deferral is right but for a stronger reason than the author gives: splitting 43 paragraphs into roughly 90 singular clauses doubles the visible structure for a citation problem no adopter has reported, and an exception must already state its scope in words (conformance, 'affected clause identifier and scope'). Counterpoint to my own merges: folding sentences into 3.1.1, 3.2.2, 3.5.1 and 3.5.2 makes paragraphs denser, which this candidate will later have to undo.",
+   "failure_mode": "An open 'pre-1.0 restructuring' item with no trigger either never happens or happens the week before 1.0 as an unreviewed renumbering.",
+   "recommended_change": "Defer with an explicit trigger: the first exception or review finding that cannot be resolved by naming the sentence. Until then the convention is 'clause plus quoted requirement' in the exception text; no spec change."
+  },
+  {
+   "id": "J-027",
+   "stance": "MODIFY",
+   "layer": "CORE",
+   "argument_for": "This is the one new MUST that pays for itself: readers and retrievers land on a superseded page directly, and 3.1.1 only obliges the entry point, which they never see.",
+   "argument_against": "As worded it over-reaches. 'Historical' is undefined (a completed report, an accepted ADR and a changelog are all historical); 'dated snapshot' is already governed by 3.2.2; 'before its content' prescribes placement and cannot be met for evidence that 3.4.2 says to preserve as collected or for immutable archives. It makes existing conformant corpora nonconformant, so it is a breaking change, and it deserves a sentence in 3.1.1 rather than a clause.",
+   "failure_mode": "Adopters must retrofit banners onto every old page, or declare a blanket exception for archives; banners with no replacement link ('this is historical') accumulate and readers stop reading them.",
+   "recommended_change": "No 3.1.5. Append to 3.1.1: 'Material that has been superseded or withdrawn MUST say so at its own location, in the material or in a note beside it, and MUST point to its replacement where one exists.' Drop 'historical', 'snapshot' and 'before its content'; show top-of-page placement in the template. Mark breaking in the changelog."
+  },
+  {
+   "id": "J-028",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "The artifact guide already states the right position: a checksum identifies bytes, not collection, and is added only when there is an integrity need.",
+   "argument_against": "No credible counterargument.",
+   "failure_mode": "n/a if rejected.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-029",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Disclosure of who reviewed (6.4, 3.3.4) already lets the reader weigh independence; mandating it would exclude one-person projects.",
+   "argument_against": "No credible counterargument.",
+   "failure_mode": "n/a if rejected.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-030",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "3.3.3 and 3.3.4 are universal and already in Core; a profile would duplicate them and imply that non-adopters of the profile may invent provenance.",
+   "argument_against": "No credible counterargument. The same reasoning (a profile that restates core duties is duplication) is what condemns the Procedure profile in J-004.",
+   "failure_mode": "n/a if rejected.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-031",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "A stated admission test is the only structural defence against growth, and the layering principle (core, profile, guidance, proposal) is how the existing spec is already organized.",
+   "argument_against": "The test as worded is unfalsifiable: every proposer believes absence of their rule costs more than the rule. It is also given two homes (CONTRIBUTING and the design rationale), and it overlaps J-001 and J-023. And the package fails its own test: ten new clauses were proposed with no adopter failure cited for most of them.",
+   "failure_mode": "The paragraph is quoted in every proposal as passed; the spec reaches 80 MUSTs with each one 'justified'.",
+   "recommended_change": "One home, CONTRIBUTING, one merged paragraph with J-001 and J-023; the rationale links to it. Operational form: 'A new requirement cites (a) the failure observed in adoption or review, (b) the existing clause that did not prevent it, (c) why amending that clause is insufficient. A new clause number or profile is the last resort after amending a sentence.'"
+  }
+ ]
+}

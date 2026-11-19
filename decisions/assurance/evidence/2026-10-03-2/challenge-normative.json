@@ -1,0 +1,431 @@
+{
+  "role": "normative-language",
+  "overall": "As written, section 7 does not pass CONTRIBUTING's own drafting and admission rules, even where the ideas are sound. The proposal counts 8 MUST, 1 MUST NOT, 5 SHOULD, 1 MAY, but those 15 keywords carry about 28 separate MUST requirements, 1 MUST NOT, 6 SHOULD and 1 MAY: 7.3 hangs 14 to 16 requirements on three keywords, and 7.4 (a) hangs six on one, so the keyword count used for complexity accounting understates the load by a factor of three. The trigger of 7.3 is circular and unbounded: it binds 'a record of a decision to make or proceed with a change at the significant or critical level', but the level exists only if the record states it, 'change' and 'record' are undefined, and nothing says whether a merged pull request, a ticket, or a chat approval is such a record, so a reviewer cannot determine nonconformance of a silent record without redoing the classification (admission question 5 fails). Several items have no negative escape ('or that none is known'), so silence cannot be told from compliance: 7.3 (c), (d), (f), (h). Several presuppose a process the profile says it does not require: 'who assigns them' (a role), 'who accepted them' (an acceptance act), 'a link to where it is tracked' (a tracking system), 'the higher SHOULD be assigned' (a classification act). 7.1 contradicts 7.4 and 7.5 ('requires nothing at the routine level' while exception and incident rules bind at every level), 7.4 (a) contradicts 7.4 (b) (a permanent exception cannot have the expiry or review condition that (a) requires), and the closing sentence of 7.4 is false (its six fields are not the six that conformance lists). The 4.6 sentence is a breaking MUST with a self-cancelling escape and no observed case; under clause 1.2 a SHOULD produces the same record text without breaking any corpus. My rewrite keeps the substance with 9 MUST, 0 MUST NOT, 2 SHOULD, 1 MAY (about 27 MUST requirements, 2 SHOULD), every item lettered singly, every disclosure item given a negative escape, and the scope bounded by what the adoption note names.",
+  "clause_verdicts": [
+    {
+      "clause": "4.6 sentence",
+      "verdict": "DOWNGRADE",
+      "reason": "MUST with the escape 'or state that they are not recorded' obliges only a mention; 'because we agreed' or 'not recorded' on a decision accepted today both conform, so no protected property is secured that a SHOULD does not secure, since clause 1.2 already requires the reason for departing from a SHOULD to be written with the departure. The only thing the MUST adds is breakage of every existing tracked-record corpus, with no observed adopter case (the cited decision-guide sentence is advice, not a failure). The proposal labels it 'PROFILE' as if opt-in, but it lands on all section 4 adopters regardless of the assurance profile. 'Reasons' introduces a second word for what the nomenclature (D type) and the decision outline call 'rationale' (3.1.3 risk). No 'or link to' allowance, unlike 3.3.5. Clause 3.3.3 already covers the escape half ('Missing information MUST be marked unknown'). It also adds a sixth unlettered requirement to a clause J-026 says must be lettered before 1.0.",
+      "replacement": "An accepted decision SHOULD state, or link to, the rationale for the choice, or state that the rationale is not recorded."
+    },
+    {
+      "clause": "7.1",
+      "verdict": "REWORD",
+      "reason": "Three defects. (1) 'requires nothing for a decision or change at the routine level' is contradicted by 7.4 (a) and 7.5 (a), which the proposal's own table applies 'whenever an exception is recorded' and 'whenever an incident investigation is recorded' at any level. (2) 'consequential decisions' adds a fourth undefined gradation next to material, significant, and critical. (3) 'what happened afterwards' is promised by the scope sentence but delivered only by a SHOULD (7.5 c) the proposal offers to drop first. Also 'does not require ... that a change be approved' is untrue while 7.3 (d) demands 'who accepted them' with no escape.",
+      "replacement": "**7.1** Use this profile when a project wants a later reader to be able to reconstruct, for the decisions it classifies as significant or critical and for its recorded exceptions and incident investigations: what was believed, on what evidence, and which risks were accepted and by whom. The profile states what a record makes discoverable. It does not require that a record be created, that a review be held, that a role be staffed, or that a change be approved (clause 3.6.3). It requires nothing of a record that states no level or states the level routine, except that clauses 7.4 and 7.5 apply to exception and incident records whatever their level. It can be used with or without tracked records."
+    },
+    {
+      "clause": "7.2(a)",
+      "verdict": "REWORD",
+      "reason": "Two requirements in one sentence (criteria; who assigns). 'Who assigns them' obliges the project to designate a classifier, which is staffing a role; 7.1 says the profile does not do that. The clause also leaves the scope of the whole profile unbounded: nothing says which kinds of record carry levels, so a reviewer cannot tell whether a merged pull request, a ticket, or a chat approval is 'a record of a decision'. Finally the proposal has two sources of criteria: KADS level definitions 'as a list under the clause' (with unverifiable terms: 'materially affect', 'known path', 'present means', 'a path it has used before', and a gap: an effect confined to the team but undone by a path never used before is none of the three) and the project's own criteria. If the KADS definitions are normative, under-classification is a nonconformance detectable only by redoing the classification. Make the project criteria the only normative ones, the KADS definitions informative defaults in the guide, and have the adoption note bound the scope.",
+      "replacement": "**7.2** (a) A project applying this profile MUST state in its adoption note the criteria by which it assigns the levels routine, significant, and critical. (b) The adoption note MUST name the kinds of record to which the levels are applied, such as decision records or pull request descriptions. [Level definitions move to the decision guide as default criteria a project may adopt by reference; the guide, not the clause, suggests saying who assigns the level.]"
+    },
+    {
+      "clause": "7.2(b)",
+      "verdict": "REWORD",
+      "reason": "Circular with 7.3: 'a record made under clause 7.3' is identified by its level, which is the thing this sentence requires it to state; a record that states nothing is therefore never 'made under 7.3' and never nonconformant. 'The factor that decided it' assumes exactly one factor and names nothing a reviewer can check against; two teams will write 'security' and 'it felt risky'. Tie it to the adoption-note criterion so that detection is by comparing two pages.",
+      "replacement": "(c) A record of a kind named under (b) that the criteria place at the significant or critical level MUST state its level and the criterion it meets."
+    },
+    {
+      "clause": "7.2(c)",
+      "verdict": "REWORD",
+      "reason": "'The higher SHOULD be assigned' regulates an act of classification, not a record, and its violation is invisible on the page: the record shows one level and one factor, not the criteria that pointed elsewhere. As a SHOULD it also triggers clause 1.2 (a written reason for each departure) for an event no reviewer can see. A tie rule is a definition; state it as one, without a keyword. The MAY sentence that follows is unlettered inside a lettered clause and cannot be cited; it also repeats what 3.1.3 already permits ('Local terms ... MAY differ if the mapping preserves relevant distinctions'), so it must at least say where the mapping is stated.",
+      "replacement": "(d) A decision that meets the criteria of more than one level has the higher level. (e) A project MAY map existing local classes, such as change types or severity classes, to these levels, stating the mapping in its adoption note."
+    },
+    {
+      "clause": "7.3(a)-(e)",
+      "verdict": "REWORD",
+      "reason": "Stem: 'a decision to make or proceed with a change' has no bounded trigger ('change' is undefined; an ADR choosing a database, a vendor selection, and a hiring decision are or are not 'changes' depending on the reader) and depends on a level nobody is obliged to state. Bind records that state a level. One MUST carries seven requirements; lettering helps only if each letter holds one, and (b) and (d) each hold two. (a) 'the claim the decision rests on' is singular where decisions rest on several, invites the tautology 'claim: it is ready', and 'ready' is an evaluative term needing criteria under 3.1.3. (b) 'what the evidence does not cover' is unbounded (evidence does not cover infinitely many things) and no 'none' escape exists although the proposal says 'evidence: none' conforms. (c) 'the assumptions relied on' is unbounded and silence is indistinguishable from 'none'. (d) 'known' to whom, 'remain' after what; 'who accepted them' presupposes an acceptance act, contradicting 7.1, and has no escape. (e) 'the effect' has no antecedent (of the change, or of its failure?) and 'will be' turns a record rule into a commitment. Overlaps: (a) with 3.3.2, (b) and (c) with 3.3.1 and 3.6.1; acceptable only as an application list like 5.2, which is the precedent, but 5.2's items are single nouns.",
+      "replacement": "**7.3** A record that states the level significant or critical MUST make the following discoverable, on the page or through links: (a) what must be true for the choice to be sound (the claim), stated separately from the choice; (b) the evidence for the claim, or that there is none; (c) the known limits of that evidence; (d) the assumptions the claim depends on that have not been verified, or that none was identified; (e) the risks that were identified and not removed, or that none was identified; (f) who accepted those risks, or that no acceptance is recorded; (g) how the change can be undone or its effect contained, or that it cannot be."
+    },
+    {
+      "clause": "7.3(f)",
+      "verdict": "REWORD",
+      "reason": "Two requirements (failure; detection). 'How the change could fail' is unbounded and prescribes an analysis, which the proposal itself calls 'closest to prescribing engineering thought'. Compliance cannot be judged: one failure mode or ten? Rewritten as disclosure of what the authors considered, with a negative escape, it becomes checkable on one page and stops requiring that an analysis be performed.",
+      "replacement": "A record that states the level critical MUST also make discoverable: (h) the ways its authors considered that the change could fail, or that none was considered; (i) how each such failure would be detected, or that it would not be;"
+    },
+    {
+      "clause": "7.3(g)",
+      "verdict": "REWORD",
+      "reason": "Two requirements. 'Examined the reasoning' is not a KADS term; 3.3.4 and 3.3.5 say 'review', and a second verb invites the argument that an examination is not a review and so escapes 3.3.5. Two teams will disagree on whether a pull request approval, a CI run, or the accepting authority's signature is an 'examination'; if the approver counts, approval reads as scrutiny, the failure M-15 says it prevents. 'Its authors' is ambiguous between authors of the record and of the change. No timing: an examination after the decision satisfies it.",
+      "replacement": "(j) who, other than the record's authors, reviewed the record before the choice was made, or that no one did (clauses 3.3.4 and 3.3.5 apply to that statement); (k) what each such review concluded;"
+    },
+    {
+      "clause": "7.3(h)",
+      "verdict": "REWORD",
+      "reason": "Not verifiable as written. 'Recorded' where: the record, a ticket, chat, meeting notes? Detection is 'comparing two' against an unbounded second document, which the proposal concedes. 'That could change the choice' is judged by the side that already decided it could not. 'The reason it did not prevail' assumes resolution and has no place for an objection still open. There is no 'none' escape, so a silent record is indistinguishable from a compliant one. Clause 3.3.2 ('Known contradictions ... MUST be disclosed') already binds in the core; this item is useful only if it makes the disclosure checkable, which needs a bounded source (what the authors know) and a negative statement.",
+      "replacement": "(l) each objection to the choice that is known to the record's authors and that the choice does not accommodate, with the response given to it or a statement that it is unanswered, or that no such objection is known."
+    },
+    {
+      "clause": "7.3(i)",
+      "verdict": "REWORD",
+      "reason": "Misplaced: it sits inside the 'At the critical level' list, so by position it reads as critical only, while the table applies it to significant too. It is a full sentence with its own MUST inside a list of noun phrases governed by another MUST. Three requirements in one sentence. The trigger is vague: passing tests are also 'no failure observed', so two teams will differ on whether every test result triggers it. 'How a failure would have been detected' has no escape for the honest answer 'not known', which is the case the rule exists to expose. It restates 5.7 and 3.3.5; cite them.",
+      "replacement": "(m) Where the evidence in (b) includes a period of use or operation in which no failure was observed, a record at either level MUST state what was observed, over what period or exposure, and how a failure would have been detected or that this is not known (compare clauses 3.3.5 and 5.7)."
+    },
+    {
+      "clause": "7.3 closing sentences",
+      "verdict": "REWORD",
+      "reason": "'Evidence is linked, not copied (clause 3.2.1)' is an imperative with no keyword, so a reader cannot tell whether copying is forbidden; and it misstates its sources: 3.2.1 permits quoting with a link and 3.6.1 says copied evidence files 'are not required', not prohibited. 'The absence of recorded disagreement does not establish agreement' is a sound non-inference in the style of 3.1.4 (d) but must follow the reworded (l).",
+      "replacement": "A statement that no objection is known does not establish agreement. Evidence need not be copied into the record; a link is sufficient (clause 3.6.1)."
+    },
+    {
+      "clause": "7.4(a)",
+      "verdict": "REWORD",
+      "reason": "Six requirements under one MUST. Scope is unbounded: by the proposed definition ('a recorded, accepted departure from a requirement the project otherwise treats as binding') every lint suppression comment, skipped test, and firewall rule override is an exception owing six fields; no reviewer can enumerate 'requirements the project treats as binding'. Contradiction with (b): (a) demands 'an expiry date or review condition', so the permanent exception (b) regulates cannot conform to (a). Conflict with conformance: the closing sentence says the fields are the same six and 'this clause adds no field', but conformance lists clause, scope, reason, consequence, responsible role, review condition, while (a) lists requirement, scope, reason, risk accepted, who accepted it, expiry or review condition. 'Risk accepted' is not 'consequence', 'who accepted it' (a past act by a person) is not 'responsible role' (a standing owner). A project now has two field sets for one object and no rule saying which governs a KADS-clause exception, or whether (c) and (d) reach it. Adding 'Exception' to section 2 also redefines the word already used in 6.1 and conformance, which may be a meaning change under 6.2. Use the conformance vocabulary and bound the scope by the adoption note.",
+      "replacement": "**7.4** This clause applies to recorded exceptions to KADS clauses and to the sets of requirements that the adoption note names. (a) A record of an exception MUST state: the requirement departed from; the scope of the departure; the reason; the consequence accepted; the role responsible for the exception; and an expiry date, a condition for review, or that the exception is permanent. These are the fields that conformance requires of an exception to a KADS clause, with an expiry date or a statement of permanence allowed in place of the condition for review."
+    },
+    {
+      "clause": "7.4(b)",
+      "verdict": "MOVE",
+      "reason": "Detectable, but it is a template prompt, and the exception outline already carries it ('If permanent: why the requirement is not changed instead'). As a SHOULD it costs a clause-1.2 reason for each departure, that is, a reason for not giving a reason. The 'reason' field of (a) already has to justify the departure; guidance can say that for a permanent one the reason includes why the requirement stands. Move to the decision guide and template.",
+      "replacement": "Guide sentence: 'For an exception stated to be permanent, the reason says why the requirement is not changed instead.'"
+    },
+    {
+      "clause": "7.4(c)",
+      "verdict": "REWORD",
+      "reason": "'Presented as in force' cannot be judged: by what, where? An exception record with status accepted and an expiry date of last month either does or does not 'present' itself as in force depending on the reader; two teams will not agree. If it does, conformance becomes time-dependent: a corpus conformant on Monday is nonconformant on Tuesday with no edit by anyone, a property no existing KADS clause has. Worse, the rule rewards the wrong edit: the departure usually continues in the system after the date, and a record that now says 'not in force' tells the reader the requirement is met when it is not. The protected property (a statement's scope is known) is served by making the expiry visible wherever the exception is shown, not by a prohibition. The proposal also concedes that an exception with only a review condition never trips this clause.",
+      "replacement": "(b) An exception whose expiry date has passed with no recorded renewal is expired; the absence of an update to its record does not establish that it remains in force or that the departure has ended. (c) A list or summary of exceptions MUST show the expiry date, review condition, or statement of permanence of each exception it includes."
+    },
+    {
+      "clause": "7.4(d)",
+      "verdict": "REWORD",
+      "reason": "The second alternative ('or be reachable from the corpus entry point') is already clause 3.5.5 for every maintained document, so the disjunction is satisfied by any corpus that follows 3.5.5 and the sentence adds nothing. The first alternative fails when the requirement lives outside the corpus (an external policy cannot host the list) and creates a second maintained list (3.2.1, 3.2.2 burden). 'In force' repeats the defect of (c). State the reader outcome and leave the means open, including the fixed label search the proposal itself relies on.",
+      "replacement": "(d) Where a requirement is stated in the corpus, a reader of it SHOULD be able to reach the unexpired exceptions to it from that place, by a link, a list, or a stated search term."
+    },
+    {
+      "clause": "7.4 closing sentence",
+      "verdict": "DELETE",
+      "reason": "'An exception to a KADS clause is the exception that conformance already requires; this clause adds no field to it' is false against the two field lists and leaves open whether (c) and (d) apply to KADS-clause exceptions. Replaced by the scope sentence and the alignment sentence in the reworded (a).",
+      "replacement": ""
+    },
+    {
+      "clause": "7.5(a)",
+      "verdict": "REWORD",
+      "reason": "Trigger: 'incident' and 'lesson' are undefined; a record that lists 'findings' or 'action items' and no 'lessons' owes nothing. No timing: an active investigation that has drawn a lesson but not yet disposed of it is nonconformant the moment the lesson is written. 'One disposition' forbids the common true answer (partly changed, remainder pending). 'A link to where it is tracked' presupposes a tracking system (implementation, contrary to 3.6.3 and 1.1). 'A link to it' assumes every change is linkable; training or staffing changes are not. 'Naming who accepted it' pulls against blameless practice; a role suffices. With those repairs the MUST is checkable on one page.",
+      "replacement": "**7.5** (a) An incident record that states its investigation is complete MUST state, for each lesson, finding, or recommended action it lists, what became of it: a change made, with a link to it or a statement of where it is recorded; a change pending, saying where it is tracked or that it is not tracked; a risk accepted, naming the role that accepted it; or no change, with the reason. More than one of these may be stated for one item."
+    },
+    {
+      "clause": "7.5(b)",
+      "verdict": "MOVE",
+      "reason": "Weaker than the core rule it overlaps. Once an incident shows that a recorded decision's assumption did not hold, 3.3.2 ('Known contradictions and limitations that affect interpretation MUST be disclosed') already binds the decision record, and the nomenclature already makes depends-on links 'the review list when the question is answered against the assumption'. A profile SHOULD beside a core MUST on the same event invites the reading that the link is optional. It also points the wrong way for the reader who needs it: the reader opening the decision learns nothing from a link that exists only on the incident page. Violation is undetectable (the reviewer cannot know of a decision the record does not mention), as the proposal admits. Guidance, citing 3.3.2.",
+      "replacement": "Guide sentence: 'When an incident shows that an assumption or evidence behind a recorded decision did not hold, that is a known contradiction under clause 3.3.2: note it on the decision record with a link to the incident record, and link back from the incident record.'"
+    },
+    {
+      "clause": "7.5(c)",
+      "verdict": "MOVE",
+      "reason": "Misfiled: it is about decision records at the critical level, placed in the incident clause, with the ambiguous subject 'a record at the critical level'. Two requirements with different deadlines; 'and later what was observed' is an open-ended future obligation with no date, so no reviewer can say when it has been violated. No observed case, weakest detection, first on the proposal's own removal list. The template line 'Outcome check' already carries it. Move to the template and guide; if kept normative it must be a 7.3 item with a stated date.",
+      "replacement": "Guide and template only. If retained: '(n) A record that states the level critical SHOULD state the date by which, and the means by which, its outcome will be checked. (o) After that date the record SHOULD state what was observed, or that the check was not made.'"
+    },
+    {
+      "clause": "Section 2 terms",
+      "verdict": "REWORD",
+      "reason": "'Exception: a recorded, accepted departure from a requirement the project otherwise treats as binding' redefines a word already load-bearing in 6.1, 6.4, and conformance, and 'treats as binding' cannot be determined by a reviewer. 'Assurance level ... by the consequence of its being wrong' is fine but should not promise completeness of the scale.",
+      "replacement": "- **Assurance level:** the level, routine, significant, or critical, that a project assigns to a decision under the criteria in its adoption note (clause 7.2). It sets what a record makes discoverable. It is not a measure of quality or of approval. - **Exception:** a recorded departure from a KADS clause, or from a requirement in a set that the adoption note names, for a stated scope."
+    },
+    {
+      "clause": "CONTRIBUTING M-20 sentences",
+      "verdict": "REWORD",
+      "reason": "Two sentences that disagree: the first says review is triggered by a stated condition, the second says the rule is reviewed at every release. 'Listed as such in the changelog' is not durable: a changelog entry describes one release, so the marking disappears from view at the next. 'Observed' is undefined: the proposal treats public incidents in other organizations as 'observed publicly' and KADS adoption as 'anticipated only'; a reader cannot tell which meaning the sentence uses, and under one of them all of section 7 is exempt.",
+      "replacement": "A rule admitted without a case observed in the use of KADS is recorded as 'anticipated only' in its decision record and in the changelog entry that introduces it, with the condition that would confirm or retire it. A failure observed elsewhere supports the rule but does not change this marking."
+    },
+    {
+      "clause": "CONTRIBUTING M-21 sentences",
+      "verdict": "REWORD",
+      "reason": "'Before each minor release' is not proportionate: this repository has made three minor releases in two days, and a full re-review per release becomes ritual, the outcome the brief forbids. 'Every clause whose reopening condition has occurred' refers to conditions that are attached to decision records of rejected proposals, not to clauses; most clauses have none. No output is required, so the review cannot be seen to have happened. Retiring a clause is a breaking change under the versioning table, which the sentence should say.",
+      "replacement": "When a minor release adds or strengthens a rule, the release review also asks of each rule still marked anticipated only whether it would be added today. The review record names the rules considered and the outcome for each. Retiring a rule is a valid outcome; it is a breaking change and is recorded like any other decision."
+    },
+    {
+      "clause": "CONTRIBUTING M-22 sentence",
+      "verdict": "REWORD",
+      "reason": "Keyword counts are the wrong unit, as this proposal shows: 8 MUST keywords carry about 28 requirements because lists hang from one keyword. An accounting rule that counts keywords rewards exactly that packing.",
+      "replacement": "'the counts of clauses, keywords, required items (each lettered item or listed field under a MUST or MUST NOT counted once), defined terms, record types, statuses, relations, and templates, each as added and removed'"
+    },
+    {
+      "clause": "foundations sentence (P-01)",
+      "verdict": "REWORD",
+      "reason": "'in proportion to the consequence of the record being wrong' is not what section 7 scales by (the decision being wrong), and the claim is false for sections 4 and 5, which ask for more by kind of work, not by consequence ('Profiles are not maturity levels').",
+      "replacement": "'The assurance profile (section 7) is the only place where KADS asks more of a record in proportion to the consequence of the decision it records being wrong.'"
+    },
+    {
+      "clause": "COUNTS",
+      "verdict": "REWORD",
+      "reason": "As written, by keyword: MUST 8, MUST NOT 1, SHOULD 5, MAY 1 (15). As written, by distinct requirement: MUST about 28 (4.6: 1; 7.2 a: 2; 7.2 b: 2; 7.3 a-e: 7; 7.3 f-h: 6; 7.3 i: 3; 7.4 a: 6; 7.5 a: 1), MUST NOT 1, SHOULD 6 (7.5 c holds two), MAY 1. Rewritten, by keyword: MUST 9 (7.2 a, 7.2 b, 7.2 c, 7.3 first list, 7.3 critical list, 7.3 m, 7.4 a, 7.4 c, 7.5 a), MUST NOT 0, SHOULD 2 (4.6, 7.4 d), MAY 1 (12). Rewritten, by distinct requirement: MUST 27 (7.2: 4; 7.3: 7 + 5 + 3; 7.4 a: 6; 7.4 c: 1; 7.5 a: 1), SHOULD 2, MAY 1. Nothing in the rewrite is breaking for an existing conformant corpus.",
+      "replacement": ""
+    }
+  ],
+  "candidates": [
+    {
+      "id": "P-01",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The proposed foundations sentence says KADS scales by 'the consequence of the record being wrong' while section 7 scales by the decision being wrong, and it is untrue of sections 4 and 5. A principle stated inaccurately is worse than none.",
+      "counterexample": "A team reads the sentence as licence to under-document a low-consequence page that carries a 3.5.4 (a) irreversible step; core rules do not scale by consequence and the sentence suggests they do.",
+      "gaming": "Cite proportionality to justify stating no level at all; nothing then binds.",
+      "recommended_change": "Use the reworded foundations sentence in clause_verdicts; no normative text."
+    },
+    {
+      "id": "P-02",
+      "validity": "VALID",
+      "expression": "SHOULD",
+      "placement": "PROFILE",
+      "strongest_objection": "A MUST with the escape 'or state that they are not recorded' is a SHOULD in effect and a breaking change in cost, with no observed case. 'Significant' in the candidate is not in the sentence at all; it binds every accepted tracked decision.",
+      "counterexample": "A corpus of 200 imported ADRs must add 'reasons not recorded' to each on upgrade day; the reader gains a boilerplate line and the maintainers a 200-file diff that hides real edits.",
+      "gaming": "'Reasons: agreed by the team' or 'not recorded' on a decision made today.",
+      "recommended_change": "SHOULD, 'rationale' not 'reasons', allow a link; wording in clause_verdicts."
+    },
+    {
+      "id": "P-03",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "'The claim the decision rests on' is singular and its example ('the change is ready') is the tautology the principle is meant to prevent; 'what the evidence does not cover' is unbounded. Neither can be judged by a reviewer beyond presence.",
+      "counterexample": "A go decision that rests on four independent claims is forced into one sentence, 'ready', and the record is less informative than the checklist it replaced.",
+      "gaming": "'Claim: ready. Evidence: see pipeline.' conforms.",
+      "recommended_change": "Reword (a) to 'what must be true for the choice to be sound', add 'or that there is none' to evidence, replace 'does not cover' with 'known limits'."
+    },
+    {
+      "id": "P-04",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "The scope 'a requirement the project otherwise treats as binding' is not determinable, and the field list silently diverges from the conformance exception while claiming identity. 'Who accepted it' requires an acceptance act; conformance asks for a responsible role.",
+      "counterexample": "Every '# noqa', skipped test, and temporary firewall rule is a recorded, accepted departure from a binding requirement; mechanically applied, 7.4 (a) demands six fields on each inline suppression.",
+      "gaming": "Record the departure as a 'configuration choice' or a 'local rule', never as an exception; or give 'review condition: when circumstances change'.",
+      "recommended_change": "Bound by requirement sets named in the adoption note; use the conformance field names; allow a statement of permanence."
+    },
+    {
+      "id": "P-05",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "The trigger 'the evidence is that no failure has been observed' also describes every passing test, and the sentence has no escape for 'we do not know how a failure would have shown', which is the informative answer. It duplicates 5.7 and 3.3.5 without citing them and is positioned under the critical-only list.",
+      "counterexample": "A record whose evidence is a green test suite gets three sentences on 'period or exposure' that mean nothing for a deterministic test run.",
+      "gaming": "Phrase the quiet period as a positive ('ran successfully for 30 days') so the trigger does not fire.",
+      "recommended_change": "Trigger on 'a period of use or operation in which no failure was observed'; add 'or that this is not known'; move out of the critical list."
+    },
+    {
+      "id": "P-06",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "'How the change could fail' prescribes an analysis and has no completeness test; as a MUST it is unverifiable beyond presence and contradicts 7.1's claim to state only what a record makes discoverable.",
+      "counterexample": "An urgent critical security patch: the author writes 'could fail in unknown ways; monitoring' to conform, which is noise that a later investigator will read as analysis having been done.",
+      "gaming": "One generic failure mode and 'detected by monitoring'.",
+      "recommended_change": "Disclosure form: the failures the authors considered, or that none was considered; detection for each, or that there is none."
+    },
+    {
+      "id": "P-07",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "'How the effect will be undone or contained' has no antecedent for 'the effect' and uses a future tense that turns a record rule into a plan commitment; the principle's 'before deployment' is not in the clause at all, so a record written after the fact conforms.",
+      "counterexample": "A decision to choose a vendor: 'undo' is meaningless; the author writes 'n/a', which the clause does not allow (only 'cannot be').",
+      "gaming": "Name a rollback path never executed; 3.5.4 (c) is only a SHOULD, so the fiction conforms.",
+      "recommended_change": "'how the change can be undone or its effect contained, or that it cannot be'; guide sentence pointing to 3.3.5 and 3.5.4 (c)."
+    },
+    {
+      "id": "P-08",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "'Examined the reasoning' is a new undefined verb beside 'review' in 3.3.4 and 3.3.5, and 'other than its authors' lets the approving authority count, so approval is recorded as examination.",
+      "counterexample": "A two-person team where the only other person is the approver: the record truthfully lists the approver as examiner and reads as independently checked.",
+      "gaming": "List the pull request approver; or an automated agent, named as such, which satisfies the letter.",
+      "recommended_change": "Use 'reviewed', bind to 3.3.4 and 3.3.5, add 'before the choice was made', split who from what was concluded."
+    },
+    {
+      "id": "P-09",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "As written a silent record cannot be distinguished from a compliant one, the source of 'recorded' disagreement is unbounded, and the filter 'could change the choice' is applied by the party that prevailed. It also restates 3.3.2 at lower precision.",
+      "counterexample": "An objection made in a chat thread: the author holds that chat is not a record, omits it, and conforms; the Challenger pattern is reproduced exactly.",
+      "gaming": "Judge every objection as one that 'could not change the choice'.",
+      "recommended_change": "Bound by what the authors know, drop the filter, add 'or that no such objection is known' and 'or a statement that it is unanswered'."
+    },
+    {
+      "id": "P-10",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "'Each lesson it draws' is a self-selected trigger with no timing, 'one disposition' is too rigid, and 'a link to where it is tracked' presupposes a tracker. The strong form of the principle (not closed until) is not delivered and the clause should not hint that it is.",
+      "counterexample": "An investigation still active lists a lesson on day one; it is nonconformant until someone decides the disposition, which pushes authors to delay writing lessons down.",
+      "gaming": "Write 'observations' instead of 'lessons'; or 'pending' forever.",
+      "recommended_change": "Bind when the record states the investigation complete; cover lessons, findings, and recommended actions; allow 'not tracked' and more than one disposition."
+    },
+    {
+      "id": "M-11",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "The level definitions are offered both as KADS text 'under the clause' and as project criteria, they contain unverifiable terms ('materially', 'known path', 'present means'), and they are not exhaustive. The classification trigger is circular with 7.3.",
+      "counterexample": "A change confined to the team but undone only by a path never used before fits no level; two reviewers assign routine and critical.",
+      "gaming": "State no level; the record is then outside 7.3 and no reviewer can show otherwise without reclassifying.",
+      "recommended_change": "Project criteria are the only normative criteria; KADS definitions are informative defaults; adoption note names the kinds of record covered; tie rule as a definition."
+    },
+    {
+      "id": "M-12",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "Three MUST keywords carry 16 requirements; five lettered items hold two each, so 7.3 (d) still cannot be cited as one requirement, which is the purpose of lettering under CONTRIBUTING and J-026.",
+      "counterexample": "An exception to '7.3 (d)' cannot say whether it waives the risk list or the acceptor.",
+      "gaming": "Fill every field with 'none'; conformant, which is acceptable only if the clause says so openly.",
+      "recommended_change": "One requirement per letter, explicit negative escapes, bind records that state a level."
+    },
+    {
+      "id": "M-13",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The proposal marks M-13 'NORMATIVE, PROFILE' while giving it no wording; the label inflates the normative footprint. It is a guide sentence about 7.3.",
+      "counterexample": "none found: with no separate object there is nothing to follow mechanically.",
+      "gaming": "Keep readiness in chat and state no level on any record.",
+      "recommended_change": "Relabel as GUIDANCE; the guide sentence should say 'or' a conclusion record, not imply one is needed."
+    },
+    {
+      "id": "M-14",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "7.4 (c) 'MUST NOT be presented as in force' is not decidable, makes conformance change with the calendar, and encourages a record to say an exception has ended while the departure continues. (a) and (b) contradict each other on permanence.",
+      "counterexample": "The expiry date passes, nobody edits anything, the legacy service still does not rotate credentials. To conform, the index drops the exception; the reader now believes the rule holds everywhere. The record is less true than before the rule fired.",
+      "gaming": "Use a review condition instead of a date; (c) never applies.",
+      "recommended_change": "Define 'expired' by a non-inference sentence; require lists to show expiry; allow a stated permanence in (a)."
+    },
+    {
+      "id": "M-15",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The guide paragraph says a record 'names who held each function that its level requires it to state'; that is a requirement sentence in guidance and will be read as one. Guidance must not carry obligations that the clauses do not.",
+      "counterexample": "A solo maintainer lists the same name five times to satisfy the paragraph.",
+      "gaming": "Not applicable; nothing binds.",
+      "recommended_change": "Rewrite the paragraph descriptively: 'Where a record names an accepter or reviewer, say when they are the same person or an automated agent.'"
+    },
+    {
+      "id": "M-16",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "7.5 (b) is a profile SHOULD overlapping a core MUST (3.3.2), and 7.5 (c) is an undated future obligation filed under the wrong clause. Both are undetectable by the proposal's own admission.",
+      "counterexample": "An incident author links to the failed decision as (b) asks; the decision record itself is untouched and keeps misleading every reader who opens it directly.",
+      "gaming": "Not mentioning the decision at all; nobody can tell.",
+      "recommended_change": "Move (b) and (c) to the guide and templates; keep only 7.5 (a) normative."
+    },
+    {
+      "id": "M-17",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "A 'fixed field label' whose exact spelling is relied on for search is a requirement in disguise: either it is normative (then it needs a clause and the admission test) or it is a suggestion (then 7.4 (d) cannot lean on it).",
+      "counterexample": "A project writing in Spanish uses 'Excepcion a:'; the search promised by the registry paragraph finds nothing.",
+      "gaming": "Not applicable.",
+      "recommended_change": "State the label as a suggestion and let the adoption note state the search term actually used, which the reworded 7.4 (d) accommodates."
+    },
+    {
+      "id": "M-18",
+      "validity": "REFINE",
+      "expression": "MAY",
+      "placement": "PROFILE",
+      "strongest_objection": "7.1 contradicts 7.4 and 7.5 on what the routine level owes, and section number 7 with clauses 7.2 to 7.6 was already used by the unadopted Procedure profile draft cited in decisions/standards (J-004 and the README table), so citations of 'clause 7.3' in the repository become ambiguous.",
+      "counterexample": "A reader of the standards README meets 'Draft section 7 ... clauses 7.2 to 7.6: not adopted' and concludes the assurance profile was rejected.",
+      "gaming": "Not applicable.",
+      "recommended_change": "Reworded 7.1; add a changelog note disambiguating the earlier draft numbering, or number the profile section 8."
+    },
+    {
+      "id": "M-19",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The templates carry obligations in a stronger voice than the clauses ('An exception past its expiry with no renewal is not in force'; 'delete for routine decisions'), and the block asks for 'relation to the authors', which no clause requires.",
+      "counterexample": "An author treats the template sentence as the rule and marks a still-operating departure 'not in force'.",
+      "gaming": "Not applicable.",
+      "recommended_change": "Align template prompts with the reworded clauses; mark non-required prompts as optional."
+    },
+    {
+      "id": "M-20",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The two CONTRIBUTING sentences contradict each other on when review happens, the marking is not durable in a per-release changelog, and 'observed' is left undefined in a proposal that relies on 'observed publicly'.",
+      "counterexample": "Section 7 is admitted citing Challenger as 'observed'; it is never marked anticipated only and never reviewed.",
+      "gaming": "Cite any public incident as the observed case.",
+      "recommended_change": "Replacement wording in clause_verdicts; define 'observed' as observed in the use of KADS."
+    },
+    {
+      "id": "M-21",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "'Before each minor release' with no required output is an unverifiable ritual, and 'clause whose reopening condition has occurred' refers to an attribute clauses do not have.",
+      "counterexample": "Three minor releases in two days, as in this repository's history: three full reviews, or three unrecorded skips.",
+      "gaming": "'Reviewed; no change' in the release note.",
+      "recommended_change": "Replacement wording in clause_verdicts: tie to releases that add or strengthen a rule and require the review record to name the rules considered."
+    },
+    {
+      "id": "M-22",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Counting keywords rewards packing many requirements under one MUST, which this proposal does (8 keywords, about 28 requirements).",
+      "counterexample": "A release reports 'MUST: +0' after adding four lettered items to an existing list.",
+      "gaming": "Lists under one keyword.",
+      "recommended_change": "Add 'required items' to the counts, defined as each lettered item or listed field under a MUST or MUST NOT."
+    }
+  ],
+  "existing_rules_to_challenge": [
+    {
+      "clause_or_artifact": "Clause 4.6 (specification)",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "Five requirements and one MAY in an unlettered paragraph, about three subjects (status semantics, accepted decisions, ADR identifiers). 'Assessment of certainty or test outcomes MUST be separate when relevant' has an undeterminable trigger ('when relevant') and would not pass the admission test's detection question today. The proposal adds a sixth sentence to it. Letter it now, (a) to (e), and move the ADR identifier sentence to 4.3 where identity lives."
+    },
+    {
+      "clause_or_artifact": "docs/conformance.md, Review outcome, exception sentence ('An exception MUST record the affected clause identifier and scope, reason, consequence, responsible role, and condition for review')",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "Six requirements under one MUST, stated only in conformance.md while 6.1 and the conformance claim list say merely 'local exceptions, each naming the affected clause', and the adoption guide outline names them differently ('owner, revisit condition'). Three spellings of one object already exist before 7.4 adds a fourth. Give the exception one canonical field list in one place (lettered), and have every other mention link to it (clause 3.2.1 applied to KADS itself)."
+    },
+    {
+      "clause_or_artifact": "Clause 3.4.3, second sentence ('Projects MUST identify a maintainer or review route for the adopted corpus and conditions that trigger review')",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "It is an adoption-note content requirement sitting in a clause about dating facts, and it duplicates the fifth bullet of the conformance claim list and clause 6.1. One requirement, two normative homes with different wording. Move it into 6.1 and leave 3.4.3 about dates."
+    },
+    {
+      "clause_or_artifact": "Clause 3.3.2",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "Three MUSTs in one unlettered clause; the first has the trigger 'wherever combining them would mislead', which two reviewers will judge differently, and the third ('Known contradictions and limitations ... MUST be disclosed') is the core rule that 7.3 (h) and 7.5 (b) restate. Letter it so the profile can cite 3.3.2 (c) instead of duplicating it, and say 'known to the authors'."
+    },
+    {
+      "clause_or_artifact": "Clause 5.7 (negative results, research-report profile only)",
+      "question": "would we add this today?",
+      "verdict": "KEEP",
+      "reason": "The rule is sound, but 7.3 (i) shows it is needed outside research reports; rather than restating it per profile, a later release should consider one core sentence in 3.3 ('a statement that something was not found or did not fail is scoped to what was inspected or observed') with 5.7 and 7.3 (m) as applications. Until then keep 5.7 and make 7.3 (m) cite it."
+    },
+    {
+      "clause_or_artifact": "Clause 6.3 (derived documents MUST use Semantic Versioning)",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "Three MUSTs binding every adoption note, local mapping, and copied template 'wherever it declares a version of its own', plus a fourth requirement to state what counts as breaking. For a three-page repository whose adoption note is five lines in a README this is the highest ratio of ceremony to reader benefit in the specification, and admission question 6 would challenge it today. Keep the pin of the KADS version as the MUST; make the rest conditional on the document having readers who depend on its stability."
+    },
+    {
+      "clause_or_artifact": "CONTRIBUTING.md, 'Write each new normative sentence with one requirement'",
+      "question": "would we add this today?",
+      "verdict": "KEEP",
+      "reason": "It is the rule this proposal breaks most often, and it has no stated position on list clauses in the style of 5.2. Add one sentence: 'In a list governed by one keyword, each lettered item holds one requirement and is counted as one.' Otherwise the rule is evaded by layout."
+    }
+  ],
+  "dissent_to_preserve": [
+    "The 4.6 sentence should not be a MUST. With its escape it secures nothing a SHOULD under clause 1.2 does not, and it is the only breaking change in the package, resting on no observed case.",
+    "7.4 (c) as a prohibition on 'presenting as in force' should not be adopted in any wording: it makes conformance depend on the calendar and rewards records that say an exception ended while the departure continues. A non-inference sentence plus visible expiry dates protects the reader better.",
+    "Keyword counts must not be used as the measure of this proposal's size. The honest figure as written is about 28 MUST requirements, 1 MUST NOT, 6 SHOULD, 1 MAY.",
+    "Scope by self-declaration is a real weakness that wording cannot remove: under any drafting, a record that states no level owes nothing, and a reviewer can detect under-classification only by comparing the record with the adoption-note criteria. The profile should say this openly in 7.1 instead of implying coverage of 'consequential decisions'.",
+    "Section number 7 and clause numbers 7.2 to 7.6 were used by the unadopted Procedure profile draft that decisions/standards still cites. Clause 1.4 is not literally violated because the draft was never released, but reuse makes existing citations ambiguous; the release must disambiguate or renumber.",
+    "Adding 'Exception' to section 2 changes the reading of an existing term in 6.1, 6.4, and conformance; under 6.2 that may be a change of meaning of an existing clause and should be assessed as potentially breaking, not as a pure addition.",
+    "Every disclosure item in 7.3 should carry an explicit negative alternative ('or that none ...'). Without it, silence and compliance are indistinguishable and the MUST fails admission question 5."
+  ]
+}

@@ -1,0 +1,603 @@
+{
+ "role": "domain-transfer",
+ "overall": "From the domain-transfer perspective the proposal makes the main cut correctly: it transfers no board, no authority chain, no worksheet, and no new record type, and its fact base is mostly accurate (of 25 checks, 9 CORRECT, 10 PARTLY, 6 UNVERIFIED, none wholly wrong; quotations from NASA directives, the Rogers report, the SRE books, Nygard, and the RFCs are exact). It still fails in four places where an aerospace assumption survives the reduction. First, clause 7.4 (c) assumes that a lapsed waiver stops the activity; in software the departure continues, and the rule plus example 5 hide it. Second, 7.3 (h) keeps the record of dissent while dropping the escalation right and non-retribution duty that make Formal Dissent work, and the cited case was a written objection that did not travel, not an unwritten one. Third, the levels classify per record by the author, whereas every cited precedent classifies by category in advance, and 'cannot be undone' without magnitude makes trivial irreversible actions critical. Fourth, the claim-versus-choice split and the named risk acceptor presuppose separate certifying and deciding bodies and collapse to boilerplate in a small team. The proposal also underuses native software forms it cites: the pre-stated canary abort criterion, error budgets, change categories, and inline suppressions with expiry. Its three 'findings that shaped the design' are each stated more firmly than the sources support: the lowest NASA classes were not inspected, the shuttle reports describe propagation and authority failures at least as much as record failures, and SRE chapter 32 concerns per-service onboarding and ends in frameworks, not in abandoning review. On the evidence, adopt the 4.6 sentence, 7.3 (i), the templates, and the guide text; treat the rest of section 7 as anticipated-only or deferred until an adopter has used it.",
+ "clause_verdicts": [
+  {
+   "clause": "4.6 sentence",
+   "verdict": "KEEP",
+   "reason": "This is the one item whose native software form (the ADR context section, verified in Nygard today) is older and better tested than any aerospace form, and it does not depend on authority chains, boards, or irreversibility. The escape clause keeps clause 3.3.3 intact. It is breaking and it binds trivial tracked decisions, but the cost is one line. It should be released on its own merits and not bundled with section 7.",
+   "replacement": ""
+  },
+  {
+   "clause": "7.1",
+   "verdict": "REWORD",
+   "reason": "The clause says what the profile does not require but not that existing engineering artifacts can be the record. In software the evidence, rollout plan, abort criteria, and examination already live in the pull request, pipeline run, rollout configuration, alert rule, and ticket. Without saying so, 7.3 will be read as a document to write, which duplicates native artifacts and breaks the brief's no-duplication constraint.",
+   "replacement": "7.1 Use this profile when a project wants a later reader to be able to reconstruct, for its consequential decisions, changes, exceptions, and incidents: what was believed, on what evidence, which risks were accepted and by whom, and what happened afterwards. The profile states what a record makes discoverable. A pull request, change ticket, pipeline run, or other native artifact is a sufficient record where it makes the content discoverable (clause 3.6.1); no separate document is required. The profile does not require that a review be held, that a role be staffed, or that a change be approved (clause 3.6.3), and it requires nothing at the routine level. It can be used with or without tracked records."
+  },
+  {
+   "clause": "7.2(a)",
+   "verdict": "REWORD",
+   "reason": "Every cited precedent classifies in advance by category (NASA: the system or subsystem, once; SRE chapter 27: 'no new server executables and a traffic increase under 10%'; ITIL: a standard-change catalogue). The proposal instead has an author classify each decision. In continuous delivery that is a judgment made dozens of times a day by the person with most incentive to say 'routine'. The transferable abstraction is criteria stated as kinds of change, so that routine work is never individually classified.",
+   "replacement": "7.2 (a) A project applying this profile MUST state in its adoption note which kinds of decision or change it treats as significant and which as critical, and who may assign a level to a case the list does not cover. Everything else is routine."
+  },
+  {
+   "clause": "7.2(b)",
+   "verdict": "KEEP",
+   "reason": "Stating level and deciding factor on a record that already exists is cheap and detectable. It is only reached for non-routine records.",
+   "replacement": ""
+  },
+  {
+   "clause": "7.2(c)",
+   "verdict": "REWORD",
+   "reason": "'Higher wins' is rational for NASA because classification happens once per system and the cost is borne once. Applied per change with the proposed definition of critical (any effect that 'cannot be undone'), it ratchets ordinary irreversible actions to critical: sending an email, publishing a package version, deleting a temporary table, rotating a key. Irreversibility without magnitude is not criticality in software. The tie rule should not be a SHOULD (clause 1.2 then demands a reason for every departure); the definition of critical needs a magnitude term.",
+   "replacement": "7.2 (c) Critical is reserved for a change whose wrong outcome would be material outside the deciding team and could not be undone, detected, or contained by present means. Irreversibility of an effect that is immaterial does not raise the level. A project MAY map existing local classes, such as change types or severity classes, to these levels."
+  },
+  {
+   "clause": "7.3(a)-(e)",
+   "verdict": "REWORD",
+   "reason": "(a) 'the claim ... stated separately from the choice' transfers a structure that is rational where a board certifies readiness and a different authority decides (FRR). In a team where the author, the claimant, and the decider are one person in one pull request, the claim degenerates to 'the change is ready', as the proposal's own example 2 shows ('claim: migration is ready'). That line carries no information; the information is in (b). (d) 'who accepted them' presumes a risk owner distinct from the decider; in a small team it is always the 4.6 authority, so it becomes a repeated name. (e) is the strongest and most native item. Missing from the list is the native software equivalent of success criteria: the observation that will cause the rollout to be stopped or undone, decided beforehand. That is what a canary evaluation is, and it is more useful than a readiness claim.",
+   "replacement": "7.3 A record of a decision to make or proceed with a change at the significant or critical level MUST make the following discoverable, on the page or through links: (a) the evidence that the change will work, and what that evidence does not cover; (b) the assumptions relied on; (c) the known risks that remain, and who accepted them where that is not the authority named under clause 4.6; (d) how the effect will be undone or contained, or that it cannot be; (e) what observation would cause the change to be stopped or undone."
+  },
+  {
+   "clause": "7.3(f)",
+   "verdict": "MOVE",
+   "reason": "'How the change could fail and how the failure would be detected' is the FMEA question reduced to prose; the reduction is right, but placing it at critical only inverts software economics. Detection is the cheap, native part (alert rules, canary metrics, error budgets) and is most useful exactly for the significant changes that are reversible only if someone notices. Fold the detection half into the significant list as the stop criterion (see replacement for 7.3 (a)-(e), item e) and keep the open-ended 'how could it fail' prompt as guide advice for critical changes, where it cannot be checked for adequacy anyway.",
+   "replacement": ""
+  },
+  {
+   "clause": "7.3(g)",
+   "verdict": "KEEP",
+   "reason": "Disclosure of who examined, or that no one did, transfers cleanly: it needs no Technical Authority, works for a solo maintainer ('no one'), and maps to the native form (review on the pull request, linked). It is the honest residue of IV&V. Add to the guide that a link to the review thread satisfies it.",
+   "replacement": ""
+  },
+  {
+   "clause": "7.3(h)",
+   "verdict": "DOWNGRADE",
+   "reason": "The home-domain mechanism (NPR 7120.5F 3.4, read today) has three working parts: a duty of non-retribution, a documented dissent, and a right to carry it at least two levels up, to the Administrator if needed. The proposal transfers only the middle one. In the cited case the dissent was already written (Rogers p. 82 names an 'initial written recommendation'); what failed was that it did not reach the deciders. A record rule does not address that. Without protection or an upward path, a MUST that binds only 'disagreement recorded before acceptance' rewards keeping disagreement oral, and its violation cannot be seen from the page (the proposal admits detection needs comparison with drafts). The admission test then says it is not a MUST.",
+   "replacement": "Move to the decision guide, which already says 'Record dissent or an unresolved assumption if it could change the choice', and add: 'Where a disagreement that could change the choice was raised before acceptance, the record SHOULD state it and why it did not prevail.' Keep the sentence 'The absence of recorded disagreement does not establish agreement.' in 7.3."
+  },
+  {
+   "clause": "7.3(i)",
+   "verdict": "KEEP",
+   "reason": "The smallest and most transferable abstraction in the package. It needs no organization, applies to any team size, and is the software-native lesson too (a quiet canary proves nothing if the metric could not have shown the fault). It should survive even if the rest of section 7 is deferred; it could be one sentence in the decision guide pointing to clause 5.7.",
+   "replacement": ""
+  },
+  {
+   "clause": "7.4(a)",
+   "verdict": "REWORD",
+   "reason": "'An exception MUST identify ...' with 'exception' defined as any accepted departure from 'a requirement the project otherwise treats as binding' captures every native software exception mechanism: lint and type-check suppressions, skipped tests, vulnerability-scanner ignore entries, policy-as-code allowlists, branch-protection bypasses. A waiver form per item is rational when there are tens of waivers per vehicle and each is a hardware nonconformance; it is absurd for four hundred suppressions. Software already has a better native form: the suppression at the point of departure, carrying a reason and, in many tools, an expiry. The clause must bound itself to requirements stated in the corpus and let the native artifact be the record.",
+   "replacement": "7.4 (a) An exception to a requirement stated in the corpus MUST make discoverable the requirement departed from, its scope, the reason, the risk accepted, who accepted it, and an expiry date or review condition. An entry in a native mechanism, such as a suppression or allowlist file, is a sufficient record where it carries or links these."
+  },
+  {
+   "clause": "7.4(b)",
+   "verdict": "DOWNGRADE",
+   "reason": "Sound advice (the NPR 7120.5F Non-Applicable ruling is the precedent, verified today) but a SHOULD costs a recorded reason on each departure (clause 1.2) and nothing detectable is gained. It is a template prompt and already appears in the proposed exception outline.",
+   "replacement": "Guidance only: keep the prompt in templates/exception.md."
+  },
+  {
+   "clause": "7.4(c)",
+   "verdict": "REWORD",
+   "reason": "This is the clearest transfer failure in the package. At NASA a waiver that is not renewed means the vehicle does not fly; the departure stops with the waiver. In software the system keeps running after the date: the legacy service still does not rotate credentials. Example 5 says that after expiry 'the index of exceptions in force no longer lists it'. The departure is then still happening and has become invisible, which is exactly the Rogers finding 2 failure (a waiver not visible to all levels) produced by the rule meant to prevent it. The rule must keep an expired exception more visible, not less.",
+   "replacement": "7.4 (c) An exception whose expiry date has passed without a recorded renewal MUST be shown as lapsed: it MUST NOT be presented as accepted, and it MUST NOT be removed from where exceptions are listed while the departure continues."
+  },
+  {
+   "clause": "7.4(d)",
+   "verdict": "KEEP",
+   "reason": "Visibility at the requirement is the part Rogers finding 2 actually supports. For software the fixed label plus search is the native equivalent and is enough. Keep as SHOULD.",
+   "replacement": ""
+  },
+  {
+   "clause": "7.5(a)",
+   "verdict": "REWORD",
+   "reason": "Disposition per lesson is the native software form (postmortem action items) and transfers without any corrective-action board. Two defects. 'A change pending, with a link to where it is tracked' has no end and is the standard way action items die; a date costs nothing. And forcing a disposition on every 'lesson' gives authors a reason to list fewer lessons or to phrase observations as non-lessons; the rule should bind proposed actions, not insights.",
+   "replacement": "7.5 (a) A record of an incident investigation MUST state, for each change it recommends, one disposition: made, with a link to it; pending, with a link to where it is tracked and the date it will next be looked at; not made, with the reason and who accepted the remaining risk."
+  },
+  {
+   "clause": "7.5(b)",
+   "verdict": "KEEP",
+   "reason": "Linking the incident to the decision whose assumption failed is cheap and is the one place the profile closes the loop. SHOULD is right; it only applies where a recorded decision exists.",
+   "replacement": ""
+  },
+  {
+   "clause": "7.5(c)",
+   "verdict": "DELETE",
+   "reason": "'When and how its outcome will be checked' is the aerospace post-flight assessment review transplanted. In software the outcome check of a rollout is the rollout itself (canary evaluation, error budget burn, alerts), already covered by the stop criterion; for irreversible one-off actions it duplicates 7.3 (d). The proposal names it as first to drop and reports no observed case.",
+   "replacement": ""
+  }
+ ],
+ "candidates": [
+  {
+   "id": "P-01",
+   "validity": "VALID",
+   "expression": "GUIDANCE",
+   "placement": "GUIDANCE",
+   "strongest_objection": "The principle is sound in every domain, but in its home domains proportionality is achieved by classifying a system or a category of change once, in advance, by someone other than the author (NPR 7150.2D Appendix D; SRE chapter 27 low-risk category). The proposal turns it into a per-decision judgment by the author. The cited SRE chapter 32 evidence is about per-service onboarding reviews, not per-change review, so it does not show what the proposal says it shows.",
+   "counterexample": "A team of four deploys thirty times a day. If each deploy needs a moment's thought about level, the tax is thirty classifications a day for nothing; if it does not, the level is decided by habit and the one dangerous change in the batch (a schema change hidden in a dependency bump) is routine by default.",
+   "gaming": "Everything is declared routine; the profile is 'adopted' and requires nothing.",
+   "recommended_change": "State the principle in foundations.md as proposed, and make 7.2 (a) classify by kind of change (see clause verdict)."
+  },
+  {
+   "id": "P-02",
+   "validity": "VALID",
+   "expression": "MUST",
+   "placement": "PROFILE",
+   "strongest_objection": "No domain-transfer objection: this is native software practice (ADR). The only overreach is citing Nygard for 'rationale'; his format has Context and Consequences and no rationale field.",
+   "counterexample": "A decision made by an external authority (a regulator, a customer contract, a parent company) where the team genuinely does not know the reasons: handled by the escape 'not recorded'. None found beyond that.",
+   "gaming": "'Reasons: as discussed.' or a blanket 'not recorded' on every decision.",
+   "recommended_change": "Adopt the 4.6 sentence on its own. In the guide, say that the reasons may be a link to the context section of an existing ADR."
+  },
+  {
+   "id": "P-03",
+   "validity": "REFINE",
+   "expression": "SHOULD",
+   "placement": "PROFILE",
+   "strongest_objection": "'GO' is a readiness-board construct: a body certifies against stated criteria and a separate authority decides. That split is what makes a separately stated claim informative. Continuous delivery has a better native form: the gate is a pre-stated, usually automated, criterion (tests pass, canary within thresholds, error budget not exhausted) and GO is the pipeline's output. A prose 'claim' line beside it is redundant. NPR 7123.1D Appendix G, which the proposal cites, calls its criteria 'recommended best practices' and expects tailoring; it does not say what the proposal infers from it.",
+   "counterexample": "Schema migration behind an automated pipeline: the evidence is the dry-run link and the gate is the pipeline. Writing 'Claim: the migration is ready' (the proposal's own example 2) adds a line that no reader will ever use, and trains authors to fill fields.",
+   "gaming": "Claim: 'ready'. Evidence: 'CI green' with a link, whatever CI covers.",
+   "recommended_change": "Drop 7.3 (a) as a separate item; keep evidence and its limits; add the stop or abort criterion as the native form of success criteria."
+  },
+  {
+   "id": "P-04",
+   "validity": "REFINE",
+   "expression": "MUST",
+   "placement": "PROFILE",
+   "strongest_objection": "Waivers in aerospace are few, per vehicle or per requirement, dispositioned by a standing authority, and a lapsed waiver grounds the vehicle. Software exceptions are numerous, live in code and configuration, and outlive any date because the system keeps running. NPR 7120.5F 3.5.1 (read today) calls tailoring 'both an expected and accepted part of establishing proper requirements'; the adversarial framing of exceptions comes from the accident reports, not from the process the proposal cites. In a five-person company 'who accepted the risk' is the founder every time, and the field stops carrying information.",
+   "counterexample": "A repository with several hundred lint suppressions and scanner ignore entries, each technically an accepted departure from a binding rule. Giving each six fields in a decision record is worse than the native inline suppression with a reason; exempting them needs a line the proposal does not draw.",
+   "gaming": "One umbrella exception: 'legacy services are exempt from current standards, accepted by the CTO, review annually'.",
+   "recommended_change": "Bound 7.4 (a) to requirements stated in the corpus and accept native suppression mechanisms as the record."
+  },
+  {
+   "id": "P-05",
+   "validity": "VALID",
+   "expression": "MUST",
+   "placement": "PROFILE",
+   "strongest_objection": "None on transfer; this is the one aerospace lesson that needs no aerospace organization, and the chaos-engineering and canary literature states the software-native form. The proposal's wording 'not from the absence of incidents' is attributed to principlesofchaos.org, which does not say it.",
+   "counterexample": "none found: the rule is conditional and only asks an author who offers silence as evidence to say what was being listened to.",
+   "gaming": "'Monitored in production for two weeks; alerts would have fired', where no alert covers the failure in question.",
+   "recommended_change": "Keep 7.3 (i). If section 7 is deferred, put the same sentence in the decision guide with a pointer to clause 5.7."
+  },
+  {
+   "id": "P-06",
+   "validity": "REFINE",
+   "expression": "GUIDANCE",
+   "placement": "GUIDANCE",
+   "strongest_objection": "FMEA is rational where failure modes are enumerable per component and hardware cannot be patched. For a software change the enumerable part is small and the valuable, checkable part is detection: what signal, what threshold, what action. The proposal keeps the unenumerable half ('how the change could fail') as a MUST and restricts detection to critical changes, where it matters least relative to significant ones that are safe only if noticed.",
+   "counterexample": "A feature-flag flip for one percent of users. 'How could it fail' has unbounded answers; the useful answer is 'error rate on the flagged cohort above X for five minutes turns the flag off', which is a detection and stop rule, not a failure analysis.",
+   "gaming": "'Could fail in unforeseen ways; standard monitoring applies.'",
+   "recommended_change": "Replace 7.3 (f) with a stop criterion at significant level; keep 'how could it fail' as a guide prompt."
+  },
+  {
+   "id": "P-07",
+   "validity": "VALID",
+   "expression": "MUST",
+   "placement": "PROFILE",
+   "strongest_objection": "The principle is native to software (rollback, flags, restore tests) and the proposal uses the native form. The weak spot is the GitLab citation: the postmortem's own answer to why backups were untested is 'there was no ownership', an organizational cause a record field does not fix, and the proposal misreports that the action list has owners.",
+   "counterexample": "Roll-forward-only systems (event-sourced ledgers, published package versions, sent notifications): 'undo' is not the right question and a mechanical author writes 'cannot be undone', which under 7.2 (c) makes every such change critical.",
+   "gaming": "'Rollback: revert the commit', for a change with a data migration that the revert does not reverse.",
+   "recommended_change": "Keep 7.3 (e). Word it 'undone, corrected forward, or contained' so that roll-forward systems are not forced to 'cannot be'."
+  },
+  {
+   "id": "P-08",
+   "validity": "REFINE",
+   "expression": "MUST",
+   "placement": "PROFILE",
+   "strongest_objection": "Technical Authority exists because a program manager under schedule pressure outranked the engineers; independence is funded separately (CAIB R7.5-2, read today: 'no connection to or responsibility for schedule or program cost'). A five-person company cannot construct that, and the proposal rightly does not try. But then the candidate as worded ('require independent challenge') is not delivered, and the proposal should say REJECTED-AS-WORDED, not NORMATIVE. What remains, disclosure, is fine.",
+   "counterexample": "Solo maintainer of a widely used library making an irreversible release decision. 'Independent challenge' is impossible; the honest record is 'no one', and the rule works. Mechanical compliance failure is the opposite case: a team asks a colleague to 'take a look' at 16:55 so the field has a name in it.",
+   "gaming": "A named examiner who approved the pull request in ninety seconds; or an automated agent's review listed without its limits.",
+   "recommended_change": "Keep 7.3 (g) as disclosure. Record in the decision that P-08 as worded was not adopted and why."
+  },
+  {
+   "id": "P-09",
+   "validity": "REFINE",
+   "expression": "SHOULD",
+   "placement": "GUIDANCE",
+   "strongest_objection": "Formal Dissent at NASA works through an escalation right and a non-retribution duty; the record is a by-product. Transferring only the record to an organization with neither makes writing a dissent costly for the dissenter and easy to avoid for the decider. The observed case does not support a record rule: the Commission says the deciders were unaware of an 'initial written recommendation', so the dissent was on paper and still did not travel. RFC 7282 is Informational and about open working groups, not manager-led teams.",
+   "counterexample": "An engineer objects in a design review. Knowing that written objections must appear in the accepted record with 'the reason it did not prevail', the lead asks to 'take it offline'; the objection is settled orally and never recorded. The rule has reduced the written trace.",
+   "gaming": "'Disagreement: none recorded.' Always true if nobody writes anything down.",
+   "recommended_change": "Downgrade 7.3 (h) to a SHOULD in the guide; keep the 'absence does not establish agreement' sentence."
+  },
+  {
+   "id": "P-10",
+   "validity": "REFINE",
+   "expression": "MUST",
+   "placement": "PROFILE",
+   "strongest_objection": "Corrective-action tracking in aerospace is a system with closure authority. The software-native form, postmortem action items in the ordinary tracker, is better and the proposal uses it. The strong form of the candidate (not closed until the system changes) is a process rule the proposal rightly drops. Remaining objection: binding every 'lesson' to a disposition penalizes writing down insights that have no action, which blameless-review practice values (prior knowledge, not inspected). The SRE 'unreviewed postmortem' quotation is misapplied as support.",
+   "counterexample": "A postmortem notes 'operators did not know the dashboard existed'. As a lesson it now needs a disposition and a link; the author deletes the sentence instead.",
+   "gaming": "Every lesson 'pending', linked to a ticket that is later closed as stale.",
+   "recommended_change": "Bind recommended changes, not lessons; add a next-look date to 'pending' (see 7.5 (a) replacement)."
+  },
+  {
+   "id": "M-11",
+   "validity": "REFINE",
+   "expression": "MUST",
+   "placement": "PROFILE",
+   "strongest_objection": "Three levels is a reasonable minimum, but the definitions transfer the aerospace weight on irreversibility without the aerospace weight on magnitude. In software many irreversible effects are trivial and many reversible ones are catastrophic before they are reversed (a reversible configuration push that takes down authentication for an hour). And every cited precedent assigns the class by category in advance, not per record by its author.",
+   "counterexample": "Sending a one-off email to fifty beta users cannot be undone, so it is critical by definition and by the 7.2 (c) tie rule: examiner, dissent, failure analysis. Meanwhile a global configuration change with a tested rollback is merely significant.",
+   "gaming": "Split a critical change into several 'significant' ones, or classify at the level of the pull request instead of the release.",
+   "recommended_change": "Define critical by magnitude and irreversibility together; state criteria as kinds of change; drop the 'higher SHOULD' rule in favour of the definition."
+  },
+  {
+   "id": "M-12",
+   "validity": "REFINE",
+   "expression": "MUST",
+   "placement": "PROFILE",
+   "strongest_objection": "The nine-field structure is an assurance-case skeleton. ISO/IEC/IEEE 15026-2 (not inspected by anyone here) describes a maintained argument about a system property, kept current over the system's life. A per-change field list is a different thing, and citing the standard for it lends authority the standard does not give. As fields on a pull request, claim and risk-acceptor are the two that carry least in a small team.",
+   "counterexample": "A two-person startup adopts the profile for its payments changes. Every record reads: claim 'ready'; risks accepted by 'Ana'; examined by 'Ben'. The fields are filled and identical on forty records; the two that vary (evidence limits, undo path) are what a reader wanted.",
+   "gaming": "Template text left in place with one word changed per field.",
+   "recommended_change": "Cut 7.3 to evidence and its limits, assumptions, remaining risk, undo or contain, stop criterion, and the conditional no-failure scope; examiner at critical."
+  },
+  {
+   "id": "M-13",
+   "validity": "VALID",
+   "expression": "NONE",
+   "placement": "GUIDANCE",
+   "strongest_objection": "The proposal already rejects the readiness record as an object, correctly: a readiness board per deployment is the textbook transfer failure, and the native form is progressive delivery with pre-stated evaluation. The objection is that it then keeps 'NORMATIVE, PROFILE' as the label for something it did not adopt.",
+   "counterexample": "A team with a mature rollout controller (staged percentages, automatic abort on metrics). Any readiness prose is a worse copy of the rollout configuration; the right record is a link to that configuration.",
+   "gaming": "Not applicable if no object is created.",
+   "recommended_change": "Label M-13 as not adopted. Add one guide sentence: the rollout configuration and its abort thresholds are the readiness record for a staged deployment; link them."
+  },
+  {
+   "id": "M-14",
+   "validity": "REFINE",
+   "expression": "MUST",
+   "placement": "PROFILE",
+   "strongest_objection": "The waiver object assumes a lapsed waiver stops the activity. In software it does not, and 7.4 (c) plus example 5 make a lapsed, still-continuing departure disappear from the list of exceptions in force. The eleven-field object was correctly cut to six, and waiver versus deviation correctly dropped (it depends on configuration-control timing, NPR 7120.5F 3.5.2 a).",
+   "counterexample": "Credential-rotation exception expires on 1 March. Nobody renews it; the service still does not rotate. Under 7.4 (c) the index stops listing it. An auditor reading the index on 2 March concludes all services rotate credentials.",
+   "gaming": "Review condition instead of a date ('review when the service is replaced'), which never trips 7.4 (c); the proposal concedes this.",
+   "recommended_change": "Reword 7.4 (c) so that a lapsed exception stays listed and is marked lapsed; require a date, allowing a review condition only in addition."
+  },
+  {
+   "id": "M-15",
+   "validity": "VALID",
+   "expression": "GUIDANCE",
+   "placement": "GUIDANCE",
+   "strongest_objection": "Five named functions come from organizations with formal authority chains. The proposal's 'functions, not posts' paragraph is the right reduction. Residual risk: listing five role names in the guide invites teams to add five fields.",
+   "counterexample": "A solo maintainer fills author, reviewer, challenger, approver, and risk owner with the same name on every record.",
+   "gaming": "Role names assigned to rotate through the same three people without anyone doing the function.",
+   "recommended_change": "Keep the paragraph but name only the three functions the profile's fields use: who decided, who accepted the risk if different, who examined."
+  },
+  {
+   "id": "M-16",
+   "validity": "REFINE",
+   "expression": "SHOULD",
+   "placement": "PROFILE",
+   "strongest_objection": "The loop in the candidate (telemetry, anomaly, analysis, updated requirement) is the aerospace anomaly-resolution chain. Software's native loop is shorter and already instrumented: alert, incident, postmortem, action items, and the error budget that decides whether feature work stops. The proposal never mentions error budgets, which are the native mechanism by which incidents change behaviour and not only documents.",
+   "counterexample": "A small team has one incident a quarter and fixes it in the same pull request as the write-up. A separate incident record with a disposition table duplicates the pull request.",
+   "gaming": "Lessons written as generic virtues ('improve monitoring') with a link to an epic.",
+   "recommended_change": "Keep 7.5 (a) reworded and 7.5 (b); delete 7.5 (c); let a pull request or issue be the incident record."
+  },
+  {
+   "id": "M-17",
+   "validity": "VALID",
+   "expression": "NONE",
+   "placement": "GUIDANCE",
+   "strongest_objection": "No transfer objection; adding eleven typed relations would have been the aerospace traceability matrix. The mapping does strain two relations (answers for mitigation, implemented-by for a lesson).",
+   "counterexample": "none found: adding no relation cannot make a corpus worse; the strained mappings are advisory.",
+   "gaming": "Not applicable.",
+   "recommended_change": "Drop the two strained mappings from the registry paragraph instead of blessing them; keep the 'Exception to:' label."
+  },
+  {
+   "id": "M-18",
+   "validity": "REFINE",
+   "expression": "MAY",
+   "placement": "GUIDANCE",
+   "strongest_objection": "One profile instead of five addenda is right. But the profile is the size of the Procedure profile dropped from 0.6.0, has no adopter case, and its public cases come from organizations of tens of thousands with launch irreversibility and loss of life. By the admission test's own terms (observed case, or a reader harmed) most of it is anticipated only. The proposal's own honest fallback, the 4.6 sentence plus guidance with section 7 as a recorded deferred proposal, is the result the evidence supports.",
+   "counterexample": "A ten-person adopter reads section 7, sees eight MUSTs sourced from shuttle accidents, and declines KADS as a whole as 'aerospace process', losing the Core.",
+   "gaming": "Adopt the profile, define nothing as significant.",
+   "recommended_change": "Release the 4.6 sentence, the templates, and guide text now; publish section 7 marked as anticipated-only under the M-20 sentence, or defer it until one adopter has used the templates."
+  },
+  {
+   "id": "M-19",
+   "validity": "VALID",
+   "expression": "GUIDANCE",
+   "placement": "GUIDANCE",
+   "strongest_objection": "Blocks instead of documents is the right native form. The incident outline should be a section of the investigation outline, as the proposal half concedes. The assurance block should say that it may live in a pull request description.",
+   "counterexample": "A team copies the assurance block into every pull request template; ninety percent of pull requests carry an unfilled block that reviewers learn to ignore, including on the one that mattered.",
+   "gaming": "Block present, placeholders unchanged.",
+   "recommended_change": "Two additions, not three: the assurance block and the exception outline. Fold incident prompts into templates/investigation.md."
+  },
+  {
+   "id": "M-20",
+   "validity": "REFINE",
+   "expression": "GUIDANCE",
+   "placement": "GUIDANCE",
+   "strongest_objection": "RFC 2026 does not support the use made of it: Experimental (4.2.1, read today) is a non-standards-track archive category for research, not a probation for rules, and Proposed Standard 'usually' needs no operational experience. RFC 6410 then cut the ladder to two levels because the three-stage one was not being climbed, which is evidence against maturity ladders, as the proposal's conclusion (no new statuses) already reflects.",
+   "counterexample": "none found for the proposed one-sentence form; a six-state lifecycle would have been the counterexample.",
+   "gaming": "Every rule is labelled 'anticipated only' forever and never removed.",
+   "recommended_change": "Keep the CONTRIBUTING sentence; cite RFC 6410 for the lesson, and remove the claim that RFC 2026 Experimental is the precedent."
+  },
+  {
+   "id": "M-21",
+   "validity": "VALID",
+   "expression": "GUIDANCE",
+   "placement": "GUIDANCE",
+   "strongest_objection": "No transfer objection. The SRE checklist-curation passage is correctly quoted and is a software-native precedent for pruning.",
+   "counterexample": "none found: a release-time question with deletion as a valid answer costs minutes.",
+   "gaming": "The review is recorded as done with 'no changes'.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "M-22",
+   "validity": "VALID",
+   "expression": "GUIDANCE",
+   "placement": "GUIDANCE",
+   "strongest_objection": "No transfer objection. It already exists.",
+   "counterexample": "none found.",
+   "gaming": "Long clauses with many lettered items keep the clause count flat; count lettered requirements, not clauses.",
+   "recommended_change": "Count normative sentences or lettered items as well as clauses."
+  }
+ ],
+ "existing_rules_to_challenge": [
+  {
+   "clause_or_artifact": "Specification clause 3.5.4 (c) (unexecuted procedure SHOULD say so)",
+   "question": "would we add this today?",
+   "verdict": "MERGE",
+   "reason": "It is the same idea as 3.3.5 (a statement that something was executed says what and when) expressed as a second rule with a different default. The proposal leans on both for recovery paths, which shows they are one rule. Merge into 3.3.5: a procedure presented for use says whether it has been executed as written."
+  },
+  {
+   "clause_or_artifact": "Specification clause 4.6, sentence 'An ADR MAY use its existing identifier with a documented decision-type mapping; it need not also receive a D-prefixed ID.'",
+   "question": "would we add this today?",
+   "verdict": "SIMPLIFY",
+   "reason": "It is a mapping permission already given generally by clause 4.3 ('or document a local extension or mapping') and repeated in the decision guide. In a clause that is about to gain another MUST, it is noise. Move to the guide."
+  },
+  {
+   "clause_or_artifact": "Specification clause 5.7 (negative results scoped), research-report profile",
+   "question": "would we add this today?",
+   "verdict": "MERGE",
+   "reason": "7.3 (i) is the same rule for a different record type. Two profile clauses stating 'a claim of absence says what was inspected' will drift. If 7.3 (i) is admitted, state the principle once in the core next to 3.3.1 (it passes the three-page-repository test: 'not found' needs its scope anywhere) and let 5.7 and 7.3 (i) cite it."
+  },
+  {
+   "clause_or_artifact": "docs/conformance.md, Review outcome: 'An exception MUST record the affected clause identifier and scope, reason, consequence, responsible role, and condition for review.'",
+   "question": "would we add this today?",
+   "verdict": "KEEP",
+   "reason": "Keep, but note the proposal's claim that 7.4 (a) has 'the same six' fields is inexact: conformance asks for consequence, responsible role, and review condition; 7.4 asks for risk accepted, who accepted it, and expiry date or review condition. 'Responsible role' is not 'who accepted the risk'. Either align 7.4 to the conformance wording or admit that it adds fields."
+  },
+  {
+   "clause_or_artifact": "templates/ directory (eleven outlines, including separate conclusion, evidence, question, test, artifact, artifact-bundle)",
+   "question": "would we add this today?",
+   "verdict": "SIMPLIFY",
+   "reason": "Software teams hold most of these as native artifacts (test runs, tickets, pull requests). Eleven outlines, about to be thirteen, signal a document-per-thing model that the specification itself disclaims in 3.6.1. Fold conclusion, evidence, question, and test into one 'record' outline with optional sections."
+  },
+  {
+   "clause_or_artifact": "registry/relationships.md relations `tested-by` and `evidenced-by` alongside `supported-by`",
+   "question": "would we add this today?",
+   "verdict": "MERGE",
+   "reason": "The proposal's own mapping wavers between supported-by and evidenced-by for the same link ('supported-by, or evidenced-by for raw output'). If authors of the standard cannot choose, adopters will not. One relation with the target's nature stated in the link text would answer the same reader question."
+  }
+ ],
+ "dissent_to_preserve": [
+  "Clause 7.4 (c) as drafted, with worked example 5, removes a still-continuing departure from the list of exceptions in force on the day its acceptance lapses. That reproduces the invisibility the Rogers Commission criticized. If 7.4 (c) is adopted unchanged, this objection should stay on record.",
+  "The proposal's finding 2 ('the two shuttle reports describe failures of records') is an interpretation that selects what a documentation standard can fix. The Rogers report says a written recommendation existed and did not reach the deciders; the CAIB's remedy for waivers was an independent authority with sole waiver power (R7.5-1). KADS can decline to build authority, but should not cite these reports as evidence that record rules address the failure.",
+  "No rule in section 7 has an observed case in a software team of ordinary size. Every observed case is from an organization with launch irreversibility, loss of life, and a multi-level authority chain, or from Google. Under the admission test these are 'anticipated only' for KADS adopters and the MUSTs are not earned.",
+  "Classification by the author at the time of writing is the weakest point of M-11 and no wording fixes it; only classification by kind of change, stated in advance, matches any cited precedent.",
+  "Several attributions lend prestige without support and should be corrected before any of this text is published: Vaughan for expiry dates; ISO/IEC/IEEE 15026-2 for a per-change field list; RFC 2026 Experimental for rule probation; RFC 2026 section 6.5 for anything; SRE chapter 15 'unreviewed postmortem' for lesson disposition; principlesofchaos.org for 'not from the absence of incidents'; GitLab for 'actions with owners'; NPR 7123.1D Appendix G for mandatory success criteria (they are 'recommended best practices').",
+  "My own verification has limits that should travel with these fact checks: pages were downloaded and searched by string, not read end to end; PDF text extraction scrambles columns so CAIB page numbers are unconfirmed; chapter author names, licences, and the GitLab publication date are from prior knowledge; no paid standard, the Vaughan book, ITIL, NASA-STD-8739.8, or NPR 7150.2D Appendix C was opened."
+ ],
+ "fact_checks": [
+  {
+   "source": "NPR 7150.2D, Appendix D",
+   "claim_in_proposal": "Classes A to F; requirements and rigor are 'scaled back for lower software classes'; an ambiguous case takes 'the higher of the classes'.",
+   "verdict": "CORRECT",
+   "correction": "Exact text found: 'Classes A through E cover engineering-related software. Class F cover Business and Information Technology Infrastructure Software. Using the Requirements Mapping Matrix, the number of applicable requirements and their associated rigor are scaled back for lower software classes.' and (D.2) 'If more than one software class appears to apply, then assign the higher of the classes to the system/subsystem.' Transfer caveat the proposal omits: classification is of a system or subsystem, made once and held for its life (2.2.8 covers reclassification); it is not a per-decision or per-change classification, which is what clause 7.2 (b) asks for.",
+   "citation": "NASA Office of the Chief Engineer. NPR 7150.2D, NASA Software Engineering Requirements. Effective 2022-03-08, expires 2027-03-08. Appendix D, Software Classifications. https://nodis3.gsfc.nasa.gov/displayDir.cfm?Internal_ID=N_PR_7150_002D_&page_name=AppendixD",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. Appendix D only.",
+   "licensing_or_access": "US Government work, public domain in the United States; freely accessible."
+  },
+  {
+   "source": "NPR 7150.2D, Chapter 2, sections 2.2.x",
+   "claim_in_proposal": "The class selects which requirements apply; relief from a requirement is recorded against the same matrix and signed by a named authority.",
+   "verdict": "PARTLY",
+   "correction": "Verified: 2.2.4 'Requirements in this directive are invoked by software classifications as defined in Appendix C'; 2.2.5 'The approval of the Authority designated in Appendix C is required for all tailoring of requirements designated as X'; 2.2.7 engineering, CIO and SMA authorities 'shall review and agree with any tailored NPR 7150.2 requirements per the requirements mapping matrix authority column'. The page says approval and agreement by a designated Authority (an office or role in the matrix), not 'signed by a named authority'; 'signed' and 'named' are the proposal's words. The classification definitions are in Appendix D and the matrix in Appendix C; the proposal's research table is right, but paragraph 2.2.4 itself says 'software classifications as defined in Appendix C'.",
+   "citation": "NASA Office of the Chief Engineer. NPR 7150.2D, NASA Software Engineering Requirements. Effective 2022-03-08. Chapter 2, Roles and Responsibilities, section 2.2. https://nodis3.gsfc.nasa.gov/displayDir.cfm?Internal_ID=N_PR_7150_002D_&page_name=Chapter2",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. Paragraphs 2.2.1 to 2.2.8 read in full.",
+   "licensing_or_access": "US Government work, public domain in the United States; freely accessible."
+  },
+  {
+   "source": "NPR 7150.2D, Appendix C (Requirements Mapping Matrix)",
+   "claim_in_proposal": "Finding 1: every source that scales rigor has 'a class that needs almost nothing (NPR 7150.2D lower classes ...)'; 'a matrix of more than a hundred requirement rows'.",
+   "verdict": "UNVERIFIED",
+   "correction": "Neither the proposal agent nor I opened Appendix C, so how little the lowest classes require and the row count are not established. The proposal states this as a finding that 'shaped the design' while disclosing in the table that the matrix was not opened; the finding is firmer than the inspection. From prior knowledge only (not inspected): the lowest classes still carry some requirements, so 'almost nothing' may overstate.",
+   "citation": "NASA Office of the Chief Engineer. NPR 7150.2D, Appendix C, Requirements Mapping Matrix. https://nodis3.gsfc.nasa.gov/displayDir.cfm?Internal_ID=N_PR_7150_002D_&page_name=AppendixC",
+   "inspected": "no",
+   "licensing_or_access": "US Government work, public domain in the United States; freely accessible."
+  },
+  {
+   "source": "NPR 7123.1D, Appendix G",
+   "claim_in_proposal": "A readiness review has entrance criteria and success criteria; tailoring of criteria is expected (G.1.2); covers ORR, MRR/FRR, CDR, PDR. In P-03 and M-13: 'gives every readiness review success criteria' / 'explicit success criteria'.",
+   "verdict": "PARTLY",
+   "correction": "Verified: tables G-1 to G-21 each titled '<review> Entrance and Success Criteria', including Table G-12 ORR and Table G-13 MRR/FRR, G-6 PDR, G-7 CDR; G.1.2 reads 'Tailoring and customizing are expected for projects and programs.' Overstatement: G.1.1 calls the appendix 'the recommended best practices for entrance and success criteria', and G.1.3 speaks of 'recommended criteria'. The criteria are recommended and tailorable, not requirements, so 'gives every readiness review success criteria' reads firmer than the source. The inference 'so GO is a conclusion against stated criteria' is the proposal's own; the appendix does not state it. Document identity: NPR 7123.1D 'Updated w/Change 2', effective 2023-07-05.",
+   "citation": "NASA Office of the Chief Engineer. NPR 7123.1D, NASA Systems Engineering Processes and Requirements (with Change 2). Effective 2023-07-05, expires 2028-07-05. Appendix G, Life-Cycle and Technical Review Entrance and Success Criteria. https://nodis3.gsfc.nasa.gov/displayDir.cfm?Internal_ID=N_PR_7123_001D_&page_name=AppendixG",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. G.1.1 to G.1.4 read in full; table titles enumerated; individual criteria rows not checked.",
+   "licensing_or_access": "US Government work, public domain in the United States; freely accessible."
+  },
+  {
+   "source": "NPR 7120.5F, Chapter 3, section 3.3 (Technical Authority)",
+   "claim_in_proposal": "Authority independent of the programme; 'provides independent oversight'.",
+   "verdict": "CORRECT",
+   "correction": "3.3.1: 'NASA established this process as part of its system of checks and balances to provide independent oversight of programs and projects in support of safety and mission success through the selection of specific individuals with delegated levels of authority.' Two things the proposal does not report and that matter for transfer: (1) the same paragraph says 'The responsibilities of a program or project manager are not diminished by the implementation of TA'; (2) 3.3.6 lets the program manager 'proceed at risk in parallel with the pursuit of a resolution' while the dissent is escalated, with 'Final appeals ... made to the NASA Administrator'. So even the home-domain form is not a veto; it is escalation plus visibility to the next level. That supports the proposal's 'no veto', but it also shows the mechanism's working part is the upward path, which the proposal drops.",
+   "citation": "NASA Office of the Chief Engineer. NPR 7120.5F, NASA Space Flight Program and Project Management Requirements. Effective 2021-08-03, expires 2027-02-03. Chapter 3, section 3.3. https://nodis3.gsfc.nasa.gov/displayDir.cfm?Internal_ID=N_PR_7120_005F_&page_name=Chapter3",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. Paragraphs 3.3.1 and 3.3.6 read in full.",
+   "licensing_or_access": "US Government work, public domain in the United States; freely accessible."
+  },
+  {
+   "source": "NPR 7120.5F, Chapter 3, section 3.4 (Formal Dissent)",
+   "claim_in_proposal": "Three positions: agree, disagree but support, or disagree and raise a Formal Dissent, which is documented and carried upward.",
+   "verdict": "CORRECT",
+   "correction": "3.4.1: 'a member has three choices: agree, disagree but be willing to fully support the decision, or disagree and raise a Formal Dissent.' 3.4.2: documented and communicated 'at a minimum of two levels of management above the original program or project decision'. 3.4.5: management's decision 'is documented and provided to the dissenter ... and becomes part of the program or project record'; the dissenter 'has the right to take the issue upward in the organization, even to the NASA Administrator'. 3.4.1 also requires 'no suppression or retribution'. Section numbers 3.3, 3.4, 3.5 are as on the page. Not stated by the source: that recording alone, without the escalation right and the non-retribution policy, is useful. The proposal keeps only the record.",
+   "citation": "NASA Office of the Chief Engineer. NPR 7120.5F, Chapter 3, section 3.4, Process for Handling Formal Dissent. https://nodis3.gsfc.nasa.gov/displayDir.cfm?Internal_ID=N_PR_7120_005F_&page_name=Chapter3",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. Section 3.4 read in full.",
+   "licensing_or_access": "US Government work, public domain in the United States; freely accessible."
+  },
+  {
+   "source": "NPR 7120.5F, Chapter 3, section 3.5 (tailoring, waivers, deviations, Non-Applicable)",
+   "claim_in_proposal": "Relief is dispositioned by the level that set the requirement; a requirement that cannot apply is recorded as Non-Applicable instead of being silently skipped.",
+   "verdict": "CORRECT",
+   "correction": "3.5.2 c: 'The organization at the level that established the requirement dispositions the request for tailoring of that requirement unless this authority has been formally delegated elsewhere.' 3.5.3: a requirement 'not relevant and/or not capable of being applied ... can be approved as Non-Applicable (NA)'. 3.5.2 a: a request 'includes the rationale, a risk evaluation, and reference to all material that provides the justification'; 'Deviations apply before a requirement is put under configuration control ... and waivers apply after.' Not in the source: any expiry or renewal of a waiver. The proposal does not attribute expiry to this NPR, correctly. Note 3.5.1: 'Tailoring is both an expected and accepted part of establishing proper requirements', which sits badly with the candidate slogan that exceptions should be rare and more visible than compliance.",
+   "citation": "NASA Office of the Chief Engineer. NPR 7120.5F, Chapter 3, section 3.5, Principles Related to Tailoring Requirements. https://nodis3.gsfc.nasa.gov/displayDir.cfm?Internal_ID=N_PR_7120_005F_&page_name=Chapter3",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. Paragraphs 3.5.1 to 3.5.3 read in full.",
+   "licensing_or_access": "US Government work, public domain in the United States; freely accessible."
+  },
+  {
+   "source": "Rogers Commission report, Volume 1, Chapter V",
+   "claim_in_proposal": "Finding 2 quotation on waiving launch constraints; finding 4 (recommendation reversed 'contrary to the views of its engineers'); deciders 'were unaware ... of the continuing opposition of the engineers'.",
+   "verdict": "CORRECT",
+   "correction": "All three are exact. Finding 2: 'The waiving of launch constraints appears to have been at the expense of flight safety. There was no system which made it imperative that launch constraints and waivers of launch constraints be considered by all levels of management.' Finding 4: 'the Thiokol Management reversed its position and recommended the launch of 51-L, at the urging of Marshall and contrary to the views of its engineers in order to accommodate a major customer.' Chapter opening, p. 82: 'Those who made that decision were unaware of the recent history of problems concerning the O-rings and the joint and were unaware of the initial written recommendation of the contractor advising against the launch ... and the continuing opposition of the engineers at Thiokol after the management reversed its position.' The proposal's P-09 can now cite the primary page instead of 'a search result'. Overstatements: (a) P-03 says of finding 4 'the GO existed, the supporting claim did not'; the Commission does not say that, and a written Thiokol launch rationale did exist; the finding is about pressure and reversal. (b) The research table says finding 2 supports exceptions being 'time-limited'; finding 2 is about visibility to all management levels only. (c) Finding 2 of 'Three findings' says the reports 'describe failures of records'; note the same sentence on p. 82 says the 'initial written recommendation' existed. The failure the Commission names is that written material did not reach the deciders (finding 3: a 'propensity of management at Marshall to contain potentially serious problems'), which is a propagation and authority failure more than a missing-record failure.",
+   "citation": "Presidential Commission on the Space Shuttle Challenger Accident. Report to the President, Volume 1 (Washington, DC, 6 June 1986), Chapter V, The Contributing Cause of the Accident, pp. 82 and 104. https://www.nasa.gov/history/rogersrep/v1ch5.htm",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. Chapter V opening paragraph and Findings 1 to 4 read in full.",
+   "licensing_or_access": "US Government work, public domain in the United States; freely accessible."
+  },
+  {
+   "source": "Rogers Commission report, Volume 1, Chapter VI",
+   "claim_in_proposal": "A launch constraint waived for every later flight without the waiver being visible upward; an anomaly accepted because earlier flights had succeeded; a problem closed in tracking on request while unresolved; the eve-of-launch comparison covered only flights with damage; 'normalization of deviance' is not the Commission's wording.",
+   "verdict": "PARTLY",
+   "correction": "Verified: a launch constraint was placed after STS 51-B; 'Mulloy and Wear both testified that the constraint was still in effect and waived for Challenger's flight'; 'NASA Levels I and II apparently did not realize Marshall had assigned a launch constraint within the Problem Assessment System'; the 51-E Level I review resolution 'acceptable risk because of limited exposure and redundancy'; Figure 6 plots only 'flights with incidents of O-ring thermal distress' and Figure 7 all flights, with the text 'When the entire history of flight experience is considered ... the comparison is substantially different'. The string 'normaliz' does not occur in Chapter VI, so the proposal's caveat is right. Corrections: (1) 'closed in tracking on request while unresolved' compresses a contested account: Thiokol asked for closure on 1985-12-10 ('at Marshall's request according to Brian Russell'), Wear and Mulloy told the Commission they rejected it, and 'two erroneous entries' nevertheless showed the problem 'resolved or closed'. Say 'shown as closed in the tracking report through entries NASA managers called erroneous, after the contractor requested closure'. (2) 'waived for every later flight': my searches confirmed the waiver for 51-L and that upper levels did not know of the constraint; I did not locate the 'each flight' wording, so that part is UNVERIFIED by me.",
+   "citation": "Presidential Commission on the Space Shuttle Challenger Accident. Report to the President, Volume 1 (1986), Chapter VI, An Accident Rooted in History, pp. 120-148. https://www.nasa.gov/history/rogersrep/v1ch6.htm",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. Passages around notes 108-118, 136-138, 151-152 and Figures 6-7 read.",
+   "licensing_or_access": "US Government work, public domain in the United States; freely accessible."
+  },
+  {
+   "source": "Columbia Accident Investigation Board report, Volume 1",
+   "claim_in_proposal": "Foam loss reclassified from a requirement violation to an 'in-family', accepted risk as flights returned safely (marked unverified by the proposal); URL https://www.nasa.gov/columbia/caib/.",
+   "verdict": "PARTLY",
+   "correction": "The claim is supported in substance and can be upgraded from unverified, with two corrections. (1) The URL in the proposal returns HTTP 404 today; use the URLs in this citation. (2) 'In-family' and 'accepted risk' are two separately defined terms used by different offices, not one reclassification: Chapter 6 says bipod foam loss 'came to be treated as in-family, a reportable problem that was within the known experience base, was believed to be understood, and was not regarded as a safety-of-flight issue'; the Integration Office's Hazard Report 37 called it an 'accepted risk' while the External Tank Project called it 'not a safety-of-flight issue', and the Board notes that inconsistency. Also verified: the Board itself attributes the phrase: 'The acceptance of events that are not supposed to happen has been described by sociologist Diane Vaughan as the normalization of deviance' (Chapter 6, note 41), and section 8.2 is titled 'Failures of Foresight: Two Decision Histories and the Normalization of Deviance'. Also relevant and not cited by the proposal: Recommendation R7.5-1, 'Establish an independent Technical Engineering Authority that is responsible for technical requirements and all waivers to them ... Be the sole waiver-granting authority for all technical standards'. The Board's remedy for the waiver problem was an authority, not a record format.",
+   "citation": "Columbia Accident Investigation Board. Report, Volume I (Washington, DC: NASA and Government Printing Office, August 2003). Chapter 6, Decision Making at NASA (section 6.1); Chapter 7 (R7.5-1); Chapter 8 (section 8.2). Full volume: https://www.nasa.gov/wp-content/uploads/static/history/columbia/reports/CAIBreportv1.pdf ; Chapter 6 from the archived CAIB site: https://govinfo.library.unt.edu/caib/news/report/pdf/vol1/chapters/chapter6.pdf",
+   "inspected": "yes: on 2026-10-03 I downloaded both PDFs with curl, converted them with pdftotext, and searched the text; quoted phrases are substrings of the converted text, which scrambles two-column layout, so exact page numbers were not confirmed. I did not read the chapters end to end.",
+   "licensing_or_access": "US Government work, public domain in the United States; freely accessible."
+  },
+  {
+   "source": "Diane Vaughan, The Challenger Launch Decision",
+   "claim_in_proposal": "Names the pattern: each accepted anomaly becomes the baseline for accepting the next. Used as support for 7.4 (c) ('A recorded exception carries an expiry and is not shown as in force after it').",
+   "verdict": "UNVERIFIED",
+   "correction": "The book was not opened by the proposal agent or by me. What I verified today is only that the CAIB report attributes the phrase 'normalization of deviance' to Vaughan. The attribution of a mechanism is unsupported: nothing I inspected shows Vaughan proposing expiry dates on waivers, and from prior knowledge her account is of culture, production pressure, and structural secrecy, for which a date field is a weak remedy. The 'What each borrowed mechanism is worth' row should say that 7.4 (c) is the proposal's own design, motivated by the pattern, not taken from Vaughan.",
+   "citation": "Vaughan, Diane. The Challenger Launch Decision: Risky Technology, Culture, and Deviance at NASA. Chicago: University of Chicago Press, 1996. ISBN 978-0-226-85175-4 (ISBN and publisher page from prior knowledge, not opened: https://press.uchicago.edu/ucp/books/book/chicago/C/bo22781921.html)",
+   "inspected": "no (the book). Secondary attribution inspected in the CAIB report as described in that entry.",
+   "licensing_or_access": "Copyrighted commercial book; not freely accessible."
+  },
+  {
+   "source": "ISO/IEC/IEEE 15026-2:2022",
+   "claim_in_proposal": "A claim is separated from the argument and from the evidence, and assumptions are explicit; the standard constrains structure and existence of contents, not their quality.",
+   "verdict": "UNVERIFIED",
+   "correction": "Consistent with a search-result summary I read today ('specifies minimum requirements for the structure and contents of an assurance case ... a top-level claim ... systematic argumentation ... evidence and explicit assumptions'; 'does not place requirements on the quality of the contents'), but that is a model-written summary of reseller pages. iso.org/standard/80625.html returned HTTP 403 to me and the ANSI preview PDF returned 403, so neither the abstract page nor any clause was read; the catalogue number 80625 is therefore also unconfirmed. Transfer note: an assurance case in 15026 is a maintained argument about a system property, not a field set on a change record; 'KADS takes the three-part separation only' is a much smaller thing than the cited standard and the citation should not lend it weight.",
+   "citation": "ISO/IEC/IEEE 15026-2:2022, Systems and software engineering - Systems and software assurance - Part 2: Assurance case. Edition 2. Geneva: ISO, 2022. https://www.iso.org/standard/80625.html (not reachable today)",
+   "inspected": "no: search-result summary only; the ISO and ANSI pages refused the request (HTTP 403)",
+   "licensing_or_access": "Paid standard (ISO/IEC/IEEE copyright). Only the abstract is public."
+  },
+  {
+   "source": "IEC 60812:2018",
+   "claim_in_proposal": "FMEA establishes how items or processes might fail and identifies effects; the 2018 edition covers tailoring. Mechanism taken: 'how can it fail, what is the effect, how is it detected'.",
+   "verdict": "PARTLY",
+   "correction": "Abstract verified on the IEC webstore page itself: 'The purpose of failure modes and effects analysis (FMEA) is to establish how items or processes might fail to perform their function so that any required treatments could be identified. An FMEA provides a systematic method for identifying modes of failure together with their effects on the item or process, both locally and globally.' and change item 'c) tailoring the FMEA for different applications is described'; also 'b) examples of applications for safety, automotive, software and (service) processes have been added as informative annexes'. Not supported by what was read: the word 'detect' does not occur in the abstract, so the detection question is prior knowledge of FMEA practice, not this source; no clause was read.",
+   "citation": "IEC 60812:2018, Failure modes and effects analysis (FMEA and FMECA). Edition 3.0. Geneva: International Electrotechnical Commission, 2018. https://webstore.iec.ch/publication/26359",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. Public abstract only; the standard was not opened.",
+   "licensing_or_access": "Paid standard (IEC copyright). Abstract is public."
+  },
+  {
+   "source": "ITIL 4, Change Enablement practice",
+   "claim_in_proposal": "Standard changes are pre-authorized and need no per-change assessment; emergency changes may defer documentation until after the change.",
+   "verdict": "UNVERIFIED",
+   "correction": "A search-result summary of vendor pages read today matches ('low-risk, pre-authorized ... well understood and fully documented'; emergency changes 'should be subject to the same testing, assessment, and authorization as normal changes, but it may be acceptable to defer some documentation'). The ITIL publication was not inspected; one vendor page I downloaded (BMC) did not contain the phrases. Two cautions: the summary says emergency changes keep the same assessment and authorization where possible, so 'permission to write the record after an urgent change' is narrower than it sounds; and a standard change is pre-authorized per category of change with a documented procedure, not 'needs no record'. M-11 says 'ITIL three change types' in support of three levels; change types are not risk levels (an emergency change is a normal change in a hurry), so that parallel is weak.",
+   "citation": "AXELOS / PeopleCert. ITIL 4: Change Enablement practice guide. 2020. Publisher page not opened; no stable public URL verified.",
+   "inspected": "no: search-result summary only",
+   "licensing_or_access": "Paid, copyrighted publication (PeopleCert). Not freely accessible."
+  },
+  {
+   "source": "Google SRE book, chapter 32",
+   "claim_in_proposal": "PRR is a service-specific checklist; 'the review did not scale: lead times of quarters and effort proportional to the number of services'. Finding 3: 'direct evidence against any design in which KADS creates a reviewing body or a mandatory review step'. P-01: 'every change must queue for the same review'.",
+   "verdict": "PARTLY",
+   "correction": "Verified text: 'The checklist is specific to the service'; 'Onboarding each service required two or three SREs and typically lasted two or three quarters. The lead times for a PRR were relatively high (quarters away). The effort level required was proportional to the number of services under review, and was constrained by the insufficient number of SREs available to conduct PRRs.' Overstatements: (1) the PRR in this chapter is a one-time review for SRE taking over operational responsibility for a whole service, not a review per change or per launch; using it in P-01 as a case of 'every change must queue for the same review' misdescribes it. (2) The chapter does not conclude that review should not be required; it says the models were modified (Early Engagement, then 'Frameworks and SRE Platform') so that 'SRE [could] scale their engagement process', and reports 'faster PRR execution' under frameworks. The remedy was to build the reviewed properties into shared infrastructure, which is the native software lesson and one the proposal does not draw. 'Direct evidence against any ... mandatory review step' is firmer than the source.",
+   "citation": "Cruz, Acacio, and Ashish Bhambhani. 'The Evolving SRE Engagement Model.' Chapter 32 in Site Reliability Engineering: How Google Runs Production Systems, edited by Betsy Beyer, Chris Jones, Jennifer Petoff, and Niall Richard Murphy. Sebastopol, CA: O'Reilly Media, 2016. https://sre.google/sre-book/evolving-sre-engagement-model/",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. 'Lessons Learned' passage read in full.",
+   "licensing_or_access": "Copyright Google; the online edition is published free to read under CC BY-NC-ND 4.0 (licence from prior knowledge, not checked today)."
+  },
+  {
+   "source": "Google SRE book, chapter 27",
+   "claim_in_proposal": "'Every question's importance must be substantiated, ideally by a previous launch disaster.' Low-risk launches get 'an almost trivial checklist'; 30 percent of reviews low-risk by 2008; checklist needs 'continuous attention'; gradual rollouts limit exposure.",
+   "verdict": "CORRECT",
+   "correction": "All exact: 'Every question's importance must be substantiated, ideally by a previous launch disaster.'; 'Such launches were faced with an almost trivial checklist, while higher-risk launches underwent the full gamut of checks and balances. By 2008, 30% of reviews were considered low-risk.'; 'The checklist needs continuous attention in order to remain relevant and up-to-date'; 'Once or twice a year a team member reviews the entire checklist to identify obsolete items'. Context the proposal omits: low risk was defined by category in advance ('a feature launch involving no new server executables and a traffic increase under 10% would be deemed low risk'), not judged per launch by its author; the checklist was run by a dedicated Launch Coordination Engineering team; and the same passage records that 'adding new questions to Google's launch checklist required approval from a vice president'. Whether the page mentions feature flags by that name I did not confirm; 'Gradual and Staged Rollouts' is a heading.",
+   "citation": "Bhatia, Rhandeev, and Sabrina Farmer, with Mike Dahlin. 'Reliable Product Launches at Scale.' Chapter 27 in Site Reliability Engineering (O'Reilly Media, 2016). https://sre.google/sre-book/reliable-product-launches/ (author names from prior knowledge, not checked today)",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end.",
+   "licensing_or_access": "Copyright Google; free to read online (CC BY-NC-ND 4.0 from prior knowledge)."
+  },
+  {
+   "source": "Google SRE book, chapter 15",
+   "claim_in_proposal": "Postmortem triggers defined in advance; blameless; 'An unreviewed postmortem might as well never have existed'; goal includes 'that effective preventive actions are put in place'.",
+   "verdict": "CORRECT",
+   "correction": "All exact: 'It is important to define postmortem criteria before an incident occurs so that everyone knows when a postmortem is necessary.'; 'Blameless postmortems are a tenet of SRE culture.'; 'An unreviewed postmortem might as well never have existed.'; 'that effective preventive actions are put in place to reduce the likelihood and/or impact of recurrence'. Misuse: in P-10 the 'unreviewed postmortem' sentence is offered as an observed case of lessons not changing the system; in the source it is about holding review sessions for drafts, a different point. It supports reviewing postmortems, not disposition per lesson.",
+   "citation": "Lunney, John, and Sue Lueder. 'Postmortem Culture: Learning from Failure.' Chapter 15 in Site Reliability Engineering (O'Reilly Media, 2016). https://sre.google/sre-book/postmortem-culture/ (author names from prior knowledge, not checked today)",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end.",
+   "licensing_or_access": "Copyright Google; free to read online (CC BY-NC-ND 4.0 from prior knowledge)."
+  },
+  {
+   "source": "Google SRE workbook, chapter 16",
+   "claim_in_proposal": "Canarying: partial, time-limited deployment with an evaluation decided beforehand; exposure proportional to traffic reached. 'Progressive delivery' is cited from prior knowledge.",
+   "verdict": "PARTLY",
+   "correction": "Verified: 'We define canarying as a partial and time-limited deployment of a change in a service and its evaluation. This evaluation helps us decide whether or not to proceed with the rollout.' and 'impact on the [error] budget is directly proportional to the amount of traffic exposed to defects'. 'Decided beforehand' is the proposal's gloss; I did not find that wording. The word 'progressive' does not occur on the page, as the proposal says. The chapter frames canarying through SLOs and error budgets ('use the concept of SLOs and error budgets to measure the impact of releases'), a native software mechanism the proposal never uses.",
+   "citation": "Warner, Alec, and Stepan Davidovic, with Alex Hidalgo, Betsy Beyer, Kyle Smith, and Matt Duftler. 'Canarying Releases.' Chapter 16 in The Site Reliability Workbook, edited by Betsy Beyer et al. Sebastopol, CA: O'Reilly Media, 2018. https://sre.google/workbook/canarying-releases/",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. Author line confirmed on the page.",
+   "licensing_or_access": "Copyright Google; free to read online (CC BY-NC-ND 4.0 from prior knowledge)."
+  },
+  {
+   "source": "Progressive delivery (term)",
+   "claim_in_proposal": "'This is the mechanism usually called progressive delivery; that term itself is cited from prior knowledge.'",
+   "verdict": "UNVERIFIED",
+   "correction": "Not verified by me either. From prior knowledge only: the term is generally credited to James Governor of RedMonk (2018). The URL I tried for his post returned HTTP 404, so no citation is offered as inspected. The proposal should either drop the term or cite a source it has opened.",
+   "citation": "Governor, James. 'Towards Progressive Delivery.' RedMonk blog, 2018. URL not confirmed (https://redmonk.com/jgovernor/2018/08/06/towards-progressive-delivery/ returned 404 on 2026-10-03).",
+   "inspected": "no",
+   "licensing_or_access": "Unknown."
+  },
+  {
+   "source": "Principles of Chaos Engineering",
+   "claim_in_proposal": "Confidence comes from trying to disprove a steady-state hypothesis under injected failure, not from the absence of incidents; 'Minimize Blast Radius' is a stated principle.",
+   "verdict": "PARTLY",
+   "correction": "Verified: 'Try to disprove the hypothesis by looking for a difference in steady state between the control group and the experimental group. The harder it is to disrupt the steady state, the more confidence we have in the behavior of the system.' and the advanced principle 'Minimize Blast Radius'. The contrast 'not from the absence of incidents' does not appear on the page; it is the proposal's inference and should be worded as such. Page states 'Last Update: 2019 March'; it names no author or organization, so it is a community manifesto, not a standard.",
+   "citation": "Principles of Chaos Engineering. Last updated March 2019. https://principlesofchaos.org/",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. Whole page is short; most of it was seen.",
+   "licensing_or_access": "No licence statement seen on the page today; freely accessible."
+  },
+  {
+   "source": "Michael Nygard, Documenting Architecture Decisions",
+   "claim_in_proposal": "Title, context, decision, status, consequences in 'one or two pages'; a replaced record is kept and marked.",
+   "verdict": "CORRECT",
+   "correction": "Exact: sections Title, Context, Decision, Status, Consequences; 'The whole document should be one or two pages long.'; 'If a decision is reversed, we will keep the old one around, but mark it as superseded.' Note for P-02: Nygard has no separate rationale field; the reasons live in Context ('the forces at play'). So the ADR precedent supports recording context, and does not by itself support a MUST for 'reasons'.",
+   "citation": "Nygard, Michael. 'Documenting Architecture Decisions.' Cognitect blog, 15 November 2011. https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. The Decision section was read in full.",
+   "licensing_or_access": "Blog post, copyright the author or Cognitect; freely accessible; no licence statement checked."
+  },
+  {
+   "source": "RFC 7282",
+   "claim_in_proposal": "Issues are 'addressed, but not necessarily accommodated'; 'It's the existence of the unaddressed open issue, not the number of people, which is determinative'.",
+   "verdict": "CORRECT",
+   "correction": "Exact: section 3 title 'Rough consensus is achieved when all issues are addressed, but not necessarily accommodated'; 'It's the existence of the unaddressed open issue, not the number of people, which is determinative in judging consensus.' Status caveat the proposal should carry: RFC 7282 is Category: Informational ('not an Internet Standards Track specification'), a statement of principles by one author published with IETF consensus; it is not the IETF's binding process, and it concerns consensus in open working groups with chairs, not decisions inside a team with a manager. It supports 'do not count approvers'; it does not address recording dissent in an accepted decision record.",
+   "citation": "Resnick, P. On Consensus and Humming in the IETF. RFC 7282, Informational. IETF, June 2014. DOI 10.17487/RFC7282. https://www.rfc-editor.org/rfc/rfc7282",
+   "inspected": "yes: on 2026-10-03 I downloaded the plain-text RFC from rfc-editor.org and searched it; quotations are exact apart from line wraps. Header and the two passages read.",
+   "licensing_or_access": "IETF Trust licence; freely accessible."
+  },
+  {
+   "source": "RFC 2026, sections 4.1, 4.2.1, 6.5",
+   "claim_in_proposal": "Advancement requires implementation and operational experience; an Experimental designation exists for work published without that experience.",
+   "verdict": "PARTLY",
+   "correction": "Verified: 4.1.2 Draft Standard needs 'at least two independent and interoperable implementations ... and ... sufficient successful operational experience'; 4.1.3 Internet Standard needs 'significant implementation and successful operational experience'. But 4.1.1 says 'Usually, neither implementation nor operational experience is required for the designation of a specification as a Proposed Standard', so entry to the standards track needs no experience; only advancement does. 4.2.1 defines Experimental as 'a specification that is part of some research or development effort ... published for the general information of the Internet technical community and as an archival record'; it is a non-standards-track category, not a probationary status for a rule expected to become normative, which is how M-20 uses it. Section 6.5 is 'Conflict Resolution and Appeals' and supports nothing in the stated mechanism; it would be relevant to dissent, and the proposal does not use it there. RFC 6410 confirmed today: 'reduces the Standards Process from three Standards Track maturity levels to two'.",
+   "citation": "Bradner, S. The Internet Standards Process, Revision 3. RFC 2026, BCP 9. IETF, October 1996. DOI 10.17487/RFC2026. https://www.rfc-editor.org/rfc/rfc2026 ; Housley, R., D. Crocker, and E. Burger. Reducing the Standards Track to Two Maturity Levels. RFC 6410, BCP 9. IETF, October 2011. https://www.rfc-editor.org/rfc/rfc6410",
+   "inspected": "yes: on 2026-10-03 I downloaded both plain-text RFCs from rfc-editor.org and searched them; sections 4.1.1 (part), 4.1.2 (part), 4.1.3, 4.2.1, the 6.5 heading, and the RFC 6410 abstract were read.",
+   "licensing_or_access": "IETF Trust licence; freely accessible."
+  },
+  {
+   "source": "GitLab postmortem of 2017-01-31",
+   "claim_in_proposal": "Backups believed to exist had been failing silently and restore had never been tested; the postmortem lists improvement actions with owners; quotes 'Why was the backup procedure not tested on a regular basis?'; failure notifications were themselves rejected.",
+   "verdict": "PARTLY",
+   "correction": "Verified: 'Why was the backup procedure not tested on a regular basis? - Because there was no ownership, as a result nobody was responsible for testing this procedure.'; 'DMARC was not enabled for the cronjob emails, resulting in them being rejected by the receiver. This means we were never aware of the backups failing, until it was too late.' Incorrect: 'improvement actions with owners'. The page lists about fourteen issues by number under 'Improving recovery procedures' with no owner named for any, and one listed action is 'Assign an owner for data durability'. The post's own diagnosis is absent ownership, which is an organizational finding, not a record-content one. 'Restore had never been tested' is stronger than the source's 'not tested on a regular basis'.",
+   "citation": "GitLab. 'Postmortem of database outage of January 31.' GitLab blog, 10 February 2017. https://about.gitlab.com/blog/postmortem-of-database-outage-of-january-31/ (publication date from prior knowledge, not checked today)",
+   "inspected": "yes: on 2026-10-03 I downloaded the page with curl, stripped the HTML tags locally, and searched the resulting text by string match; the phrases given as quotations are exact substrings of that text (typographic apostrophes and line wraps normalized). I did not read the page end to end. The five-whys passage and the action list were read.",
+   "licensing_or_access": "Copyright GitLab; freely accessible; licence not checked."
+  },
+  {
+   "source": "NASA IV&V, NASA-STD-8739.8, DevSecOps",
+   "claim_in_proposal": "Independence of the examiner from the developer, scaled with class (prior knowledge).",
+   "verdict": "UNVERIFIED",
+   "correction": "Not opened by the proposal agent or by me. No citation can be given as inspected. P-08 nevertheless leans on it ('IV&V scales independence with class'); that sentence should be removed or marked unverified where it is used, not only in the research table.",
+   "citation": "NASA-STD-8739.8, Software Assurance and Software Safety Standard (edition not confirmed). NASA Technical Standards System. No URL verified.",
+   "inspected": "no",
+   "licensing_or_access": "US Government work, public domain in the United States; freely accessible. (assumed, not checked)"
+  }
+ ]
+}

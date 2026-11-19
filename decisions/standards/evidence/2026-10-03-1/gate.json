@@ -1,0 +1,236 @@
+{
+ "verdict": "RELEASE_AFTER_FIXES",
+ "gate": {
+  "simplicity": "Harder than 0.5.0 by count: 48 clauses against 43, 69 MUST against 64, 11 MUST NOT against 9, 19 SHOULD against 15 (own count, matching the changelog). The specification text itself stays readable and no profile or defined term was added, which is a real saving against the draft. The cost moved elsewhere: 31 records (about 262 KB) joined the covered corpus, with draft clause numbers that collide with adopted ones.",
+  "cognitive_cost": "3.1.4, 3.2.2, and 3.5.4(a) buy more than they cost. 3.3.6 costs more than it returns as a MUST because compliance is unknowable for existing citations and undetectable by review. 3.3.5 as worded pushes authors to delete honest informal notes and burdens research prose where the detail is already discoverable. Every new SHOULD (1.4, 3.1.4 c, 3.5.4 b, 3.5.5) carries the 1.2 duty to record a reason for departure.",
+  "orthogonality": "3.3.5 contradicts the new conformance SHOULD on naming the reviewed revision. 3.1.4 cites a requirement in 3.1.1 that 3.1.1 does not contain, and its visible-text rule conflicts with 4.2 metadata-only status while duplicating 4.5. The 3.2.2 sentence largely restates the first sentence of 3.2.2 and omits recommendation. 3.3.5 has no 'unknown' path and so collides with 3.3.3; 3.3.6 overlaps 3.3.1 and 3.3.3 without saying where the mark goes; 3.5.4 and 3.5.5 are clean against 3.5.2, 3.1.1, and 3.5.1.",
+  "modularity": "Admission test applied: 3.1.3 sentence, 3.1.4 a and b, 3.2.2 sentence, and 3.5.4 a each have a property, a reading-level detection, and low adoption cost, though only 3.2.2 and 3.3.5 rest on observed cases; the rest are anticipated. 3.3.6 fails detection and should be a SHOULD. 3.3.5 and the 3.3.4 change can stay MUST after rewording. 3.3.5 and 3.3.6 could have been sentences in 3.3.3 or 3.3.1, as their proposers suggested, instead of two permanent clause numbers; no record contains the written answers the test requires.",
+  "consistency": "Counts and clause totals in the changelog match the specification, version references say 0.6.0 where they should, no U+2014 exists outside workbench, links and reachability pass, and every new clause has a checklist question and an example. Defects: indicative or lowercase requirement language in 3.1.4 last sentence, 3.5.5 'may', and conformance 'the exception names'; an unlettered sentence in 3.1.4; two requirements in 3.5.4(a); a wrong example for 1.4; a displaced 'them' in conformance. The decision index states dispositions as proposals while the changelog and record titles state them as accepted.",
+  "applicability": "Software: 'all examples are executed in CI' has no single date and fails 3.3.5 as worded. Research: every 'we tested' sentence must itself carry version and date although 5.2 makes them discoverable. Operations: 'hazard' is undefined, and in a failover runbook where most steps are irreversible 3.5.4(a) produces warning fatigue. Architecture: ADR status kept in front matter meets 4.2 but not 3.1.4(a), and retitling a superseded ADR per (c) fights immutable-title conventions. Product: versioned docs for an older release are current for that release, and a generator-injected 'old version' banner is not in the source, so it is unclear whether 3.1.4 applies or is met.",
+  "ai_compatibility": "3.3.5, 3.1.4, 3.3.4, and 3.5.5 are checkable by a person or an agent from the text. 3.2.2 needs a two-text comparison and a judgment of 'more firmly', which is feasible when the source is linked. 3.3.6 is knowable only to the original author in the original session; a later human or agent cannot tell, and a human cannot say whether reading a book years ago counts as inspected. 3.5.4(a) needs domain knowledge of which commands are destructive, which an agent in an unknown environment lacks.",
+  "graceful_degradation": "Partial adoption of 3.1.4 lets unmarked stale pages read as current; the clause says absence proves nothing, but page readers do not read the clause. Partial 3.3.6 makes unmarked citations read as inspected, with no equivalent guard. Partial 3.5.4 makes unwarned steps read as safe and procedures without 'not executed' read as executed. Partial 3.3.4 makes an unlabeled review read as human review. 3.3.5 and 3.5.5 degrade safely.",
+  "tool_independence": "Yes. Every new rule can be met with plain text, Markdown, links, and version control; the orphan report is optional and conformance.md says so. The script needs bash 4 for associative arrays, which matters only to those who choose to run it. No rule requires front matter, a schema, or a generator."
+ },
+ "late_rules": [
+  {
+   "clause": "3.3.5",
+   "recommendation": "KEEP_MUST",
+   "reason": "It binds only when a claim is made, a violation is found by text search, the protected property (nothing stated more firmly than its support) is clear, and two observed cases exist in KADS history. Keep it only with the rewording in the findings: allow 'say, or link to', allow 'not recorded' so that honest legacy notes are qualified instead of deleted, scope 'content' to documentation content, and remove the conflicting SHOULD in conformance.md. Five of six challengers recommended a lower layer for the draft form; the conditional form answers their cost objection but that must be disclosed."
+  },
+  {
+   "clause": "3.3.6",
+   "recommendation": "MAKE_SHOULD",
+   "reason": "It fails CONTRIBUTING question 5: no reviewer can detect a violation, and for legacy citations nobody can know. In a partly conforming corpus an unmarked citation becomes a false signal of inspection. Three challengers rejected any change and two wanted guidance. The repository's own application is indirect (a central page) and already contains one false inspection entry (RFC 8174 'Section 6'). The observed case justifies a recommendation with a stated place and an 'absence proves nothing' sentence; 3.3.3 already forbids invented sources."
+  },
+  {
+   "clause": "3.3.4 change",
+   "recommendation": "KEEP_MUST",
+   "reason": "It widens an existing MUST by a few words, costs one phrase, and prevents a reader from taking agent-on-agent review as human review; harm to a reader is credible even though no failure was observed, so 'each with an observed case' must be corrected. Keep it only with the scope fix: it applies wherever a review is stated, for any content, and the label is 'automated review'."
+  }
+ ],
+ "findings": [
+  {
+   "severity": "blocker",
+   "file": "docs/sources.md",
+   "location": "RFC 8174 row, last column: 'Section 6, on 2026-10-03, by automated fact check'",
+   "problem": "RFC 8174 has no section 6 (sections are 1 Introduction, 2 Clarifying Capitalization of Key Words, 3 IANA, 4 Security, 5 Normative References; confirmed by fetching rfc-editor.org/rfc/rfc8174 during this gate review on 2026-10-03, automated). workbench/challenge-standards.json has a fact check for RFC 2119 section 6 only and none for RFC 8174. The row records an inspection that did not happen, in the very column created to apply 3.3.6; this is a 3.3.3 violation (invented inspection) on the page that all other citations rely on.",
+   "fix": "Replace the cell with: 'Section headings only, on 2026-10-03, by automated review at the release gate; section 2 was not read for the claim. Otherwise cited from prior knowledge'. Then re-audit every other 'by automated fact check' cell against the fact_checks array (RFC 2119, Diataxis, PROV, S1000D, DITA, Write the Docs are present; nothing else is)."
+  },
+  {
+   "severity": "blocker",
+   "file": "README.md",
+   "location": "Review record: 'checked with `tools/check-links.sh` and its `--orphans` mode on 2026-10-03 against the release commit'",
+   "problem": "No release commit exists: all 0.6.0 changes are uncommitted and tag v0.6.0 does not exist (git tag lists v0.4.0, v0.4.1, v0.5.0). The statement names a version that the check cannot have been run against, which violates 3.3.5 and 3.3.3 in the adoption note of the standard that introduces 3.3.5. Both checks do pass on the working tree as of this gate review.",
+   "fix": "Replace 'against the release commit' with 'against the working tree from which the v0.6.0 commit was made'. Re-run both checks after applying the gate fixes and before committing; if anything is edited after the run, re-run."
+  },
+  {
+   "severity": "major",
+   "file": "README.md; decisions/standards/README.md; CHANGELOG.md; decisions/standards/KADS-J-*.md",
+   "location": "README: 'has not yet ratified the dispositions' and 'the 0.6.0 dispositions await maintainer ratification'; index: 'The dispositions below are proposals until the maintainer ratifies them'; CHANGELOG headings 'Accepted into the common core', 'Thirteen candidates were rejected'; record headings '(accepted with modification)'",
+   "problem": "The index says the dispositions are proposals; the changelog, the record titles, and the specification itself state them as accepted and released. That is a derived view stating a claim more firmly than its source (3.2.2) and a status implying approval that has not occurred (4.6). Tagging v0.6.0 with normative clauses whose adoption is declared unratified is incoherent.",
+   "fix": "Before tagging, the maintainer either ratifies or does not release. On ratification replace the index sentence with 'Ratified by the repository maintainer on <date> by releasing v0.6.0. What the maintainer personally examined: <list, or: not recorded>.' and replace both README phrases with the same statement. Only the maintainer can supply these facts; the agent must not fill them in (3.3.3)."
+  },
+  {
+   "severity": "major",
+   "file": "decisions/standards/README.md",
+   "location": "'All six challengers judged that package too large for a release that also adopts a rule of restraint.'",
+   "problem": "Not supported by the challenger files. The minimalist, cognitive-load, operations, and standards 'overall' texts say this. The AI-and-retrieval overall says the two candidates that matter most are 'under-specified' and asks for more Core (J-014, J-029, J-030); the traceability overall says the package is weakest where it declares concerns 'already covered' and asks for additions. Dissent is flattened into unanimity (3.2.2).",
+   "fix": "Replace with: 'Four challengers (minimalist, cognitive load, operations, standards) judged that package too large or too thinly evidenced for a release that also adopts a rule of restraint. The AI-and-retrieval and traceability challengers judged parts of it under-specified and asked for additions.'"
+  },
+  {
+   "severity": "major",
+   "file": "decisions/standards/README.md",
+   "location": "'Three rules were added that the draft did not contain, each from a challenger and each with an observed case' and the 'Recorded dissents that did not prevail' paragraph",
+   "problem": "(1) The index lists only dissents that wanted more. It omits that the adopted Core placement went against the majority: J-010 (3.3.5) stances were GUIDANCE x3, PROFILE x2, CORE x1; J-030 (3.3.6) were REJECT x3, GUIDANCE x2, CORE x1; J-029 (3.3.4) were REJECT x3, GUIDANCE x1, PROFILE x1, CORE x1; J-004 had four of six recommending the PROFILE layer, not only operations. (2) No challenger saw the adopted wording of 3.3.5, 3.3.6, or the 3.3.4 change; they reviewed the first draft. (3) 'each with an observed case' is false for 3.3.4: J-029 cites this evaluation as an instance that was described correctly, which is not an observed failure, and the Limits section itself says 'two observed cases'.",
+   "fix": "Replace the bullet with: 'Three rules were added that the draft did not contain, each proposed by a single challenger: verification claims say what was checked (3.3.5, traceability; observed case in the 0.3.0 changelog), uninspected sources are identified (3.3.6, AI and retrieval; observed case in this evaluation's draft), and review by automated agents is named as such (3.3.4, AI and retrieval; anticipated, no observed failure). Their adopted wording was not seen by the six challengers; only the final gate review examined it.' Add to the dissent paragraph: 'Core placement of 3.3.5 (five of six recommended guidance or a profile, J-010); any change for J-030 (three of six) and J-029 (three of six); the Procedure profile layer (four of six, J-004); no new clause numbers for status and reachability (minimalist, J-027 and J-021; standards, J-021).' Add the same non-challenge disclosure to Limits and to the README review record."
+  },
+  {
+   "severity": "major",
+   "file": "decisions/standards/README.md",
+   "location": "J-001 row: 'merged with J-023 and J-031 as all six challengers asked'",
+   "problem": "Only three challengers asked for the merge (minimalist and cognitive load under J-001, standards under J-031). Operations, AI and retrieval, and traceability asked for other changes and did not ask for a merge.",
+   "fix": "Replace 'as all six challengers asked' with 'as three challengers asked (minimalist, cognitive load, standards)'. Apply the same correction in KADS-J-001 if it repeats the phrase."
+  },
+  {
+   "severity": "major",
+   "file": "decisions/standards/README.md",
+   "location": "Totals line and J-029 row: 'REJECT | NONE' with adaptation 'One residue in Core: clause 3.3.4 now says ... MUST be identified as such'; 'Of the 17 accepted, 8 touch the common core'",
+   "problem": "A record with disposition REJECT and layer NONE produced a breaking change to a Core MUST. A reader filtering the table by disposition or layer misses a normative change, and the total of 8 core-touching records is understated (9 records changed Core). Four more REJECT/NONE records (J-016, J-017, J-018, J-028) changed guidance or registry text.",
+   "fix": "Change J-029 to disposition ACCEPT_WITH_MODIFICATION, layer CORE in the record and the index, and change the totals to '2 accepted, 16 accepted with modification, 1 deferred, 12 rejected. Of the 18 accepted, 9 touch the common core'; update CHANGELOG 'Thirteen candidates were rejected' to 'Twelve' and remove 'mandatory independent review' from that list or reword it. Alternatively keep the dispositions and append to the totals: 'One rejected record (J-029) nevertheless changed a core clause (3.3.4), and four (J-016, J-017, J-018, J-028) left guidance or registry residues.'"
+  },
+  {
+   "severity": "major",
+   "file": "docs/specification.md",
+   "location": "3.1.4 final sentence: 'material whose currency has not been reviewed is identified at the entry point under 3.1.1.'",
+   "problem": "Clause 3.1.1 contains no such requirement, so 3.1.4 asserts an obligation in the indicative with no keyword and no home. The changelog lists it under 'Required' migration. The forward-only scope ('from the moment material is next superseded') exists only in the changelog and adoption guide, both informative; the normative 'When material is superseded' can be read as applying to every already-superseded page in a legacy corpus. The sentence is also unlettered in a lettered clause.",
+   "fix": "Replace the last sentence of 3.1.4 with: '(d) The absence of such a statement does not establish that material is current. Material that was superseded before the corpus adopted this clause MAY instead be identified collectively at the entry point, by location or date boundary, as material whose currency has not been reviewed.' No MUST or SHOULD count changes. Add 'or is the legacy archive identified at the entry point' to the 3.1.4 conformance question."
+  },
+  {
+   "severity": "major",
+   "file": "docs/conformance.md",
+   "location": "'Where the corpus is under version control, the record SHOULD name the revision reviewed.'",
+   "problem": "A review record is a statement that content was reviewed, so 3.3.5 already says it MUST state 'against which version or environment'. The same release adds a SHOULD for the same thing in the other normative document: a direct MUST versus SHOULD conflict.",
+   "fix": "Replace the sentence with: 'The record is a statement that content was reviewed, so clause 3.3.5 applies: it names the version reviewed, which for a corpus under version control is the revision or tag.' Update CHANGELOG 'the review record SHOULD name the revision reviewed. Not breaking.' to 'the review record names the revision reviewed, as a consequence of clause 3.3.5.' and move migration item 'name the revision reviewed in the review record' from Recommended to Required step 2."
+  },
+  {
+   "severity": "major",
+   "file": "docs/specification.md",
+   "location": "3.3.5: 'A statement that content was verified, reviewed, tested, or executed MUST say what was checked, against which version or environment, and when.'",
+   "problem": "(1) 'MUST say' forces the detail into the statement; a research report whose method section already carries environment and dates (5.2) violates it at every 'we tested'. (2) It has no path for a legacy claim whose date is unknown except deletion, which conflicts with 3.3.3 ('Missing information MUST be marked unknown') and is the record's own reopening condition. (3) Continuous checks (examples executed in CI on every commit) have no single 'when'. (4) 'content' is undefined: a product compatibility line 'Tested with browser X 120' is caught or not depending on the reader.",
+   "fix": "Replace with: '**3.3.5** A statement that documentation content was verified, reviewed, tested, or executed MUST say, or link to, what was checked, against which version or environment, and when or by which recurring process, or state which of these is not recorded.' Still one MUST. Change CHANGELOG migration step 2 'or remove the statement' to 'or say which of these is not recorded'. Update the clause example and authoring guide shape accordingly."
+  },
+  {
+   "severity": "major",
+   "file": "docs/specification.md",
+   "location": "3.3.6: 'A source cited without having been inspected for the claim it supports MUST be identified as such.'",
+   "problem": "Fails CONTRIBUTING admission question 5: a reviewer cannot detect a violation by reading, comparing, search, or script; only the author knows. For legacy citations by departed authors compliance is unknowable. In a partly conforming corpus an unmarked citation reads as inspected, a new false assurance. The clause does not say where the identification goes; the repository itself puts it on a central page two links away, contrary to the 'where the reader meets it' reasoning of 3.1.4 and 3.4.5, and got it wrong for RFC 8174. Five of six challengers did not recommend Core.",
+   "fix": "Replace with: '**3.3.6** A source cited without having been inspected for the claim it supports SHOULD be identified as such, at the citation or in a source list the citation leads to. The absence of such identification does not establish that a source was inspected.' Then: changelog table 0.6.0 column MUST 68, SHOULD 20; changelog bullet 'Clause 3.3.6, new: ... SHOULD ... Not breaking'; move migration step 3 to Recommended; J-030 outcome and index row say SHOULD; adoption-guide snippet unchanged."
+  },
+  {
+   "severity": "major",
+   "file": "docs/specification.md",
+   "location": "3.3.4: 'a review performed only by automated agents, whether the generating agent or others, MUST be identified as such.'",
+   "problem": "Scope is ambiguous: the clause subject is a document 'substantially drafted by an automated agent', but the sentence after the semicolon has no subject limit and no trigger. It can be read as requiring every page touched by a bot reviewer or linter to carry a label even when no review is claimed, or as applying only to agent-drafted documents (conformance.md applies it to conformance reviews of any corpus).",
+   "fix": "Replace the second sentence with: 'Generation does not establish verification. Wherever a review of any content is stated, a review performed only by automated agents, whether the generating agent or others, MUST be identified as automated review.' Keyword counts unchanged."
+  },
+  {
+   "severity": "major",
+   "file": "docs/adoption-guide.md",
+   "location": "'This is the practice the Write the Docs community calls [docs as code](...): documentation written with the same tools as code.'",
+   "problem": "'This' refers to the preceding preference for sources readable without proprietary tooling. The fact check (challenge-standards.json, 'Docs as code', PARTLY) says the guide 'is not a statement about avoiding proprietary formats'. The misattribution the index lists as corrected is still present, and the index row J-020 says the guide 'cites the source accurately'.",
+   "fix": "Replace with: 'A related practice is what the Write the Docs community calls [docs as code](https://www.writethedocs.org/guide/docs-as-code/): writing documentation with the same tools as code, such as version control, plain-text markup, review, and automated tests. That guide is about sharing the developers' toolchain; the preference for tool-independent sources is KADS's own.'"
+  },
+  {
+   "severity": "major",
+   "file": "decisions/standards/README.md",
+   "location": "'ISO 9001 states no requirement for independent review.' and 'The obsolete-document wording is in ISO 9001:2008 clause 4.2.3 g), a withdrawn edition, not in ISO 9001:2015 clause 7.5.3.2.'",
+   "problem": "Both are stated flatly about a paid standard that was not inspected ('not fetched' in the fact check). The fact check supports only: clause 7.5.2 c) of the 2015 edition, per secondary sources, does not require reviewer independence; and the absence of 'obsolete' from 7.5.3.2 is 'from memory ... treat the negative as PARTLY verified'. The first is also an unscoped negative over a whole standard (the 5.7 pattern), stated more firmly than record J-029, which scopes it to 7.5.2 c) of 2015. KADS-J-027 repeats 'which does not contain it'.",
+   "fix": "Replace with: 'According to secondary sources (no edition was inspected), the obsolete-document wording is in ISO 9001:2008 clause 4.2.3 g), a withdrawn edition; its absence from ISO 9001:2015 clause 7.5.3.2 is only partly verified.' and 'Clause 7.5.2 c) of ISO 9001:2015, which the draft cited, concerns review and approval and, according to secondary sources, states no independence requirement; other clauses and editions were not checked.' In KADS-J-027 change 'which does not contain it' to 'which, according to secondary sources, does not contain it'."
+  },
+  {
+   "severity": "major",
+   "file": "docs/clause-examples.md",
+   "location": "Clause 1.4 compliant example: 'Exception to clause 3.1.4(b): the archived 2019 runbooks carry a superseded mark but no pointer, because no replacement exists.'",
+   "problem": "3.1.4(b) applies only 'where that exists', so no exception is needed when no replacement exists. The example teaches a misreading of the clause it cites.",
+   "fix": "Replace the example text with: 'Exception to clause 3.5.4(a): the vendor-supplied recovery procedure in docs/vendor/ is preserved verbatim and keeps its warnings in a section at the top; a note above it lists the destructive steps.'"
+  },
+  {
+   "severity": "minor",
+   "file": "docs/conformance.md",
+   "location": "Line 3: '... are in [clause examples](clause-examples.md). Reference them in exceptions, review records, and discussion ...'",
+   "problem": "The inserted sentence changes the antecedent of 'them' from clause numbers to examples, in a normative document.",
+   "fix": "Reorder: 'Clause numbers below refer to the [specification](specification.md). Reference them in exceptions, review records, and discussion so that a finding can be traced to the requirement it concerns. Compliant and non-compliant examples for the clauses added or strengthened in 0.6.0 are in [clause examples](clause-examples.md).'"
+  },
+  {
+   "severity": "minor",
+   "file": "docs/conformance.md",
+   "location": "'Where the clause holds more than one requirement, the exception names the one concerned by its letter or by quoting it (clause 1.4).'",
+   "problem": "Indicative mood in a normative document for what clause 1.4 makes a SHOULD; a reader cannot tell whether it is required.",
+   "fix": "Replace 'the exception names' with 'the exception SHOULD name'."
+  },
+  {
+   "severity": "minor",
+   "file": "docs/specification.md",
+   "location": "3.5.5: 'Preserved evidence and artifacts may be reached through the document or manifest that cites them.'",
+   "problem": "Lowercase 'may' grants a permission in a new normative clause; under 1.2 only uppercase carries normative meaning.",
+   "fix": "Replace with: 'Preserved evidence and artifacts need no separate link; they are reached through the document or manifest that cites them.'"
+  },
+  {
+   "severity": "minor",
+   "file": "docs/specification.md",
+   "location": "3.5.4(a) and (b)",
+   "problem": "(a) holds two requirements in one lettered item (state the hazard; give avoidance or recovery), against the drafting rule adopted in CONTRIBUTING in the same release. 'Hazard' is undefined, so a reviewer without domain knowledge cannot detect an omitted warning. (b) is a SHOULD negative marker: in a partly conforming corpus the absence of 'not executed' is read as 'executed'.",
+   "fix": "Rewrite: '**3.5.4** (a) A procedure step that can cause loss of data, loss of service, or another effect that cannot be undone MUST state that effect in or immediately before the step. (b) The statement SHOULD give the way to avoid or recover from the effect where one exists. (c) A procedure that has not been executed as written SHOULD say so; the absence of such a statement does not establish that it was executed.' Counts become MUST unchanged, SHOULD plus 1; update the changelog table and J-004."
+  },
+  {
+   "severity": "minor",
+   "file": "docs/specification.md",
+   "location": "3.1.4(a) 'in visible text' versus 4.2 'recorded once in visible text or metadata' and 4.5",
+   "problem": "A tracked record whose superseded status and replacement link live only in front matter satisfies 4.2 and 4.5 but violates 3.1.4(a). 4.5's forward pointer now duplicates 3.1.4(b). The overlap is not acknowledged in either clause.",
+   "fix": "Append to 4.5: 'On the superseded record this link is the statement required by 3.1.4 and is therefore in visible text before the record's content.'"
+  },
+  {
+   "severity": "minor",
+   "file": "docs/specification.md",
+   "location": "3.2.2 new sentence: 'what the source presents as an inference, assumption, or hypothesis keeps that standing when restated'",
+   "problem": "The list omits recommendation and proposal, the promotion that this release itself commits (proposed dispositions restated as accepted). It also overlaps the first sentence of 3.2.2 ('MUST preserve material qualifications'), and the conformance table now has two rows for 3.2.2.",
+   "fix": "Change to: 'what the source presents as an inference, assumption, hypothesis, recommendation, or proposal keeps that standing when restated.'"
+  },
+  {
+   "severity": "minor",
+   "file": "CONTRIBUTING.md",
+   "location": "'The optional script `tools/check-links.sh` verifies the mechanical half of clause 3.5.1 (internal links and anchors resolve) and nothing more'",
+   "problem": "Stale after this release: the script now also reports orphans for 3.5.5. Release steps do not mention the orphan check or the keyword-count table that the changelog now carries.",
+   "fix": "Replace with: '... verifies the mechanical half of clause 3.5.1 (internal links and anchors resolve) and, with `--orphans`, reports files unreachable from the entry point (clause 3.5.5), and nothing more'. Add to release step 2: 'including the clause and keyword counts'."
+  },
+  {
+   "severity": "minor",
+   "file": "CONTRIBUTING.md",
+   "location": "Admission test, question 5 versus the paragraph 'A rule is a MUST only when ...'",
+   "problem": "Question 5 says a rule whose violation cannot be detected 'is guidance'; the MUST paragraph admits a MUST on property plus observed case or harm without mentioning detection. 3.3.6 passes one and fails the other. None of the records J-010, J-029, J-030 contains written answers to the seven questions, although the test says a proposal 'answers these questions in writing'.",
+   "fix": "Change the MUST paragraph to begin: 'A rule is a MUST only when a reviewer can detect its violation (question 5), its violation breaks one of the protected properties, and either ...'. Add to each of J-002, J-004, J-010, J-015, J-027, J-029, J-030 a short 'Admission test' block answering questions 1, 2, 5, and 6, or state in the index Limits that the test was not applied in writing to this release."
+  },
+  {
+   "severity": "minor",
+   "file": "docs/authoring-guide.md",
+   "location": "'of which the procedural rules of ASD-STE100 are the strictest widely used form'",
+   "problem": "A superlative about a standard that sources.md says was not inspected; the fact check does not support 'strictest'.",
+   "fix": "Replace with: 'for which ASD-STE100 gives a detailed rule set (not inspected; see [sources](sources.md))'."
+  },
+  {
+   "severity": "minor",
+   "file": "docs/sources.md",
+   "location": "'**Access checked:** ... 2026-10-03 for the last seven, by HTTP request'; RFC 2119 row 'Cited in: Specification 1.2'; no INCOSE row",
+   "problem": "The ISO 9001:2008 row says 'not requested', contradicting 'last seven by HTTP request'. RFC 2119 section 6 is now quoted in CONTRIBUTING, but the row lists only Specification 1.2 while the inspected passage (section 6) supports only the CONTRIBUTING quotation, not the keyword definitions cited in 1.2. The INCOSE guide is named in the index (J-026) and Limits says such works are marked 'in sources', but it has no row.",
+   "fix": "Change to '2026-10-03 for the last seven where a URL is given'. RFC 2119 row: 'Cited in: Specification 1.2; Contributing (section 6)' and last column 'Section 6 only, on 2026-10-03, by automated fact check; the keyword definitions cited in 1.2 were not re-read'. Add an INCOSE Guide to Writing Requirements row marked 'No. Cited from prior knowledge; paywalled', or remove INCOSE from the index."
+  },
+  {
+   "severity": "minor",
+   "file": "decisions/standards/KADS-J-*.md",
+   "location": "Challenger quotations containing draft clause numbers (counted: 3.3.5 x15, 3.1.4 x7, 3.5.4 x7, 3.1.5 x12, 7.2 to 7.6 x56)",
+   "problem": "Draft numbers 3.1.4, 3.3.5, and 3.5.4 mean different requirements from the adopted clauses with the same numbers. The corpus is now covered by the adoption note and searched by agents; a search for '3.3.5' returns arguments about epistemic roles. The preamble warns, but an excerpt retrieved without the preamble misleads, which is the failure J-014 and 3.1.4 address.",
+   "fix": "In workbench/gen.py, rewrite each draft number in quoted arguments as 'draft 3.3.5', 'draft 7.6', and so on, and regenerate the records. Also consider the four challengers' request to collapse the 31 records (262 KB) into one table."
+  },
+  {
+   "severity": "minor",
+   "file": "decisions/standards/README.md",
+   "location": "Corrections list: 'The relationship registry mapped `supersedes` to a PROV relation of the wrong type' under 'The first draft attributed ...'; 'These errors are the observed case behind clause 3.3.6'; J-030 'cited four standards'; J-027 'The only candidate that all six challengers kept as a mandatory core rule'",
+   "problem": "The registry error predates the draft (it is in 0.5.0), so it is not a first-draft error. The list has ten items while J-030 says four standards. J-015 also had six MODIFY/CORE stances for a MUST NOT, so 'the only' is wrong.",
+   "fix": "Move the registry item to its own sentence: 'The fact check also found an error already present in 0.5.0: ...'. In J-030 replace 'four standards' with 'several standards (listed in the index)'. In J-027 and its rationale replace 'The only candidate' with 'One of two candidates (with J-015)'."
+  },
+  {
+   "severity": "minor",
+   "file": "docs/adoption-guide.md",
+   "location": "Agent snippet: '(KADS 0.6.0 clauses 3.1.4, 3.2.2, 3.3.4 to 3.3.6, 3.5.4, 5.7.)' and 'mark the old material in its title or top heading'",
+   "problem": "The snippet includes two instructions with no clause in the list (do not edit preserved evidence: 3.4.2; pinned links: 3.5.1 and guidance), and states the 3.1.4(c) SHOULD as an unconditional instruction.",
+   "fix": "Change the list to '(KADS 0.6.0 clauses 3.1.4, 3.2.2, 3.3.4 to 3.3.6, 3.4.2, 3.5.1, 3.5.4, 5.7.)' and the sentence to 'mark the old material in visible text before its content, preferably in its title or top heading'."
+  },
+  {
+   "severity": "minor",
+   "file": "CONTRIBUTING.md; docs/adoption-guide.md",
+   "location": "Release steps; submodule procedure",
+   "problem": "Under 3.5.4(b) and changelog 'Recommended' item 2, KADS's own procedures carry no statement of whether they were executed as written, and step 4 of the release steps (push the tag) has a hard-to-reverse effect stated nowhere.",
+   "fix": "Add under the release steps: 'Executed as written for v0.5.0 on 2026-10-02: <maintainer to confirm, or: Not executed as written>.' and in step 4: 'A pushed tag is treated as permanent (clause 6.2); check the changelog and VERSION before pushing.'"
+  }
+ ]
+}

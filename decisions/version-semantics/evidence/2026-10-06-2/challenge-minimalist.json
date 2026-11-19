@@ -1,0 +1,110 @@
+{
+  "role": "minimalist",
+  "overall": "The proposal is right that today's 8.4 (b) names a format without a meaning, and wrong about how much text that takes to fix: one reference to 8.3 (c) to (f), read for the document and its covered corpus, makes the number decidable; the rest of 8.4 (b) and all of (c) is explanation. The proposal's own definition of breaking ('what was correct ... could be incorrect') is not 8.3 (c) restated but a second, reliance-based definition, and the case table proves it: it makes a correction of a wrong statement MAJOR (case 4), which inverts the one class SemVer is clearest about (a fix of incorrect behaviour is PATCH), and it makes three relaxations breaking (cases 16, 17, 18) where 8.3 (c) says retiring or relaxing is not. 8.4 (c)'s 'where the breaking changes reach the corpus' can be checked only by redoing the review, fails admission question 5, and contradicts the simpler, already published rule in the adoption guide ('breaking unless the note's exceptions already cover it'). Classification by documentation maintainers will drift to one class (everything PATCH in a repository where the note is 'same as the repository', as KADS's own is; everything MINOR where people fear MAJOR), so the guide must call the class an author's judgment that an agent reads as 'probably safe', never as 'safe', and point the agent at the changelog, which it must read anyway to know which statement moved. The twenty-row table belongs nowhere maintained: three tests and six examples in the adoption guide carry the same information at a fifth of the weight.",
+  "case_disagreements": [
+    {
+      "case": 4,
+      "proposal": "Breaking for the derived document; breaking for KADS",
+      "yours": "PATCH for the derived document unless the corrected statement is a local rule, mapping, or exception whose meaning changes, in which case 8.3 (c) applies; for KADS, PATCH under 8.3 (f) unless the correction changes the meaning of a clause, status, or relation",
+      "reason": "SemVer defines PATCH as a fix of incorrect behaviour; 8.3 (f) says corrections that do not change normative meaning are PATCH. The proposal's 'reliance' reading makes every substantive error fix a MAJOR bump, which guarantees MAJOR inflation or, more likely, maintainers quietly calling fixes PATCH and the signal dying. A reader who relied on the wrong text is told by the changelog, not by the number."
+    },
+    {
+      "case": 10,
+      "proposal": "Breaking if it binds existing content; MINOR if it binds only content written after it",
+      "yours": "Same outcome, but state it as 8.3 (c) applied: breaking if the covered corpus as it stands could become nonconformant to the note, otherwise MINOR",
+      "reason": "KADS has no concept of a rule that binds only future content; a local rule is a rule of the corpus. Saying '8.3 (c) applied' avoids inventing one and gives the reviewer a test that is detectable by reading the rule and the corpus boundary, not the rule's intended audience."
+    },
+    {
+      "case": 15,
+      "proposal": "Breaking where the KADS breaking changes reach the corpus; otherwise MINOR",
+      "yours": "Breaking when the KADS changelog marks the release breaking and the note's exceptions do not already cover the change; otherwise MINOR",
+      "reason": "That is the rule the adoption guide already publishes (submodule section). It is decidable from two documents, the changelog and the note. 'Reach the corpus' is decidable only by reviewing the corpus, which admission question 5 says is guidance, not a rule; and it invites the maintainer to claim MINOR on the strength of a review nobody can see."
+    },
+    {
+      "case": 16,
+      "proposal": "Narrowed: breaking",
+      "yours": "Narrowed: MINOR, unless the note's local rules now bind the remaining corpus differently",
+      "reason": "Narrowing the covered corpus retires a conformance claim for some paths; 8.3 (c) says retiring is not breaking. The proposal claims to mirror 8.3 (c) to (f) and here departs from it. A document MAY bump MAJOR anyway (SemVer forbids under-bumping, not over-bumping), which is how KADS's own adoption note can keep its stricter local statement."
+    },
+    {
+      "case": 17,
+      "proposal": "Removed: breaking",
+      "yours": "Removed: MINOR",
+      "reason": "Withdrawing a profile retires requirements from the corpus; under 8.3 (c) that is not breaking. Same departure from 8.3 (c) as case 16."
+    },
+    {
+      "case": 18,
+      "proposal": "Added or widened: breaking. Narrowed or ended: MINOR",
+      "yours": "Added or widened: MINOR (a relaxation). Narrowed or ended: breaking if the corpus could now be nonconformant, otherwise MINOR",
+      "reason": "The proposal has the directions backwards relative to 8.3 (c): an exception relaxes what the corpus must do; ending one strengthens it. The proposal's reading is only coherent under its reliance definition, which is the second definition the specification should not carry."
+    },
+    {
+      "case": 20,
+      "proposal": "Meaningful to humans, not compatibility-breaking: MINOR",
+      "yours": "Delete the row",
+      "reason": "It names no change; it is a residual category. Any row a reviewer cannot apply to a concrete edit is noise in a case table."
+    },
+    {
+      "case": 13,
+      "proposal": "MINOR (dependency changed; a KADS patch cannot break)",
+      "yours": "MINOR, accepted as the maintainer's position; note the cost",
+      "reason": "Accepted. But the guide should say plainly that a note whose version is 'same as the repository', as KADS's own adoption note declares, cannot satisfy this on a PATCH release of the repository, so that pattern and this rule cannot both be followed; the guide should recommend one of them."
+    }
+  ],
+  "objections": [
+    {
+      "unit": "8.4 (b), second clause ('breaking is a change after which what was correct or conformant ... could be incorrect or nonconformant; ... is minor; ... is patch')",
+      "objection": "This is a second definition of breaking beside 8.3 (c). 8.3 (c) is about conformance and the meaning of rules; 'what was correct could be incorrect' is about a reader's reliance on any statement. The two give different answers in cases 4, 16, 17 and 18. Under the admission test it is explanation: the conformance function is carried by the reference to 8.3; the interpretation function is carried better by the reference than by a paraphrase that diverges from it; no observed failure is cited (question 1); and for the author of a ten-line copied how-to the tail adds a classification decision on every edit (question 6). CONTRIBUTING's 'Borrowed mechanisms' asks that KADS state which property it adopts and nothing else; 8.3 (a) already does that, and 8.4 should point at it, not restate it.",
+      "proposed_text": "(b) Where it declares a version of its own, that version MUST follow Semantic Versioning 2.0.0 with the classes of 8.3 (c) to (f) read for the document and the corpus it covers; a change of the pinned KADS version is at least a minor change to it."
+    },
+    {
+      "unit": "8.4 (c) ('breaking where the new KADS version's breaking changes reach the corpus')",
+      "objection": "Not detectable by a reviewer without redoing the review of the corpus (admission question 5), so it is guidance by CONTRIBUTING's own rule. It also conflicts with the adoption guide's existing sentence, which is decidable from the changelog and the note: 'a KADS change marked breaking in the changelog is a breaking change for the note as well unless the note's exceptions already cover it'. Two rules for one question is worse than none.",
+      "proposed_text": "Delete (c). Keep 'at least a minor change' in (b). The adoption guide keeps its existing sentence unchanged."
+    },
+    {
+      "unit": "Section 1, 'The format alone protects nothing'",
+      "objection": "Overstated, and it is the premise for the long (b). The format protects comparability and the 0.y.z signal, and one reference to 8.3 gives the number shared meaning. The invariant the proposal names (tell the class without diffing) is served by a reference as well as by a paragraph.",
+      "proposed_text": "No specification text. In the decision record: 'The number carries meaning only by reference to 8.3 (c) to (f); 8.4 (b) makes that reference.'"
+    },
+    {
+      "unit": "Section 4, the twenty-row case table, and section 6's proposal to put it in the adoption guide",
+      "objection": "Rows 3, 10, 14, 15, 16 and 19 depend on judgments (meaning preserved, binds existing content, reaches the corpus, direction) that the table cannot settle, so the table teaches the reader that classification is a lookup when it is a judgment. The KADS-itself column duplicates CONTRIBUTING's four-row bump table. Twenty rows will drift from the specification the first time 8.3 is touched. Three tests and six examples carry the same content and can be kept correct.",
+      "proposed_text": "Adoption guide, section 'Versioning a derived document': the three tests (could the covered corpus now fail a rule of this document, or did a rule, mapping or exception change meaning: breaking; is there something new to read, or did the pin move: minor; is material meaning preserved: patch) and six examples (spelling fix: patch; corrected wrong value in a how-to: patch, say so in the changelog; new local rule the existing corpus already meets: minor; new local rule some existing pages fail: breaking; exception ended: breaking if pages depended on it; pin moved: minor, or breaking when the KADS changelog marks the release breaking and no exception covers it)."
+    },
+    {
+      "unit": "Section 7, 'What an agent may infer'",
+      "objection": "The three inferences are stated as if the number guaranteed them. KADS cannot promise that: the class is an author's judgment about meaning, made by documentation maintainers who have no test suite to catch a misclassification, and the proposal itself concedes the signal is only as good as the classification. Citing 3.3 for a misclassified bump is a stretch; 3.3 is about invented sources, results, dates, approval and confidence. An agent must read the changelog anyway to learn which statement moved, so the number saves it nothing except deciding whether to read.",
+      "proposed_text": "Guide text: 'The version class is the author's judgment about the change, not a property an agent can verify. Treat a PATCH or MINOR bump as probably safe, never as safe; treat a MAJOR bump, or a pre-1.0 MINOR marked breaking, as a signal to reread the changelog before relying on the document. The changelog, not the number, says what moved.'"
+    },
+    {
+      "unit": "Section 5, 'Asymmetry', and 8.4 (c)",
+      "objection": "Duplicates the adoption guide's submodule section (line beginning 'When updating the submodule'), and case 15 contradicts it. One statement, in the guide, is enough; the specification needs only 'at least a minor change'.",
+      "proposed_text": "Delete section 5 from anything that ships; the guide sentence stands."
+    },
+    {
+      "unit": "conformance.md 'Select the scope' last paragraph, conformance review row for 8.4, adoption-guide outline line 'Adoption note version', and CONTRIBUTING's accounting command anchored on '^Adoption note version'",
+      "objection": "The mandatory adoption-note version is stated in three places and counted by a fourth. 8.4 says 'where it declares a version'; conformance says it MUST carry one; the two agree only because conformance may require more, which J-034 already flagged as 'one rule in one place'. The number is redundant for an adoption note: the pinned KADS version plus the repository revision named in the review record (8.5, conformance 'Review outcome') already identify what a reader holds. KADS's own note sets it 'same as the repository', which is the honest admission that it carries no separate information.",
+      "proposed_text": "conformance.md: 'The adoption note is a derived document and follows clause 8.4: it pins the KADS version it follows and, if it declares a version of its own, that version follows 8.4 (b).' Review row: 'Do the adoption note and other derived documents pin the KADS version they follow, and does any version they declare follow 8.4 (b)?' Outline: 'Adoption note version: <optional; if given, Semantic Versioning under clause 8.4 (b)>'. Keep the line text beginning 'Adoption note version' or update the sed anchor in CONTRIBUTING's accounting commands."
+    },
+    {
+      "unit": "Terminology across sections 1, 3, 7 and 8",
+      "objection": "The proposal says it adds no term, then leans on 'compatibility surface', 'declared dependencies', 'correct' as a technical predicate, 'reliance', 'classes', and 'agent signal'. None is needed in the specification. 'Breaking' is defined in 8.3 (c); 'preserves material meaning' already exists in the Terms (Agent-drafted); 'covered corpus', 'local rule', 'mapping', 'exception', 'profile', 'scope' and 'derived view' cover every subject the proposal names.",
+      "proposed_text": "Specification uses only: breaking (8.3 c), minor, patch, covered corpus, pinned KADS version, preserves material meaning. The guide may say 'what a reader relies on' in plain words without making it a term."
+    },
+    {
+      "unit": "The KADS repository's own adoption note (docs/adoption-note.md, row 'Adoption note version')",
+      "objection": "The only worked example in the repository declares its version 'same as the repository' and defines breaking by reliance ('removes a covered path or withdraws a declared profile'). Under the proposal that note is misclassified on every PATCH release and uses the second definition. Either the rule admits a document that treats more as breaking than 8.3 (c) requires, which SemVer permits, or the example must change. Not addressing it leaves the standard's own note as the counterexample to 8.4.",
+      "proposed_text": "Guide: 'A document may treat more changes as breaking than 8.3 (c) requires; it may not treat fewer.' Adoption note: either drop the local definition of breaking or label it as that stricter choice."
+    },
+    {
+      "unit": "Section 8, 8.3 (a) 'may say the three-part version number and the meaning of its parts'",
+      "objection": "Harmless but unnecessary: 8.3 (a) already says 'in the meaning of MAJOR, MINOR, and PATCH'. Changing it is a PATCH-class edit to a clause the necessity review just settled.",
+      "proposed_text": "Leave 8.3 (a) as it is."
+    }
+  ],
+  "minimum_normative_text": "**8.4** *Derived documents* (maintainer). (a) A document derived from KADS, such as an adoption note, a local extension, or an adapted template or guide, MUST pin the KADS version it derives from. (b) Where it declares a version of its own, that version MUST follow Semantic Versioning 2.0.0 with the classes of 8.3 (c) to (f) read for the document and the corpus it covers; a change of the pinned KADS version is at least a minor change to it.",
+  "guidance_outline": "Adoption guide, section 'Versioning a derived document' (short, after the submodule section). 1. A version of your own is optional; the pin and the repository revision already identify what a reader holds. 2. If you declare one, the three tests, in order: could the covered corpus now fail a rule, mapping or exception of this document, or did one change meaning: breaking (MAJOR from 1.0; MINOR marked breaking before); is there something new to read, or did the pin move: minor; is material meaning preserved: patch. A document may treat more as breaking than this requires, never fewer. 3. Six examples, one line each (spelling fix; corrected wrong value; new local rule the corpus already meets; new local rule some pages fail; exception ended; pin moved). 4. The pin sentence that is already there: a KADS release marked breaking is breaking for the note unless its exceptions cover it. 5. For agents: the class is the author's judgment; PATCH and MINOR mean probably safe, never safe; MAJOR means reread the changelog, which is where what moved is stated. 6. Clause guide row 8.4: 'Your adoption note and local extensions name the KADS version they follow; if they carry a version of their own, it is Semantic Versioning with breaking, minor and patch meaning what 8.3 says, read for your document.'",
+  "adoption_note_version": "optional",
+  "reason_for_that": "The specification already makes it conditional ('where it declares a version of its own'); conformance's MUST is the odd one out and J-034 flagged the split. The adoption note is identified by the pinned KADS version and by the repository revision that the review record names (8.5; conformance 'Review outcome'), so a second number adds a classification duty on every edit of the note and no information a reader lacks. KADS's own note, which sets the number to the repository version, shows that in practice the field is filled by copying, not by classifying. Admission question 6 (what must the author of a small project now decide) and question 1 (no observed failure from a note without its own number) both point to optional."
+}

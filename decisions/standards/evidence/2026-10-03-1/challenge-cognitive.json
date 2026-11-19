@@ -1,0 +1,285 @@
+{
+ "role": "cognitive-load",
+ "overall": "As proposed, the package makes KADS harder to understand than 0.5.0: five new Core clauses (3.1.4, 3.1.5, 3.3.5, 3.5.4, 3.5.5), a third profile with five requirement clauses, about eight new MUST on top of 64, five new defined terms on top of 15, a fifteen-label two-axis table and a new guide section, while J-001 and J-031 preach restraint. The reader-side gains are concentrated in a few places: status on the page itself (J-027), reachability (J-021), an applies-to line (J-008), hazard-before-step and untested-procedure disclosure (from J-004), and no-certainty-inflation in summaries (from J-015). All of those can be had with two new clauses and three one-sentence amendments to 3.1.3, 3.2.2 and 3.5.2, with zero new terms and no new profile; under that version the author of a ten-line how-to writes at most one or two extra lines and makes no new classification decision. The terms that do not earn their place are the five epistemic terms (contested boundaries, and they would create a second role list beside 3.3.2), 'Procedure profile' (safety content hidden in an optional layer plus a new adoption decision), 'competency question', and the J-012 kinds table. The author's rejections are almost all right and I found no credible objection to most of them; the exceptions are J-011 and J-026, where a one-line change captures the cheap part of the benefit now. Amending an existing clause is a breaking change under 6.2, but new MUST clauses are breaking as well, so the amendment route costs nothing extra in versioning.",
+ "candidates": [
+  {
+   "id": "J-001",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "A written restraint test gives contributors a reason to say no; with 64 MUST in 43 clauses the spec already asks a reviewer to hold more obligations than anyone can keep in mind.",
+   "argument_against": "The rule is forward-only and the same package ignores it: it adds about 8 new MUST (3.1.5 twice, 3.3.5, 7.2, 7.3, 7.4, 7.6 twice). The test also depends on 'a property the standard exists to protect', and no such list of properties exists, so a contributor must first infer it.",
+   "failure_mode": "The restraint rule is cited to approve every new MUST, because each proposer believes their rule protects a core property. MUST density keeps rising while CONTRIBUTING says it should not.",
+   "recommended_change": "Do not add a separate restraint rule. Merge J-001, J-023 and J-031 into one admission checklist in CONTRIBUTING, name the protected properties in one line (findable, scoped, supported, not overstated, current-or-marked), and apply it to this package first: each proposed MUST states which property breaks without it. Author cost for a how-to page: zero. Reader benefit: indirect only."
+  },
+  {
+   "id": "J-002",
+   "stance": "MODIFY",
+   "layer": "CORE",
+   "argument_for": "A reader who meets 'node' and 'host' in one page must stop and decide whether they are two things; one term per concept removes that interpretation step at no tooling cost.",
+   "argument_against": "As a Core SHOULD, clause 1.2 makes every synonym a departure whose reason 'belongs with the departure', so a ten-line how-to that says both 'repo' and 'repository' now owes a justification. The rule is also unreviewable in general (a reviewer must decide concept identity for every noun) and overlaps 3.1.3 and the existing authoring-guide sentence. Only half of it prevents errors: one term for two concepts misleads, a synonym only slows.",
+   "failure_mode": "Reviewers file terminology findings on harmless variation, or nobody checks it and the clause becomes dead text that still has to be read. Authors add 'also called X' mapping notes to trivial pages.",
+   "recommended_change": "No new clause 3.1.4. Add one sentence to 3.1.3, limited to terms already in its scope: 'Such a term MUST NOT carry two meanings within one scope; where a synonym, vendor term, or translation of it appears, the mapping SHOULD be stated once.' Leave general one-term-per-concept advice in the authoring guide where it already is. How-to author cost: zero unless a term changes the reader's action."
+  },
+  {
+   "id": "J-003",
+   "stance": "ADOPT",
+   "layer": "GUIDANCE",
+   "argument_for": "Rejecting the normative form is right: sentence-level rules cannot be reviewed by reading and would turn every page into a style audit. One instruction per step is the only place the idea changes reader outcomes.",
+   "argument_against": "The second target, 'normative statements that will be cited individually', concerns only people who write standards, which for KADS means the maintainers. Putting it in the authoring guide makes every ordinary author read advice that is not for them.",
+   "failure_mode": "The guidance grows into a new authoring-guide subsection with its own heading and examples, and the guide gets longer without any how-to page getting clearer.",
+   "recommended_change": "One sentence in the existing 'Procedures and reference' paragraph: 'Write one action per step.' Move the normative-statement half to CONTRIBUTING (it is the J-026 rule for new clauses). No new heading."
+  },
+  {
+   "id": "J-004",
+   "stance": "MODIFY",
+   "layer": "CORE",
+   "argument_for": "Hazard-before-step and 'has this been executed as written' are the two statements a cold reader of a runbook most needs and cannot reconstruct; both are cheap to write when true.",
+   "argument_against": "A third profile is the most expensive item in the package: a new section 7, a new term ('Procedure profile'), five clauses, four MUST, and a new per-corpus and per-page decision ('is this how-to a procedure under the profile or only under 3.5.2?'). It creates two tiers of procedure rule, and the reader cannot tell which tier the page in front of them was written under. Worse, it puts the safety content (7.4) in the optional layer, so the ad hoc ten-line how-to, where an unannounced destructive step is most likely, is exactly the page not covered. 7.2 ('one action per step' as MUST) is a style rule that reviewers will argue about ('stop the service and wait for exit' is one action or two?).",
+   "failure_mode": "Few projects declare the profile, so hazards stay unannounced in ordinary how-tos; those that declare it spend review time on step granularity. 7.6 becomes a three-field stamp (executed, when, against what) that is copied forward on edit and overstates currency.",
+   "recommended_change": "No profile, no section 7. Extend 3.5.2 with two sentences: 'A hazard or irreversible effect MUST be stated before the step that causes it, with the way to avoid or recover from it when one exists. A procedure that has not been executed as written SHOULD say so.' Move 7.2, 7.3, 7.5 and the when/against-what detail of 7.6 into the existing 'Procedures and reference' paragraph of the authoring guide. Ten-line how-to cost: zero lines if nothing is destructive and it was run; one line otherwise. No new term to learn."
+  },
+  {
+   "id": "J-005",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Rejection is correct: a 900-word dictionary and word-count limits are a vocabulary and a counting task imposed on every author, with benefits that depend on a translation and training regime KADS adopters do not have.",
+   "argument_against": "No credible counterargument to the rejection: nothing in this candidate lowers reader effort cheaply. The only objection is to the consolation prize: an 'informative note' that short active sentences help is a platitude that lengthens the guide and changes no page.",
+   "failure_mode": "The note is added, later hardens into a review comment habit ('passive voice'), and reviewers police style instead of evidence.",
+   "recommended_change": "Reject without adding the informative note. Keep the reason in the rejected-candidates record only."
+  },
+  {
+   "id": "J-006",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "The current position (keep content together unless splitting enables independent maintenance, reuse, provenance, or review) minimizes clicks for the reader and file decisions for the author.",
+   "argument_against": "No credible counterargument: forced modularity turns a ten-line how-to into several files and makes the reader traverse them, which the authoring guide already warns against ('a chain of tiny pages').",
+   "failure_mode": "If adopted, authors would split to satisfy the rule, and readers would assemble the answer from fragments.",
+   "recommended_change": "none. Side observation for the maintainers: 'knowledge object' in section 2 is used normatively only to define 'tracked record'; check whether that term still pays rent before adding any others."
+  },
+  {
+   "id": "J-007",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Opaque stable IDs cost the reader nothing to ignore; hierarchical codes are a second language that must be learned before a link can be read.",
+   "argument_against": "No credible counterargument: the one cheap benefit of meaning-bearing IDs (seeing the record type at a glance) is already delivered by the single-letter type prefix, and anything more breaks on reorganization.",
+   "failure_mode": "If adopted, IDs would encode a system breakdown that changes, and every rename would force either ID churn or lying IDs.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-008",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "A one-line 'Applies to:' at the top is the highest benefit-per-character item in the package for a reader arriving cold: it answers 'is this page about my version' before any reading. Cost to a ten-line how-to: one line.",
+   "argument_against": "The template already has a 'Purpose and scope' section whose prompt asks for applicable versions or environment. Adding a separate 'Applies to:' line creates two places for scope on one page, which the author must keep in agreement and the reader must reconcile. If J-014 and J-027 also add their own top-of-page lines, the page opens with three conventions before any content.",
+   "failure_mode": "The line is filled with 'Applies to: all versions' because the template shows it, then goes stale; readers learn to ignore it, including on the pages where it matters.",
+   "recommended_change": "Do not add a second scope location. Make 'Applies to:' the first line inside the existing 'Purpose and scope' section of the template, marked 'omit when scope does not affect interpretation' (the 3.1.1 condition). Define one opening convention shared with J-014 and J-027: status line only if not current, then one or two sentences of what the page answers and what it applies to."
+  },
+  {
+   "id": "J-009",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Canonical home, derived view and 3.6.2 already give the reader the one thing that matters: where the maintained source is.",
+   "argument_against": "No credible counterargument to rejecting a new rule. The objection is to 'record the mapping': a mapping table from S1000D and DITA terms to KADS clauses is itself a derived view someone must maintain and read.",
+   "failure_mode": "A 'correspondences' appendix accumulates one row per rejected external concept and becomes a second glossary.",
+   "recommended_change": "Reject; keep the mapping only as the reason text in the rejected-candidate entry, not as a new table in the docs."
+  },
+  {
+   "id": "J-010",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "Knowing when and against what a volatile value was last checked lets a reader decide whether to recheck, and separating that from lifecycle status prevents 'active' being read as 'verified'.",
+   "argument_against": "A verification statement is metadata the author must maintain forever, and it decays silently: a 'last verified' date that is two years old is copied forward through edits and reads as assurance. S1000D-style states (unverified, first verified, second verified) would be three more terms. The template already prompts for verification dates and the authoring guide already says an edit date does not imply a rerun, so the marginal content here is small.",
+   "failure_mode": "Pages acquire a 'Last verified:' field as a habit; it is updated on cosmetic edits or never, and readers trust a number nobody stands behind.",
+   "recommended_change": "No verification-state vocabulary and no profile clause 7.6. One sentence in the authoring guide: 'State a check only if it happened: what was checked, against which version or environment, and when; do not add a last-verified field you do not intend to maintain.' The untested-procedure disclosure goes to 3.5.2 as in J-004."
+  },
+  {
+   "id": "J-011",
+   "stance": "DEFER",
+   "layer": "NONE",
+   "argument_for": "Not prescribing a layout keeps adoption cost near zero for existing repositories and avoids a numbering scheme every reader would have to learn.",
+   "argument_against": "The rejection gives up the largest search-time saving on the list: a reader who has seen one KADS corpus would know where to start in the next. The cheap part of that benefit does not need a layout. 3.1.1 obliges 'the entry point' to do several things, yet nothing tells a cold reader where the entry point is.",
+   "failure_mode": "Each adopter invents a different entry point location and name; cross-project readers and agents search for it every time, and J-021 reachability has no fixed starting node to measure from.",
+   "recommended_change": "Keep rejecting layout and numbering. Add one item to the adoption-note outline (adoption guide and the conformance claim list): 'location of the corpus entry point'. One line per project, zero per page, no new term."
+  },
+  {
+   "id": "J-012",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Separating 'what kind of knowledge' from 'what kind of document' explains why a how-to may contain an assumption, and could stop people asking for per-type documents.",
+   "argument_against": "This is the worst cost-to-benefit ratio in the package: fifteen labels on two axes, informative, with no clause using them. It would be the third classification an author meets, after the six-row reader-need table in the authoring guide and the six record types, and its eight epistemic kinds disagree with the four roles in 3.3.2 and the five in the J-015 proposal. 'Procedure knowledge' is not an epistemic kind, and 'a document is a view' collides with the defined term 'derived view'. A reader arriving cold gains nothing; an author gains a pre-writing classification decision.",
+   "failure_mode": "Authors treat the table as a required taxonomy and start labelling pages and paragraphs; reviewers debate whether a sentence is a hypothesis or an assumption.",
+   "recommended_change": "Do not add the table. If the point must be made, add one sentence to the knowledge model: 'One document may carry several kinds of knowledge; ordinary documents need no type.' Keep the existing reader-need table as the only document-kind list."
+  },
+  {
+   "id": "J-013",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Link-with-scope-qualifier works in every renderer and keeps the source visible to the reader of the raw file.",
+   "argument_against": "No credible counterargument: transclusion lowers duplication for authors with tooling but makes the raw page unreadable for everyone without it, and KADS excludes tooling requirements in 1.1.",
+   "failure_mode": "If adopted, pages would render differently per platform and readers of the repository view would see include directives instead of content.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-014",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "Readers and retrieval systems do land mid-page; an opening sentence that names subject and scope and headings that name their subject cut orientation time for almost no author effort.",
+   "argument_against": "The authoring guide already has 'Write a usable first answer' and the advice to use titles that describe the information sought. A new section named 'Writing for retrieval' introduces a named concept for what is two more sentences of the same advice, and the guide gets a second place to look. 'Restate the referent a section depends on' is repetition by rule: it lengthens pages and creates copies that drift, against 3.2.1. For a ten-line how-to the whole page is one chunk and the advice is moot.",
+   "failure_mode": "Authors prepend a context paragraph to every section; pages double in length, the restated context goes stale, and the reader skims past boilerplate to find the answer.",
+   "recommended_change": "No new section or heading. Add two sentences to 'Write a usable first answer': 'Open with what the page answers and for what scope. In pages long enough to be linked by section, give each heading its subject and name the thing instead of writing as above.' Drop the restate-the-referent instruction."
+  },
+  {
+   "id": "J-015",
+   "stance": "MODIFY",
+   "layer": "CORE",
+   "argument_for": "Status laundering through summaries is a real and damaging failure: a guess becomes a finding after two restatements, and the reader of the index has no way to notice.",
+   "argument_against": "A new MUST clause plus five defined terms is the wrong price. 3.3.2 already applies to every document including summaries, and 3.2.2 already requires summaries to preserve material qualifications; 'this is a hypothesis' is a material qualification. The five terms raise section 2 from 15 to 20 entries, and the line between inference, hypothesis, assumption and conclusion is contested even among specialists, so authors would classify sentences and reviewers would dispute the labels. The spec would then carry two different role lists (3.3.2: observation, inference, recommendation, decision; 3.3.5: observation, inference, assumption, hypothesis, conclusion), and 'established conclusion' would be undefined. It also contradicts the J-016 rejection by bringing epistemic typing in through the terms section.",
+   "failure_mode": "Review of a summary turns into arguing which of five labels each sentence deserves; authors hedge everything as 'hypothesis' to be safe, which destroys the signal the clause wanted to protect.",
+   "recommended_change": "No clause 3.3.5 and no new terms. Add one sentence to 3.2.2: 'A summary, index, or other derived view MUST NOT state a claim with more certainty than its canonical home does.' That needs no vocabulary: the reviewer compares two sentences. Put one worked example (hypothesis in a report becoming a fact in the index) in the learning guide's cases table. How-to author cost: zero."
+  },
+  {
+   "id": "J-016",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "No per-statement labels and no new record prefixes keeps ordinary writing ordinary; 'fact' as a type would hide the basis that 3.3.1 asks for.",
+   "argument_against": "No credible counterargument: required epistemic typing is the clearest case of metadata an author must maintain mentally for every sentence, with no reader able to verify the label.",
+   "failure_mode": "If adopted, labels would be assigned by habit and read as assurance.",
+   "recommended_change": "none, but apply the same reasoning to J-012 and J-015, which reintroduce the vocabulary informally."
+  },
+  {
+   "id": "J-017",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "3.6.1 and 3.3.4 state the provenance a reader needs in plain language; PROV's entity, activity, agent triad is a model to learn before a page can be written.",
+   "argument_against": "No credible counterargument to rejection as a requirement. Mild objection to the status quo: the informative PROV correspondence in the registry is reading matter that no clause depends on.",
+   "failure_mode": "If required, authors would fill provenance triples for trivial pages and readers would get a graph instead of a sentence.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-018",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Eleven relations is already at the edge of what an author can choose among without looking them up; every addition makes each labelled link a harder decision.",
+   "argument_against": "No credible counterargument to rejecting the additions. Two small objections to the form: carrying 'refines' as a formally deferred item keeps a twelfth relation half-alive in readers' minds, and authors who think in 'supports' or 'implements' will not find those words in the registry.",
+   "failure_mode": "Without a lookup aid, projects declare local relations named 'supports' and 'implements' that duplicate the inverses of existing ones.",
+   "recommended_change": "Reject all, including 'refines', with the reopening condition written in the rejection reason. If the registry does not already show it, add an inverse-reading column to the existing relation table (for example supported-by read backwards is 'supports') instead of new relations: it helps lookup and adds no vocabulary."
+  },
+  {
+   "id": "J-019",
+   "stance": "MODIFY",
+   "layer": "NONE",
+   "argument_for": "Kept rejections stop the same proposal being re-argued and show a newcomer why the standard is small.",
+   "argument_against": "Already covered by the nomenclature, so no rule change is needed; the risk is in 'apply it': about eighteen rejected or deferred candidates stored as individual records would outnumber many of the real documents and add search noise for every later reader of the repository.",
+   "failure_mode": "The rejected-records pile becomes the largest part of the corpus, and a search for 'transclusion' or 'hypothesis' lands on rejection records before the actual rule.",
+   "recommended_change": "No spec change. Record the evaluation as one decision record containing a single table (candidate, outcome, one-line reason, reopening condition), not one record per candidate."
+  },
+  {
+   "id": "J-020",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "Sources that can be diffed and read without a licence outlive their tools and can be reviewed with the work; that is a real maintenance property.",
+   "argument_against": "It benefits maintainers, not the reader arriving cold, who by definition is already reading the content. It is a platform recommendation in a standard whose clause 1.1 says it does not prescribe a publishing platform or tooling and whose 3.5.3 says no particular format. As a Core SHOULD, 1.2 makes every wiki, slide deck, spreadsheet and diagram-tool adopter record a standing departure. 'Proprietary tooling' is undefined: a hosted forge, a diagram editor with an open file format, a notebook? The second sentence is already 3.6.2 (identify maintained sources) plus 3.5.1 (state access restrictions).",
+   "failure_mode": "Adopters on a wiki either add a boilerplate exception that every reader of the adoption note must parse, or quietly ignore the clause, which teaches them that SHOULD clauses are decorative.",
+   "recommended_change": "No clause 3.5.4. Keep it as adoption-guide advice (it is a once-per-project decision, not a per-page one): one sentence next to the existing advice to keep knowledge in the consuming repository. How-to author cost either way: zero, which is another sign it is not an authoring rule."
+  },
+  {
+   "id": "J-021",
+   "stance": "ADOPT",
+   "layer": "CORE",
+   "argument_for": "One sentence, no new term, checkable with a link crawl, and it removes the worst search outcome: a page that exists and cannot be found. Ten-line how-to cost: one link in an index.",
+   "argument_against": "Reachable is not findable: the clause is satisfied by a flat 'all pages' list of 300 links, and the author's own J-027 argument says readers arrive by search and never see the entry point. It also assumes one entry point and says nothing about whether archived material must stay linked.",
+   "failure_mode": "Projects satisfy it with a generated dump index; the corpus is conformant and no easier to navigate, while the index becomes another file every author must remember to edit.",
+   "recommended_change": "Adopt as SHOULD with one qualification so that the dump index does not count as the goal: 'Each maintained document SHOULD be reachable by following links from the corpus entry point; link text or its surrounding entry SHOULD tell the reader what the target answers.' Pair with the J-011 change (adoption note names the entry point)."
+  },
+  {
+   "id": "J-022",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Version 0.2.0 already removed the schema and linter; labelled links are readable by people and adequate for machines.",
+   "argument_against": "No credible counterargument: schema-validated metadata is the definition of fields an author must maintain for a consumer that does not yet exist.",
+   "failure_mode": "If adopted, front matter would be filled to satisfy the validator and trusted because it validated.",
+   "recommended_change": "none; keep the existing ADR-001 note as the single place the deferral is recorded."
+  },
+  {
+   "id": "J-023",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "Asking 'which reader question can the current vocabulary not answer' is a cheap, concrete brake on vocabulary growth, and vocabulary is the part of KADS with the highest learning cost.",
+   "argument_against": "'Competency question' is itself a term of art from ontology engineering that contributors would have to learn in order to apply a one-sentence test. It would also be the third admission test in CONTRIBUTING alongside J-001 (MUST restraint) and J-031 (rule admission), and it is stated in two places (registries and CONTRIBUTING), which is a canonical-home problem under 3.2.1.",
+   "failure_mode": "Proposers write a pro forma question ('what refines what?') that any relation trivially answers, and the test filters nothing.",
+   "recommended_change": "Use the sentence, not the term: 'A proposed type, status, or relation must name a reader question the existing vocabulary cannot answer, and show a real document where it arose.' Put it once, as a line in the single admission checklist (see J-031); the registries link to it."
+  },
+  {
+   "id": "J-024",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "3.3.1, 3.5.1, 6.2 and 6.3 already make a reader able to tell which version a claim or derivation refers to.",
+   "argument_against": "No credible counterargument: a 'baseline' concept would add a term and a ceremony for something version references already do.",
+   "failure_mode": "If adopted, projects would declare baselines that duplicate tags.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-025",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "5.4, 5.2 and 5.7 already cover post hoc criteria and negative results in the profile where they belong.",
+   "argument_against": "No credible counterargument: a preregistration rule would add a before-the-work artifact for every test, and ordinary documentation has no use for it.",
+   "failure_mode": "If adopted, criteria files would be backdated or written pro forma.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-026",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "Not renumbering 43 clauses now avoids churn for every existing reference and keeps the spec at a size that can be read in one sitting; splitting would roughly double the clause count.",
+   "argument_against": "Deferral has a cost the proposal does not count: clause 1.4 makes numbers permanent, so restructuring gets more expensive with each adopter, and this very package adds more multi-requirement paragraphs (proposed 3.1.5 has two MUST, 7.6 has two). A reader of an exception that cites '3.3.2' already has to guess which of three sentences is meant; that interpretation cost exists today, with or without adopter complaints.",
+   "failure_mode": "By the pre-1.0 restructuring there are more clauses, more adopters and more recorded exceptions pointing at ambiguous paragraphs, so the split is postponed again.",
+   "recommended_change": "Do the two cheap parts now, defer only the renumbering. (1) CONTRIBUTING: a new clause states one requirement, or requirements that cannot be excepted separately. (2) conformance.md, exception rule: 'where the clause contains more than one requirement, quote the requirement affected.' No renumbering, no new term."
+  },
+  {
+   "id": "J-027",
+   "stance": "MODIFY",
+   "layer": "CORE",
+   "argument_for": "This is the strongest reader-side candidate: a cold reader or retriever lands on the old page, not the index, and one line at the top prevents acting on dead guidance. Cost to the author of a current ten-line how-to: zero until the page is replaced.",
+   "argument_against": "The wording lists four overlapping states (historical, superseded, deprecated, dated snapshot) that the reader and author must tell apart, which is the J-002 problem inside the clause; 'deprecated' is not used anywhere else in the specification and snapshots are already governed by 3.2.2. As an unconditional MUST it makes every legacy archive nonconformant on adoption day, and it collides with 3.4.2: preserved evidence is historical by nature and should not be edited to carry a banner.",
+   "failure_mode": "Adopters with an old archive file a blanket exception, so the clause protects least where stale pages are most numerous; or someone bulk-inserts banners into preserved evidence and alters it.",
+   "recommended_change": "Keep it Core MUST, with one concept instead of four and an evidence carve-out: 'A document that is no longer current guidance MUST say so before its content and MUST point to the current guidance where it exists. Preserved evidence is not edited for this purpose; its status is recorded as in 3.4.5.' Mention in the adoption guide that a legacy archive may be handled by a dated exception with a migration condition."
+  },
+  {
+   "id": "J-028",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "The artifact guide already says when a checksum is worth adding and what it does not prove; 3.4.4 and 3.4.5 cover identity and disclosure.",
+   "argument_against": "No credible counterargument: custody logs and hashes are maintained metadata whose absence harms almost no documentation reader, and a hash displayed without an integrity need reads as authentication it does not provide.",
+   "failure_mode": "If required, hashes would be computed after the fact and trusted as proof of collection.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-029",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "Disclosure of who reviewed is already mandatory and lets the reader discount a self-review; an independence requirement would add a 'how consequential is this page' decision before every review.",
+   "argument_against": "No credible counterargument from a cognitive-load position: mandated independence excludes one-person projects and adds a grading scheme (consequence levels) that would itself need defining.",
+   "failure_mode": "If adopted, consequence would be graded low to avoid the independent review.",
+   "recommended_change": "none"
+  },
+  {
+   "id": "J-030",
+   "stance": "REJECT",
+   "layer": "NONE",
+   "argument_for": "The rules that matter for agent drafting are universal and already in Core; a profile would duplicate them and add another 'does this profile apply' decision to every adoption.",
+   "argument_against": "The one credible objection: an agent operator looking for 'what applies to agents' must find 3.3.3 and 3.3.4 inside Core, which costs search time a profile heading would save. That is answered by the existing agent instruction snippet in the adoption guide, so it does not justify a profile.",
+   "failure_mode": "If a profile existed, projects that did not declare it would be read as exempt from the no-invented-provenance rules.",
+   "recommended_change": "none. Note the consistency requirement: the reasoning used here (universal rules live in Core, not in an optional profile) is the same reasoning that argues against the Procedure profile in J-004."
+  },
+  {
+   "id": "J-031",
+   "stance": "MODIFY",
+   "layer": "GUIDANCE",
+   "argument_for": "A single stated admission test and a lowest-layer rule give every later proposal the same hurdle and protect the reader of the spec from accretion.",
+   "argument_against": "As worded the test cannot fail a proposal: 'more cognitive or epistemic cost than the rule itself' is a judgement every proposer makes in their own favour, and 'epistemic cost' is jargon. This package is the evidence: under the test the author still proposed five Core clauses, a profile and five terms. Placing it in both CONTRIBUTING and the design rationale gives it two homes, and with J-001 and J-023 there would be three separate tests.",
+   "failure_mode": "The sentence is quoted in every pull request as a formality; nothing is ever rejected by it, and the layering rule is used to justify new profiles ('it is only a profile') instead of fewer rules.",
+   "recommended_change": "Make it operational and single. One checklist in CONTRIBUTING, linked from the rationale, that a proposal must fill in: (1) a real document where the absence of the rule misled or delayed a reader; (2) what the author of a ten-line how-to must now write or decide; (3) new terms, fields, or clause count added; (4) why an existing clause cannot carry it with one more sentence; (5) for a MUST, which protected property breaks (J-001); for vocabulary, the unanswered reader question (J-023). Add: a profile is not free, it adds a decision to every adoption."
+  }
+ ]
+}

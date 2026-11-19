@@ -1,0 +1,285 @@
+{
+  "role": "operations",
+  "overall": "The package preaches restraint (J-001, J-031) while adding four core clauses and a five-clause profile on the strength of one adopter, and none of the new core clauses traces to the 2026-10-02 adoption feedback. Its recurring operational weakness is that the new rules assume a corpus whose state is known: J-027 and J-021 are cheap on a greenfield repository and expensive or misleading on a legacy one, where the costly part is triage, not the banner or the link. Clause 1.2 says the reason for departing from a SHOULD belongs with the departure, so every new core SHOULD (J-002, J-020, J-021) is paperwork for adopters, not free advice; the author treats SHOULD as costless. The Procedure profile is the most valuable addition but it is tuned for linear how-to pages, not for diagnostic runbooks used at 3 a.m.: it lacks stop and rollback, escalation, applicability, and placeholder rules, and its 7.6 statement will go stale after the first edit unless it is tied to a revision. Several rules can only be enforced at scale by script (orphans, status markers, stale execution statements), yet the package gives no fixed spellings for a script to find. I recommend narrowing the core additions to forward-only obligations triggered at the moment of change, and moving rigor into the Procedure profile.",
+  "candidates": [
+    {
+      "id": "J-001",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "BCP 14 is already adopted and a written restraint rule gives reviewers a reason to refuse the next MUST. It costs adopters nothing.",
+      "argument_against": "The test 'breaks a property the standard exists to protect' is not usable because those properties are listed nowhere, and the same package adds at least eight new MUSTs (3.1.5, 3.3.5, 7.2, 7.3, 7.4, 7.6). A restraint rule that does not bite on the release that introduces it is decoration. It also ignores that SHOULD is not free under clause 1.2.",
+      "failure_mode": "Every proposer claims their rule protects traceability or trust, the test never rejects anything, and the MUST count keeps climbing past 64 until adopters declare blanket exceptions.",
+      "recommended_change": "In CONTRIBUTING: 'A new MUST names (a) the protected property from a fixed list: findability, canonicality, traceable basis, honest status, preserved history; (b) how a reviewer detects a violation: reading one page, reading two pages, grep, or script; (c) the cost on adoption day for an existing corpus. A rule whose violation can only be detected by re-doing the work is a SHOULD or guidance.' Apply it to this release's own clauses before merging them."
+    },
+    {
+      "id": "J-002",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "The homonym half is a real operational hazard: the adoption feedback (lesson 5) records a service tier nearly scored as a licensed edition because two things shared a word. One word with two meanings in a runbook causes wrong actions.",
+      "argument_against": "As a core SHOULD it is unenforceable without the dictionary the proposal refuses: no reader or grep can tell which term is 'preferred', and most pages state no scope to be consistent within. In a large multi-team or legacy repository each team's vocabulary (service, app, workload, component) is entrenched and vendor terms arrive daily, so under clause 1.2 every synonym becomes a departure that owes a recorded reason. Synonyms annoy; they rarely cause wrong action, so the two halves do not deserve the same strength.",
+      "failure_mode": "Nobody records reasons for synonyms, so the clause is violated silently on day one and teaches adopters that core SHOULDs can be ignored. Agents asked to enforce it do bulk find-and-replace and change the meaning of historical findings and quoted evidence.",
+      "recommended_change": "Do not add 3.1.4. Keep the synonym advice in the authoring guide. Extend 3.1.3 by one sentence covering only the dangerous half: 'A term on which a reader's action or an evaluation result depends MUST NOT carry two meanings within one document or procedure without the difference being stated at the point of use.' Add guidance that terminology clean-up never rewrites preserved evidence or quotations."
+    },
+    {
+      "id": "J-003",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Rejecting it as a general normative rule is right: explanatory and architectural prose needs sentences that relate two ideas, and nobody will count assertions per sentence.",
+      "argument_against": "The author rejects the rule here and then makes it a MUST in 7.2 ('one action' per step), and recommends it as guidance for normative statements while proposing new clauses that break it (3.1.5 has two MUSTs, 7.4 has a hazard duty and a recovery duty, 7.6 has three). Guidance the standard's own new text does not follow will not be followed by adopters.",
+      "failure_mode": "The guidance is cited against adopters' prose in review but the specification keeps shipping multi-requirement paragraphs, so exceptions cite ambiguous clause numbers (see J-026).",
+      "recommended_change": "Keep as guidance, but bind it on KADS itself for new text: 'A clause added from this version on states one requirement per sentence, and each MUST sentence can be cited separately.' State in the authoring guide that the procedure-step form of this rule lives in the Procedure profile, so there is one canonical home for it."
+    },
+    {
+      "id": "J-004",
+      "stance": "MODIFY",
+      "layer": "PROFILE",
+      "argument_for": "Runbooks are where documentation defects turn into outages, and 7.3 (condition first) and 7.4 (hazard first) are cheap, checkable by reading one page, and proven in safety-critical practice. An optional profile is the right layer: it does not burden a small repository with no operations.",
+      "argument_against": "The clauses describe a linear how-to, not a runbook. 7.2 as a MUST fails on real steps: 'ssh to the bastion and run X', a code block of three commands, 'repeat for each node', waits, and diagnostic branches where 'execution order' does not exist; strict atomization turns a 12-step runbook into 50 steps that operators skim at 3 a.m. The profile omits what operators actually need: when to use and when not to use the procedure, what to do when a step does not produce the expected result (stop, roll back, escalate), who to escalate to, the point of no return, and how placeholders differ from literal values. The evaluation guide already names escalation and recovery informatively, so the profile is weaker than the guidance it replaces.",
+      "failure_mode": "Teams declare the profile, split steps mechanically to pass 7.2, and still have runbooks with no abort path; the operator reaches step 7, sees an unexpected result, and has no instruction. Under partial adoption a conformant-looking numbered list hides that the hazard note for a pasted example value (a production hostname left in a code block) was never written.",
+      "recommended_change": "7.2 becomes: 'Steps MUST be in execution order and in the imperative. A step SHOULD contain one action; a step MUST NOT contain an action after which the operator has to check a result before continuing, followed by a further action.' Allow branches explicitly: 'A branch MUST state its condition and the step it leads to.' Keep 7.3 and 7.4 as MUST, and in 7.4 add 'and MUST identify the last step at which the procedure can be abandoned without effect, when one exists.' 7.5 gains: 'and what to do when it is not observed: stop, roll back, or escalate.' Add 7.7: 'The procedure MUST state the condition that calls for it and the environments or versions it applies to.' Add 7.8: 'The procedure MUST name an owner or escalation route.' Add 7.9: 'Values the operator must substitute MUST be distinguishable from literal text.' Add 7.10 (SHOULD): 'Content needed to execute a step SHOULD be on the page or in a labeled snapshot (3.2.2) rather than behind a link', which resolves the conflict with 3.2.1."
+    },
+    {
+      "id": "J-005",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Rejection is correct: a 900-word dictionary and sentence limits need training and tooling, and no repository team will adopt them.",
+      "argument_against": "The rejection throws away the one STE rule with operational value and keeps a platitude. 'Short, active sentences help where they reduce ambiguity' is unactionable, whereas passive voice in a procedure hides the actor: 'the service is restarted' does not say whether the operator restarts it or the system does it by itself. Sentence length is also one of the few properties a script can check, which matters under imperfect adoption, though that alone does not justify the cost.",
+      "failure_mode": "The informative note is ignored, and runbooks keep steps where the operator waits for something they were supposed to do, or does something the automation already did.",
+      "recommended_change": "Drop the generic note. In the Procedure profile guidance write the specific rule instead: 'Each step makes clear who or what acts. Write what the operator does in the imperative and what the system does as an expected result.' A project MAY keep a short local list of step verbs (stop, start, verify, wait); KADS does not supply one."
+    },
+    {
+      "id": "J-006",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "The current position (keep content together unless splitting enables independent maintenance, reuse, provenance, or review) already covers the legitimate cases, including per-team ownership in large repositories.",
+      "argument_against": "No credible counterargument to rejecting further modularization: the operational risk runs the other way. Over-split procedures that send an operator through five links during an incident are worse than a monolith, and legacy repositories cannot afford a re-chunking project. The only gap is that the knowledge model does not say this for procedures.",
+      "failure_mode": "If modularity were pushed, agent-maintained repositories would fragment pages into many small files, multiply links to maintain, and create orphans (J-021).",
+      "recommended_change": "none beyond the self-containment SHOULD proposed under J-004 (7.10)."
+    },
+    {
+      "id": "J-007",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "S1000D-style codes encoding system and subsystem break at the first reorganization, and the nomenclature already forbids encoding the current directory.",
+      "argument_against": "The stated reason, 'meaning-bearing codes break when the encoded meaning changes', is too broad and contradicts KADS itself: the prefix C, D, J, T, E, Q encodes type, and operations routinely and safely encode creation date in incident and run identifiers. A blanket rejection gives adopters with INC-2026-10-02-01 style IDs no guidance on what is safe, and clause 3.4.4 already had to explain that a storage label is not a timestamp.",
+      "failure_mode": "Adopters either strip useful date-bearing incident IDs to look conformant, or encode team and service names in IDs because only 'directory' is forbidden, and the IDs break at the next reorganization.",
+      "recommended_change": "Reject the S1000D scheme, and replace the nomenclature sentence with the actual rule: 'An ID MAY encode attributes fixed at creation, such as type or creation sequence or date. It MUST NOT encode attributes that can change: location, owner, team, system, status, or version.' Existing native incident and ticket IDs remain valid identities."
+    },
+    {
+      "id": "J-008",
+      "stance": "MODIFY",
+      "layer": "PROFILE",
+      "argument_for": "A consistent 'Applies to:' line is cheap, greppable, and avoids S1000D applicability machinery. Clause 3.1.1 already makes scope a core duty.",
+      "argument_against": "Guidance only is too weak exactly where applicability matters: running the right procedure against the wrong version or environment is a leading operational failure, and 3.1.1's 'discoverable' is satisfied by a scope statement on an index page the on-call engineer never opens. The line also rots: 'Applies to: 3.x' survives the 4.0 migration, and in a partially adopted corpus a page without the line is ambiguous between 'applies everywhere' and 'nobody wrote it'.",
+      "failure_mode": "An operator arrives by deep link from an alert, the page has no applicability line or a stale one, and a procedure valid for the old cluster generation is run against the new one.",
+      "recommended_change": "Keep the template line as guidance for ordinary documents, with a fixed spelling ('Applies to:') and the convention that an absent line means unstated, not universal. In the Procedure profile make it a MUST on the page (7.7 above): the environments or versions the procedure applies to, and any it is known not to be safe for."
+    },
+    {
+      "id": "J-009",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Canonical home (3.2.1), derived view, and 3.6.2 already separate maintained sources from published views without requiring a CSDB or publishing pipeline.",
+      "argument_against": "No credible counterargument: every operational case I tested (rendered documentation sites, wiki exports, runbooks generated from templates, dashboards) is handled by 3.6.2's duty to identify the maintained source and the edit location. A new rule would only duplicate it. The one cost is that a recorded mapping to S1000D and DITA is itself a page to maintain, which is small.",
+      "failure_mode": "If a rule were added, small repositories with no publishing step would have to declare a source and view distinction that does not exist for them.",
+      "recommended_change": "none; record the mapping in the sources page only, not in the specification."
+    },
+    {
+      "id": "J-010",
+      "stance": "MODIFY",
+      "layer": "PROFILE",
+      "argument_for": "An honest 'executed as written, when, against what' statement is the single most useful line on a runbook, and it makes clause 3.3.3 concrete for agent-drafted procedures, which are plausible and never run. Saying 'not executed' costs one line.",
+      "argument_against": "As written, 7.6 is not maintainable: the statement is true on the day it is written and silently false after the next edit to any step, yet it stays on the page. It conflates executed with verified (a disaster-recovery procedure can be reviewed or exercised in part but not executed; a procedure can be executed with deviations that never get written back), and it is binary where reality is partial: steps 1 to 6 in staging, never in production. 'Last verified' dates are also the most bulk-faked metadata in practice: a sed pass or an agent bumps them. Leaving volatile reference content (hostnames, contacts, capacity tables) at guidance only ignores that this is what rots fastest, although 3.4.3 partly covers it.",
+      "failure_mode": "At 3 a.m. the operator trusts 'Executed as written 2025-03 on prod' on a procedure whose steps were edited four times since by people and agents who did not touch that line. Or an agent updating the page refreshes the date because it looks like an 'updated' field.",
+      "recommended_change": "Rewrite 7.6 as separately citable sentences: '(a) A procedure MUST state one of: executed as written; executed in part or in a different environment, saying which; not executed. (b) An execution statement MUST give the date, the environment or version, and the revision or date of the procedure text that was executed. (c) A change to a step, condition, or hazard after that revision makes the statement apply to the earlier text only; the statement MUST then be revised to say so or the procedure re-executed. (d) An edit MUST NOT advance an execution or verification date unless the execution or check took place (3.3.3).' Add a SHOULD that deviations found during execution are written back or recorded as open items. Give the line a fixed spelling ('Last executed:') so a script can compare its date with the file history. For reference content, add to 3.4.3 guidance that a verification note says what was checked and against what, not only a date."
+    },
+    {
+      "id": "J-011",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "A mandated layout or chapter numbering would break every legacy repository and contradict clause 1.1; rejecting it is right.",
+      "argument_against": "The rejection discards the one part of the ATA idea that pays under imperfect adoption: a predictable place to start. KADS requires an entry point and an adoption note but not that either can be found from the repository root, so a new engineer or an AI agent in an unfamiliar repository cannot locate the corpus rules, and no script for orphans (J-021) or status (J-027) knows where to begin. The author's revisit trigger, several adopters asking for cross-project navigation, cannot fire while there is one adopter.",
+      "failure_mode": "In a multi-team repository there are five docs trees and three candidate indexes; agents pick the wrong one, treat an unadopted tree as governed (or the reverse), and the adoption note is found only by people who already know it exists.",
+      "recommended_change": "Keep the layout rejection. Add to conformance, under the conformance-claim list: 'The adoption note SHOULD be linked from the repository's root README or agent instruction file, and it names the entry point path.' No directory names, no numbering. Replace the revisit trigger with one that can fire: 'one adopter operating more than one corpus reports navigation cost between them.'"
+    },
+    {
+      "id": "J-012",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Saying plainly that a document is a view that may carry several kinds of knowledge prevents the common mistake of forcing one type per page, and guidance costs adopters nothing.",
+      "argument_against": "It adds a third classification next to the six record types and the reader-needs table, with a role list (eight kinds) that matches neither 3.3.2 (four roles) nor the J-015 proposal (five). 'Procedure knowledge' is not an epistemic kind in the sense the others are. The view axis omits the documents operations actually write: runbook, incident review, known-issue or limitation note, architecture overview. Informative taxonomies get implemented as required metadata by diligent teams and agents.",
+      "failure_mode": "Three inconsistent lists of roles lead reviewers to argue about whether something is an inference or a conclusion, and an agent adds 'kind:' front matter to every page because the table exists.",
+      "recommended_change": "Publish one role list and reuse it verbatim in 3.3.2, the J-015 wording, and the table: observation, inference, assumption, hypothesis, decision, open question. Drop 'procedure knowledge' and 'conclusion' as separate kinds or define conclusion as an inference the author commits to. Add runbook, incident review, and limitation note to the view axis. Put the sentence 'this table is not a metadata schema; do not add type fields because of it' directly under it."
+    },
+    {
+      "id": "J-013",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Transclusion needs tooling that most adopters do not have, and link-plus-scope reuse works in plain Markdown.",
+      "argument_against": "Link-only reuse is the wrong default for one case: runbook preambles and shared steps. At 3 a.m. a link to 'see the credentials page' costs time and may point at a system that is down, so operators copy the steps in, and the copy is then a 3.2.1 problem. The author's position leaves that tension unresolved; it is not solved by transclusion but it must be solved somewhere.",
+      "failure_mode": "Runbooks either become link chains nobody can follow under pressure, or accumulate unlabeled copies of shared steps that drift from their canonical home.",
+      "recommended_change": "Reject transclusion. State in the Procedure profile guidance that a procedure may inline steps from another canonical home as a labeled snapshot under 3.2.2 (source and date or revision), and that 3.6.4 freshness checks are the recommended control."
+    },
+    {
+      "id": "J-014",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Deep links from alerts, search results, and retrieved chunks are how operational pages are actually reached; subject-naming headings and no 'as above' are cheap and partly greppable.",
+      "argument_against": "Two problems. First, 'restate the referent a section depends on' collides with 3.2.1 and 3.2.2: restated scope and context are unmaintained copies unless kept to a line and treated as summaries. Second, guidance understates the dangerous case: a retrieved chunk containing 'Step 5: delete the volume' without the condition and hazard stated above it. That case is a procedure rule (7.3, 7.4 adjacency), not a style tip, and the page-top banner of J-027 does not travel with a chunk either.",
+      "failure_mode": "Authors restate context in every section, the restatements drift apart, and an agent later treats two differing scope statements on one page as a contradiction. Or the guidance is skipped and an agent executes a destructive step retrieved without its warning.",
+      "recommended_change": "Adopt the section with two additions: 'A restated referent is one line and is a summary under 3.2.2; link the canonical statement.' and a checkable list: avoid 'as above', 'see above', 'the former', 'this' without a noun in headings and first sentences. In the Procedure profile require that the condition and hazard governing a step are adjacent to that step, not only earlier on the page."
+    },
+    {
+      "id": "J-015",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "Status laundering is the dominant failure in incident documentation: 'probably the certificate' in the incident channel becomes 'root cause: certificate expiry' in the timeline summary, the status page, and the postmortem index, increasingly via an agent summarizing chat. It is a property KADS exists to protect.",
+      "argument_against": "It is already required by 3.3.2 plus 3.2.2 ('a summary MUST preserve material qualifications'), so a new clause fails the author's own J-031 admission test and J-001 restraint rule. The wording binds the summarizer to 'the role a statement had at its canonical home', but nothing obliges the home to label roles, and during an incident nobody does; the summarizer then has nothing to preserve. Enforcement needs reading both pages for every statement, with no grep. Five new defined terms (inference versus conclusion versus hypothesis) invite boundary disputes.",
+      "failure_mode": "Agents comply by hedging every restated sentence ('may', 'possibly'), which makes summaries useless and buries the real uncertainty; or an index title such as 'Outage caused by DNS' is cited as a violation and reviewers argue about whether a title 'presents' a conclusion.",
+      "recommended_change": "Amend existing clauses instead of adding 3.3.5. In 3.3.2 add 'hypothesis' to the list. In 3.2.2 add: 'A summary, index entry, or other derived view MUST NOT state a claim more firmly than its source does. Where the source marks a statement as an assumption, hypothesis, or inference, the restatement keeps that marking.' Keep the role definitions informative in the learning guide, and give the investigation template greppable inline labels ('Observed:', 'Hypothesis:', 'Assumed:') so the source has something to carry forward."
+    },
+    {
+      "id": "J-016",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "New record types and per-statement labels as requirements would multiply metadata and never be filled in under time pressure; rejecting 'fact' as a type is correct.",
+      "argument_against": "Rejecting all marking leaves J-015 with nothing to hang on: KADS would forbid presenting a hypothesis as a conclusion while offering no lightweight way to mark one. Incident and investigation practice already keeps hypothesis lists (open, ruled out, confirmed), and the investigation record carries them only implicitly. A total rejection is tidy for the standard and unhelpful for the page.",
+      "failure_mode": "Each project invents its own hypothesis markers or none; summaries and agents cannot tell a ruled-out hypothesis from a finding, and ruled-out hypotheses get deleted, losing the negative results 5.2 wants kept.",
+      "recommended_change": "Reject types and required labels. Add an optional convention in the investigation template and research guide: a 'Hypotheses' list whose entries carry 'open', 'ruled out by <link>', or 'supported by <link>', inside the existing investigation record. No H- or A- prefix."
+    },
+    {
+      "id": "J-017",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "PROV serialization requires tooling and a graph nobody in a repository team will maintain by hand; the informative mapping is enough.",
+      "argument_against": "No credible counterargument to rejecting the requirement. The only operational angle is agent-maintained repositories, where who or what produced a change can be captured at no human cost by commit trailers; that is already within 3.3.4's SHOULD and needs no PROV model.",
+      "failure_mode": "If required, provenance metadata would be generated by the same agent that generated the content, giving formal-looking records with no independent value.",
+      "recommended_change": "none; optionally mention commit trailers in the authoring guide as one way to meet the 3.3.4 SHOULD."
+    },
+    {
+      "id": "J-018",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Eleven relations are already more than most adopters apply consistently; inverses as separate relations double the maintenance and the maintainer has settled that supersedes is single.",
+      "argument_against": "People and agents write links from the page they are standing on, so they will write 'Supports', 'Evidence for', and 'Implements' whether or not the registry lists them. The registry gives a human-readable inverse label only for supersedes ('Superseded by'); for every other relation the inverse spelling is left to each author, which defeats grep and makes local extensions appear by accident. Deferring 'refines' until an adopter shows a case is right, but the trigger should be stated in the registry, not only in the workbench.",
+      "failure_mode": "A corpus ends up with 'Supports', 'Evidence for', 'Backs', and 'Used by' as unlabeled local relations, none documented, and a reviewer cannot tell whether they are extensions or sloppy inverses.",
+      "recommended_change": "Add no relations. Add one registry column 'Inverse reading label' (for example 'Supports' for supported-by, 'Implements' for implemented-by, 'Evidence for' for evidenced-by) with the sentence 'these are the same relation read from the target; they are optional and are not additional relations.' Record the refines revisit condition in the registry."
+    },
+    {
+      "id": "J-019",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Rejected options with reasons stop the same proposal from returning every six months and are standard ADR practice.",
+      "argument_against": "Kept as thirty-one records, the rejected candidates become noise in a repository that adopters pin as a submodule, and they contain proposed clause text with MUST and clause numbers. An agent or a search that lands on that text can apply a rejected or superseded wording as if it were the standard; this is precisely the J-027 problem, created by the standard on itself. Retention without a revisit condition is also only half useful.",
+      "failure_mode": "An adopter's agent greps the KADS submodule for 'MUST', finds draft clause 3.5.4 or a rejected 7.x wording in the retained records, and enforces it.",
+      "recommended_change": "Retain the evaluation as one decision record with a table: candidate, disposition, reason in one or two sentences, revisit condition. Do not keep draft normative wording for rejected items in clause form; where wording is kept, lower-case the keywords or prefix each with 'Rejected draft:'. Mark the record's status at the top and keep it outside docs/ paths that the agent snippet tells agents to read."
+    },
+    {
+      "id": "J-020",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Knowledge that cannot be diffed or reviewed with the change it describes drifts, and knowledge locked in a discontinued tool is lost. The fallback sentence (say where the source lives and how to get its content) is a sensible floor.",
+      "argument_against": "As core text it contradicts clause 1.1 (no publishing platform or tooling prescribed) and 3.5.3, and it does not survive real organizations: the operational corpus is in a wiki, runbooks are attached to alerts in the paging tool, diagrams are in a proprietary drawing tool, and architecture reviews are slide decks. 'Proprietary tooling' is undefined: a hosted wiki has revision compare; a diagram XML file is text with an unreadable diff; a PNG export is readable but not comparable. The second sentence duplicates 3.5.1 and 3.6.2. Under clause 1.2 each diagram and deck owes a recorded departure. And it misses the property operations care about: whether the runbook is reachable when the system it repairs, or the single sign-on in front of the wiki, is down.",
+      "failure_mode": "Adopters respond by drawing the corpus boundary around the Markdown files only, so the wiki and the diagrams, where the stale and dangerous content lives, fall outside KADS entirely. The clause then improves nothing and shrinks coverage.",
+      "recommended_change": "Do not add 3.5.4. Put the preference in the adoption guide. Add an adoption note line: 'Sources held outside version control: <tool, location, who can read it, how a reader without the tool obtains the content, export or snapshot route>.' In the representation guide state that an exported diagram or deck in the repository is a derived view under 3.6.2 and names its source and export date. In the Procedure profile add a SHOULD: 'A procedure for restoring a system SHOULD remain readable when that system and the corpus's usual host are unavailable; the adoption note says how.'"
+    },
+    {
+      "id": "J-021",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "This is one of the few proposed rules a script can check completely (the existing link checker already walks every link), it works in report-only mode under partial adoption, and orphan detection is a useful proxy for pages nobody owns.",
+      "argument_against": "Reachability from the entry point is not how operational pages are reached: a runbook is opened from an alert annotation, a dashboard, or search, and those inbound references live outside the corpus where 3.5.1 does not apply, so the links that matter break when pages move while the corpus stays conformant. In a large repository the rule is satisfied trivially by a generated file listing, which adds reachability without findability, or by a chain nine links deep. It also works against deprecation: in legacy repositories orphaning is the de facto retirement mechanism, and forcing links to every old page raises the visibility of stale content unless J-027 marking comes first. 'Maintained document' is undefined for evidence files, run outputs, and attachments.",
+      "failure_mode": "A team adds an auto-generated 'all pages' index to pass the check; historical and current pages sit side by side in it without status, and readers and agents now find stale pages more easily than before.",
+      "recommended_change": "Reword: 'Each maintained document SHOULD be reachable by links from the corpus entry point. A page found unreachable is linked, marked as historical (3.1.5), or removed; a generated listing satisfies this clause only if it shows each page's status. Preserved evidence and artifacts are reachable through the record or manifest that cites them and need no separate link.' Add an orphan report to the optional link script. Add guidance: when a page referenced from outside the corpus (alert definitions, code, dashboards) moves, leave a pointer at the old location."
+    },
+    {
+      "id": "J-022",
+      "stance": "DEFER",
+      "layer": "GUIDANCE",
+      "argument_for": "A required graph or schema was removed in 0.2.0 for good reason: it turned documentation into form-filling and needed tooling. Deferring a mapping contract until an adopter needs it is consistent.",
+      "argument_against": "The package adds rules whose only scalable enforcement is a script (orphans, on-page status, applicability, stale execution statements) while refusing any stable thing for a script to find. Without fixed spellings each project and each agent formats 'Status', 'Applies to', and 'Last executed' differently, and repositories maintained partly by agents drift fastest. That is not a knowledge graph; it is three literal strings.",
+      "failure_mode": "Projects write their own checkers against their own ad hoc conventions; nothing is portable, and in a multi-team repository each team's banner format differs so no corpus-wide check is possible.",
+      "recommended_change": "Keep the graph and schema deferred. Add informative recommended spellings, one per line near the top of a page, plain text: 'Status: historical | superseded by <link> | deprecated | snapshot of <source> at <date>', 'Applies to: ...', 'Last executed: <date>, <environment>, <revision>'. State that they are conventions for grep, not required metadata, and that local mappings are allowed in the adoption note."
+    },
+    {
+      "id": "J-023",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Vocabularies do grow by analogy, and asking what reader question a new type or relation answers is a cheap filter that needs no tooling.",
+      "argument_against": "A competency question alone rejects nothing: any proposer can phrase one ('which records refine which?'). The filter works only when paired with an actual instance from a corpus and a demonstration that the existing vocabulary gives a wrong or lossy answer. It also lives in CONTRIBUTING, which governs changes to KADS, while most vocabulary growth happens in adopters' local extensions that never read CONTRIBUTING.",
+      "failure_mode": "Every proposal arrives with a plausible question attached, the test becomes a ritual sentence in pull requests, and local extensions proliferate untested.",
+      "recommended_change": "Wording: 'A proposed type, status, or relation names (a) the reader question it answers, (b) at least one real instance in an adopting corpus, and (c) what goes wrong when the closest existing term is used instead.' Put the same three points in the registries' local-extension paragraphs, since that is where adopters extend."
+    },
+    {
+      "id": "J-024",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Pinning is already covered for citations, historical claims, and the standard's own version; another clause would duplicate 3.3.1 and 3.5.1.",
+      "argument_against": "Coverage is uneven for incident and investigation documents: 3.5.1's version pinning is a SHOULD, and the usual evidence links in an incident review are dashboard and log-query URLs that stop resolving when retention expires (often 15 to 30 days), plus links to files on a moving branch. Nothing tells authors that a link which will expire needs a snapshot, and nothing tells runbook authors the opposite: a procedure should usually follow the current script, not a pinned one. The right answer differs by document kind and the existing clauses do not say so.",
+      "failure_mode": "Six months after an incident the review's evidence path is a row of dead dashboard links, the corpus still passes 3.5.1 because the links are external, and the conclusions can no longer be assessed.",
+      "recommended_change": "No new clause. Add to the artifact guide: 'Pin what a historical claim rests on; follow the current version for what an operator must run today. An external link whose content expires under a retention period is not a preserved source: capture the figure, query, time window, and collection time on the page or in an evidence note, and state the retention limit (3.5.1).'"
+    },
+    {
+      "id": "J-025",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Clauses 5.4, 5.2, and 5.7 already cover post-hoc criteria and negative results for research and test reports.",
+      "argument_against": "No credible counterargument to rejecting a new research rule. The only gap is outside research: the operational analogue, deciding the abort or rollback criterion before starting a risky change, is not covered for a project that adopts the Procedure profile without the research profile. That belongs in the Procedure profile, not in a new core rule.",
+      "failure_mode": "If duplicated in core, small documentation-only repositories would carry a preregistration duty with nothing to apply it to.",
+      "recommended_change": "none here; cover the stop condition through the J-004 change to 7.5 (what to do when the expected result is not observed)."
+    },
+    {
+      "id": "J-026",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Renumbering forty-three clauses pre-1.0 with one adopter is churn, and clause 1.4 makes numbers permanent, so a rushed split would be costly.",
+      "argument_against": "Deferral gets more expensive with every release, and this release adds roughly ten clauses in the old style: 3.1.5 holds two MUSTs, 7.4 two, 7.6 three. Clause 6.4 and the conformance exception rule require citing clauses, and existing clauses bundle unrelated duties: 3.5.2 covers procedures, research limitations, and quantitative results, so an operations team's exception to '3.5.2' is ambiguous today. 'No adopter evidence' is weak when there is one adopter and it has had little reason to file exceptions yet. A non-breaking fix exists that does not renumber anything.",
+      "failure_mode": "A legacy adopter records 'exception: 3.5.2' for its runbooks; a reviewer later cannot tell whether unsourced quantitative results are also excepted, and partial conformance is reported as covered.",
+      "recommended_change": "Do two cheap things now and defer only the retrofit. (1) Add to 1.4: 'A sentence within a clause may be cited by position, for example 3.5.2 sentence 2; an exception SHOULD say which requirement of the clause it concerns.' This is additive and non-breaking. (2) Require that clauses added from this version on are singular or lettered at birth (7.6 a to d as proposed under J-010). Retrofit of old clauses stays deferred to pre-1.0."
+    },
+    {
+      "id": "J-027",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "Readers, search, and retrievers land on pages, not on entry points, so a status that lives only in an index protects nobody. Marking the old page at the moment it is superseded is cheap and is what ISO 9001 7.5.3.2 asks.",
+      "argument_against": "On a legacy repository with hundreds of pages the cost is not the banner but the triage: someone must decide for every page whether it is historical, and for most the honest answer is unknown, a state the clause does not recognize. As a core MUST it makes every existing adopter nonconformant on upgrade (a breaking change under 6.2) and creates the inference that an unmarked page is current, which is false in any partially adopted corpus and worse than today's ambiguity. 'In the material itself, before its content' conflicts with 3.4.2 for preserved evidence and with immutable exports and PDFs, and it does not achieve its stated aim for retrievers, since a banner at the top does not travel with a chunk from the middle while a path such as archive/ does. 'Dated snapshot' and 'historical' are undefined against incident reviews and research reports, which are dated by nature. Unmarked historical pages cannot be found by grep; only marked ones can.",
+      "failure_mode": "Either a bulk script stamps 'historical' on everything older than a cutoff, mislabeling authoritative pages that simply have not changed, or nothing is marked and the adoption note quietly carries a permanent exception. In both cases agents learn 'no banner means current' and trust the stale majority.",
+      "recommended_change": "Make the duty forward-only and act-triggered, and let containers carry status. '3.1.5 (a) When material is superseded, deprecated, or retired, the change that does so MUST mark the affected material as such and MUST point to current guidance where it exists. (b) The mark MUST be met by a reader who opens the material directly: in the material before its content, or, for material that is preserved unaltered or marked in bulk, in its path or in a note at the same location. (c) A corpus that contains material whose currency has not been reviewed MUST say so at the entry point and identify that material by path or date boundary; absence of a mark does not establish that material is current. (d) A dated report or record is not historical merely because it is dated.' Add the fixed 'Status:' spelling from J-022 and a script hint: list pages unchanged for a project-chosen period as review candidates, never as automatic marks."
+    },
+    {
+      "id": "J-028",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Forensic chain of custody is far beyond what ordinary technical evidence needs, and the artifact guide already says a checksum identifies bytes without authenticating collection.",
+      "argument_against": "Outright rejection misses a concrete risk in repositories with text-hygiene passes and AI agents: bulk edits (whitespace normalization, punctuation replacement, reformatting, link rewriting) silently alter preserved evidence, violating 3.4.2 with nobody noticing, and 3.4.5 redaction disclosures cannot be checked without a baseline. Version control gives hashes for in-repository evidence at no cost, so the real gaps are evidence in object storage or tickets and the absence of any rule keeping bulk edits out of evidence paths. A checksum manifest is one command and is the only mechanical check available for 'preserved as collected'.",
+      "failure_mode": "A corpus-wide punctuation or formatting pass, by a person or an agent, rewrites captured logs and command output; the evidence now differs from what was collected and no disclosure is recorded because nobody regarded it as a change.",
+      "recommended_change": "No requirement. Add to the artifact guide and the agent snippet: 'Bulk editorial or formatting passes exclude preserved evidence; the adoption note names the evidence paths. For evidence stored outside version control, record a checksum and collection time when it is stored. Changes to evidence found by comparing against version history or a checksum are disclosed under 3.4.5.'"
+    },
+    {
+      "id": "J-029",
+      "stance": "MODIFY",
+      "layer": "PROFILE",
+      "argument_for": "A core independence requirement would exclude one-person projects, and KADS's disclosure approach (say who reviewed, flag self-review and agent self-review) is honest and universal.",
+      "argument_against": "Disclosure alone fails where consequence is highest. An author cannot see their own missing step, and an agent-drafted, agent-reviewed procedure with an irreversible step meets every current rule as long as it says so in a pull request the on-call engineer will never read. Proportionality does not require a mandate: a SHOULD scoped to hazardous procedures, with on-page disclosure when it is not met, excludes nobody and puts the information where the operator is. The author's reason addresses a blanket core MUST, which is not the only form the principle can take.",
+      "failure_mode": "'Self-reviewed' becomes boilerplate in review records; a runbook that deletes data ships after being read only by the agent that wrote it, and the first independent execution is during an incident.",
+      "recommended_change": "Keep core unchanged. Add to the Procedure profile: 'A procedure containing a step governed by 7.4 SHOULD be executed or walked through by a person other than its author, and other than the agent that drafted it, before it is relied on. The 7.6 statement says who executed or walked through it; where no one other than the author has, the procedure MUST say so.' A one-person project conforms by saying so."
+    },
+    {
+      "id": "J-030",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "No invented provenance and an author of record are universal duties; a separate profile would duplicate 3.3.3 and 3.3.4 and suggest that people may invent sources.",
+      "argument_against": "The core rules cover what an agent must not claim, not how a corpus that agents edit is operated. The distinct failure modes are operational: bulk edits that touch evidence, refreshed 'updated', 'verified', or 'executed' dates, contradictions resolved by deleting one side, instructions inside retrieved documents treated as commands, and rejected or historical text applied as current. The only place these are addressed is an informative snippet that a project may or may not copy, and conformance review has no question asking whether agents that edit the corpus were given the rules at all.",
+      "failure_mode": "A repository is declared conformant on a human-reviewed sample while agents with no KADS instructions keep editing other pages; date fields advance, evidence is reformatted, and nothing in the adoption note reveals that agents write to the corpus.",
+      "recommended_change": "No profile. Add an adoption note line: 'Agent participation: <which automated agents may edit the corpus, where their instructions live, how their changes are identified in history, which paths they must not edit>; or none.' Add one conformance question under the common core: 'Where agents edit the corpus, do their instructions include the adoption note, and are evidence paths and date fields protected from unverified edits (3.3.3, 3.4.2)?' Extend the snippet with: do not change execution, verification, or collection dates unless that event occurred; do not reformat preserved evidence."
+    },
+    {
+      "id": "J-031",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "A shared admission test and an explicit layering rule give every later proposal the same bar and justify keeping domain rigor in profiles.",
+      "argument_against": "'More cognitive or epistemic cost than the rule itself' cannot be measured or falsified, so it will be asserted, not applied; the package demonstrates this by passing four new core clauses under it, none sourced from adopter feedback, while the feedback review itself says one project's experience shows little. The test also prices only the cost of writing a rule down, not the cost on an existing corpus on adoption day or the cost of half-adoption, which is where rules actually fail. It treats SHOULD as cheap despite clause 1.2.",
+      "failure_mode": "The test becomes a sentence quoted in every proposal ('the absence of this rule costs more'), core grows by a few clauses each release, and legacy adopters fall behind the pinned version and stop upgrading.",
+      "recommended_change": "Make the test operational. A proposed normative rule states: (1) the failure it prevents, with at least one observed instance or an explicit note that it is anticipated only; (2) how a violation is detected: reading one page, comparing pages, grep, or script; (3) what an existing conformant corpus must do on the day it upgrades; (4) what a reader may wrongly infer when only part of the corpus follows it. Core threshold: the rule applies to a three-page repository and to a legacy one without a triage project; otherwise it is a profile rule or guidance. A core SHOULD is counted as a cost because clause 1.2 asks for recorded reasons."
+    }
+  ]
+}

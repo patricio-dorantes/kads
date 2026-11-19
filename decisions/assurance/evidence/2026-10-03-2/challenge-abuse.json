@@ -1,0 +1,383 @@
+{
+  "role": "failure-mode-abuse",
+  "overall": "The package is honest that it constrains existence of content and not quality, but that honesty is exactly the abuse surface: every MUST in 7.2 to 7.5 can be satisfied by one plausible sentence, and the template in part (e) is an ideal fill-in form for an AI agent or a hurried author, so a complete block will be produced at near-zero cost and read as proof of diligence. The central control, the self-assigned level, fails worst: the cheapest compliance with all of 7.3 is to call the change routine, which leaves no record and cannot be detected by any reader, so the mechanism that gates everything else fails admission question 5. Three items punish the honest more than the careless: 7.5(a) taxes each lesson drawn, 7.3(h) lets the author who won the argument decide which objections 'could change the choice', and 7.4(c) makes an expired exception disappear from view while the departure continues. Naming who accepted each risk, who examined, and (through 7.5 b) linking incidents back to those records builds a blame chain that will make people write defensively or decline to sign, and recording undetectable failure modes and live exceptions in a readable corpus is a real security exposure the proposal never mentions. These harms are serious enough to change the design: the level should be triggered by facts stated in the record instead of a prior self-classification, persons should be replaceable by roles everywhere, sensitive items need an explicit restricted-location rule, and the profile needs a sentence and a name that deny it is assurance. With those changes about half of the profile survives as MUST; the rest belongs in guidance. The name 'Assurance profile' itself should go, because 'conforms to the KADS Assurance profile' is the green checkmark a manager wants and the profile assures nothing.",
+  "clause_verdicts": [
+    {
+      "clause": "4.6 sentence",
+      "verdict": "REWORD",
+      "reason": "Cheapest compliance: 'Reasons: business need' or 'Reasons: agreed by the team' on new decisions, and for the backlog either a bulk 'not recorded' line or, worse, an agent asked to 'add the missing reasons' that writes plausible rationale after the fact. Likelihood high for both. Boilerplate is detectable by reading; retroactively invented rationale is not, and it is the harmful case because the next reader treats it as what the deciders believed. Clause 3.3.3 forbids invention but the new MUST creates the pressure. The escape hatch is right; what is missing is a marker separating reasons written at the time from reasons reconstructed later. It is also the only breaking change and it lands outside the optional profile on every tracked decision however small.",
+      "replacement": "An accepted decision MUST state the reasons for the choice, or state that they are not recorded. Reasons written after the decision took effect SHOULD be identified as reconstructed, with the date they were written."
+    },
+    {
+      "clause": "7.1",
+      "verdict": "REWORD",
+      "reason": "False assurance is the main harm of the whole model and 7.1 is where it must be denied. As written the clause says what the profile does not require of process, but not what a conformant record fails to show. A manager will cite profile conformance as evidence of diligence; an auditor will accept a complete block. The profile name compounds it. 7.1 must also carry the security rule: 7.3 (d), (f) and 7.4 (d) ask for unmitigated risks, undetectable failure modes and live exceptions in a corpus that agents, contractors and sometimes the public can read.",
+      "replacement": "7.1 Use this profile when a project wants a later reader to be able to reconstruct, for its consequential decisions, changes, exceptions, and incidents: what was believed, on what evidence, which risks were accepted and under which role, and what happened afterwards. The profile states what a record makes discoverable. A record that satisfies it shows what was written down; it does not show that the reasoning was sound, that the evidence was examined, or that the change was safe. The profile does not require that a review be held, that a role be staffed, or that a change be approved (clause 3.6.3). Content whose disclosure would itself create exposure MAY be held in a restricted location; the record MUST then state that the content exists and where (clause 3.5.1). A role MAY be named wherever this profile asks who. It can be used with or without tracked records. (Rename the profile 'Decision reconstruction profile'.)"
+    },
+    {
+      "clause": "7.2(a)",
+      "verdict": "REWORD",
+      "reason": "Cheapest compliance: an adoption note that copies the three definitions from the guide and says 'the author assigns'. Or criteria tuned so nothing is ever critical ('critical: declared by the CTO'). Likelihood high; detectable only as vagueness. 'Who assigns them' is a governance statement KADS says it does not own (3.6.3) and produces a single name pasted once. The criteria are only useful if a reader can apply them to a described change without asking the classifier.",
+      "replacement": "7.2 (a) A project applying this profile MUST state in its adoption note the criteria by which it treats a decision or change as significant or critical, in terms a reader can apply to a described change, with at least one example of each."
+    },
+    {
+      "clause": "7.2(b)",
+      "verdict": "REWORD",
+      "reason": "This is the weakest joint in the design. Cheapest way to comply with all of 7.3: classify as routine and write nothing. Second cheapest: 'Level: significant, because reversible' to shed (f), (g), (h). Likelihood very high under delivery pressure, because the classifier is the person who would have to do the extra writing. Detection by a reader: none for routine (no record exists), and weak for significant-instead-of-critical ('the factor that decided it' is a free-text justification by the interested party). A MUST whose main violation is invisible fails admission question 5. Redesign so that the critical items are triggered by facts the record itself states, not by a label chosen beforehand: if item (e) says the effect cannot be undone, or the record says failure could not presently be detected, the critical items apply. Then a downgrade is visible on the page as a contradiction between (e) and the missing items, and a false 'can be undone' is a false statement under 3.3.3 and 3.5.4 (c), not a classification opinion.",
+      "replacement": "7.2 (b) A record made under clause 7.3 MUST state its level and the criterion from the adoption note that applied. A record that states that the effect cannot be undone, or that a failure could not be detected by present means, is at the critical level whatever level it names. A level lowered after it was recorded MUST keep the earlier level and the reason for the change."
+    },
+    {
+      "clause": "7.2(c)",
+      "verdict": "DELETE",
+      "reason": "Nobody records 'two criteria pointed to different levels and I chose the lower'; clause 1.2 would ask for the reason behind each departure from this SHOULD and no reader can see that a departure happened. It is satisfied in form by silence. The tie rule is sound advice and belongs in the guide. The MAY about mapping local classes can attach to 7.2 (a).",
+      "replacement": ""
+    },
+    {
+      "clause": "7.3(a)-(e)",
+      "verdict": "REWORD",
+      "reason": "(a) Cheapest: 'Claim: the change is ready.' Harmless boilerplate, detectable. (b) Cheapest: three links nobody opened, one to a dashboard with 30-day retention, plus 'does not cover edge cases'. Likelihood high, and an agent will generate exactly this. A reader cannot tell from the page whether anyone opened the links, and six months later the links are dead, so the epistemic test of the brief fails just when it is needed. Fix: for each item of evidence the record says what was observed in it, so the statement survives the link and can be checked against it while the link lives. (c) Cheapest: 'Assumptions: none' or one trivial assumption. Not detectable; accept. (d) Cheapest: 'Remaining risk: low, accepted by <engineering manager>' with the same name in every record, or the author naming an acceptor who never saw the record. Likelihood high. The pasted name is detectable only across records; the unaware acceptor is not detectable at all and is the liability case: a person discovers after an incident that the corpus says they accepted the risk. Fix: say when and how the acceptance was given, or that it is the author's statement only, the same pattern as 3.3.5; allow a role. (e) Cheapest: 'Undo: revert the deploy.' The template already asks whether the path was executed but the clause does not; without it (e) is fiction-friendly (the proposal's own GitLab case).",
+      "replacement": "7.3 A record of a decision to make or proceed with a change at the significant or critical level MUST make the following discoverable, on the page or through links: (a) the claim the decision rests on, such as that the change is ready, stated separately from the choice to proceed; (b) the evidence for that claim, what was observed in each item of it, and what the evidence does not cover; (c) the assumptions relied on; (d) the known risks that remain, the role or person that accepted each, and when and where that acceptance was given, or that the acceptance is stated by the author only; (e) how the effect will be undone or contained and whether that path has been executed (clause 3.5.4 c), or that the effect cannot be undone."
+    },
+    {
+      "clause": "7.3(f)",
+      "verdict": "DOWNGRADE",
+      "reason": "Cheapest: 'Could fail through unforeseen interaction; detected by existing monitoring.' The proposal concedes this conforms. Likelihood high; a reader sees the vagueness but cannot call it a violation, so the MUST buys presence of a sentence only. An honest answer, on the other hand, is the most dangerous text in the profile: the proposal's example 3 writes into the corpus that an expired token would be accepted and that only one hourly query would notice. That is an attack note. A MUST that the careless satisfy with filler and the careful satisfy by publishing a weakness should not be a MUST. Make it a SHOULD covered by the restricted-location sentence in 7.1.",
+      "replacement": "(f) At the critical level the record SHOULD state how the change could fail and how the failure would be detected, subject to clause 7.1 on restricted content."
+    },
+    {
+      "clause": "7.3(g)",
+      "verdict": "REWORD",
+      "reason": "Three gaming routes. (1) A friendly colleague or a second agent 'examined the reasoning; found nothing'. 3.3.4 forces the agent to be named as automated, but a named human who skimmed is indistinguishable from one who dug. (2) 'No one did' written everywhere: this is the intended honest output and costs nothing, so the behavioral lever the proposal relies on (people supply the thing instead of writing its absence) does not exist for a team that feels no shame, and after a while it becomes the house style. (3) The examiner is named and is later blamed. Route 1 is the false-assurance case and is partly fixable: 'what they found' is weaker than 3.3.5 already demands for any statement that something was reviewed; require what they examined, so 'found nothing' has a stated extent. Keep as MUST only because silence versus 'no one' is detectable on the page.",
+      "replacement": "(g) who other than its authors examined the reasoning, their relation to the authors, what they examined, and what they found (clause 3.3.5), or that no one did;"
+    },
+    {
+      "clause": "7.3(h)",
+      "verdict": "REWORD",
+      "reason": "Two filters, both held by the wrong party. 'Recorded before acceptance' teaches people to object in a call or a hallway so nothing needs recording, and teaches leads to say 'let us take that offline'. 'That could change the choice' is judged by the author whose choice it is; every objection can be filed as 'would not have changed the outcome'. Result: 'Disagreement: none recorded' in every critical record, fully conformant, and the trailing sentence that absence does not establish agreement tells the reader the field carries no information. The reason it did not prevail is written by the side that prevailed. Detection needs a comparison with drafts or chat, which the proposal admits. Chilling effect: an objector named in a permanent record next to a decision that went ahead is exposed if it succeeds (obstructive) and the decider is exposed if it fails, so both sides prefer it unrecorded. Redesign: give the trigger to the dissenter, let them supply their own words, and do not require a name. Then detection exists (the dissenter reads the record) and the author's filter is gone.",
+      "replacement": "(h) each disagreement with the choice that a participant asked to have recorded, in that participant's words or by link, with the reason it did not prevail; the participant need not be named."
+    },
+    {
+      "clause": "7.3(i)",
+      "verdict": "REWORD",
+      "reason": "The best-targeted item, and the hardest to satisfy with pure filler because it asks three concrete things. Remaining cheap answer: '30 days in production, alerts would have fired.' The untested detector is the precise failure in the cited GitLab case (the failure notifications were themselves failing), so the clause should ask whether the means of detection has been seen to work. Likelihood of filler moderate; a reader can detect a missing period or an unevidenced detector.",
+      "replacement": "(i) Where the evidence in (b) is that no failure has been observed, the record MUST state what was observed, over what period or exposure, how a failure would have been detected, and whether that means of detection has been seen to detect one."
+    },
+    {
+      "clause": "7.4(a)",
+      "verdict": "REWORD",
+      "reason": "Cheapest compliance: 'Expires: 2099-12-31', or 'Review condition: when the legacy service is replaced' (never), or 'when resources allow'. Acceptor: the same director in every exception, or a name added by the author. Likelihood high; the proposal names the review-condition hole itself ('the hole through which permanence returns') and leaves it open. A far date and an impossible condition are visible to a reader but are not violations. Redesign: a date is always required and a review condition is additional, so 7.4 (c) always has something to trip on; a renewal must say why the departure is still needed, or renewal is a date bump performed by a script. Also the claim that these are 'the same six' fields as conformance is wrong: conformance asks for consequence, responsible role and condition for review; 7.4 asks for risk accepted, who accepted it, and expiry. The last sentence of 7.4 ('adds no field') therefore leaves two different exception objects.",
+      "replacement": "7.4 (a) An exception MUST identify the requirement departed from, its scope, the reason, the risk accepted, the role or person that accepted it and when, and a date by which it will be reviewed; an earlier review condition MAY be added. A renewal MUST carry its date, the new review date, and the reason the departure is still needed."
+    },
+    {
+      "clause": "7.4(b)",
+      "verdict": "DOWNGRADE",
+      "reason": "Satisfied by 'the requirement remains appropriate for other services'. Carries no information, costs a departure reason under 1.2 when skipped, and with the date now mandatory in (a) a permanent exception is simply one that is renewed with a reason each time, which is more visible than a one-off justification. Move the question to the guide.",
+      "replacement": ""
+    },
+    {
+      "clause": "7.4(c)",
+      "verdict": "REWORD",
+      "reason": "This is the item most likely to make the corpus false. When the date passes and nobody renews, the practice continues but the record must stop being 'presented as in force', and example 5 has the index silently drop it. The reader now sees a requirement with no listed exception and concludes it is met. That is the Challenger failure (waiver not visible) recreated by the rule meant to prevent it. The gamed alternative is no better: a calendar job or agent that appends a renewal line every quarter. The clause should force lapsed exceptions to stay visible as lapsed, and deny the inference that expiry means compliance.",
+      "replacement": "7.4 (c) An exception whose review date has passed without a recorded renewal MUST be presented as lapsed, not as in force and not as ended. A lapsed exception does not establish that the requirement is being met."
+    },
+    {
+      "clause": "7.4(d)",
+      "verdict": "REWORD",
+      "reason": "A hand-kept list goes stale and becomes a second source that disagrees with the records; a list of exceptions in force to security requirements (the proposal's own example is skipped credential rotation) is a target list for anyone who can read the corpus. Keep as SHOULD, include lapsed exceptions so (c) is visible, prefer search on the fixed label over a maintained list, and rely on the restricted-content sentence in 7.1.",
+      "replacement": "7.4 (d) Exceptions in force or lapsed SHOULD be findable from the place where the requirement is stated or from the corpus entry point, by a list or by a stated search."
+    },
+    {
+      "clause": "7.5(a)",
+      "verdict": "REWORD",
+      "reason": "The rule charges a price per lesson, so the cheapest compliance is to draw fewer lessons: one bland lesson with one closed ticket. Undetectable, likely, and it removes exactly the uncomfortable findings. Next: 'no change: current controls are adequate' and 'pending: tracked in BACKLOG-123' forever, or 'changed' with a link to an unrelated commit. A reader can see reason-free boilerplate and can follow a link, but cannot see an undrawn lesson. 'Risk accepted, naming who accepted it' inside an incident record puts a personal name beside a failure in the least blameless place possible. Fixes within reach: let a role stand for the name; date pending entries so age is visible (3.4.3 already says changing facts carry dates); and say in the guide that contributing conditions are listed before lessons so that the lesson count is checked against something. Do not add 'not complete while pending': it would push pending items into 'no change'.",
+      "replacement": "7.5 (a) A record of an incident investigation MUST state, for each lesson it draws, one disposition: a change made, with a link to it; a change pending, with a link to where it is tracked and the date of that statement; a risk accepted, naming the role or person that accepted it; or no change, with the reason."
+    },
+    {
+      "clause": "7.5(b)",
+      "verdict": "DOWNGRADE",
+      "reason": "Useful for reconstruction, but it is the link that completes the blame chain: incident record to decision record to the named risk acceptor, examiner and dissenters. Authors who know this will either not link or will write the decision records defensively in the first place. It is undetectable when omitted (the proposal says so). Keep it as guide advice written from the decision's side ('mark the assumption as no longer holding') and only after roles replace names in 7.3.",
+      "replacement": ""
+    },
+    {
+      "clause": "7.5(c)",
+      "verdict": "DELETE",
+      "reason": "'Outcome check: in 14 days' is written at decision time and the second half, 'later what was observed', has no trigger, no owner and no detection; the field stays as a promise forever, and an agent will fill it with 'no issues observed', which is exactly the unscoped no-failure statement 7.3 (i) exists to stop. The proposal ranks it first for removal. Remove it.",
+      "replacement": ""
+    }
+  ],
+  "candidates": [
+    {
+      "id": "P-01",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Proportionality operated by self-classification is proportionality chosen by the party who pays the cost. The principle is right; the only implementation offered rewards under-classification.",
+      "counterexample": "A team under a release deadline classifies a schema change as routine because 'we have rolled back before'; the profile then requires nothing and no record shows the question was ever asked. Following the principle mechanically (low consequence, low rigor) gave less than the unscaled habit of writing a PR description.",
+      "gaming": "Everything is routine; or the adoption note sets criteria so that critical never occurs.",
+      "recommended_change": "Keep as one foundations sentence. Make the scale operate through facts stated in the record (cannot be undone, cannot be detected), not through a label."
+    },
+    {
+      "id": "P-02",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "Presence-only: 'because we agreed' conforms, and the upgrade creates a one-time incentive to have an agent write reasons for old decisions that nobody remembers.",
+      "counterexample": "On upgrade a maintainer asks an agent to bring 40 accepted decisions into conformance; the agent writes fluent, plausible reasons for each. The corpus is now conformant and worse than before, because invented rationale reads as history.",
+      "gaming": "Boilerplate rationale; bulk 'not recorded'; retroactive rationale presented as contemporaneous.",
+      "recommended_change": "Adopt the 4.6 sentence with the added SHOULD that reasons written after the effective date are identified as reconstructed."
+    },
+    {
+      "id": "P-03",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "'Evidence required' becomes links. The record cannot show that anyone read what it links, and links to dashboards and CI runs expire, so the six-month reconstruction test fails silently.",
+      "counterexample": "A go record links a load-test dashboard and a CI run. After the incident both links return 'retention expired'. The record was conformant on the day and is useless on the day it is needed; a single sentence 'p99 was 180 ms at 2x load' would have survived.",
+      "gaming": "Unread links; links to the wrong run; 'does not cover: edge cases'; an agent citing artifacts it never opened.",
+      "recommended_change": "7.3 (b) asks what was observed in each item of evidence, not only where it lives."
+    },
+    {
+      "id": "P-04",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "Explicit risk acceptance by a named person converts a shared engineering judgment into individual liability. People will refuse to sign, sign everything unread, or have their name written in by the author.",
+      "counterexample": "A security lead's name is on forty exceptions she approved in a weekly batch without reading. After a breach the record is used to assign fault to her. The following quarter nobody will accept exceptions on the record, and departures go back to being unrecorded habits, which is the state the principle was meant to end.",
+      "gaming": "One manager's name pasted everywhere; risk always 'low'; acceptance asserted by the author.",
+      "recommended_change": "Role suffices; the record says when and where acceptance was given or that it is the author's statement only."
+    },
+    {
+      "id": "P-05",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "It can be answered with a period and a hopeful sentence about alerting; the detector itself is never shown to work.",
+      "counterexample": "none found: scoping a no-failure claim costs one sentence and I found no case where writing it is worse than omitting it. The risk is filler, not harm.",
+      "gaming": "'Observed 30 days; alerts would have fired.'",
+      "recommended_change": "Add 'and whether that means of detection has been seen to detect one'."
+    },
+    {
+      "id": "P-06",
+      "validity": "REFINE",
+      "expression": "SHOULD",
+      "placement": "PROFILE",
+      "strongest_objection": "Filler satisfies it and honesty is punished: a candid failure-and-detection statement is a list of what an attacker can do unnoticed, stored where agents and contractors read.",
+      "counterexample": "The proposal's example 3: the record states that an expired token would be admitted and only a new hourly audit query would show it. A reader with corpus access and bad intent now knows the weakness, the detection interval, and the single control to evade.",
+      "gaming": "'Could fail in unknown ways; monitoring in place.'",
+      "recommended_change": "SHOULD, with the restricted-location sentence in 7.1."
+    },
+    {
+      "id": "P-07",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "A recovery path can be stated that does not exist. The clause as proposed leaves 'has it been executed' to the template.",
+      "counterexample": "'Undo: restore from last night's backup.' Conformant. The backup job has been failing for weeks. The record increased the reader's confidence in a recovery that did not exist; no statement would have been less misleading.",
+      "gaming": "'Revert the commit', 'restore from backup', never exercised.",
+      "recommended_change": "Put 'and whether that path has been executed' into 7.3 (e) itself."
+    },
+    {
+      "id": "P-08",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "Disclosure of examination creates the appearance of challenge at the cost of a name. A second agent or a friendly colleague produces the same line as a real examiner, and 'no one did' has no consequence so it becomes normal.",
+      "counterexample": "An agent drafts a critical record, a second agent 'examines' it and reports no findings, the record says 'examined by automated review: no issues'. Conformant under 3.3.4 and 7.3 (g). A manager reads 'examined' and stops there.",
+      "gaming": "Rubber stamp; 'found nothing' without extent; 'no one did' as house style.",
+      "recommended_change": "Require what was examined (3.3.5), keep the disclosure, and say in 7.1 that the record does not show the reasoning was sound."
+    },
+    {
+      "id": "P-09",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "The clause's own filters, 'recorded before acceptance' and 'could change the choice', are applied by the person the dissent is against. The mechanism also raises the personal cost of objecting by making it permanent and attributable.",
+      "counterexample": "A junior engineer objects in the review call. The lead says 'noted, let us not put names in the record'. Nothing was recorded before acceptance, so 'Disagreement: none recorded' is conformant. Without the clause the objection would at least have lived in the PR thread; with it, people learned to keep objections out of writing.",
+      "gaming": "Dissent moved off the record; author rules it 'could not change the choice'; recorded and answered with 'considered and not accepted'.",
+      "recommended_change": "Trigger on the participant's request, their own words, name optional."
+    },
+    {
+      "id": "P-10",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "A per-lesson obligation is a tax on lessons. The cheapest conformant postmortem has one lesson.",
+      "counterexample": "An incident with five contributing conditions, two of them embarrassing to another team. The author records one lesson ('alert threshold too high: changed, link'). Fully conformant, three dispositions fewer to chase, and the four omitted findings are now absent from a record marked complete.",
+      "gaming": "Fewer lessons; 'no change: none needed'; pending forever; link to an unrelated change.",
+      "recommended_change": "Reword 7.5 (a) (roles, dated pending). Guide: list contributing conditions separately from lessons so the count can be compared."
+    },
+    {
+      "id": "M-11",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "Under-classification is the cheapest evasion of the whole profile and is undetectable for routine, which by design leaves no record. A MUST that cannot be seen violated should not gate the other MUSTs.",
+      "counterexample": "The data deletion of example 6 is classified significant 'because a final export is retained'. Items (f) to (h) vanish. The export restore was never run. Nothing on the page is a violation.",
+      "gaming": "Downgrade to avoid the work; criteria written so critical never applies; 'because reversible'.",
+      "recommended_change": "Critical is triggered by statements in the record itself (cannot be undone, cannot be detected); drop 'who assigns'; delete 7.2 (c) to guidance."
+    },
+    {
+      "id": "M-12",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "A lettered list of fields plus a matching template is a form. Forms are what agents and tired people complete without thought, and a complete form is read as diligence.",
+      "counterexample": "An agent is told 'add the assurance block'. It writes nine well-formed bullets with three links it did not open and an examiner inferred from the PR reviewers list. Every item of 7.3 is present. The reader has less reason to doubt the change than if the block were absent.",
+      "gaming": "Template completion by agent or by copy from the last record.",
+      "recommended_change": "Rewords above; within the profile make the 3.3.4 statement of what a person verified a MUST for a record at the critical level; 7.1 disclaimer."
+    },
+    {
+      "id": "M-13",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "A go/no-go written into the decision record after the launch, by the person who launched, is a liability document. It will be written to defend the choice.",
+      "counterexample": "After a bad launch the readiness block is filled in the next morning 'for completeness' with the evidence that existed and none of the doubts. KADS permits late recording; dates are honest; the record is still a defence, not a reconstruction.",
+      "gaming": "Post-hoc completion; claim worded so it cannot be false ('ready to the best of our knowledge').",
+      "recommended_change": "No object, as proposed. Guide sentence: when the block was written after the change took effect, say so beside the level."
+    },
+    {
+      "id": "M-14",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "Expiry enforced as a rule about presentation makes expired exceptions invisible while the departure continues, and a review condition with no date never expires at all.",
+      "counterexample": "Example 5 at month four: nobody renewed, the index no longer lists the exception, the service still does not rotate credentials. A reader checking the rotation requirement finds no exception and reports compliance.",
+      "gaming": "Expiry in 2099; 'review when replaced'; scripted quarterly renewal; one acceptor for all.",
+      "recommended_change": "Date always required; renewal carries a reason; lapsed is a visible state; align the field list with conformance.md so there is one exception object."
+    },
+    {
+      "id": "M-15",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Even as guidance, named functions in records are attribution. The guide paragraph says 'names who held each function' and should say a role is enough.",
+      "counterexample": "A two-person team: every record names the same two people in all five functions. The names add nothing and, after an incident, identify exactly who to blame.",
+      "gaming": "Same names in every function; approver listed as challenger.",
+      "recommended_change": "Guide paragraph says 'role or person' and repeats that listing more people is not evidence."
+    },
+    {
+      "id": "M-16",
+      "validity": "REFINE",
+      "expression": "SHOULD",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The back-link from incident to decision is where blameless culture ends: the decision record carries the acceptor, examiner and dissenters by name.",
+      "counterexample": "An incident record links the capacity decision whose assumption failed; that decision names the engineer who accepted the risk. In the incident review the conversation is about that engineer. The next decision record's 'Remaining risk' field reads 'none identified'.",
+      "gaming": "No link (undetectable); outcome check promised and never filled.",
+      "recommended_change": "7.5 (a) reworded and kept; 7.5 (b) to guidance; 7.5 (c) deleted."
+    },
+    {
+      "id": "M-17",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "A fixed label 'Exception to:' that makes every exception one text search away is also the cheapest reconnaissance query on the corpus.",
+      "counterexample": "none found for the decision to add no relations. For the label: a contractor agent with read access greps 'Exception to:' and returns the list of security requirements not being met, with scope and expiry.",
+      "gaming": "Exceptions written without the label so they do not appear in the search.",
+      "recommended_change": "none beyond the restricted-content sentence in 7.1"
+    },
+    {
+      "id": "M-18",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "A profile is a conformance claim, and a conformance claim is a badge. 'Assurance profile: conformant, self-reviewed' is what gets pasted into a vendor questionnaire.",
+      "counterexample": "A supplier's security questionnaire answer: 'All critical changes are recorded under the KADS Assurance profile.' True, and every one of those records says 'examined by: no one'. The buyer reads the profile name.",
+      "gaming": "Adopt the profile, classify everything routine, claim conformance.",
+      "recommended_change": "Rename (no 'assurance' in the name), add the disclaimer to 7.1, and ship the smaller set: 7.1, 7.2 (a)(b), 7.3 (a)-(e)(g)(h)(i) reworded, 7.4 (a)(c)(d), 7.5 (a)."
+    },
+    {
+      "id": "M-19",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The template is the abuse vector. Angle-bracket prompts with example answers ('the migration is ready to run', 'no one') are completions waiting to happen; the prompt 'Or \"none recorded\"' teaches the minimal answer.",
+      "counterexample": "Copy-forward: the block from the previous migration is pasted into the next with the links updated. Assumptions and remaining risk are identical in twelve consecutive records.",
+      "gaming": "Copy the previous block; accept the template's own default answers.",
+      "recommended_change": "Remove example answers and minimal-answer hints from the block; add a line 'Written: before or after the change took effect' and 'Verified by a person: which items'. Fold the incident outline into the investigation outline."
+    },
+    {
+      "id": "M-20",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "'Candidate for removal at each release review' is itself a review condition that can never fire: with one adopter there will be no observed case and no one to do the review but the author.",
+      "counterexample": "none found: marking a rule as anticipated-only costs nothing and misleads no one.",
+      "gaming": "A public incident is cited as the 'observed case' for every rule, as this proposal does, so nothing is ever marked anticipated only.",
+      "recommended_change": "Say that an observed case means observed in a corpus applying KADS; public incidents are precedent, not observation."
+    },
+    {
+      "id": "M-21",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "'Would we add this today?' asked by the maintainer who added it yesterday always returns yes. It is a ritual unless the answer needs evidence.",
+      "counterexample": "none found: the review is cheap; its failure is that it does nothing, not that it harms.",
+      "gaming": "One line in the release notes: 'all clauses reviewed; all retained'.",
+      "recommended_change": "The review record lists, per clause reviewed, the adoption signal seen since the last release or 'none'; a clause with 'none' twice running is listed as such."
+    },
+    {
+      "id": "M-22",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Counts are gamed by packing. This proposal already does it: 7.3 is counted as three MUSTs and holds nine required items; 'required fields 17' sits beside '8 MUST'.",
+      "counterexample": "none found: publishing counts is harmless; trusting them is the risk.",
+      "gaming": "One clause with nine lettered items counts as one clause and three keywords.",
+      "recommended_change": "Count lettered items and required fields, not keywords, as the headline number."
+    }
+  ],
+  "existing_rules_to_challenge": [
+    {
+      "clause_or_artifact": "Clause 3.3.4, second half (SHOULD state which content was generated and which was verified by a person)",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "It is already satisfied by a blanket line; the proposal under review carries one ('No person has verified this text'). A disclosure with no consequence becomes a footer. Keep the author of record and the automated-review MUST; replace the SHOULD with a requirement that binds only where it matters, namely where a record states that something was verified, which 3.3.5 already covers."
+    },
+    {
+      "clause_or_artifact": "Clause 3.3.6 (uninspected sources SHOULD be identified; absence does not establish inspection)",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "The research table in the proposal repeats the same 40-word inspection disclaimer in thirteen rows. That is the rule turning into boilerplate in KADS's own corpus. And because silence establishes nothing, a reader learns nothing from an unmarked citation either. Allow one collective statement per source list and keep per-citation marking for the exceptions."
+    },
+    {
+      "clause_or_artifact": "docs/conformance.md, Review outcome: exception fields (clause, scope, reason, consequence, responsible role, condition for review)",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "It has the same hole 7.4 has: a 'condition for review' with no date never fires. If 7.4 is adopted there will be two exception objects with different fields (responsible role versus who accepted; condition versus expiry). Define the exception once, with a review date, and have conformance refer to it; or leave 7.4 out and add the date here."
+    },
+    {
+      "clause_or_artifact": "Clause 3.5.4 (c) (an unexecuted procedure SHOULD say so; absence of the statement establishes nothing)",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "A voluntary statement whose absence is declared meaningless gives the reader no information in either case, and the author of an untested runbook is the person least likely to volunteer it. 3.3.5 already governs any claim that a procedure was executed. Merge (c) into 3.3.5 as an example and remove the SHOULD, or the profile's 7.3 (e) will lean on a rule that does no work."
+    },
+    {
+      "clause_or_artifact": "Clause 6.4 with conformance.md 'A self-review MAY be used if identified as such'",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "A recorded self-review of a conformance claim is the existing green checkmark: scope, date, reviewer, no unresolved items. Nothing asks what the reviewer opened. Require the record to say which documents were read against which questions, or reduce it to a dated statement that makes no claim of review."
+    },
+    {
+      "clause_or_artifact": "Clause 3.6.4 (SHOULD verify freshness mechanically; SHOULD generate or link volatile figures)",
+      "question": "would we add this today?",
+      "verdict": "RETIRE",
+      "reason": "Two SHOULDs about tooling in a standard that says tooling is not a condition of conformance; clause 1.2 then asks for a reason for each departure that nobody records. 3.2.2 already carries the obligation. Move the advice to the authoring guide and retire the number."
+    },
+    {
+      "clause_or_artifact": "templates/ directory (eleven outlines, to which the proposal adds two)",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "Every outline is a form an agent can complete without knowledge. I did not read each outline, so this is a challenge to the count, not to particular files: before adding exception.md and incident.md, show which existing outlines have been used in an adopting corpus and merge or retire the ones that have not."
+    }
+  ],
+  "dissent_to_preserve": [
+    "The level as a self-assigned label should not gate MUSTs. Until under-classification can be seen by a reader, clause 7.2 (b) fails admission question 5 and everything conditioned on it inherits the failure. I would not ship section 7 with the level as proposed even if every other rewording is accepted.",
+    "The profile should not be called 'Assurance'. The name will be quoted as a property of the adopter. This is a harm caused by the standard, not by its abusers.",
+    "Naming persons as risk acceptors, examiners and dissenters in a permanent corpus is incompatible with the blameless framing the incident outline asks for two templates later. Roles must be sufficient everywhere, and 7.5 (b) should not be normative while names are.",
+    "7.4 (c) as proposed makes the corpus less truthful at the moment an exception lapses. Presentation rules that hide a continuing departure are worse than no expiry rule.",
+    "7.3 (f) and 7.4 (d) ask for content that is a reconnaissance aid. The proposal contains no security consideration at all; a profile that records unmitigated risks should not be published without one.",
+    "The public incidents cited (Challenger, GitLab) are precedent for the problems, not evidence that these record rules work under pressure. Every clause in section 7 is 'anticipated only' in the sense of admission question 1, and the changelog should say so for each.",
+    "A disclosure rule whose honest negative answer ('no one did', 'not recorded', 'none recorded') costs nothing changes behavior only where people already care. The proposal's stated lever, that people will supply the thing instead of writing its absence, is asserted without a case."
+  ]
+}

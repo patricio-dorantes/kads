@@ -1,0 +1,404 @@
+{
+  "role": "standards",
+  "overall": "The package is mostly disciplined about borrowing ideas instead of machinery: 17 of 31 candidates are rejected or deferred, and no external dictionary, schema, or code structure is imported. Its weak point is attribution. Several source lines name a prestigious standard for an idea that the standard does not actually state (ISO 9001:2015 7.5.3.2 for obsolete-document marking, PROV for epistemic roles, ANSI Z535.6 for warning placement, Write the Docs for tool-independent formats, S1000D status names), and the RFC 2119 section 6 quotation is wrong in the one detail RFC 8174 exists to protect. Under KADS clause 3.3.1 those lines would be recorded as the basis of new clauses, so they must be corrected before any candidate is stored as a record. The five proposed Core clauses (3.1.4, 3.3.5, 3.5.4, 3.5.5, 3.1.5) and the five-MUST Procedure profile arrive with no adopter evidence, which contradicts the admission test proposed in J-031 and the 'sparingly' guidance the package itself cites in J-001. Licensing risk is low as long as KADS cites and does not reproduce: ASD-STE100 and S1000D are copyrighted (free on request or download), ATA iSpec 2200, ISO 9001, ISO/IEC/IEEE 29148, and ANSI Z535.6 are paid, and none of their text, dictionaries, or code tables may be copied into a CC BY 4.0 document. All checks below were made on 2026-10-03.",
+  "fact_checks": [
+    {
+      "topic": "ASD-STE100",
+      "claim_in_candidates": "J-002, J-003, J-005: STE has 'one word, one meaning' and approved technical names; one topic per sentence in descriptive writing; one instruction per sentence in procedures; an approved dictionary of about 900 words; 20-word procedural and 25-word descriptive sentence limits; active voice rules. No issue number or publisher is given.",
+      "verdict": "PARTLY",
+      "correction": "Confirmed by secondary sources (search-result text from asd-ste100.org 'About' page; Wikipedia): current issue is Issue 9, January 2025, described as 53 writing rules plus a dictionary of approximately 900 approved words (and roughly 1200 listed not-approved words with alternatives); 20 words maximum in procedural sentences, 25 in descriptive sentences; paragraphs limited to six sentences with one topic per paragraph; active voice required in procedures and preferred in description. 'One instruction per sentence' is correct but has an exception the candidates omit: unless two or more actions occur at the same time. 'One topic per sentence in descriptive writing' is UNVERIFIED for Issue 9: the rule I could confirm is one topic per paragraph; 'keep to one topic per sentence' was wording in earlier issues (from memory, not verified against a primary copy). 'Approved technical names' is loose: STE lets writers use 'technical names' and 'technical verbs' that fit listed categories; they are not individually approved by ASD. The candidates should state issue and publisher: ASD (AeroSpace, Security and Defence Industries Association of Europe), maintained by the STE Maintenance Group (STEMG). I could not fetch the specification text itself.",
+      "citation": "ASD (AeroSpace, Security and Defence Industries Association of Europe). ASD-STE100 Simplified Technical English: International specification for the preparation of technical documentation in a controlled language. Issue 9, January 2025. https://www.asd-ste100.org/",
+      "url_status": "restricted",
+      "licensing_note": "Copyright ASD; 'ASD-STE100' and 'Simplified Technical English' are ASD trademarks. Copies are distributed free of charge on request through the site, not openly downloadable for redistribution. KADS may cite it and paraphrase ideas; it must not reproduce the dictionary or rule text. Access note: https://www.asd-ste100.org/ returned HTTP 403 to the automated fetch tool on 2026-10-03 and HTTP 200 to a plain HTTP request with a browser user agent on the same date; content was therefore read only via search snippets and Wikipedia (https://en.wikipedia.org/wiki/Simplified_Technical_English, reachable)."
+    },
+    {
+      "topic": "S1000D",
+      "claim_in_candidates": "J-006, J-007, J-008, J-009, J-010: S1000D uses data modules, hierarchical data module codes encoding system, subsystem, info type, applicability, a CSDB, and a quality-assurance status of 'unverified, first verified, second verified'. No publisher or issue is given.",
+      "verdict": "PARTLY",
+      "correction": "Data modules, data module codes, applicability, and the CSDB are correct (s-series.org: a data module is a standalone unit of information; the CSDB is the repository for storing and managing data modules; modules are retrieved by a unique data module code). S1000D spells the term 'Common Source Data Base'. The status names are wrong: the quality-assurance element records 'unverified', 'first verification', or 'second verification', and each verification carries a type (table-top, on-object, or both). Vendor documentation (PTC Windchill S1000D help) confirms 'First Verification' and 'Second Verification' with desktop/on-product types; the literal 'unverified' element name is from memory and UNVERIFIED against the specification. The verification type (desk check versus check on the real product) is the transferable idea and the candidates do not mention it. Applicability in S1000D is a computable filtering mechanism with cross-reference tables, not a prose line. Publisher: jointly ASD, AIA (Aerospace Industries Association of America) and the ATA e-Business Program of Airlines for America, through the S1000D Council and Steering Committee. Current issue: Issue 6 (A4A sells 'Civil Aviation Business Rules for S1000D Issue 6', revision 2026.1); the Issue 6 release date (2024, from memory) is UNVERIFIED and I could not rule out a later point issue.",
+      "citation": "ASD, AIA, and ATA e-Business Program (A4A). S1000D: International specification for technical publications using a common source database. Issue 6. https://s1000d.org/ (overview also at https://s-series.org/s1000d/about-s1000d)",
+      "url_status": "reachable",
+      "licensing_note": "Page footer: 'Copyright 2026 ASD, AIA, A4A. All rights reserved. S1000D is a registered trademark of ASD.' The site says the specification is publicly available and free to download, subject to its terms of use (not read). Free download is not a license to reproduce; KADS must not copy code tables, schemas, or text, and should avoid using 'S1000D' in a way that suggests conformance."
+    },
+    {
+      "topic": "ATA iSpec 2200",
+      "claim_in_candidates": "J-011: ATA iSpec 2200 provides ATA chapter numbering shared across manufacturers so any mechanic finds the same system in the same chapter.",
+      "verdict": "CORRECT",
+      "correction": "Accurate as far as it goes. Publisher is Airlines for America (A4A, formerly the Air Transport Association of America). The publisher describes it as a global aviation industry standard for the content, structure, and electronic exchange of aircraft engineering and maintenance information that includes the industry-wide standard for numbering aircraft systems. The numbering scheme predates iSpec 2200: it originated in ATA Spec 100 (1956), which was combined with Spec 2100 to form iSpec 2200 (historical detail from search results, not from the publisher page). Latest revision seen: 2025.1; whether a 2026.1 revision exists is UNVERIFIED.",
+      "citation": "Airlines for America (A4A). iSpec 2200: Information Standards for Aviation Maintenance. Revision 2025.1. https://publications.airlines.org/products/ispec-2200-information-standards-for-aviation-maintenance-revision-2025-1",
+      "url_status": "reachable",
+      "licensing_note": "Paid, copyrighted specification: listed at USD 2,815.00 on 2026-10-03. KADS can name it as an example; it cannot reproduce the chapter table, and nobody reviewing KADS can be expected to check a claim against the text."
+    },
+    {
+      "topic": "DITA",
+      "claim_in_candidates": "J-006, J-009, J-012, J-013, J-014: DITA has topics; maps; information types concept, task, reference; a short description element; conref and keyref as reuse by transclusion.",
+      "verdict": "PARTLY",
+      "correction": "DITA is an OASIS Standard. The version I could confirm as an approved OASIS Standard is DITA 1.3 (OASIS Standard incorporating Approved Errata 02, 19 June 2018). DITA 2.0 exists as OASIS DITA TC work (working drafts dated August 2024 were found; a 2.0 site is at https://dita-lang.org/2.0/); whether 2.0 had been approved as an OASIS Standard by 2026-10-03 is UNVERIFIED (https://docs.oasis-open.org/dita/dita/v2.0/dita-v2.0.html returned 404). Topics, maps, concept/task/reference, and the shortdesc element are correct for 1.3 (1.3 also has glossary entry and troubleshooting topic types; from memory, 2.0 moves concept/task/reference out of the base into a separate Technical Content package). J-013 is imprecise: conref is transclusion; keyref is indirect key-based addressing for links and variable text; transclusion by key is conkeyref.",
+      "citation": "OASIS. Darwin Information Typing Architecture (DITA) Version 1.3 Part 0: Overview Plus Errata 02. Eberlein, K. J., Anderson, R. D. (eds.). OASIS Standard incorporating Approved Errata 02, 19 June 2018. https://docs.oasis-open.org/dita/dita/v1.3/dita-v1.3-part0-overview.html",
+      "url_status": "reachable",
+      "licensing_note": "OASIS specifications are free to read and are published under the OASIS IPR policy with OASIS copyright; citing and naming element types is unproblematic. No licensing concern as long as KADS does not copy specification text or claim DITA conformance."
+    },
+    {
+      "topic": "Diataxis",
+      "claim_in_candidates": "J-012: Diataxis types are tutorial, how-to, reference, explanation.",
+      "verdict": "CORRECT",
+      "correction": "The site says: 'Diataxis identifies four distinct needs, and four corresponding forms of documentation - tutorials, how-to guides, technical reference and explanation.' The author (Daniele Procida) is not named on the landing page fetched; the attribution in docs/sources.md is correct from prior knowledge. Already cited in docs/sources.md; no new row is needed. The candidate spells the name with an accented a; KADS sources.md does too.",
+      "citation": "Procida, D. Diataxis: a systematic approach to technical documentation authoring. https://diataxis.fr/",
+      "url_status": "reachable",
+      "licensing_note": "Site content is published under a Creative Commons license (CC BY-SA 4.0, from memory; UNVERIFIED on this fetch). If KADS reproduces the Diataxis four-quadrant table rather than referencing it, share-alike terms could conflict with KADS CC BY 4.0. Reference it; do not reproduce it."
+    },
+    {
+      "topic": "RFC 2119 section 6",
+      "claim_in_candidates": "J-001: RFC 2119 section 6 says imperatives 'MUST be used with care and sparingly'.",
+      "verdict": "INCORRECT",
+      "correction": "Misquoted. The exact text of section 6 is: 'Imperatives of the type defined in this memo must be used with care and sparingly.  In particular, they MUST only be used where it is actually required for interoperation or to limit behavior which has potential for causing harm (e.g., limiting retransmisssions)  For example, they must not be used to try to impose a particular method on implementors where the method is not required for interoperability.' The 'must' in 'must be used with care and sparingly' is lowercase; the uppercase MUST is in the next sentence and attaches to a specific test (interoperation or harm). Because KADS clause 1.2 adopts RFC 8174 (only uppercase is normative), capitalizing the quoted word changes its normative force. ('retransmisssions' and the missing full stop are in the original.)",
+      "citation": "Bradner, S. Key words for use in RFCs to Indicate Requirement Levels. BCP 14, RFC 2119, March 1997, section 6. https://www.rfc-editor.org/rfc/rfc2119",
+      "url_status": "reachable",
+      "licensing_note": "IETF Trust; short quotation with citation is unproblematic. Already in docs/sources.md."
+    },
+    {
+      "topic": "KADS keyword counts (internal claim)",
+      "claim_in_candidates": "J-001: the spec has 64 MUST, 9 MUST NOT, 15 SHOULD in 43 clauses.",
+      "verdict": "PARTLY",
+      "correction": "Counted in docs/specification.md on 2026-10-03: 73 occurrences of MUST of which 9 are MUST NOT (so 64 MUST), 16 SHOULD of which 1 is SHOULD NOT, 43 clause identifiers. The numbers match only if the keyword list in clause 1.2 is counted as usage; excluding that definitional line the figures are 63 MUST, 8 MUST NOT, 14 SHOULD, 0 SHOULD NOT. The single SHOULD NOT is not reported at all.",
+      "citation": "KADS specification 0.5.0, docs/specification.md (this repository).",
+      "url_status": "not fetched",
+      "licensing_note": "None."
+    },
+    {
+      "topic": "W3C PROV-DM",
+      "claim_in_candidates": "J-015 cites 'W3C PROV (derivation)' as a source for epistemic roles surviving restatement; J-017 names the entity, activity, agent model.",
+      "verdict": "PARTLY",
+      "correction": "J-017 is correct: the core types are Entity ('a physical, digital, conceptual, or other kind of thing with some fixed aspects; entities may be real or imaginary'), Activity ('something that occurs over a period of time and acts upon or with entities...'), and Agent ('something that bears some form of responsibility for an activity taking place, for the existence of an entity, or for another agent's activity'). J-015 is a misattribution: PROV derivation (wasDerivedFrom and its subtypes wasRevisionOf, wasQuotedFrom, hadPrimarySource) records that one entity came from another; PROV has no notion of observation, inference, hypothesis, or conclusion and says nothing about a statement's epistemic role being preserved. Side finding in registry/relationships.md: mapping KADS 'supersedes' to 'wasInvalidatedBy' is a type mismatch, because in PROV invalidation relates an entity to an activity, not a replacement entity to a replaced one; 'wasRevisionOf' is the defensible counterpart.",
+      "citation": "Moreau, L., Missier, P. (eds.). PROV-DM: The PROV Data Model. W3C Recommendation, 30 April 2013. https://www.w3.org/TR/prov-dm/",
+      "url_status": "reachable",
+      "licensing_note": "W3C Document License; free to read and cite. Already in docs/sources.md."
+    },
+    {
+      "topic": "ISO 9001 clause 7.5.3.2",
+      "claim_in_candidates": "J-027: ISO 9001:2015 7.5.3.2 says 'prevent unintended use of obsolete documented information; identify it if retained'. J-010 and J-029: ISO 9001 7.5 covers review and approval.",
+      "verdict": "INCORRECT",
+      "correction": "The quoted idea is the wording of the previous edition: ISO 9001:2008 clause 4.2.3 g) required a procedure 'to prevent the unintended use of obsolete documents, and to apply suitable identification to them if they are retained for any purpose' (confirmed by search results quoting 4.2.3 g). ISO 9001:2015 7.5.3.2 lists four control activities: a) distribution, access, retrieval and use; b) storage and preservation, including preservation of legibility; c) control of changes (e.g. version control); d) retention and disposition; it adds that documented information retained as evidence of conformity shall be protected from unintended alterations. The word 'obsolete' is not in that list (activity list confirmed by a search result summarizing a copy of the standard; the absence of 'obsolete' is from memory because the PDF fetch timed out, so treat the negative as PARTLY verified). Clause 7.5.3.1 requires documented information to be available and suitable for use and adequately protected 'e.g. from loss of confidentiality, improper use, or loss of integrity'. Accurate paraphrase: 2015 requires control of changes, retention, and disposition and protection from improper use; explicit marking of retained obsolete documents is a 2008 requirement that auditors still read into 7.5.3. Review and approval is clause 7.5.2 c) ('review and approval for suitability and adequacy'), not 7.5 generally, and it does not require reviewer independence (J-029). Also: ISO 9001:2026 was published on 16 September 2026 (DNV and BSI announcements), so the 2015 edition is no longer current; clause numbering and wording in the 2026 edition are UNVERIFIED.",
+      "citation": "ISO 9001:2008. Quality management systems - Requirements. Clause 4.2.3 g) (withdrawn edition; source of the obsolete-document wording). ISO 9001:2015. Quality management systems - Requirements. Clauses 7.5.2, 7.5.3.1, 7.5.3.2. https://www.iso.org/standard/62085.html . Superseded by ISO 9001:2026 (published 2026-09-16; https://www.dnv.com/news/2026/new-edition-of-the-quality-management-system-standard-iso-9001-released/ reachable).",
+      "url_status": "not fetched",
+      "licensing_note": "Paid ISO standard; iso.org pages return 403 to automated requests (per docs/sources.md and a 403 on a sibling ISO page today). Clause text cannot be quoted at length. A Core MUST should not rest on a clause that reviewers cannot read and that does not say what is claimed."
+    },
+    {
+      "topic": "Competency questions",
+      "claim_in_candidates": "J-023: competency questions come from ontology engineering (Gruninger and Fox).",
+      "verdict": "CORRECT",
+      "correction": "Attribution is right; the candidate gives no year or title. The University of Toronto Enterprise Integration Laboratory page cites the paper and says the methodology's unique contribution is 'the introduction of competency questions as a basis of defining the scope of an ontology'. In the original, competency questions are queries the ontology must be able to answer, first informal and then formalized in first-order logic to evaluate the ontology. The candidate's use ('name the reader question a new term answers') is a loose analogy, not the technique.",
+      "citation": "Gruninger, M., Fox, M. S. Methodology for the Design and Evaluation of Ontologies. Workshop on Basic Ontological Issues in Knowledge Sharing, IJCAI-95, Montreal, 1995. Listed at https://eil.mie.utoronto.ca/theory/enterprise-modelling/entmethod",
+      "url_status": "reachable",
+      "licensing_note": "Workshop paper with no DOI; cite bibliographically. No licensing concern."
+    },
+    {
+      "topic": "INCOSE Guide to Writing Requirements / ISO/IEC/IEEE 29148 'singular'",
+      "claim_in_candidates": "J-026: ISO/IEC/IEEE 29148 and INCOSE list requirement characteristics including singular, unambiguous, verifiable.",
+      "verdict": "UNVERIFIED",
+      "correction": "Consistent with what I know and with secondary sources, but neither primary text could be opened (ISO page 403; INCOSE PDF 403). From memory: ISO/IEC/IEEE 29148:2018 clause 5.2.5 lists characteristics of individual requirements including 'Singular: the requirement states a single capability, characteristic, constraint or quality factor'; the INCOSE Guide to Writing Requirements v4 (INCOSE-TP-2010-006-04, 2023) lists 'C5 - Singular' among characteristics C1 to C14 (C1-C9 for individual statements). Secondary confirmation: a search result states that 29148 distinguishes characteristics of individual requirements 'such as unambiguity and singularity' from set characteristics, and that INCOSE defines characteristics C1-C14. Clause number and exact wording remain UNVERIFIED. A newer 29148 edition was at DIS stage per a Standards Council of Canada listing; its publication status is UNVERIFIED.",
+      "citation": "ISO/IEC/IEEE 29148:2018. Systems and software engineering - Life cycle processes - Requirements engineering. Clause 5.2.5. https://www.iso.org/standard/72089.html . INCOSE Requirements Working Group. Guide to Writing Requirements. INCOSE-TP-2010-006-04, version 4, 2023. https://www.incose.org/",
+      "url_status": "restricted",
+      "licensing_note": "29148 is a paid ISO/IEC/IEEE standard (already in docs/sources.md for another purpose). The INCOSE guide is free to INCOSE members and sold to others. Cite by clause; do not reproduce the characteristic definitions as a list."
+    },
+    {
+      "topic": "ANSI Z535.6",
+      "claim_in_candidates": "J-004: 'safety-critical documentation practice (warnings and cautions precede the step they govern; ANSI Z535.6-style hazard statements)'.",
+      "verdict": "PARTLY",
+      "correction": "Scope is right: the current edition is ANSI Z535.6-2023, 'Product Safety Information in Product Manuals, Instructions, and Other Collateral Materials' (ANSI blog title via search; NEMA is the secretariat and publisher, from memory). It defines four kinds of message: supplemental directives, grouped safety messages, section safety messages, and embedded safety messages (the last 'apply to a specific part of a section, a paragraph, a particular procedure or part of a procedure'). Two inaccuracies: (1) Z535 calls these 'safety messages' with signal words DANGER, WARNING, CAUTION, NOTICE; 'hazard statement' is the term of the UN GHS chemical labeling system, not Z535. (2) A rule that warnings and cautions precede the step is NOT confirmed as a Z535.6 requirement; I found no source attributing it to Z535.6, and embedded messages are described as integrated into the procedure. That placement rule belongs to military and aerospace technical-manual practice (for example MIL-STD-38784 and S1000D/ATA conventions; from memory, UNVERIFIED today) and STE has a separate section on writing safety instructions. Attribute the placement rule to technical-manual practice generally, not to Z535.6.",
+      "citation": "ANSI/NEMA Z535.6-2023. Product Safety Information in Product Manuals, Instructions, and Other Collateral Materials. National Electrical Manufacturers Association, 2023. Overview: https://blog.ansi.org/ansi-z535-6-2023-product-safety-information",
+      "url_status": "restricted",
+      "licensing_note": "Paid ANSI/NEMA standard; the ANSI blog page returned 403 to the automated fetch tool on 2026-10-03 (scope read from search snippets). US-centric; ISO 3864 and IEC/IEEE 82079-1 are the international counterparts (not checked). A KADS profile that echoes Z535 vocabulary risks being read as a safety standard; it needs an explicit disclaimer."
+    },
+    {
+      "topic": "Docs as code",
+      "claim_in_candidates": "J-020: 'docs-as-code practice (Write the Docs)' as the source for tool-independent sources under version control.",
+      "verdict": "PARTLY",
+      "correction": "Write the Docs hosts a guide (credited to Eric Holscher and the Write the Docs community) that defines docs as code as 'a philosophy that you should be writing documentation with the same tools as code' and lists issue trackers, version control (Git), plain text markup (Markdown, reStructuredText, Asciidoc), code reviews, and automated tests. It does not claim to have coined the term. The guide is about sharing the developers' toolchain; it is not a statement about avoiding proprietary formats or guaranteeing readability without a tool. The proposed clause 3.5.4 is a format-openness rule that goes beyond the cited source and drops most of what the source actually says (reviews, tests, issue tracking).",
+      "citation": "Holscher, E. and the Write the Docs community. Docs as Code. Write the Docs guide. https://www.writethedocs.org/guide/docs-as-code/",
+      "url_status": "reachable",
+      "licensing_note": "Community website; license of the guide text not checked. Cite, do not copy."
+    }
+  ],
+  "candidates": [
+    {
+      "id": "J-001",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "BCP 14 is already adopted in clause 1.2 and a restraint rule costs adopters nothing because it binds only KADS contributors.",
+      "argument_against": "The proposal misquotes section 6 (lowercase 'must', see fact check) and then replaces the RFC's operational test (required for interoperation, or to limit behavior with potential for harm) with a home-made paraphrase. A standard with 64 MUST in 43 clauses that adds a restraint rule but exempts the existing text from it is asserting restraint, not practicing it.",
+      "failure_mode": "The new rule is cited to block future MUSTs while this same package adds eight or more new MUSTs (3.3.5, 3.1.5, 7.2-7.6) that were never tested against it.",
+      "recommended_change": "Quote RFC 2119 section 6 exactly and reference it instead of paraphrasing; state the KADS analogue of 'interoperation or harm' in one sentence (a reader would act on a wrong or unverifiable statement); require every MUST proposed in this package to carry that justification; report keyword counts excluding the definitional list in 1.2."
+    },
+    {
+      "id": "J-002",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "Term consistency is checkable by reading, needs no dictionary, and the proposal explicitly declines STE's word list.",
+      "argument_against": "'One word, one meaning' in STE is enforced by a closed dictionary; without one it is the general terminology principle (one term per concept and one concept per term, as in ISO 704 terminology work; not checked today), so STE is the wrong single source. A Core SHOULD on every synonym also triggers clause 1.2's duty to record a reason for each departure, and 3.1.3 already permits local terms and translations when the mapping is kept.",
+      "failure_mode": "Corpora that quote vendor, legal, or upstream vocabulary accumulate unrecorded SHOULD departures and reviewers argue about ordinary stylistic variation.",
+      "recommended_change": "Do not add clause 3.1.4. Add one sentence to 3.1.3 limited to terms the corpus defines or that carry a material distinction ('SHOULD keep one term per defined concept within a scope and state the mapping where another term must appear'). Cite terminology practice generally; mention STE only as an example of the strict form, with issue and publisher."
+    },
+    {
+      "id": "J-003",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Sentence-level rules for all prose are STE baggage; limiting the idea to procedure steps and individually cited normative statements is the transferable part.",
+      "argument_against": "The rejection is inconsistent with J-026: the place where one sentence per assertion matters most is the KADS specification itself, where clause 1.4 makes each paragraph a citation target and paragraphs hold three or four MUSTs. Also 'one topic per sentence' is not confirmed as a current STE rule (one topic per paragraph is), and STE allows two simultaneous actions in one instruction.",
+      "failure_mode": "The guidance is published for adopters while KADS's own clauses keep violating it, and the STE attribution is recorded wrongly in a rejected-candidate record.",
+      "recommended_change": "Keep as guidance, correct the STE attribution and its exception, and add a CONTRIBUTING rule that each new normative sentence states one requirement (links to J-026)."
+    },
+    {
+      "id": "J-004",
+      "stance": "MODIFY",
+      "layer": "PROFILE",
+      "argument_for": "Condition-before-action and consequence-before-step are domain-independent, and an optional profile keeps them out of Core.",
+      "argument_against": "This is a five-clause rewrite of STE section 5 and military/aerospace technical-manual conventions with a misattributed safety source: Z535.6 is not confirmed to require warnings before the step and does not use the term 'hazard statement'. 7.2 imports STE's one-instruction rule without its simultaneous-actions exception, 7.5 overlaps 3.5.2's observable completion condition, and no adopter has asked for the profile, which fails the J-031 test.",
+      "failure_mode": "A runbook team claims the 'Procedure profile' and treats it as a safety-documentation standard, or a regulated adopter finds it conflicts with the Z535.6 or IEC/IEEE 82079-1 rules it is legally bound to.",
+      "recommended_change": "Shrink to three requirements (7.3 condition first; 7.4 consequence and recovery first; 7.6 execution status) with 7.2 and 7.5 as SHOULD, add the simultaneous-actions exception, add a statement that the profile does not replace product-safety or regulated-domain standards and that those take precedence, and replace the Z535.6 attribution with 'technical-manual practice' unless a primary citation is produced."
+    },
+    {
+      "id": "J-005",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Rejection is right: the dictionary is aerospace-maintenance vocabulary, copyrighted by ASD and not redistributable, and fixed word counts are tuned for non-native readers of maintenance English.",
+      "argument_against": "No credible counterargument for adoption: licensing forbids reproducing the dictionary, the limits do not transfer to research reports or decision records, and KADS has no enforcement tooling. The only objection is to the proposed informative note: 'short, active sentences help' with no source is an unsupported claim under 3.3.1.",
+      "failure_mode": "An informative note quoting 20 and 25 words is read as a KADS recommendation and the numbers leak into reviews.",
+      "recommended_change": "Record the rejection with the correct citation (Issue 9, January 2025, ASD). If a note is kept, say only that a project may adopt STE or a plain-language standard as a local rule under clause 1.3, and give no numbers."
+    },
+    {
+      "id": "J-006",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "KADS already has the concept (knowledge object, canonical home) without the container; data modules and DITA topics need a CSDB or map tooling to be useful.",
+      "argument_against": "The rejection is not fully consistent with J-014, which asks every section to survive out-of-context reading; that is modular self-containment by another name, so the package adopts the principle while claiming to reject it. 'Already at the right strength' is asserted with no adopter evidence either way.",
+      "failure_mode": "Readers familiar with S1000D or DITA assume a KADS knowledge object is a data module or topic and expect separate files and typed metadata.",
+      "recommended_change": "Keep the rejection; in the record state the correspondence explicitly as non-equivalence (a knowledge object is not a file-level module) and cross-reference J-014 as the adopted, weaker form."
+    },
+    {
+      "id": "J-007",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Data module codes work because a product breakdown is fixed by the manufacturer; KADS corpora have no stable breakdown, and the nomenclature already cites the rule against encoding location.",
+      "argument_against": "The stated reason overreaches: KADS IDs are already meaning-bearing, since the tracked-record prefixes C, D, J, T, E, Q encode type, and a record's type can be reconsidered. The honest principle is 'encode only attributes that cannot change for the life of the record', not 'no meaning in identifiers'.",
+      "failure_mode": "A later reviewer cites this rejection to argue the type prefixes should go, or an adopter is told its component-prefixed local IDs are nonconformant when 4.3 allows them.",
+      "recommended_change": "Reword the reason to the immutable-attribute principle and note the type prefix as the deliberate exception. Describe the data module code accurately (model identification, system breakdown, disassembly, information code, item location) or leave the detail out."
+    },
+    {
+      "id": "J-008",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "A visible scope line in the template is a cheap way to satisfy 3.1.1 and needs no clause.",
+      "argument_against": "S1000D applicability is a computable filtering mechanism with cross-reference tables; calling a free-text line 'applicability' borrows the name without the thing, and KADS already has a defined term for this, Scope. Introducing 'Applies to' beside 'Scope' creates the synonym problem J-002 is trying to prevent.",
+      "failure_mode": "Templates show 'Applies to:' while the specification says 'scope', and authors fill in both differently.",
+      "recommended_change": "Add the line to the template but label it with the existing term ('Scope:'), or state once that 'Applies to' is the display label for scope. Do not list S1000D as the source of the guidance; mention it only in the rejected-machinery record."
+    },
+    {
+      "id": "J-009",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Canonical home (3.2.1), derived view, and 3.6.2 already separate maintained source from publication; a CSDB or DITA map is the tooling form of the same idea.",
+      "argument_against": "No credible counterargument against rejecting a new rule. The objection is to 'record the mapping': placing S1000D and DITA in docs/sources.md under a page headed works KADS 'draws on or aligns with' would imply alignment with specifications KADS has deliberately not followed, one of which is a registered trademark.",
+      "failure_mode": "An adopter reads the sources page and describes its corpus as S1000D- or DITA-aligned.",
+      "recommended_change": "Record the correspondence in the rejected-candidate record or a clearly labeled 'considered, not adopted' list, not as a row in the sources table without that label. Spell the term as S1000D does: Common Source Data Base."
+    },
+    {
+      "id": "J-010",
+      "stance": "MODIFY",
+      "layer": "PROFILE",
+      "argument_for": "Separating 'was this checked, how, and against what' from lifecycle status is a real gap, and placing it in the procedure profile limits the cost.",
+      "argument_against": "The S1000D status names are misreported (first verification and second verification, each with a type of table-top or on-object), and the useful concept is exactly the part omitted: how the check was done, at a desk or on the real system. ISO 9001 review and approval is clause 7.5.2 c) and concerns suitability and adequacy, not technical verification, so it does not support this candidate.",
+      "failure_mode": "7.6 records 'executed: yes, 2026-09' and readers cannot tell a dry read-through from a run on the real environment; or adopters copy a three-state field that means something else in S1000D.",
+      "recommended_change": "In 7.6 require the kind of check (read-through, executed in a test environment, executed on the target) rather than a yes or no; do not import the S1000D state names; cite S1000D only for the desk versus on-object distinction and ISO 9001 not at all."
+    },
+    {
+      "id": "J-011",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "ATA numbering works because every aircraft has the same systems; KADS corpora share no subject taxonomy, clause 1.1 excludes layout, and the specification is a USD 2,815 paid document that reviewers cannot consult.",
+      "argument_against": "No credible counterargument for adoption: the principle does not survive outside a domain with a shared product breakdown. The only weakness is the reopening trigger, 'several adopters asking', which is not a testable condition, and the evidence path already acts as a small shared navigation convention that the record should acknowledge.",
+      "failure_mode": "The vague trigger lets the question be reopened or ignored arbitrarily.",
+      "recommended_change": "State the trigger concretely (for example two independent adopters documenting a cross-project navigation failure) and note that the numbering originated in ATA Spec 100 and is now maintained by Airlines for America in iSpec 2200."
+    },
+    {
+      "id": "J-012",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Distinguishing what a statement is from what kind of page carries it is useful and keeps type metadata off ordinary documents.",
+      "argument_against": "The table reproduces Diataxis (already cited) on one axis and invents a second epistemic taxonomy on the other, which foundations.md says KADS does not add ('without adding a universal ontology'). 'Procedure knowledge' is not an epistemic kind, DITA information typing covers only the document axis, and the package would then carry three different role lists (3.3.2, J-012, J-015).",
+      "failure_mode": "The informative table becomes the de facto type system that J-016 rejects, and authors start labeling statements.",
+      "recommended_change": "Reference Diataxis for the document axis instead of restating it; use exactly the role list already in 3.3.2 plus whatever J-015 finally names, in one place; drop 'procedure knowledge'; keep the sentence that a document is a view carrying several kinds of statement."
+    },
+    {
+      "id": "J-013",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Transclusion needs a processor and breaks plain reading; link with scope qualifier is the tool-free equivalent.",
+      "argument_against": "The rejection is worded as if KADS opposes transclusion, but 3.6.4 already tells projects to 'generate or link such a figure in preference to copying it by hand', which is transclusion where tooling exists. The DITA attribution is imprecise: conref transcludes; keyref is indirect addressing; conkeyref is the keyed transclusion.",
+      "failure_mode": "A project using includes or generated snippets is told its practice was 'rejected by KADS'.",
+      "recommended_change": "Record as 'not required; permitted and governed by 3.6.2 and 3.6.4' and correct the DITA terms."
+    },
+    {
+      "id": "J-014",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "The DITA short description is an accurate precedent, and guidance-only placement adds no conformance burden.",
+      "argument_against": "'Information-retrieval and AI-chunking practice' is not a citable source, so the guidance would rest on an unsupported basis under 3.3.1. 'Restate the referent a section depends on' pulls against 3.2.1: repeated context is how independently maintained copies start, and the opening-sentence advice largely repeats 3.1.2 and overlaps J-027.",
+      "failure_mode": "Authors copy scope and definitions into every section and the copies drift from the canonical home.",
+      "recommended_change": "Keep the section short: name the subject and scope in the opening and in headings, and restate a referent by name with a link, not by copying its content. Cite DITA shortdesc as the precedent and present the retrieval argument as rationale, not as a source."
+    },
+    {
+      "id": "J-015",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "Status laundering through summaries is a real failure and belongs in Core if anywhere, because it concerns every derived view.",
+      "argument_against": "The cited source is wrong: PROV derivation says nothing about epistemic roles, and 'scientific method' and 'intelligence-analysis practice' are not citations. The behavior is already required by 3.2.2 (summaries preserve material qualifications), 3.3.2, and 5.6, so a new MUST clause plus five new defined terms is a typed ontology entering by the terms section while J-016 rejects exactly that; a new MUST is also a breaking change under 6.2.",
+      "failure_mode": "Reviewers must classify every summarized sentence into one of five defined roles to assess conformance, and disputes move from 'is this misleading' to 'is this an inference or a conclusion'.",
+      "recommended_change": "No new clause and no new terms. Extend 3.2.2 with one sentence: a summary or other derived view MUST NOT present as established what its source presents as inferred, assumed, or provisional. Cite Toulmin (already in sources) for the claim, grounds, qualifier distinction and remove PROV from the source line; if an intelligence-analysis source is wanted, cite a specific document (for example ICD 203, not checked today)."
+    },
+    {
+      "id": "J-016",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Per-statement labels and more record types are the heaviest possible form of the idea, and 'fact' as a type does hide its basis.",
+      "argument_against": "No credible counterargument for adoption. The rejection is undermined elsewhere in the package: J-015 adds five defined terms and J-012 adds a table of eight kinds, and clause 3.3.1 itself says 'material factual claims', so 'fact is rejected' needs to be stated as 'no fact type', not as a ban on the word.",
+      "failure_mode": "The rejection is recorded while the same taxonomy is admitted through J-012 and J-015.",
+      "recommended_change": "Keep the rejection and make J-012 and J-015 consistent with it (no new defined terms, one role list)."
+    },
+    {
+      "id": "J-017",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Requiring entity, activity, agent records would recreate PROV inside KADS; a mapping lets tools use PROV itself when needed.",
+      "argument_against": "No credible counterargument for making PROV mandatory. But 'keep the informative mapping' keeps an error: registry/relationships.md maps 'supersedes' to 'wasInvalidatedBy', which in PROV-DM relates an entity to an activity, not to a replacing entity, and 'evidenced-by' to 'wasGeneratedBy together with used' is a strained fit.",
+      "failure_mode": "A future interchange tool implements the recorded correspondence and emits invalid PROV.",
+      "recommended_change": "Keep the rejection; correct the correspondence to 'wasRevisionOf' for supersedes (noting invalidation as a separate entity-activity relation), mark the evidenced-by mapping as approximate, and optionally note that author of record corresponds to wasAttributedTo."
+    },
+    {
+      "id": "J-018",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Inverses and near-synonyms add names without adding reader questions, and the maintainer has already fixed supersedes as the single supersession relation.",
+      "argument_against": "Two of the stated reasons are loose: 'explains' is not an overlap of supported-by (explaining is not supporting), and 'references' as related-to turns the weakest relation into a catch-all. If 'refines' is ever admitted it should be mapped to an existing external relation (PROV specializationOf) instead of defined afresh.",
+      "failure_mode": "Projects that need 'explains' or 'refines' add local extensions with incompatible meanings because the rejection gave no guidance on how to express them.",
+      "recommended_change": "Keep all rejections and the deferral; in the record, say how each rejected meaning is expressed today (ordinary link, related-to with stated relevance, partial supersedes) and name specializationOf as the reference point for any future 'refines'."
+    },
+    {
+      "id": "J-019",
+      "stance": "ADOPT",
+      "layer": "GUIDANCE",
+      "argument_for": "Already in the nomenclature; applying it to this evaluation is consistent self-adoption.",
+      "argument_against": "Recording the candidates as written would preserve the factual errors in their source lines (ISO 9001 clause, RFC quotation, S1000D status names, Z535.6, PROV) inside the KADS corpus, where 3.3.1 and 3.3.3 apply. The 'rejected' status also exists only in the tracked-record profile, so this is not covered for corpora that do not use that profile.",
+      "failure_mode": "Rejected records become a citable source of wrong statements about external standards.",
+      "recommended_change": "Correct every source line before the candidates are stored, and mark claims that could not be checked against a primary text as unverified, with the access date."
+    },
+    {
+      "id": "J-020",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Knowledge that cannot be read or diffed without one vendor's tool is a real preservation risk, and the second sentence gives a fallback.",
+      "argument_against": "The clause is not what the cited source says: Write the Docs defines docs as code as using the same tools as code (version control, plain text markup, review, tests), not format openness. As Core text it collides with clause 1.1 ('does not prescribe ... tooling') and 3.5.3 ('does not require a particular format'), 'proprietary tooling' is undefined (a .docx is an ISO/IEC 29500 format; Git is a tool), and it does not fit hardware, legal, or regulated corpora that live in document-management systems.",
+      "failure_mode": "Every adopter using a wiki or office suite must record a standing SHOULD departure, and reviewers argue over what counts as proprietary.",
+      "recommended_change": "Move to the adoption guide as advice with the Write the Docs citation described accurately. If any Core text is kept, keep only the second sentence and attach it to 3.5.1 or 3.6.2: where a maintained source cannot be read without a specific tool, the corpus SHOULD say where it lives and how a reader obtains its content."
+    },
+    {
+      "id": "J-021",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "Orphans are a common, low-controversy failure and a SHOULD leaves room for exceptions.",
+      "argument_against": "No source is cited beyond 'information architecture', so the basis is thinner than for other candidates. Link-reachability is only one route: tracked-record IDs (4.3), search, and generated indexes also make material findable, and whole-corpus reachability cannot be confirmed by reading alone, which sits badly with 6.1 ('reading and manual review are sufficient'); evidence stores and archives are legitimately unlinked page by page.",
+      "failure_mode": "Conformance review requires a crawler in practice, or large evidence directories are declared nonconformant.",
+      "recommended_change": "Do not add clause 3.5.5. Add one sentence to 3.1.1 or 3.5.1: maintained documents SHOULD be discoverable from the entry point by links, an index, or a documented lookup route; preserved evidence and archives may be reached through their index or manifest."
+    },
+    {
+      "id": "J-022",
+      "stance": "DEFER",
+      "layer": "NONE",
+      "argument_for": "0.2.0 removed the schema and linter deliberately; nothing has changed, and ADR-001 already records the deferral.",
+      "argument_against": "No credible counterargument for adopting now. One caution on the deferred item: a KADS-specific 'mapping contract' would itself recreate existing standards; if the need arises the mapping should target PROV-O, SKOS, or JSON-LD rather than a new KADS schema.",
+      "failure_mode": "When the trigger arrives, a bespoke KADS graph format is designed instead of a mapping to an existing one.",
+      "recommended_change": "Add to the deferral record that any future machine-readable form is to be a mapping onto existing W3C vocabularies, not a new schema."
+    },
+    {
+      "id": "J-023",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Requiring a named reader question before a type or relation is added is a cheap brake on vocabulary growth.",
+      "argument_against": "The term is borrowed loosely: in Gruninger and Fox, competency questions are queries the ontology must answer, formalized in first-order logic and used to evaluate the ontology, not a one-line justification for a new label. It also creates a second admission test beside J-031 and the restraint rule in J-001, three overlapping gates for one decision.",
+      "failure_mode": "Contributors familiar with ontology engineering expect formal competency questions and evaluation; others satisfy the rule with a rhetorical question.",
+      "recommended_change": "Merge into the J-031 admission test as its vocabulary-specific case, phrase it as 'the reader question the existing vocabulary cannot answer', and cite Gruninger and Fox 1995 as the inspiration with the words 'adapted informally'."
+    },
+    {
+      "id": "J-024",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Pinned citations are covered by 3.3.1, 3.5.1, 6.2, and 6.3; adding configuration-management vocabulary would import a process KADS does not have.",
+      "argument_against": "'Covered' overstates it and the term is used inaccurately: in configuration management a baseline is a formally agreed set of items at a point in time, not a pinned reference. KADS covers pinned references; it has no corpus-level baseline for adopters (only release tags for KADS itself), and the record should say that this is intentional, not claim equivalence. No source standard is named (ISO 10007 or IEEE 828 would be the citations; not checked).",
+      "failure_mode": "An adopter in a regulated setting reads 'baselines: covered' and assumes KADS conformance gives it configuration baselines.",
+      "recommended_change": "Record as 'pinned references covered; baselines not adopted', with a named source for the term or none."
+    },
+    {
+      "id": "J-025",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "5.2, 5.4, and 5.7 already protect negative results and expose post hoc criteria without demanding a registry.",
+      "argument_against": "'Covered' is again too strong: preregistration means fixing and depositing criteria before observation; 5.4 only requires disclosure when a criterion was chosen afterwards, which is a weaker and different control. The protections also sit only in the research-report profile, so a corpus not using that profile has none of them.",
+      "failure_mode": "KADS is described as implementing preregistration, which a research reviewer would reject.",
+      "recommended_change": "Record as 'disclosure of post hoc criteria adopted (5.4); preregistration itself not adopted', and name no external standard unless one is cited."
+    },
+    {
+      "id": "J-026",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "A full split of 43 clauses now would churn identifiers that clause 1.4 promises are stable.",
+      "argument_against": "Deferral makes the debt grow: this same package proposes new multi-requirement clauses (3.1.5 and 3.3.5 each carry two obligations, 7.4 and 7.6 several), and clause 1.4 and 6.4 already make clause IDs the unit of exception and review, so the ambiguity exists today regardless of adopter complaints. Singularity can be applied to new text without renumbering anything, and sentence-level citation of existing clauses can be allowed by a suffix convention without changing a number.",
+      "failure_mode": "By the pre-1.0 restructuring there are 55 or more bundled clauses and recorded adopter exceptions that point at ambiguous paragraphs.",
+      "recommended_change": "Adopt now for new clauses only: one requirement per clause or per lettered item. Permit citations of the form '3.3.2, second sentence' in conformance records. Defer only the retrofit of existing clauses. Cite ISO/IEC/IEEE 29148:2018 for 'singular' with the clause number marked unverified until a copy is consulted."
+    },
+    {
+      "id": "J-027",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "Readers and retrievers do land on stale pages directly, and 3.1.1 only obliges the entry point; a marker on the material itself is the one candidate in this package that closes a demonstrated gap.",
+      "argument_against": "The cited basis is wrong: the obsolete-document wording is ISO 9001:2008 4.2.3 g); 2015 clause 7.5.3.2 does not say it, and ISO 9001:2026 has since replaced the 2015 edition. The unconditional MUST also collides with KADS's own rules: preserved evidence is kept as collected (3.4.2), earlier runs must not be overwritten (3.4.4), tagged releases and version history are immutable, and generated or binary material cannot carry a banner 'before its content'; it overlaps 3.2.2 for snapshots and 4.5 for tracked records, and it is a breaking change under 6.2.",
+      "failure_mode": "Every old KADS tag, archived report, and evidence file is technically nonconformant, so adopters either edit preserved material or file blanket exceptions that empty the rule.",
+      "recommended_change": "Keep in Core but reword on the model of 3.4.5: maintained pages that are historical, superseded, or deprecated MUST say so in the material itself or, where the material must not be altered, in a note or index at the same location, and MUST point to current guidance where it exists; placement before the content is a SHOULD; version-control history and preserved evidence are out of scope. Correct the source to ISO 9001:2008 4.2.3 g) or drop the ISO citation, and flag the change as breaking."
+    },
+    {
+      "id": "J-028",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "3.4.2, 3.4.4, and 3.4.5 give identity and disclosure; forensic custody is a legal-admissibility regime with its own standards and KADS would only produce a weak imitation.",
+      "argument_against": "No credible counterargument for making custody or hashes a requirement: the artifact guide already states the limit of a checksum correctly. The gap is only that the rejection points adopters nowhere; a project with a real integrity need should be told to follow a forensic standard (for example ISO/IEC 27037; not checked today) rather than extend KADS locally.",
+      "failure_mode": "An adopter with legal-hold evidence builds a home-made custody log 'under KADS'.",
+      "recommended_change": "Keep the rejection; add one sentence to the artifact guide that custody for legal or forensic purposes is outside KADS and governed by the applicable domain standard."
+    },
+    {
+      "id": "J-029",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Disclosure of who reviewed (3.3.4, conformance) lets readers judge independence themselves; mandated independence is an organizational control, not a documentation rule.",
+      "argument_against": "The stated reason is a straw man: a proportional SHOULD would not exclude one-person projects, so the rejection should rest on scope, not on that. The ISO 9001 attribution is wrong for this purpose: 7.5.2 c) requires review and approval for suitability and adequacy and says nothing about independence; independence levels come from safety standards such as DO-178C or IEC 61508 (not checked today).",
+      "failure_mode": "The record justifies the rejection with an argument a later proposer can refute in one sentence, reopening the question.",
+      "recommended_change": "Keep the rejection, restate the reason as 'review independence is a governance control outside KADS scope; KADS requires disclosure', and remove ISO 9001 as a source for independence."
+    },
+    {
+      "id": "J-030",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "3.3.3 and 3.3.4 already bind agents and people alike; a profile would fork rules that must stay universal.",
+      "argument_against": "No credible counterargument: there is no external AI-authoring documentation standard to reference, and the candidate's only source is the brief's own example list. One caution: legal labeling duties for AI-generated content may emerge in some jurisdictions (not verified), which would be a reason to reference that law in an adoption note, not to write a KADS profile.",
+      "failure_mode": "None significant from rejecting; the risk would come from adopting and letting Core and profile wording drift apart.",
+      "recommended_change": "none"
+    },
+    {
+      "id": "J-031",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "A stated admission test and a lowest-layer principle give later proposals a common yardstick and cost adopters nothing.",
+      "argument_against": "'More cognitive or epistemic cost than the rule itself' cannot be measured, so the test will confirm whatever the proposer already believes; RFC 2119 section 6 already supplies an operational test and should be referenced instead of a new maxim. The package also fails its own test: it adds four or five Core clauses and a profile with no adopter evidence, and it creates three overlapping gates (J-001 restraint, J-023 competency question, J-031 admission).",
+      "failure_mode": "The test is quoted to justify both adoption and rejection of the same proposal, and gives no reason to prefer amending a clause over adding one.",
+      "recommended_change": "Merge J-001, J-023, and J-031 into one CONTRIBUTING section with three checkable questions: what observed failure does the rule prevent (cite the case); which existing clause could be amended instead; what is the lowest layer that fixes it. Apply it retroactively to every ACCEPT in this package before release."
+    }
+  ]
+}

@@ -1,0 +1,709 @@
+{
+  "role": "subtractor",
+  "overall": "The 0.8.0 specification carries 42 clauses, 119 keywords, 22 terms, and about 4800 words, and roughly a third of that text is not rule but explanation, duplication, means, or repository mechanics that the clause guide, knowledge model, registries, artifact guide, and CONTRIBUTING already hold or can hold without loss. The drafting agent's dispositions cut in the right places but stop short: they keep 2.3 (covered by the Canonical home term plus 1.2 and 6.1), 2.6 (a means to the outcome 2.2 already requires), 5.3 as a separate number (it is where and how the 5.1 disclosure is recorded), the two-way half of 7.1.4 (4.1 already requires the backward link), the 7.1.5 reasons SHOULD (the nomenclature's decision type already carries rationale), 8.6 b and c (a request to send proposals, which protects no documentation property), and all four MUSTs of 8.4 (three are covered by 2.2, 2.5, 4.2, and 8.1; the fourth protects nothing a reader acts on). The proposed new clause 4.4 is unnecessary: the method sentence of 2.5 is 4.3 applied to method instead of date and fits there as one more item. Every sentence I cut below has a named new home, so no knowledge leaves the repository, only the specification. Conformance effect of the whole set: no conforming 0.8.0 corpus becomes nonconformant; nine SHOULDs and about eight MUSTs stop being requirements, and the release can name them as its retirements under the 'review before growth' rule.",
+  "items": [
+    {
+      "unit": "Preface, opening paragraph and 'Read this document when' paragraph",
+      "current": "This document is the complete set of rules of ... KADS, version 0.8.0. KADS is a standard for writing technical documentation and research reports that a reader can find, understand, check, and keep current. / Read this document when you need the exact wording of a rule. If you are new to KADS, start with the README ... keep the clause guide open beside this page: it restates every clause in plain words and shows what following it looks like.",
+      "verdict": "KEEP",
+      "reason": "Navigation: 1.1 applied to KADS itself. Needed to know what the page is and where the plain-words restatement lives. Two sentences of the second paragraph explain what the clause guide does, which the clause guide does itself.",
+      "new_home": "none",
+      "new_wording": "This document is the complete set of rules of the Knowledge Administration and Documentation Standard (KADS), version 0.9.0: a standard for technical documentation and research reports that a reader can find, understand, check, and keep current. Read it for the exact wording of a rule; the README shows the idea in one example, the clause guide restates every clause in plain words, and the knowledge model explains the reasons behind each proposition.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Preface, 'How to read this document' (numbering explanation)",
+      "current": "The rules are arranged from the general to the specific. Eight numbered propositions ... Proposition 7 holds the two optional sets of rules, called profiles ... A deeper number means a more specific statement ... The convention is the one Wittgenstein used in the Tractatus Logico-Philosophicus ... cited from memory.",
+      "verdict": "WEAKEN",
+      "reason": "Interpretation of the numbering is needed; the attribution is not, and 'cited from memory' is now false (the Ogden footnote was inspected 2026-10-06). The sentence that propositions are not themselves requirements is missing and is the one thing a reviewer needs.",
+      "new_home": "Attribution and the inspected citation: decision record J-034 and docs/sources.md",
+      "new_wording": "Rules are numbered from the general to the specific. The eight numbered propositions state what KADS holds and are not themselves requirements; the clauses beneath each one make it precise, and a deeper number is a more specific statement under the one above it. Clauses under 7.1 and 7.2 bind only a project that declares that profile.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Preface, 'KADS governs ...' paragraph (scope boundary; does not replace workflow or grant authority)",
+      "current": "KADS governs the organization, presentation, traceability, and maintenance of technical knowledge. It covers everyday documentation and technical research reports. It does not prescribe a repository layout, a research method, a publishing platform, or tooling. KADS does not replace a consuming project's source-editing workflow or grant authority to execute commands or approve decisions.",
+      "verdict": "WEAKEN",
+      "reason": "The 'does not prescribe' sentence bounds interpretation of every clause and stays. 'It covers everyday documentation and technical research reports' repeats the opening paragraph. The authority sentence answers a fear about agents reading KADS as a mandate; no clause can be read as granting authority, so it is an instruction to agents, not an interpretation aid.",
+      "new_home": "Authority sentence: adoption guide, agent instruction snippet",
+      "new_wording": "KADS governs how technical knowledge is organized, presented, traced, and maintained. It does not prescribe a repository layout, a research method, a publishing platform, or tooling.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Preface, clause format example",
+      "current": "A clause looks like this: a number, a short name, the role that has to act, and then the requirement. > number short name (role). The requirement, with its keyword in capitals.",
+      "verdict": "KEEP",
+      "reason": "Application: a reader cannot parse '(author)' or the italic name without it.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Preface, Keywords paragraph",
+      "current": "MUST, MUST NOT, SHOULD, SHOULD NOT, and MAY are used as defined in RFC 2119 as clarified by RFC 8174: only the uppercase forms carry normative meaning, and only in normative documents. In short: ... A SHOULD may be departed from for a reason appropriate to the context; the reason belongs with the departure.",
+      "verdict": "KEEP",
+      "reason": "Interpretation. The short gloss lets a reader apply a keyword without opening the RFC; 'only in normative documents' is what stops lowercase 'must' in the guides from being read as rules. Agree with stating that nothing else of BCP 14 is adopted, in one clause, not a paragraph.",
+      "new_home": "none",
+      "new_wording": "Append to the first sentence: '; KADS adopts these five meanings and the uppercase rule, and nothing else from those documents.'",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Preface, Roles paragraph",
+      "current": "Each clause names, in parentheses after its name, the role that carries the requirement ... Clause 8.3 binds the editors of KADS ... One person may hold all three roles. Where a clause names two roles, the parentheses say which part belongs to which.",
+      "verdict": "KEEP",
+      "reason": "Interpretation of every '(author)'. Short enough.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Preface, 'Which documents are rules'",
+      "current": "This specification and conformance are normative ... The nomenclature and relationship vocabulary are normative when using the tracked-record profile. Other documents are informative ... If a guide, a template, or an example conflicts with these requirements, the requirements take precedence.",
+      "verdict": "KEEP",
+      "reason": "Conformance and navigation: it is the only statement of what binds.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Preface, 'Citing a clause' paragraph",
+      "current": "A citation names the KADS version and the clause, for example 'KADS 0.8.0, clause 3.4'. Clause numbers follow the structure of this document and can change between versions; the changelog of a version that renumbers maps every old number to its new one. Terms are defined at the end of this document.",
+      "verdict": "MERGE",
+      "reason": "Every sentence is already a rule elsewhere: the version in a citation is 8.2, renumbering and the map are 8.3 g, and the Roles paragraph already says terms are defined under Terms. A preface paragraph that restates two clauses in lowercase is a second copy of a rule (2.1 applied to KADS).",
+      "new_home": "8.2 (example citation moves into the clause); 8.3 g",
+      "new_wording": "Delete the paragraph. In 8.2 add: 'for example \"KADS 0.9.0, clause 3.4\"'.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "The eight 'Why' sentences under the propositions",
+      "current": "Each proposition is followed by a 'Why.' paragraph of one to four sentences, seven of which end with a link into the knowledge model or the artifact guide; the paragraph under 5 carries the applicability condition 'These clauses bind only where a corpus holds evidence', the one under 7 says 'a project chooses them in its adoption note', the one under 2 says a view 'must say so', and the one under 8 says KADS's 'rules change only through a recorded decision'.",
+      "verdict": "WEAKEN",
+      "reason": "Position: rationale belongs in the knowledge model and the decision records, and the admission test does not admit truth alone. One sentence per proposition earns its place for interpretation: the heading is a slogan, and a reviewer uses the named failure to bound how far to apply the clauses beneath it (for example, that 6.2 a is about the reader who jumped to the step). Anything beyond that sentence is explanation: the links are navigation that one preface sentence can carry; the lowercase 'must say so' under 2 is a rule stated outside a clause; the condition under 5 is an applicability rule hidden in rationale and must move into the clauses it governs; 'chooses them in its adoption note' is 8.1; 'rules change only through a recorded decision' is not a rule of this specification at all and lives in CONTRIBUTING. Removing all eight entirely would cost nothing in conformance; I recommend the one-sentence form, and if the maintainer prefers none, the sentence becomes the first line of each proposition section of the clause guide.",
+      "new_home": "Second sentences and links: knowledge model (each section already exists) and clause guide section intros; condition under 5: clause text of 5.1 and 5.2; 'chooses in adoption note': 8.1; 'recorded decision': CONTRIBUTING",
+      "new_wording": "1: 'A reader reaches a page by search, a link, or an excerpt, not by reading a collection in order; a page that cannot be understood on its own is understood only by people who already know its content.' 2: 'Two maintained copies of one fact drift apart, and then nobody can say which is right.' 3: 'What was observed, inferred, assumed, and decided carry different weight, and a restatement that drops the difference turns a guess into a fact.' 4: 'An old page found by search is followed as if it were current, and a finding quietly overwritten leaves whoever acted on it no way to see that it changed.' 5: 'Evidence that was tidied, overwritten by a later run, or quietly redacted can no longer support the claim it was collected for.' 6: 'A reader following a procedure acts under time pressure, often from the step they jumped to, and a reader of a figure acts on it without its author at hand.' 7: 'Identifiers, lifecycle states, and relationship labels help only where records are referenced across moves or their history matters; the two profiles below are optional for that reason.' 8: 'A claim to follow KADS means nothing unless a reader can tell which version, which documents, which optional rules, and which departures.'",
+      "conformance_change": "none; the condition under 5 becomes explicit clause text, which is a clarification"
+    },
+    {
+      "unit": "7.1 and 7.2 'When to use' heading texts",
+      "current": "7.1: 'Use this profile when a project needs to reference records across moves, track lifecycle independently, or preserve a connected decision or research history. Clauses 7.1.1 to 7.1.5 apply to such a project.' 7.2: 'Use this profile when presenting findings from an investigation, experiment, benchmark, source review, or other technical research. It can be used with or without tracked records. Clauses 7.2.1 to 7.2.6 apply to such a report.'",
+      "verdict": "WEAKEN",
+      "reason": "Position: the advice on when a profile pays is adoption guidance (the knowledge model's 'Two complementary choices' already gives it) and does not belong in the specification; the binding sentence is which documents the clauses apply to once the profile is declared under 8.1. As written, 'apply to such a project' makes applicability depend on need rather than on declaration, which contradicts 8.1 and makes a reviewer judge need. 'With or without tracked records' prevents a real misreading and moves to the Profile term as 'profiles are independent of one another'.",
+      "new_home": "When-to-use advice: knowledge model 'Two complementary choices' and adoption guide; independence of profiles: Profile term",
+      "new_wording": "7.1: 'Clauses 7.1.1 to 7.1.5 bind the tracked records of a project that declares this profile (8.1).' 7.2: 'Clauses 7.2.1 to 7.2.6 bind a report of findings from an investigation, experiment, benchmark, source review, or other technical research in a corpus that declares this profile (8.1).'",
+      "conformance_change": "none; it makes explicit that declaration, not need, triggers the profile"
+    },
+    {
+      "unit": "1.1 Self-explanatory documents",
+      "current": "(a) A document SHOULD open by saying what it is ... (b) Content about the document itself ... SHOULD follow the content the reader came for. A notice that changes what a reader may safely do with the document, such as that it is generated and edited elsewhere, is not such content: it is part of what the document is and belongs in its opening. (c) A document MAY rely on its corpus for shared scope ...",
+      "verdict": "WEAKEN",
+      "reason": "(a) and (c) stay. The carve-out sentence in (b) is explanation of what 'content about the document itself' means; naming the kinds that go last removes the need for the carve-out, and the clause guide row 1.1 and the 2.5 edit-boundary SHOULD already protect the generated notice.",
+      "new_home": "Carve-out sentence: clause guide, row 1.1 (already there)",
+      "new_wording": "(b) A document's history, authorship, and contribution instructions SHOULD follow the content the reader came for.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "1.2 Purpose and scope",
+      "current": "Documentation MUST make its purpose and applicable scope discoverable. Scope includes version, environment, audience, or period when those affect interpretation. The entry point MUST direct readers to current guidance and distinguish historical or superseded content.",
+      "verdict": "WEAKEN",
+      "reason": "The middle sentence restates the Scope term. Both MUSTs stay: discoverability is the protected property 'scope known'.",
+      "new_home": "Middle sentence: Scope term (already there)",
+      "new_wording": "(a) Documentation MUST make its purpose and applicable scope discoverable. (b) The entry point MUST direct readers to current guidance and distinguish historical or superseded content.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "1.3 Answer first",
+      "current": "A document SHOULD answer the reader's immediate question before requiring traversal of supporting content. The evidence path from answer to context, reasoning, method, and sources SHOULD be explicit where those layers are relevant. No fixed sequence or number of files is required. Learning-oriented content SHOULD expose necessary prerequisites and examples where these help readers apply the knowledge.",
+      "verdict": "WEAKEN",
+      "reason": "Further than the dispositions: the second SHOULD is a duplicate of 3.1 a (basis identifiable) and 7.2.1 (reasoning and sources discoverable); 'explicit' adds nothing a reviewer can detect beyond those. The learning SHOULD adds a decision to every tutorial author and protects none of the five properties. 'No fixed sequence' is explanation.",
+      "new_home": "Learning sentence: learning guide step 2 and authoring guide (both already say it); 'no fixed sequence': clause guide row 1.3; evidence-path sentence: README (already there as a navigation aid)",
+      "new_wording": "A document SHOULD answer the reader's immediate question before requiring traversal of supporting content.",
+      "conformance_change": "Two SHOULDs retired; no corpus affected"
+    },
+    {
+      "unit": "1.4 Consequential terms",
+      "current": "Evaluative terms or scores that materially affect interpretation or action MUST have discoverable criteria and meanings within their scope. Such a term MUST NOT carry two meanings within one scope unless the difference is stated where the term is used. Local terms and translations MAY differ if the mapping preserves relevant distinctions. A separate glossary is optional.",
+      "verdict": "WEAKEN",
+      "reason": "The MUST and MUST NOT are the rule. The MAY grants a permission nothing denies: a translation is a different term, not a second meaning of one term. 'A separate glossary is optional' is explanation.",
+      "new_home": "Both sentences: clause guide row 1.4 and the learning guide's terminology section",
+      "new_wording": "Keep the first two sentences only.",
+      "conformance_change": "none (a MAY and an explanatory sentence)"
+    },
+    {
+      "unit": "2.1 One canonical home",
+      "current": "Each independently maintained subject MUST have an identifiable canonical home within its scope. Other pages MAY summarize or quote it with a link and any necessary scope qualification. They MUST NOT present independently maintained copies as equally authoritative for the same scope.",
+      "verdict": "KEEP",
+      "reason": "Core invariant; each sentence does work.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "2.2 Summaries and derived views",
+      "current": "A summary MUST preserve material qualifications. Authors MUST review affected summaries when changing canonical content, or label them as dated snapshots. A snapshot MUST identify its source and the date or revision it represents. A summary, index, or other derived view MUST NOT state a claim more firmly than its source does: what the source presents as an inference, assumption, hypothesis, recommendation, or proposal keeps that standing when restated.",
+      "verdict": "KEEP",
+      "reason": "Letter a to d as proposed. The clause after the colon in the last sentence is explanation of 'more firmly'; 3.2 lists the kinds.",
+      "new_home": "Explanatory clause: clause guide row 2.2 (already there as the example)",
+      "new_wording": "(d) A derived view MUST NOT state a claim more firmly than its source does.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "2.3 Canonical tables and diagrams",
+      "current": "A table or diagram MAY be canonical. Its meaning and necessary context MUST be accessible to its intended readers; supporting prose need not duplicate every entry or edge.",
+      "verdict": "REMOVE",
+      "reason": "The MAY is already granted by the Canonical home term ('It can be a page, section, table, diagram, or external source'). The MUST is 1.2 (purpose and scope discoverable), 1.4 (consequential terms), and 6.1 (units, scope, source of a figure) applied to a table; no table can fail 2.3 without failing one of them. 'Supporting prose need not duplicate' is explanation.",
+      "new_home": "Clause guide row 2.1 (a sentence: a table or diagram can be the home; prose need not repeat it); the subject table already has the configuration-row case",
+      "new_wording": "Delete 2.3; renumber 2.4 to 2.6 as 2.3 to 2.5 (or leave a gap, as CONTRIBUTING allows).",
+      "conformance_change": "none; the MUST is fully covered elsewhere"
+    },
+    {
+      "unit": "2.4 Reachability",
+      "current": "Each maintained document SHOULD be reachable by links from the corpus entry point. Preserved evidence and artifacts need no separate link; they are reached through the document or manifest that cites them.",
+      "verdict": "KEEP",
+      "reason": "The SHOULD has an observed case in KADS's own history and protects 'current guidance can be found'. The second sentence prevents over-application but the word 'maintained' already excludes preserved evidence, and the clause guide row 2.4 carries the sentence verbatim.",
+      "new_home": "Second sentence: clause guide row 2.4 (already there)",
+      "new_wording": "Each maintained document SHOULD be reachable by links from the corpus entry point.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "2.5 Generated views",
+      "current": "Generated or transformed views MUST identify their maintained sources and relevant transformations. Projects SHOULD make authored/generated boundaries and the correct edit location clear. Historical findings MUST distinguish the method and effective conditions used from current defaults when the difference affects interpretation; missing context remains explicit.",
+      "verdict": "SPLIT",
+      "reason": "Agree the third sentence is about history, not generation. Disagree that it needs a new clause 4.4: it is 4.3 applied to method and conditions instead of date, and fits 4.3 as one more item in the list. 'Missing context remains explicit' is 3.3 (unknown marked). The SHOULD stays: an edit made in the generated copy is lost, which is the 2.1 property.",
+      "new_home": "Third sentence: 4.3 a; 'missing context remains explicit': 3.3 (already there)",
+      "new_wording": "(a) A generated or transformed view MUST identify its maintained sources and relevant transformations. (b) Projects SHOULD make the authored/generated boundary and the correct edit location clear.",
+      "conformance_change": "none; one MUST moves to 4.3"
+    },
+    {
+      "unit": "2.6 Freshness of copied figures",
+      "current": "A project that maintains generated views, or summaries that repeat volatile figures maintained elsewhere, SHOULD verify their freshness mechanically where a check is practical, and SHOULD generate or link such a figure in preference to copying it by hand. This does not make tooling a condition of conformance; a summary that cannot be checked mechanically remains subject to 2.2.",
+      "verdict": "REMOVE",
+      "reason": "Both SHOULDs are means. The outcome, that a copied figure is reviewed when its source changes or labeled as a dated snapshot, is 2.2 b and c, and a stale figure already fails 2.2. The observed case in the 2026-10-02 adoption feedback was a stale figure: it supports 2.2 and produced advice (generate it, check it), not a property. The last sentence exists only to disclaim the means character of the clause, which confirms the diagnosis. The 'Freshness checks' line of the adoption-note outline stays as an optional declaration.",
+      "new_home": "Authoring guide (generate or link volatile figures; check mechanically where practical) and artifact guide; the 2.2 row of the conformance questions keeps 'mechanically where practical'; the retirement and the observed case are recorded in the 0.9.0 evaluation record",
+      "new_wording": "Delete 2.6.",
+      "conformance_change": "Two SHOULDs retired; no corpus affected"
+    },
+    {
+      "unit": "3.1 A basis for every material claim",
+      "current": "Material factual claims MUST have an identifiable basis ... A citation SHOULD point to the specific passage, version, or artifact needed to assess the claim. A source cited without having been inspected for the claim it supports SHOULD be identified as such ...; the absence of such identification does not establish that a source was inspected.",
+      "verdict": "KEEP",
+      "reason": "Letter a to c. (c) was 'closest to retirement' last release; it now has an observed case in KADS's own preface (the Tractatus citation 'cited from memory'), so it stays. (b) subsumes the SHOULD in 6.3 on historical citations, which goes.",
+      "new_home": "none",
+      "new_wording": "Letter a, b, c; no change of text.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "3.2 Kinds of statement stay distinct",
+      "current": "Observation, inference, assumption, hypothesis, recommendation, and decision MUST remain distinguishable wherever combining them would mislead. Unsupported material claims MUST be marked as unverified or provisional. Known contradictions and limitations that affect interpretation MUST be disclosed.",
+      "verdict": "KEEP",
+      "reason": "Letter a to c. (c) is the core limitation rule that 6.1's research-claims sentence duplicates.",
+      "new_home": "none",
+      "new_wording": "Letter a, b, c.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "3.3 Nothing invented",
+      "current": "An author or agent MUST NOT invent sources, execution results, collection dates, approval, or confidence. Missing information MUST be marked unknown, omitted when immaterial, or recorded as an open question. Editing a document does not establish that its technical content has been revalidated.",
+      "verdict": "WEAKEN",
+      "reason": "The third sentence is an 'absence proves nothing' note, not a requirement, and it belongs beside the 3.4 example in the clause guide rather than in either clause; moving it into 3.4 as the dispositions propose only relocates explanation.",
+      "new_home": "Clause guide, 3.4 example 'Why' paragraph",
+      "new_wording": "Keep the first two sentences; 'or agent' is redundant with the Author term and can go.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "3.4 Verification claims",
+      "current": "A statement that documentation content was verified, reviewed, tested, or executed MUST say, or link to, what was checked, against which version or environment, and when or by which recurring process, or state which of these is not recorded.",
+      "verdict": "KEEP",
+      "reason": "One requirement, detectable by reading one page, observed cases.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "3.5 Agent-drafted content and automated review",
+      "current": "An agent-drafted document or record MUST identify an author of record, and SHOULD state which content was generated and which was verified by a person, and how. Generation does not establish verification. Wherever a review of any content is stated, a review performed only by automated agents, whether the generating agent or others, MUST be identified as automated review.",
+      "verdict": "WEAKEN",
+      "reason": "'Generation does not establish verification' is explanation of the SHOULD that precedes it. 'Whether the generating agent or others' is explanation inside the MUST.",
+      "new_home": "Both phrases: clause guide 3.5 examples (already there)",
+      "new_wording": "(a) An agent-drafted document or record MUST identify an author of record. (b) It SHOULD state which content was generated and which was verified by a person, and how. (c) Where a review is stated and it was performed only by automated agents, it MUST be identified as automated review.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "3.6 Artifacts behind claims",
+      "current": "For an artifact used to substantiate a material claim, its location, relevant version or temporal scope, role, and interpretation limits MUST be discoverable. Intended configuration MUST NOT be presented as observed deployed state without supporting evidence. Native identities and storage locations MAY be retained; individual catalog records and copied evidence files are not required.",
+      "verdict": "WEAKEN",
+      "reason": "The third sentence prevents over-application but the artifact guide and the nomenclature ('Artifacts do not require a new universal record type. Use native resource identities') already say it; a MAY that only denies a reading nobody can derive from the MUST is explanation.",
+      "new_home": "Artifact guide (already there); nomenclature (already there)",
+      "new_wording": "Keep the first two sentences, lettered a and b.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "4.1 Superseded content",
+      "current": "(a) ... MUST say so in visible text where a reader who opens it directly will meet it ... (b) ... MUST point to the current guidance where that exists. (c) ... SHOULD appear in the title or top-level heading. (d) The absence of such a statement does not establish that content is current. Content that was superseded before the corpus adopted this clause MAY instead be identified collectively at the entry point ...",
+      "verdict": "KEEP",
+      "reason": "Each letter does work; (c) has a reasoned basis (the title travels with excerpts). The unlettered legacy sentence is a permission that relaxes (a) and should be lettered so an exception can cite it.",
+      "new_home": "none",
+      "new_wording": "Letter the legacy sentence as (e).",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "4.2 Corrections and replaced findings",
+      "current": "Current guidance MAY be corrected in place. A change that reverses a recorded decision or materially replaces a historical finding MUST preserve the prior meaning and explain what replaced it and why. Version history with a direct revision reference MAY provide that preservation; separate records are not mandatory for every edit.",
+      "verdict": "KEEP",
+      "reason": "The two MAYs bound the MUST. 'Separate records are not mandatory for every edit' is explanation and can go to the clause guide.",
+      "new_home": "Last half-sentence: clause guide row 4.2",
+      "new_wording": "End the clause at 'MAY provide that preservation.'",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "4.3 Dated facts and a review route",
+      "current": "Where the date, revision, or measurement interval is material to a fact that changes over time, the fact MUST identify it. Projects MUST identify a maintainer or review route for the adopted corpus and conditions that trigger review, such as a release, incident, new evidence, or changed dependency.",
+      "verdict": "SPLIT",
+      "reason": "Agree the review route is a declared item under 8.1, not a property of a fact. Take the method sentence from 2.5 here instead of creating 4.4: method and conditions are one more thing a historical fact must identify when material.",
+      "new_home": "Review route sentence: 8.1 list; method sentence arrives from 2.5",
+      "new_wording": "4.3 Dated facts (author). Where the date, revision, measurement interval, or the method and conditions under which a fact was established are material to a fact that changes over time, the fact MUST identify them.",
+      "conformance_change": "none; one MUST moves to 8.1, one arrives from 2.5"
+    },
+    {
+      "unit": "Proposed new clause 4.4 Historical method",
+      "current": "Dispositions propose moving the third sentence of 2.5 to a new clause 4.4.",
+      "verdict": "MERGE",
+      "reason": "A new clause number for one sentence that is 4.3's rule applied to method. Clause growth without a new property fails admission question 3.",
+      "new_home": "4.3",
+      "new_wording": "See 4.3.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Proposition 5 as a whole: profile or conditional core?",
+      "current": "Three clauses that bind only where a corpus holds evidence, with the condition stated in the Why paragraph rather than in the clauses.",
+      "verdict": "KEEP",
+      "reason": "Position: keep as conditional core, not a profile. A profile adds a decision to every adoption and a vocabulary; a conditional clause asks nothing of a corpus that holds no preserved run and alters no evidence, exactly as 4.1 asks nothing of a corpus that supersedes nothing. But the condition must live in the clause text, and 5.2 must be scoped to preserved runs, because 'other body of evidence' with the broad Evidence term would make every quoted log a run.",
+      "new_home": "Condition: clause text of 5.1 and 5.2",
+      "new_wording": "Heading: '5. Evidence is kept as it was collected.' Each clause opens with its condition (below).",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "5.1 Evidence kept as collected (merged with 5.3)",
+      "current": "5.1: Evidence SHOULD be preserved as collected. Corrections, transformations, and redactions MUST be disclosed when they affect interpretation. Necessary removal for access, privacy, or retention reasons MUST leave a description of the resulting evidence gap when safe to do so. 5.3: A disclosure required by 5.1 MUST be recorded where a reader of the affected content will encounter it ... It MUST state what kind of content was changed or removed, when, why, and any effect on interpretation, without reproducing the removed content. A project that holds evidence SHOULD name in its adoption note where such records are kept.",
+      "verdict": "MERGE",
+      "reason": "5.3 is the where and the what of the disclosure 5.1 requires; two numbers for one disclosure make exceptions and citations harder, not easier. The adoption-note SHOULD is a means: the outline already has a 'Redaction records' line, and a reader of the evidence is protected by the placement rule, not by the adoption note.",
+      "new_home": "Adoption-note SHOULD: adoption guide outline line 'Redaction records' (already there)",
+      "new_wording": "5.1 Evidence kept as collected (the author who alters evidence). Where a corpus holds evidence: (a) evidence SHOULD be preserved as collected; (b) a correction, transformation, or redaction that affects interpretation MUST be disclosed where a reader of the affected content will encounter it, in the content or in a note or manifest at the same location, stating what kind of content changed, when, why, and the effect on interpretation, without reproducing removed content; (c) a removal required for access, privacy, or retention MUST leave such a note describing the resulting gap, when safe to do so.",
+      "conformance_change": "One SHOULD retired (adoption-note location); the MUSTs are unchanged in effect"
+    },
+    {
+      "unit": "5.2 Run identity",
+      "current": "A preserved run, collection, or other body of evidence MUST have an identifier that distinguishes it from every other one in the corpus, including a repeated attempt on the same day against the same target. The storage layout MUST NOT allow a later run to occupy or overwrite the location of an earlier one. The identifier scheme SHOULD be chosen before the first run is stored. A storage label is an identifier, not a timestamp; actual collection times are recorded separately.",
+      "verdict": "WEAKEN",
+      "reason": "Agree with the dispositions and go one step further: 'including a repeated attempt on the same day' is explanation of 'every other one' and 'or other body of evidence' over-extends the clause to every cited log. The scheme SHOULD is a means (the artifact guide holds it, with the reasoning). The label-not-timestamp sentence is interpretation the artifact guide and nomenclature already give.",
+      "new_home": "Scheme SHOULD and label sentence: artifact guide (already there, with 'Choose the scheme before the first run')",
+      "new_wording": "5.2 Run identity (maintainer for the scheme; the author who stores a run). Where a corpus preserves runs or collections of evidence: (a) each MUST have an identifier distinct from every other in the corpus; (b) storing a later run MUST NOT overwrite or displace an earlier one.",
+      "conformance_change": "One SHOULD retired; no corpus affected"
+    },
+    {
+      "unit": "5.3 Where a redaction is recorded",
+      "current": "See 5.1.",
+      "verdict": "MERGE",
+      "reason": "Merged into 5.1 b and c; the clause number disappears.",
+      "new_home": "5.1",
+      "new_wording": "See 5.1.",
+      "conformance_change": "see 5.1"
+    },
+    {
+      "unit": "6.1 Procedures, research claims, and quantities",
+      "current": "Technical procedures MUST state material prerequisites, actions, and an observable completion condition. Research claims MUST state limitations relevant to their interpretation. Quantitative results MUST expose units, scope, time or revision, and source; denominators and aggregation MUST be explained when needed to interpret them.",
+      "verdict": "SPLIT",
+      "reason": "The research-claims sentence duplicates 3.2 c (limitations disclosed) and 7.2.1. Disagree with sending quantities to a new 3.7: proposition 6's Why already names the reader of a figure, and lettering avoids a new number and a renumbering.",
+      "new_home": "Research-claims sentence: covered by 3.2 c; conformance question row updated",
+      "new_wording": "6.1 Procedures and quantities (author). (a) A technical procedure MUST state material prerequisites, actions, and an observable completion condition. (b) A quantitative result MUST expose units, scope, time or revision, and source, and MUST explain denominators and aggregation where needed to interpret it.",
+      "conformance_change": "One duplicate MUST retired; no corpus affected"
+    },
+    {
+      "unit": "6.2 Irreversible steps",
+      "current": "(a) ... MUST state that effect in or immediately before the step. (b) The statement SHOULD give the way to avoid or recover from the effect where one exists.",
+      "verdict": "KEEP",
+      "reason": "Anticipated-only basis, but a reader acting without it can be harmed, which the admission test accepts. Detectable by reading one page.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "6.3 Links and references",
+      "current": "Internal links MUST resolve. Material external references MUST be identifiable even if access is restricted; restrictions or known unavailability MUST be stated. Historical claims SHOULD cite specific versions or preserved copies.",
+      "verdict": "WEAKEN",
+      "reason": "The SHOULD is a narrower copy of 3.1 b (a citation SHOULD point to the specific version or artifact).",
+      "new_home": "3.1 b (already there)",
+      "new_wording": "(a) Internal links MUST resolve. (b) A material external reference MUST be identifiable even if access is restricted, and restrictions or known unavailability MUST be stated.",
+      "conformance_change": "One duplicate SHOULD retired"
+    },
+    {
+      "unit": "7.1.1 Record fields",
+      "current": "Each tracked record MUST have an ID, type, meaningful title, status, and updated date, recorded once in visible text or metadata. Front matter is optional. updated is the last substantive record edit, not the observation date or verification date. Where the corpus is under version control, the version history MAY supply it.",
+      "verdict": "WEAKEN",
+      "reason": "The updated-date MUST stays: a corpus under version control never violates it because of the MAY, and a record with no date in a corpus without history leaves a reader unable to tell whether a decision is stale (scope known). 'Meaningful' is not reviewable. 'Front matter is optional' and the definition of updated are in the nomenclature, which is normative under this profile.",
+      "new_home": "Nomenclature, 'Minimum record information' (already there)",
+      "new_wording": "Each tracked record MUST have an ID, type, title, status, and updated date, recorded once in visible text or metadata; version history MAY supply the updated date.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "7.1.2 Identifiers",
+      "current": "IDs MUST be unique within a declared namespace, survive moves and title changes, and never be reassigned. Cross-namespace references MUST identify the destination corpus and resolve to a location. Use the nomenclature or document a local extension or mapping.",
+      "verdict": "KEEP",
+      "reason": "Both MUSTs protect identity. The last sentence is a lowercase instruction; make it a reference, since the preface already makes the nomenclature normative.",
+      "new_home": "none",
+      "new_wording": "Replace the last sentence with: 'The nomenclature governs ID form and types; a local extension or mapping MUST be documented.'",
+      "conformance_change": "none (the nomenclature already says MAY document local mappings; this states the obligation that the mapping be written down, which 8.2 also requires)"
+    },
+    {
+      "unit": "7.1.3 Relationships",
+      "current": "Material relationships MUST have an explicit meaning and a resolvable target. Labeled Markdown links are sufficient; a second metadata graph is not required. Use the relationship vocabulary or document a local extension. Ordinary navigation links do not need relationship labels.",
+      "verdict": "WEAKEN",
+      "reason": "Sentences two and four are explanation the relationship vocabulary states twice already (its lines 5 and 25).",
+      "new_home": "Relationship vocabulary (already there)",
+      "new_wording": "A material relationship MUST have an explicit meaning, from the relationship vocabulary or a documented local extension, and a resolvable target.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "7.1.4 Supersession",
+      "current": "A superseded record MUST point readers to its replacement; the replacement MUST identify what it supersedes. Both links express the single relation supersedes ... This deliberate two-way navigation supports readers arriving at either page. On the superseded record this link is the statement required by 4.1 ... Other inverse links are optional.",
+      "verdict": "MERGE",
+      "reason": "The first MUST is 4.1 a and b applied to a record; the only new requirement is the forward link on the replacement. The inverse-reading explanation and 'other inverse links are optional' are in the relationship vocabulary's 'Reverse links' section.",
+      "new_home": "Explanation: relationship vocabulary 'Reverse links' (already there) and clause guide row 7.1.4",
+      "new_wording": "7.1.4 Supersession (author). A record that replaces another MUST identify what it supersedes; the statement that 4.1 requires on the superseded record is the same relation read from the other end.",
+      "conformance_change": "none; the backward link remains required by 4.1"
+    },
+    {
+      "unit": "7.1.5 Status and decisions",
+      "current": "Status MUST describe the record's lifecycle, not imply truth or approval that has not occurred. Where a record assesses certainty or reports a test outcome, that assessment or outcome MUST be separate from its status. An accepted decision MUST identify who or what authorized the choice, and when it takes effect. An accepted decision SHOULD state the reasons for the choice, link to where they are recorded, or state that they are not recorded. Acceptance MUST NOT imply implementation or validation unless separately established. An ADR MAY use its existing identifier with a documented decision-type mapping ...",
+      "verdict": "WEAKEN",
+      "reason": "The reasons SHOULD is anticipated only after two releases, and the nomenclature, normative under this profile, already gives the decision type the responsibility 'Record a choice, authority, rationale, and consequences'; the decision outline has a Reasons field. The clause guide example keeps the teaching. The last MUST NOT is the first sentence applied to acceptance and merges into it. The ADR MAY is in the nomenclature verbatim.",
+      "new_home": "Reasons SHOULD: nomenclature decision row and decision guide; ADR sentence: nomenclature (already there); evaluation record notes the retirement",
+      "new_wording": "(a) Status MUST describe the record's lifecycle and MUST NOT imply truth, approval, implementation, or validation that has not been separately established. (b) An assessment of certainty or a test outcome MUST be separate from status. (c) An accepted decision MUST identify who or what authorized it and when it takes effect.",
+      "conformance_change": "One SHOULD and one MAY retired; no corpus affected"
+    },
+    {
+      "unit": "7.2.1 What a report contains",
+      "current": "A report MUST make the following discoverable, in one page or through links: question, scope, and why the answer matters; method ...; observations separated from interpretation; reasoning ...; sources and provenance ...; limitations ...; a current answer ...",
+      "verdict": "WEAKEN",
+      "reason": "'And why the answer matters' is a MUST that a sound benchmark report can fail with no loss to any protected property; a reader can assess a report without its motivation. The rest stays.",
+      "new_home": "Research guide / report outline (motivation as a recommended section)",
+      "new_wording": "First bullet: 'question and scope;'.",
+      "conformance_change": "One list item retired from a MUST"
+    },
+    {
+      "unit": "7.2.2 Reproducibility",
+      "current": "A repeatable experiment MUST describe enough of its method for a suitably equipped reader to attempt it. Barriers to reproduction MUST be stated. A source review need not invent an experiment, and an unavailable source does not become verified through citation alone.",
+      "verdict": "WEAKEN",
+      "reason": "Agree: keep 'a source review need not invent an experiment' (prevents over-application); the unavailable-source half is 3.1 c and 3.3.",
+      "new_home": "Second half: clause guide row 7.2.2",
+      "new_wording": "(a) A repeatable experiment MUST describe enough of its method for a suitably equipped reader to attempt it; a source review need not invent an experiment. (b) Barriers to reproduction MUST be stated.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "7.2.3 Test reports",
+      "current": "A test report MUST distinguish execution state, observed behavior, and assessment against a stated criterion. If a criterion was chosen after observing results, that fact MUST be stated. Changing the criterion MUST NOT silently change the interpretation of a historical run.",
+      "verdict": "KEEP",
+      "reason": "Letter a to c. The MUST NOT overlaps 4.2 but names the specific move (criterion change) a reviewer looks for; cheap.",
+      "new_home": "none",
+      "new_wording": "Letter a, b, c.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "7.2.4 Scorecards",
+      "current": "For requirement evaluations or scorecards, the criteria, scale, weighting, denominator, and exclusion policy MUST be discoverable when they affect the result. Unevaluated, blocked, failed, and not-applicable cases MUST remain distinguishable wherever present, including their effect on aggregation.",
+      "verdict": "KEEP",
+      "reason": "Two detectable requirements; letter a and b.",
+      "new_home": "none",
+      "new_wording": "Letter a, b.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "7.2.5 Inherited and observed values",
+      "current": "Inherited values, source assertions, and direct observations MUST remain distinguishable when that difference affects the claim. Execution alone MUST NOT be represented as satisfaction of an acceptance criterion.",
+      "verdict": "WEAKEN",
+      "reason": "The second sentence is 7.2.3 a (execution state distinguished from assessment) restated; representing execution as satisfaction is failing that distinction.",
+      "new_home": "Clause guide row 7.2.3 (already says 'Having run something is not the same as meeting the criterion')",
+      "new_wording": "Keep the first sentence only.",
+      "conformance_change": "none; duplicate MUST NOT retired"
+    },
+    {
+      "unit": "7.2.6 Negative results",
+      "current": "A negative result ... MUST be scoped to the interface, version, credentials, and location actually inspected. It MUST NOT be stated as the general absence of a capability without evidence covering the other routes ... When a different method later yields a different result, the earlier conclusion MUST be revised or superseded under 4.2 with the change attributed to the method; the earlier observation remains a valid record of what that method returned. A statement that no failure was observed is a negative result under this clause: its scope includes what was observed, over what period or exposure, and how a failure would have been detected.",
+      "verdict": "WEAKEN",
+      "reason": "Agree with the dispositions. The 'earlier observation remains a valid record' clause is explanation.",
+      "new_home": "Explanation: clause guide row 7.2.6",
+      "new_wording": "(a) A negative result, such as not found, not supported, rejected, or unreachable, MUST be scoped to the interface, version, credentials, and location inspected, and MUST NOT be stated as general absence without evidence covering the other routes. (b) When a different method later yields a different result, the revision under 4.2 MUST attribute the change to the method. (c) A statement that no failure was observed is a negative result: its scope includes what was observed, over what period or exposure, and how a failure would have been detected.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "8.1 Claiming conformance",
+      "current": "A project claiming conformance MUST declare the KADS version, covered corpus, applicable profiles, and local exceptions as described in conformance. Reading and manual review are sufficient. Tools MAY assist later; tool output cannot establish that reasoning or evidence is sound.",
+      "verdict": "WEAKEN",
+      "reason": "Add the review route from 4.3. The tooling sentences are already in conformance.md ('no validation command is required'; the link check 'establishes nothing else') and in the preface ('does not prescribe tooling'). Note for the maintainer: conformance.md carries a second MUST list of the same items; one document should own the list (8.1), and conformance.md should restate it without its own keyword, or KADS violates its own 2.1.",
+      "new_home": "Tooling sentences: conformance.md 'Manual review' (already there)",
+      "new_wording": "A project claiming conformance MUST declare the KADS version, the covered corpus, the profiles applied, its local exceptions, and its maintainer or review route with the conditions that trigger review, in the form conformance describes.",
+      "conformance_change": "none; the review-route MUST moves here from 4.3"
+    },
+    {
+      "unit": "8.2 Local rules and citations",
+      "current": "Project extensions MUST be identified as local rules. A reference to a clause SHOULD name the KADS version it refers to, and, where the clause holds more than one requirement, SHOULD identify the requirement concerned ...",
+      "verdict": "KEEP",
+      "reason": "Both SHOULDs have an observed basis: the 0.8.0 renumbering made unversioned citations ambiguous, and the clause guide's 6.1 exception example shows the letter problem. Conformance.md repeats the letter SHOULD; it should point here instead.",
+      "new_home": "none",
+      "new_wording": "Add the example citation from the deleted preface paragraph.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "8.3 Versioning of KADS",
+      "current": "(a) SemVer; canonical version is VERSION. (b) tagged v<version> and described in the changelog. (c) breaking defined. (d) pre-1.0 rule. (e) new clauses increment minor. (f) clarifications increment patch. (g) renumbering mapped.",
+      "verdict": "WEAKEN",
+      "reason": "Agree: VERSION file, tag name, and changelog are repository mechanics that CONTRIBUTING already holds. What an adopter needs from 8.3 is how to read a version number: that it is SemVer, what breaking means here, the pre-1.0 rule, that a release is immutable, and that renumbering is mapped. (e) and (f) can be one sentence.",
+      "new_home": "VERSION, tag, changelog mechanics: CONTRIBUTING 'Versioning and releases' (already there)",
+      "new_wording": "(a) KADS versions follow Semantic Versioning 2.0.0; a released version is identifiable and never changes. (b) A change that could make a conformant corpus nonconformant, or that changes the meaning of a clause, status, or relation, is breaking; retiring or relaxing a requirement is not. (c) While the major version is 0, a breaking change MUST increment the minor version and MUST be identified as breaking in the changelog; from 1.0.0 it MUST increment the major version. (d) Other additions increment the minor version; changes with no normative effect increment the patch version. (e) Clause numbers MAY change between versions; a version that renumbers MUST map every old number to its new one.",
+      "conformance_change": "none for adopters; one MUST (tagging) moves to CONTRIBUTING"
+    },
+    {
+      "unit": "8.4 Versioning of derived documents",
+      "current": "Documentation derived from KADS MUST also use Semantic Versioning 2.0.0 wherever it declares a version of its own. This covers a project's adoption note, local extensions and mappings, and copied or adapted templates and guides. Such a document MUST pin the KADS version it derives from and MUST state what counts as a breaking change for its own readers. A derived document that changes which KADS version it follows MUST record that as at least a minor change.",
+      "verdict": "WEAKEN",
+      "reason": "Position: on the merits 8.4 fails the admission test. 'MUST pin the KADS version' is 8.1 for the adoption note and 2.2 c / 2.5 a (a snapshot or derived view identifies its source and revision) for copied templates and guides. 'MUST state what counts as breaking for its own readers' protects none of the five properties: a reader acts on the adoption note's content, not its number, and 4.2 already preserves a reversed declaration. 'MUST record a pin change as at least minor' is an editorial rule for the adopter's own numbering with no reader effect. The SemVer MUST is a uniformity convention; its violation (an adoption note numbered '2026-10' or 'v3') harms no reader and breaks no property, and KADS's own adoption note satisfies it with one parenthesis, which shows the cost is low but the benefit is nil. The maintainer decided on 2026-10-02 that SemVer is always enforced; I respect that as a standing decision and offer the weakened form that keeps exactly that decision and nothing more. If the maintainer is willing to revisit, remove the clause: nothing it protects is unprotected without it.",
+      "new_home": "Pinning: 8.1 and 2.5 (already there); 'what counts as breaking': adoption guide outline line for the note's version (already there as guidance); pin-change rule: adoption guide",
+      "new_wording": "Weakened form: 'A document derived from KADS that carries a version of its own MUST number it under Semantic Versioning 2.0.0.' Preferred on the merits: delete 8.4 and retire the conformance question that cites it.",
+      "conformance_change": "Weakened form: three MUSTs retired, all covered elsewhere; removed form: four MUSTs retired, none of which a reader relies on"
+    },
+    {
+      "unit": "8.5 Review record",
+      "current": "A project MUST record its review of a conformance claim as described in conformance, referencing clauses by identifier where an exception or unresolved finding applies.",
+      "verdict": "KEEP",
+      "reason": "One MUST; conformance.md holds the fields. The 'referencing clauses by identifier' detail is in conformance.md's exception definition and 8.2 and can go.",
+      "new_home": "none",
+      "new_wording": "A project MUST record its review of a conformance claim as conformance describes.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "8.6 Changing KADS",
+      "current": "(a) A project that includes a copy of KADS ... SHOULD NOT alter that copy; a local departure is recorded ... as an exception or as a local rule. (b) Where a rule of KADS appears wrong, unclear, or missing, the project SHOULD send a change proposal with its evidence to the editors of KADS. (c) A proposal is a new file for the proposals/ directory of KADS. Adding that file to a copy in order to send it is not an alteration under (a) ...",
+      "verdict": "WEAKEN",
+      "reason": "(a) stays: an altered copy makes the 8.1 declaration false, the violation is detectable by diff, and the clause guide gives the case. (b) is a request for work that benefits KADS, not a documentation property; a healthy corpus records its exception and never sends a proposal. (c) is a repository path plus an interpretation of (a) that folds into (a) in six words.",
+      "new_home": "(b) and the proposals route: CONTRIBUTING 'Where changes come from' and adoption guide 'When a rule does not fit' (both already there)",
+      "new_wording": "A project that includes a copy of KADS SHOULD NOT alter that copy beyond adding a proposal file for its editors; a local departure is recorded in the project's own corpus as an exception or a local rule.",
+      "conformance_change": "One SHOULD retired; no corpus affected"
+    },
+    {
+      "unit": "Term: Author",
+      "current": "whoever writes or changes a document or record, whether a person or an automated agent.",
+      "verdict": "KEEP",
+      "reason": "Names a role used in every clause.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Maintainer",
+      "current": "whoever is responsible for a corpus as a whole: its entry point, its adoption note, and its review route. The rules sometimes say 'project' for the same role.",
+      "verdict": "KEEP",
+      "reason": "Role; the 'project' sentence resolves a real ambiguity in 8.x.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Reviewer",
+      "current": "whoever assesses a document, or a claim that a corpus follows KADS.",
+      "verdict": "KEEP",
+      "reason": "Role.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Author of record",
+      "current": "the accountable person or role who takes responsibility for a document's content, whoever or whatever drafted it.",
+      "verdict": "KEEP",
+      "reason": "Used by 3.5 a; without it 'author of record' reads as 'author'.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Agent-drafted",
+      "current": "Five sentences: the test (produced or changed the meaning of material content), selection and omission count, meaning-preserving transformations do not, 'the test is what the change did to the meaning, not which tool made it', doubt resolves to agent-drafted.",
+      "verdict": "WEAKEN",
+      "reason": "Agree with the dispositions: the test and the doubt rule are the definition; the 'which tool' sentence and the examples are the clause guide's table.",
+      "new_home": "Clause guide 3.5 table (already there)",
+      "new_wording": "A document or record is agent-drafted when an automated agent produced, or changed the meaning of, material content in it, including by selection or omission; a transformation that preserves material meaning does not make content agent-drafted. When it is unclear whether an agent shaped the meaning, the content is treated as agent-drafted.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Corpus",
+      "current": "the body of documentation covered by a project's adoption statement.",
+      "verdict": "KEEP",
+      "reason": "Twenty uses.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Subject",
+      "current": "Eight sentences: definition, the three-way distinction (subject, knowledge object, representation), representation-as-subject, the clause guide example, nesting and grain, the separability test, and the 2.2/4.3 note.",
+      "verdict": "WEAKEN",
+      "reason": "Agree: the definition and the separability test are what 2.1 needs. Nesting, the clause-guide example, the representation sentences, and the 'whether others must be reviewed' sentence are explanation that the clause guide's subject table already gives case by case.",
+      "new_home": "Clause guide 'what counts as one subject' table (already there); knowledge model 'Identity and scope'",
+      "new_wording": "Subject: a distinct matter that a corpus describes within a scope, such as a procedure, a configuration value, an interface, a decision, a finding, or a subsystem; a document is a subject only when knowledge is maintained about it. A subject is independently maintained when its authoritative description can be changed, reviewed, and dated as a unit, without that change being part of a change to another subject's description.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Entry point",
+      "current": "the document from which a reader is expected to start, such as a README or an index page.",
+      "verdict": "KEEP",
+      "reason": "Seven uses across 1.2, 2.4, 4.1 e, and the Maintainer term; one line.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Scope",
+      "current": "the version, environment, audience, period, or other condition under which a statement, record, or canonical home applies.",
+      "verdict": "KEEP",
+      "reason": "Twenty uses; it is what lets 1.2 drop its middle sentence.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Canonical home",
+      "current": "the maintained location authoritative for a subject in a stated scope. It can be a page, section, table, diagram, or external source.",
+      "verdict": "KEEP",
+      "reason": "Used by 2.1; its second sentence is what makes 2.3 redundant.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Knowledge object",
+      "current": "a coherent unit of maintained knowledge about a subject, such as a procedure, explanation, finding, or decision. It need not have an ID or a separate file.",
+      "verdict": "REMOVE",
+      "reason": "Never used in a clause. Its only uses are inside two other term entries (Subject, Tracked record). A term that exists to define other terms is model vocabulary, and the knowledge model opens with it.",
+      "new_home": "Knowledge model, first paragraph (already there)",
+      "new_wording": "Tracked record becomes: 'a unit of maintained knowledge, such as a decision, finding, or question, given stable identity and explicit lifecycle metadata.' Subject loses the sentence that names it.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Tracked record",
+      "current": "a knowledge object given stable identity and explicit lifecycle metadata.",
+      "verdict": "KEEP",
+      "reason": "Used by all of 7.1; reworded to stand without Knowledge object.",
+      "new_home": "none",
+      "new_wording": "see Knowledge object",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Profile",
+      "current": "an optional set of requirements added to the common core for a kind of work. KADS defines the tracked-record profile (7.1) and the research-report profile (7.2). Profiles are not maturity levels.",
+      "verdict": "KEEP",
+      "reason": "Needed to read 7 and 8.1. Receives the independence sentence from the 7.2 heading text.",
+      "new_home": "none",
+      "new_wording": "Append: 'They are independent of one another and are not maturity levels.'",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Adoption note",
+      "current": "the statement by which a project declares the KADS version it follows, the corpus covered, the profiles applied, and its local mappings, exceptions, and review route. Its outline is in the adoption guide.",
+      "verdict": "KEEP",
+      "reason": "Used by 8.x and the Maintainer term. The list duplicates 8.1's list; shorten to 'the statement by which a project makes the declaration 8.1 requires'.",
+      "new_home": "none",
+      "new_wording": "Adoption note: the statement by which a project makes the declaration that 8.1 requires; its outline is in the adoption guide.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Namespace",
+      "current": "the boundary within which tracked-record IDs are unique, normally a project or named corpus.",
+      "verdict": "KEEP",
+      "reason": "Used by 7.1.2; one line.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Evidence",
+      "current": "content used to support or challenge a claim, interpreted with its provenance and limitations.",
+      "verdict": "KEEP",
+      "reason": "Used by 5.x and 3.6. Its breadth is why 5.2 must be scoped to preserved runs rather than 'other body of evidence'.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Evidence path",
+      "current": "the navigation aid Index, What, Why, How, Sources, by which a reader moves from an entry point to an answer, its reasoning, its method, and its sources. It describes what must be reachable, not a required order of files or headings.",
+      "verdict": "REMOVE",
+      "reason": "Used once, in the 1.3 sentence that is itself cut as a duplicate of 3.1 and 7.2.1. A term with no clause is a cost with no saving. The README keeps the aid as what it is, a navigation aid.",
+      "new_home": "README (already there); authoring guide",
+      "new_wording": "Delete the entry.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Artifact",
+      "current": "a resource produced or used in technical work; its roles may include implementation, method, input, observation, evidence, or presentation.",
+      "verdict": "WEAKEN",
+      "reason": "3.6 and 2.4 need a reader to know that 'artifact' means code, configuration, data, or output. The roles list is knowledge-model content ('Resources and criteria' has it).",
+      "new_home": "Roles list: knowledge model 'Resources and criteria' (already there)",
+      "new_wording": "Artifact: a resource produced or used in technical work, such as code, a configuration, a dataset, a run output, or a report.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Architecture decision record (ADR)",
+      "current": "a decision record about a consequential architecture choice; acceptance, implementation, and validation are distinct.",
+      "verdict": "REMOVE",
+      "reason": "Unused once the ADR sentence leaves 7.1.5; the nomenclature and the decision guide define it, and the second half of the definition is 7.1.5 a restated.",
+      "new_home": "Nomenclature (already there); decision guide",
+      "new_wording": "Delete the entry.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Derived view",
+      "current": "a summary, excerpt, or transformation of information maintained elsewhere.",
+      "verdict": "KEEP",
+      "reason": "2.2 uses it as the general term in its name and its (d); one line; cheaper than listing the kinds in the clause.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Material claim",
+      "current": "a claim whose error could change a reader's action, interpretation, or trust in a result. The adjective 'material' has the same sense wherever the rules use it ...; the rules do not use it as a noun. The learning guide gives contrasting examples.",
+      "verdict": "KEEP",
+      "reason": "Twenty-one uses of 'material'. Agree: keep the definition and the adjective sentence; the link to the examples is navigation and can stay as four words.",
+      "new_home": "none",
+      "new_wording": "",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Term: Self-explanatory",
+      "current": "a document is self-explanatory when a reader who arrives with no other context can tell what it is, what question it answers, what it applies to, and what its terms mean or where they are defined.",
+      "verdict": "REMOVE",
+      "reason": "Used only in the name of 1.1, and the definition is 1.1 a restated with one addition ('what its terms mean'), which is 1.4. A term that duplicates the clause it names is a second home for the rule.",
+      "new_home": "Clause guide row 1.1; the 'terms defined' half is 1.4",
+      "new_wording": "Delete the entry; 1.1 keeps its name.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "Paragraph after Terms: 'Canonicality is a maintenance responsibility, not proof of truth ...'",
+      "current": "Canonicality is a maintenance responsibility, not proof of truth. Two sources can disagree; the local synthesis must explain the disagreement rather than suppress it. The kinds of statement named in clause 3.2 are explained in the knowledge model.",
+      "verdict": "MOVE",
+      "reason": "Rationale and a lowercase rule ('must explain the disagreement') that 3.2 c already states in uppercase. The knowledge model's 'Identity and scope' section says the same.",
+      "new_home": "Knowledge model 'Identity and scope' (already there)",
+      "new_wording": "Delete the paragraph.",
+      "conformance_change": "none"
+    },
+    {
+      "unit": "'About this specification' section",
+      "current": "Version, status, license, how rules are added and removed, where reasons are recorded.",
+      "verdict": "KEEP",
+      "reason": "1.1 b applied to KADS: content about the document, last and short. The 'canonical value is VERSION' phrase is repository mechanics and can go with 8.3 a's.",
+      "new_home": "VERSION phrase: CONTRIBUTING (already there)",
+      "new_wording": "Version: 0.9.0. Status: draft, before 1.0; requirements can change between minor versions and the changelog marks each breaking change. License: CC BY 4.0. How rules are added and removed: Contributing; why each rule exists: decisions/.",
+      "conformance_change": "none"
+    }
+  ],
+  "counts_target": "Baseline 0.8.0: 42 clauses, 119 keywords (69 MUST, 11 MUST NOT, 24 SHOULD, 2 SHOULD NOT, 13 MAY), 22 terms, about 4800 words. Target with every cut above: 38 clauses (remove 2.3, 2.6, 5.3 by merger, and 8.4 on the merits; 39 if 8.4 stays in its one-sentence form), about 97 keywords (about 60 MUST, 9 MUST NOT, 15 SHOULD, 2 SHOULD NOT, 10 MAY; the nine retired SHOULDs are 1.3 x2, 2.6 x2, 5.2, 5.3, 6.3, 7.1.5, 8.6 b, and the retired or merged MUSTs are 2.3, 6.1 research claims, 7.1.4 backward link, 7.1.5 e, 7.2.5 second sentence, 8.3 b, and the 8.4 set), 18 terms (remove Evidence path, Knowledge object, ADR, Self-explanatory), and about 3400 to 3600 words, with the preface at roughly 250 words. Reasoning: none of the retired text protects a property that a remaining clause does not; every cut sentence already exists, or has a named place, in the clause guide, knowledge model, registries, artifact guide, adoption guide, or CONTRIBUTING; and the release that makes these cuts satisfies the 'review before growth' rule by naming more retirements than additions."
+}

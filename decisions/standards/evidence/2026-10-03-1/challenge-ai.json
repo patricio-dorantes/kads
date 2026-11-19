@@ -1,0 +1,285 @@
+{
+  "role": "ai-retrieval",
+  "overall": "The package is written for a reader who enters at the corpus entry point and reads a page top to bottom; a retriever does neither. It indexes every file including orphans, splits pages at headings, and hands an agent a middle section with no banner, no 'Applies to' line, and no glossary. Measured against that reader, the two candidates that matter most are under-specified: J-014 is demoted to guidance although section-level self-containment is the property retrieval depends on, and J-027 mandates a page-top marker that does not survive chunking. J-015 is right in intent but an agent cannot tell whether it complied, because nothing obliges the canonical home to make the role visible in words, and rejecting J-016 outright removes the one cheap convention that would make it checkable. The rejections of heavy machinery (J-005, J-007, J-011, J-013, J-017, J-022 as a graph) are correct, and I found no credible counterargument for several of them. The rejection of J-030 is right about the profile but wrong about the gap: agent-specific failure modes (citing uninspected sources, generalizing one failed search into a negative result, agent-on-agent review presented as independent review) are not closed by Core today, and the agent snippet is informative, unversioned, and silent on every new clause in this package.",
+  "candidates": [
+    {
+      "id": "J-001",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Keyword discipline is already adopted, and a restraint rule in CONTRIBUTING stops MUST inflation, which matters because an agent treats every MUST as equally binding and cannot prioritize among 64 of them.",
+      "argument_against": "The restraint rule tests only importance ('breaks a property the standard protects'), not checkability. A MUST whose satisfaction cannot be judged from the page and its links (for example 'wherever combining them would mislead') cannot be self-verified by an agent, so it produces confident false compliance reports rather than compliance.",
+      "failure_mode": "An agent reports 'conforms to 3.3.2' because nothing on the page lets it detect a violation; the review record then launders an unchecked claim into a conformance statement.",
+      "recommended_change": "Add a second condition to the CONTRIBUTING restraint rule: 'and a reviewer, human or agent, can judge from the material and its links whether the rule was met; a rule that cannot be judged that way is guidance.' Apply it to the new clauses in this package before release."
+    },
+    {
+      "id": "J-002",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "One term carrying two meanings is a real retrieval and reasoning hazard: two chunks using 'environment' or 'accepted' in different senses are merged by a model into one false statement, and no embedding can separate them.",
+      "argument_against": "The two halves are not equally valuable and the proposal weights them the same. Synonyms are cheap for semantic search and actively useful: a user queries with the vendor term, so suppressing synonyms lowers recall. And 'mapping stated once' is a page-top or glossary convention that never travels with a retrieved chunk, so the chunk that uses the vendor term arrives without the mapping.",
+      "failure_mode": "Agents 'normalize' terminology across a corpus to comply, rewriting quoted vendor output, evidence, and historical records, and destroying the exact strings users search for. Compliance is also uncheckable without a term list, which the proposal explicitly declines to require.",
+      "recommended_change": "Split the clause. Homonym half as stated ('SHOULD NOT use one term for two concepts within a scope'). Synonym half reworded: 'Where a synonym, vendor term, or translation appears, its mapping to the preferred term SHOULD be findable from the place it is used', which permits an inline parenthetical at first use in a section or a link, not only a single statement elsewhere. Add: 'This clause does not license altering quoted material, evidence, or historical records.'"
+    },
+    {
+      "id": "J-003",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Rejecting a normative rule is right: atomized one-assertion sentences strip the connective words ('because', 'therefore', 'unless') that carry the reasoning, and a chunk of disconnected assertions is worse retrieval context than a normal paragraph.",
+      "argument_against": "The guidance is scoped too narrowly. The case that matters for provenance is a sentence with two material claims and one citation: neither a reader nor an agent can tell which claim the citation supports, and a summarizer will carry the citation to the wrong one.",
+      "failure_mode": "A sentence such as 'the API rejects the request and the resource is not created [source]' is split by a summarizing agent; the unsupported half inherits the citation.",
+      "recommended_change": "Add a third place to the guidance: 'a sentence that carries a citation or basis should carry only the claims that basis supports.' Keep it guidance; do not extend it to explanatory prose."
+    },
+    {
+      "id": "J-004",
+      "stance": "MODIFY",
+      "layer": "PROFILE",
+      "argument_for": "Agents now execute runbooks step by step, and an agent acts on a step as soon as it has read it; condition-before-action and hazard-before-step are the difference between a safe and an unsafe automated execution. 7.6 is the best anti-staleness rule in the package.",
+      "argument_against": "'Before the step' is satisfied by a warnings section at the top of the page, which is exactly what does not survive chunking: the retrieved chunk is step 7 without the hazard stated 400 lines earlier. And 7.6 invites the most dangerous agent fabrication in the package: an agent that rewrites a procedure cannot have executed it, yet will preserve or restate the 'executed as written on <date>' line.",
+      "failure_mode": "An agent edits step 4, leaves the 'Executed as written against v2.3' statement intact, and the procedure now carries a verification claim for text that was never run. Separately, 7.2 'one action' is unjudgeable for compound commands and gets resolved by splitting steps until the procedure is unreadable.",
+      "recommended_change": "7.4: 'MUST be stated immediately before, or within, the step that causes it; a general warnings section does not satisfy this.' 7.3 likewise 'in the same step'. 7.6 add: 'A change to any step invalidates the executed-as-written statement for the changed procedure unless it is executed again; the statement MUST then be removed or qualified.' 7.2: define action as 'one thing the operator does and can observe the result of'."
+    },
+    {
+      "id": "J-005",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Rejection is correct. A controlled dictionary narrows vocabulary away from the words users query with, sentence-length caps force qualifications into separate sentences that chunking then separates from their claim, and language models do not need simplified English to parse prose.",
+      "argument_against": "No credible counterargument: the only retrieval-relevant residue (long sentences that bury a qualification far from its claim) is a symptom J-003 and 3.2.2 already address, and a length limit would not fix it.",
+      "failure_mode": "If adopted, agents would mechanically rewrite compliant prose into short passive-free sentences, dropping hedges and scope qualifiers in the process, which is status laundering by style rule.",
+      "recommended_change": "none. Even the proposed informative note is optional; if kept, phrase it as 'keep a qualification in the same sentence as the claim it qualifies' rather than as a preference for short sentences."
+    },
+    {
+      "id": "J-006",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Rejection is correct for file-level modularization: small modules fragment context, multiply near-duplicate chunks, and make each retrieved unit less able to stand alone, the opposite of what retrieval needs.",
+      "argument_against": "The rejection treats the question as settled when the real unit of reuse in an AI-read corpus is the heading-delimited section, not the file. KADS says a knowledge object 'need not have a separate file' but never says it should be addressable; a finding buried mid-paragraph under a generic heading cannot be deep-linked, cited by clause 3.3.1's 'specific passage', or retrieved as a unit.",
+      "failure_mode": "A page holds five knowledge objects under one heading; the chunker splits on length instead of meaning, and a decision is retrieved without its conditions.",
+      "recommended_change": "No new modularization rule. Fold one sentence into the J-014 text: 'a knowledge object that other material cites should sit under its own heading so that it can be linked and retrieved as a unit.'"
+    },
+    {
+      "id": "J-007",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Rejection is correct: hierarchical codes rot when the encoded structure changes, and an ID an agent must derive from a coding scheme is an ID an agent will derive wrongly and confidently.",
+      "argument_against": "The opposite extreme has a retrieval cost the proposal ignores. An opaque ID such as 'D-014' carries no meaning to an embedding and none to a reader of an isolated chunk; 'per D-014' in a retrieved section is a dangling referent unless the retriever also fetches the record.",
+      "failure_mode": "A chunk says 'this was reversed by D-022'; the model answers from the chunk without knowing what D-022 decided, or guesses.",
+      "recommended_change": "Keep IDs opaque. Add to the nomenclature (informative): 'the first reference to a record in a section should give its title with its ID, for example D-014 (Use managed Postgres), and link it.'"
+    },
+    {
+      "id": "J-008",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "A literal, consistently worded 'Applies to:' line is one of the cheapest high-value retrieval aids there is: mixing instructions for two versions is the most common wrong answer in documentation RAG, and a fixed phrase is both embeddable and filterable.",
+      "argument_against": "A page-top line protects only the first chunk. The damaging case is a page whose sections differ in scope ('for v1 do X' under one heading, 'for v2 do Y' under the next); the page-level line is then either false or vague, and the section chunk carries nothing. Guidance in a template also reaches only pages created from that template.",
+      "failure_mode": "'Applies to: all supported versions' at the top; section 4 silently applies only to v2; the v2-only section is retrieved for a v1 question.",
+      "recommended_change": "Keep it guidance, but state the section rule explicitly: 'when a section applies to a narrower or different scope than the page states, say so in that section's heading or first sentence.' Also advise concrete values over 'current' or 'latest', which are unresolvable out of context, and add the line to the agent snippet."
+    },
+    {
+      "id": "J-009",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Already covered by 3.2.1, 3.6.2, and the 'Artifact/source boundaries' line of the adoption note; a new rule would restate them.",
+      "argument_against": "No credible counterargument to rejecting a new rule. The one retrieval-specific concern, that a source and its generated view are both indexed and returned as two agreeing 'independent' sources, is answered by 3.6.2 as long as the view identifies itself in its own text.",
+      "failure_mode": "If a generated view carries its source notice only in a build config or file header that chunking drops, the duplicate looks like corroboration.",
+      "recommended_change": "none beyond recording the mapping. Optionally note in the adoption guide that the 'Artifact/source boundaries' line is what an indexing configuration should use to exclude generated copies."
+    },
+    {
+      "id": "J-010",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "A 'last verified against <version> on <date>' statement is the only freshness signal a retriever or agent can actually use; 'updated' dates are worse than useless once agents edit pages, because every agent edit advances them.",
+      "argument_against": "Guidance-only outside procedures leaves the most agent-prone falsification unaddressed. An agent that touches a page will carry forward or refresh a 'verified' line as part of tidying, and 3.3.3's 'editing does not establish revalidation' is a statement of fact, not an instruction about what to do with the existing verification statement.",
+      "failure_mode": "Reference table edited by an agent for formatting; 'Last verified: 2026-03' becomes 'Last verified: 2026-10' or stays attached to values the agent changed.",
+      "recommended_change": "In the guidance, give the statement a fixed shape ('Verified: <what was checked>, against <version or environment>, on <date>, by <who or what>') and one rule: 'do not write or advance a verified statement unless you performed the check; when you change verified content without rechecking it, remove or qualify the statement.' Put that sentence in the agent snippet."
+    },
+    {
+      "id": "J-011",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Rejection is correct. An agent needs one predictable thing, the entry point and adoption note, and the adoption note outline already has an 'Entry point' line and the agent snippet already names it.",
+      "argument_against": "No credible counterargument: a mandated layout would add nothing for retrieval, which is path-agnostic, and would force agents to move files, breaking links and IDs.",
+      "failure_mode": "If adopted, migration agents would reorganize working corpora to match the layout and generate large link-repair diffs with no knowledge benefit.",
+      "recommended_change": "none"
+    },
+    {
+      "id": "J-012",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Separating what a statement is (observation, inference, decision) from what container it sits in (how-to, report, index) is the right mental model and stops agents from treating 'it is in the reference page' as evidence of fact.",
+      "argument_against": "As proposed it creates a third, different enumeration of epistemic kinds. Clause 3.3.2 lists observation, inference, recommendation, decision; the knowledge model lists observation, inference, conclusion, decision; J-015 adds five terms to section 2; this table lists eight, drops 'recommendation', and adds 'procedure knowledge', which is not an epistemic kind at all. Three lists retrieved together are contradictory context about the standard's own core vocabulary.",
+      "failure_mode": "An agent asked to label or summarize by role picks whichever list was retrieved; one corpus ends up with 'hypothesis', 'assumption', 'claim', and 'recommendation' used inconsistently, and the informative table gets treated as a required type system.",
+      "recommended_change": "Define the kinds once, in section 2 (with J-015), including 'recommendation' and 'hypothesis'; make the knowledge-model table reference that list rather than restate definitions; drop 'procedure knowledge' from the epistemic axis; add a sentence 'this table classifies; it does not require labels or metadata.'"
+    },
+    {
+      "id": "J-013",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Rejection is correct. Transclusion renders the same text into many pages, so an index of rendered output holds N identical chunks that crowd out other results, and an index of sources holds include directives with no content.",
+      "argument_against": "No credible counterargument. The apparent weakness of link-based reuse, that a retriever does not follow links, is already answered by 3.2.1 and 3.2.2: the summary beside the link carries the gist and its qualifications, which is a better chunk than either a bare link or a transcluded copy.",
+      "failure_mode": "If adopted, stale transcluded copies and their source would be retrieved together as disagreeing authorities.",
+      "recommended_change": "none"
+    },
+    {
+      "id": "J-014",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "The content of the proposal is right: say what the page answers and for what scope, name subjects in headings, and avoid referents that live elsewhere on the page.",
+      "argument_against": "Guidance is the wrong layer. Out-of-context reading is not a technique; it is now the normal way documentation is read (deep link, search hit, retrieved chunk), and every other protection in Core (scope in 3.1.1, qualifications in 3.2.2, status in the proposed 3.1.5) is defeated when a section cannot be understood alone. Clause 3.1.2 covers the document opening only. By the package's own J-031 test, the cost of the missing rule (wrong answers assembled from sections stripped of subject and scope) exceeds the cost of a bounded SHOULD.",
+      "failure_mode": "As guidance: agents follow the spec, not the guide, and keep writing 'as described above' and headings like 'Overview' and 'Notes'. As an unbounded rule: authors and agents restate context in every section, which bloats pages and creates the independently maintained copies 3.2.1 forbids.",
+      "recommended_change": "New Core clause, SHOULD, bounded to naming rather than restating: 'A section that can be reached directly SHOULD name its subject, and its scope where that differs from the page's, in its heading or opening sentence. It SHOULD NOT depend on a referent that is identified only elsewhere on the page. Naming and linking the referent is sufficient; restating its content is not required.' The self-check is concrete: read the section with nothing above it and ask what it is about and what it applies to. Keep the 'Writing for retrieval' guide section for technique."
+    },
+    {
+      "id": "J-015",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "This is the central failure of summarizing agents: hedges are dropped on each restatement until a hypothesis is indexed as a finding. A Core MUST is justified, and naming 'hypothesis' fills a real hole.",
+      "argument_against": "An agent cannot reliably comply or know that it has. 'The role a statement had at its canonical home travels with it' presupposes the home made the role visible, but 3.3.2 requires that only 'wherever combining them would mislead', so the role is often implicit in a hedge, a section heading the chunk lost, or nowhere. The clause also says nothing about where in the restatement the role must appear, so a link back to the source could be argued to satisfy it, and it omits the two promotions agents make most: recommendation to decision and proposed to accepted.",
+      "failure_mode": "The source says 'the timeout is probably caused by pool exhaustion' under a heading 'Hypotheses'. The retrieved chunk lacks the heading; the agent's index line reads 'Timeouts are caused by pool exhaustion (see report)'. The agent believes it complied because it linked the source.",
+      "recommended_change": "Reword 3.3.5: 'A summary, index, or other derived view MUST NOT present an inference, assumption, hypothesis, or recommendation as an observation, an established conclusion, or a decision. The restatement MUST carry the role in its own words; a link to the source does not carry it. Where the role at the canonical home cannot be determined, the restatement MUST say so rather than choose one.' Add to the authoring guide that a statement's role should be expressed in the sentence itself, not only by the heading it sits under."
+    },
+    {
+      "id": "J-016",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Rejecting new record types, required per-statement labels, and 'fact' as a type is right: mandatory tagging turns prose into a form, and agents will tag every sentence, burying the few labels that matter.",
+      "argument_against": "Rejecting the whole idea leaves J-015 without a mechanism. If KADS names no convention, each author and each agent invents one ('Finding:', 'Note:', 'Fact:', 'Claim:', 'TBD:'), which is the worst outcome for retrieval and for self-checking. A small, optional, plain-language set of lead-in words is not artificial structure; it is what careful writers already do, and a shared set makes roles survive chunking because the cue is inside the sentence.",
+      "failure_mode": "With no named convention: inconsistent ad hoc labels, including 'Fact:', spread through agent-written pages. With required labels: every sentence prefixed, labels stop carrying information, and readers skip them.",
+      "recommended_change": "Keep the rejection of types and of required labels. Add an informative, optional convention to the authoring guide: 'where a role needs marking, prefer plain lead-ins from one small set: Observed, Inferred, Assumed, Hypothesis, Recommended, Decided, Unverified. Use them where the role is not already clear from the sentence; do not label every statement; do not use Fact.' Mention the set in the agent snippet."
+    },
+    {
+      "id": "J-017",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Rejection is correct. Entity, activity, and agent triples are unreadable in prose, cannot be authored reliably by hand or by an agent, and a retriever gains nothing from them that a sentence stating who collected what, when, and how does not give.",
+      "argument_against": "No credible counterargument to rejecting PROV as required metadata. The legitimate residue, that 3.3.4's 'which content was generated and which was verified by a person, and how' has no stated form, is an authorship-disclosure gap handled under J-030, not a reason to adopt PROV.",
+      "failure_mode": "If adopted, agents would emit complete-looking provenance blocks for content whose provenance they do not know, which is fabricated provenance in a trusted format.",
+      "recommended_change": "none; keep the informative correspondence."
+    },
+    {
+      "id": "J-018",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Rejecting additions is correct: every near-synonym relation added is a classification choice an agent will make inconsistently, and inconsistent edge labels are worse than fewer labels.",
+      "argument_against": "Declaring that 'supports', 'evidence for', and 'implements' are inverses and therefore unnecessary does not stop them being written. Agents and people write from the page they are on, so an evidence record naturally says 'Supports: C-012'. The registry names the inverse label only for supersedes, so every other inverse reading is either an undocumented local extension or silently off-vocabulary.",
+      "failure_mode": "A corpus accumulates 'Supports', 'Evidence for', 'Backs', and 'Used by' links that no one can map to the registry, and an agent asked to find dependents of a changed source misses them.",
+      "recommended_change": "No new relations. Add one column or sentence to the registry giving the accepted inverse reading label for each directed relation (for example 'Supports' as the inverse reading of supported-by), stated to be the same relation read from the target, as already done for supersedes."
+    },
+    {
+      "id": "J-019",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Retained rejections stop the same proposal being re-argued, and they give an agent the reason a tempting change was not made.",
+      "argument_against": "Retained rejected material is the purest source of contradictory context. A rejected or modified proposal contains fully formed normative-sounding text (this evaluation's candidate file contains draft clauses 3.1.4, 3.1.5, 3.3.5, 3.5.4, 3.5.5, and 7.2 to 7.6 with MUST wording), and a retriever returns that text for a question about what KADS requires. A status line at the top of the file does not reach the chunk holding the draft clause.",
+      "failure_mode": "An agent answers 'KADS clause 3.3.5 says ...' quoting the rejected or pre-modification wording from the retained evaluation record rather than the specification.",
+      "recommended_change": "Keep the records, and in the same change: each retained candidate carries its outcome in its own heading (for example 'J-016 (rejected) ...'); draft clause text is introduced in each entry as 'proposed wording, not adopted' or 'proposed wording, adopted as modified in clause X'; the records live outside docs/ and the entry point describes them as historical."
+    },
+    {
+      "id": "J-020",
+      "stance": "ADOPT",
+      "layer": "CORE",
+      "argument_for": "Content that cannot be read as text cannot be indexed, diffed, or reviewed by an agent, and an agent cannot verify a claim whose source is locked in a tool it cannot open. A SHOULD with a stated fallback is proportionate.",
+      "argument_against": "It sits uneasily with clause 1.1 ('does not prescribe ... tooling') and arguably fails J-031: a corpus in a hosted wiki can satisfy every epistemic property KADS protects. It also overlooks the commonest opaque source in otherwise text-based corpora: a canonical diagram or table kept only as an image, which is 'readable without proprietary tooling' yet invisible to text retrieval.",
+      "failure_mode": "A canonical architecture diagram exists only as a PNG; the clause is met, the content is unsearchable, and an agent describes the architecture from stale prose instead.",
+      "recommended_change": "Adopt as worded, and add to 3.2.3 guidance or the artifact guide: 'a canonical diagram should have a text source or a text statement of what it establishes.' Add a note reconciling the clause with 1.1: it constrains the form of maintained sources, not the choice of tools."
+    },
+    {
+      "id": "J-021",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "This is one of the few rules an agent can check mechanically and reliably: crawl links from the entry point and list what was not reached. It also catches the scratch and draft files agents leave behind.",
+      "argument_against": "The stated rationale is backwards for retrieval. An orphan is invisible to a human navigator but fully visible to an indexer, which reads every file. So in an AI-read corpus orphans are not 'invisible and rotting'; they are unreviewed pages served with the same authority as maintained ones. The proposed clause only says documents should be reachable; it does not say what to do with files that are not, and it is satisfied by a flat list of filenames that says nothing about what each page is or whether it is current.",
+      "failure_mode": "An abandoned draft with no inbound links is retrieved as an answer. Or an agent achieves compliance by appending 300 bare links to the index.",
+      "recommended_change": "Reword 3.5.5: 'Each maintained document SHOULD be reachable by following links from the corpus entry point, through a link that indicates what the document is. A document within the covered corpus that is not reachable SHOULD be linked, removed, or marked as unmaintained under 3.1.5.' State that preserved evidence and run bundles are covered by 3.6.1, not by this clause."
+    },
+    {
+      "id": "J-022",
+      "stance": "MODIFY",
+      "layer": "PROFILE",
+      "argument_for": "Rejecting a schema, validator, or graph in Core is right. A second metadata graph drifts from the prose, and KADS already removed that tooling once for cause.",
+      "argument_against": "Deferring everything ignores that the minimal convention already half exists and has a retrieval hole. The nomenclature names the fields (id, type, title, status, updated) and permits front matter 'instead' of visible text. Front matter is exactly what most renderers hide and most chunkers strip or attach only to the first chunk, so a record whose status 'superseded' lives only in front matter is retrieved as plain current text. Relations have no named keys at all, so adopters using front matter invent incompatible ones.",
+      "failure_mode": "status: superseded sits in YAML; the body chunk is retrieved without it and contradicts the replacement record in the same context window.",
+      "recommended_change": "No schema, no validator, no Core change. In the tracked-record profile and nomenclature: (1) 'a status that warns the reader (superseded, deprecated, rejected) MUST appear in visible text even when front matter is used', aligned with 3.1.5; (2) name, as MAY, the front-matter keys for the existing fields and for relations using the registry names (for example supersedes), so projects that choose metadata choose the same words. Keep the cross-project mapping contract deferred."
+    },
+    {
+      "id": "J-023",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Tying each vocabulary addition to a reader question keeps the relation set small, which is what makes consistent labeling by many authors and agents possible at all.",
+      "argument_against": "A question is the cheapest thing a fluent agent can produce. Any proposed relation can be given a plausible 'reader question the existing vocabulary cannot answer', so the test filters human hesitation, not bad proposals.",
+      "failure_mode": "An agent proposing 'refines', 'elaborates', and 'motivates' supplies a well-formed competency question for each and all three pass.",
+      "recommended_change": "Require an instance, not only a question: 'a proposed type, status, or relation should name the reader question it answers and cite at least one real case in a corpus where the existing vocabulary gave a wrong or ambiguous reading.'"
+    },
+    {
+      "id": "J-024",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "The substance is covered by 3.3.1, 3.5.1, 6.2, and 6.3; a new clause would be a fifth statement of the same idea.",
+      "argument_against": "Covered, but scattered across four clauses and one informative guide, and the operative ones are SHOULD. Agents link to a default branch or a 'latest' URL by default, and none of the covering text is in the agent snippet, so the rule exists where agents are least likely to apply it.",
+      "failure_mode": "An agent supports a claim about past behavior with a link to the main branch; the file changes and the citation now points at text that contradicts the claim.",
+      "recommended_change": "No new clause. Add one line to the agent snippet: 'when a claim depends on the state of code or a document at a point in time, link a commit, tag, or version, not a moving branch.'"
+    },
+    {
+      "id": "J-025",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "5.4, 5.2, and 5.7 do cover preregistration and negative results for research reports, and 5.7 is well worded.",
+      "argument_against": "'Covered' is true only inside the research-report profile. The most common agent-authored negative result is not in a report: it is 'X is not supported', 'there are no usages', or 'no such option exists', written into ordinary documentation after one search or one failed call. A Core-only adopter has no clause that scopes that statement, and once written it is retrieved as a fact about the system.",
+      "failure_mode": "An agent greps one directory, finds nothing, and writes 'the service has no retry logic' into a reference page; the retry logic lives in a shared library.",
+      "recommended_change": "No new research rule. Add to the agent snippet and authoring guide now: 'state a not-found or not-supported result with what was searched or tried (clause 5.7 gives the form), in any document, not only reports.' Record as a deferred candidate the promotion of 5.7's first sentence into section 3.3 at the next breaking revision."
+    },
+    {
+      "id": "J-026",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Not renumbering 43 clauses without adopter evidence respects 1.4 and avoids churn in existing conformance claims.",
+      "argument_against": "Deferral makes the problem larger with this very release: the proposed 3.1.4 holds three SHOULDs, 3.1.5 two MUSTs, 3.3.5 a MUST plus an unkeyworded rule. For an agent, a multi-requirement clause is not a citation nuisance; it is a compliance defect, because 'checked 3.3.2' can mean any one of four obligations and a retrieved clause fragment may hold half of them. The candidate file itself states the ambiguity, which is evidence. And the cost argument assumes renumbering, which is unnecessary.",
+      "failure_mode": "A review record says 'exception to 3.4.4'; no one can tell whether the identifier, the storage layout, or the timing SHOULD is excepted.",
+      "recommended_change": "Do two cheap things now, defer the restructuring: (1) CONTRIBUTING rule that each new clause states one requirement, applied to the clauses added in this release; (2) permit sentence-level citation of existing clauses by letter in order of keyword ('3.3.2(b)'), declared in 1.4 as additive and not a renumbering."
+    },
+    {
+      "id": "J-027",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "This is the most important addition in the package for retrieval: it moves the currency signal from the entry point, which a retriever never sees, onto the material. A MUST is warranted.",
+      "argument_against": "'In the material itself, before its content' is a page-banner rule, and a banner protects only the first chunk. A retriever returns the section 'Configuration' from the middle of a superseded page with no marker, alongside the current page's section, and the model has two equally authoritative texts. The wording also leaves three holes: a superseded passage kept inside an otherwise current page; status carried only in front matter, which is arguably 'in the material' but is stripped; and no trigger, since nothing tells the author or agent who writes a replacement to go and mark the old page.",
+      "failure_mode": "Page-top banner present, clause satisfied, and the retrieved mid-page chunk still presents superseded instructions as current. Or an agent writes the new guide and never touches the old one because no clause attaches the duty to the act of replacing.",
+      "recommended_change": "Reword 3.1.5: 'Material that is historical, superseded, deprecated, or a dated snapshot MUST say so in visible text at the material itself, before its content, and MUST point to current guidance where it exists. When the material is a document, the marking SHOULD appear in its title or top-level heading. When the material is part of an otherwise current document, the marking MUST be at that part. Whoever replaces material is responsible for marking what it replaces.' In guidance: prefer removing superseded text from current pages and relying on version history (3.4.1) over keeping it inline; long historical pages may repeat a short marker in section headings; a title-level marker is what heading-path chunkers propagate to every chunk. Define 'historical' and 'deprecated' in section 2 or map them to existing statuses."
+    },
+    {
+      "id": "J-028",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Rejecting a requirement is right; hashes do not authenticate collection, and a manifest of checksums an agent generated after the fact is integrity theater.",
+      "argument_against": "The artifact guide says to add a checksum 'when there is an integrity need' but was written before agents had write access to evidence directories. An agent asked to fix formatting, redact a token, or 'clean up' a results folder will silently rewrite collected output, which 3.4.2 forbids but nothing detects.",
+      "failure_mode": "An agent normalizes line endings and trims 'noise' from a preserved run log; the evidence no longer matches what was collected and no record shows it.",
+      "recommended_change": "No requirement. Add to the artifact guide that agent write access to evidence is an integrity need in the guide's sense, and add one line to the agent snippet: 'do not edit preserved evidence or run output; if a change is necessary, record it under 3.4.5.'"
+    },
+    {
+      "id": "J-029",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "Mandating independent review would exclude one-person projects, and disclosure of who reviewed is the right minimum.",
+      "argument_against": "Disclosure only works if the disclosed categories are unambiguous, and 3.3.4 is not. 'A review performed only by the generating agent MUST be identified as such' does not say whether a second agent, a second session of the same model, or a panel of role-prompted agents counts as 'the generating agent'. That configuration is now routine (this evaluation is one) and reads to a later reader as independent review.",
+      "failure_mode": "A page states 'reviewed independently' on the strength of a second agent run with the same model and the same context; the reader assumes a person checked it.",
+      "recommended_change": "No independence requirement. Clarify 3.3.4 (or conformance, if a Core edit is judged meaning-changing): 'A review performed only by automated agents, whether the generating agent or others, MUST be identified as automated review and MUST NOT be described as verification by a person.'"
+    },
+    {
+      "id": "J-030",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "A separate profile would be wrong: fabrication and accountability rules bind people as much as agents, an 'AI profile' implies the Core is optional for humans, and a profile keyed to who typed the text is unenforceable.",
+      "argument_against": "'The rules that matter are already in Core' is false in three places, and agents now write most of the content. (1) Nothing requires that a cited source was inspected: 3.3.3 forbids inventing sources, but citing a real document from memory without opening it is not inventing one, and it is the characteristic agent error. (2) 3.3.4's 'which content was generated and which was verified by a person, and how' has no form, so it is satisfied by a vague footer or skipped. (3) The agent snippet, the only text most agents load, is informative, carries no KADS version, and says nothing about the clauses this package adds (role preservation, status marking, reachability, self-contained sections).",
+      "failure_mode": "An agent produces a page with correct-looking citations to real files it never read, a footer 'AI-assisted, reviewed', and none of the new clauses applied because its instructions predate them. Every existing clause is nominally met.",
+      "recommended_change": "No profile. Three targeted changes: (a) Core, in 3.3.3: 'A citation presents the cited passage as inspected by the author or agent; a source relied on without inspection MUST be identified as such.' (b) Guidance: give 3.3.4 a one-line form, for example 'Drafted by: <agent>. Author of record: <name or role>. Verified by a person: <what, how, when; or nothing yet>.' (c) Treat the agent snippet as a derived view of the spec under 3.2.2 and 6.3: state the KADS version it reflects, cite clause numbers, and update it in the same release as any Core change. Add an agent-checkable list to conformance: section reads alone; role words preserved in summaries; replaced material marked; new pages linked; verified statements not advanced; negative results scoped."
+    },
+    {
+      "id": "J-031",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "A stated admission test gives every later proposal, including agent-generated ones, the same bar, and 'lowest layer that needs it' is the right default against agent-driven rule inflation.",
+      "argument_against": "'More cognitive or epistemic cost than the rule itself' has no stated cost-bearer and no evidence requirement, so it is decided by whoever argues last. As worded it counts the cost a rule imposes on authors, which is visible, against the cost of its absence, which in an AI-read corpus falls on downstream readers of machine-assembled answers and is invisible to the author. That bias is how J-014 ended up as guidance. The test was also used to judge this package before being adopted, so it has not itself been tested.",
+      "failure_mode": "Every retrieval-motivated rule is rejected as 'more cost than benefit' because the author feels the cost and never sees the wrong answer a retriever produced.",
+      "recommended_change": "Reword the test to name bearers and require a case: 'A KADS rule exists only when a named failure, shown by at least one real or realistic case, costs readers more than the rule costs authors. Readers include those who arrive without the entry point: by deep link, search, or retrieval, and agents acting on retrieved sections.' Keep the layering principle as stated."
+    }
+  ]
+}

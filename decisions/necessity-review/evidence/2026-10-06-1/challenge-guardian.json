@@ -1,0 +1,342 @@
+{
+  "role": "guardian",
+  "overall": "Most of the proposed removals are safe: they take rationale, repository mechanics, or sentences the registry already states out of the normative text, and no corpus changes conformance status. Three proposals do change what a reviewer can conclude and should not go through as written: dropping the 5.2 sentence that a storage label is not a timestamp (a date-named directory becomes an acceptable collection date under 3.1 and 4.3), cutting the Subject term's closing sentence (a reference page plus its how-to guide can then be read as two homes for one subject under 2.1), and removing both the 1.3 sentence 'No fixed sequence or number of files is required' and the Evidence path term, which together are the only text saying the evidence path is not a required document order. Two moves are acceptable only with a wording condition: the review-route MUST must land in the text of 8.1 with the words 'and the conditions that trigger review', not only in the conformance list, and the proposition 5 'Why' must keep its scope sentence 'These clauses bind only where a corpus holds evidence', which is a conformance condition, not rationale. On 8.4, the first sentence already reads 'wherever it declares a version of its own'; what makes a number mandatory for the adoption note is conformance.md and the 'MUST state what counts as a breaking change' sentence, so the maintainer's real decision is narrower than the dispositions file presents it.",
+  "items": [
+    {
+      "unit": "Preface, opening paragraph",
+      "proposal": "keep, trim",
+      "verdict": "AGREE",
+      "invariant": "1.1 applied to KADS itself: a reader who lands on the specification can tell what it is and which version.",
+      "case_for_keeping": "The trim is safe as long as the first sentence still names the version and the second still points to the README and clause guide; both are navigation.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "Trim, keep the version and the two links."
+    },
+    {
+      "unit": "Preface, How to read this document",
+      "proposal": "rewrite: state KADS's own numbering semantics only",
+      "verdict": "AGREE",
+      "invariant": "A reader can tell that 2.4 makes proposition 2 precise and that 7.1.x applies only under a chosen profile.",
+      "case_for_keeping": "Nothing is lost if the rewrite keeps three facts: a deeper number is a more specific statement under the one above; propositions carry no keyword and so are not requirements; 7.1 and 7.2 apply only when chosen. The clause guide's 'How to read a clause' restates these and would otherwise be stating something the specification no longer says.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "As proposed, with the three facts in one paragraph."
+    },
+    {
+      "unit": "Preface, Tractatus attribution and 'cited from memory'",
+      "proposal": "remove; record in decision J-034 with the verified citation",
+      "verdict": "AGREE",
+      "invariant": "None of the five functions; the sentence was KADS applying 3.1's uninspected-source marker to itself.",
+      "case_for_keeping": "Safe. Once the specification makes no claim about the origin of the numbering, 3.1 asks nothing. The verified citation belongs in the decision record as the proposal says.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "Remove."
+    },
+    {
+      "unit": "Preface, Keywords paragraph",
+      "proposal": "keep; state that only the five keyword meanings and the uppercase rule are adopted from BCP 14",
+      "verdict": "MODIFY",
+      "invariant": "Only uppercase keywords in normative documents carry requirement meaning; a SHOULD departure carries its reason.",
+      "case_for_keeping": "Keep the sentence 'only the uppercase forms carry normative meaning, and only in normative documents': it is what makes the lowercase 'must' in the Terms tail and in the guides non-binding. Say what is adopted positively; avoid 'KADS adopts nothing else from BCP 14', because CONTRIBUTING cites RFC 2119 section 6 ('used with care and sparingly') as the admission counsel, and a flat negation reads as disowning it.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "'KADS adopts from RFC 2119 and RFC 8174 the meanings of these five keywords and the rule that only their uppercase forms, in normative documents, carry those meanings.'"
+    },
+    {
+      "unit": "Preface, Citing a clause",
+      "proposal": "keep short; the normative part is 8.2 and 8.3(g)",
+      "verdict": "AGREE",
+      "invariant": "A citation written against an older version can be resolved.",
+      "case_for_keeping": "One sentence suffices: a citation names the version, and the changelog of a renumbering version maps old numbers to new. The MUSTs live in 8.2 and 8.3(g) and are unchanged.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "Keep one sentence with the example citation."
+    },
+    {
+      "unit": "Why sentences under each proposition",
+      "proposal": "keep, cap at two sentences, remove links into the knowledge model, move further explanation out",
+      "verdict": "MODIFY",
+      "invariant": "Two Why paragraphs carry scope conditions, not rationale: proposition 5 'These clauses bind only where a corpus holds evidence', and proposition 7 'a project chooses them in its adoption note'.",
+      "case_for_keeping": "If Why sentences are treated as rationale and trimmed, the proposition 5 scope sentence is the one that tells a three-page how-to repository that 5.1 to 5.3 ask nothing of it. Without it 5.2's 'A preserved run ... MUST have an identifier' is conditional on its own subject only by inference; a reviewer could record an exception 'no run identifier scheme' for a corpus that holds no runs. The links are the specification's only navigation into the knowledge model for propositions 1 to 4 and 7; Navigation is an admitted function, and removing them makes the model unreachable from the rules it explains.",
+      "conformance_change": "Without the proposition 5 sentence, a corpus holding no evidence is arguably in scope of 5.2 and 5.3 (no change in truth, but a change in what a reviewer must argue).",
+      "counterexample": "A documentation-only corpus with no preserved evidence. Today the reviewer cites the Why of 5 to pass 5.1 to 5.3 as not applicable. After trimming, the reviewer has no text to cite.",
+      "alternative": "Cap at two sentences but exempt scope conditions from the cap, or promote the proposition 5 sentence into the lead-in of the clauses ('Clauses 5.1 to 5.3 apply where a corpus holds evidence'), as 7.1 and 7.2 already do with 'Clauses 7.1.1 to 7.1.5 apply to such a project'. Keep one link per Why."
+    },
+    {
+      "unit": "1.3 Answer first",
+      "proposal": "rewrite: keep first two sentences; remove 'No fixed sequence or number of files is required'; move the learning-oriented SHOULD to the guide",
+      "verdict": "MODIFY",
+      "invariant": "The evidence path names what must be reachable from an answer, not a required order of sections or files.",
+      "case_for_keeping": "The proposal removes this sentence on the ground that the Evidence path term already says 'not a required order of files or headings', and then, under Terms, removes the Evidence path term. Both cannot go. With both gone, 'The evidence path from answer to context, reasoning, method, and sources SHOULD be explicit' is the only remaining text, and a reviewer can read it as a prescribed sequence of sections. It is a SHOULD, so no corpus becomes nonconformant, but every one-page how-to that gives the answer and a link to the source would owe a stated reason for departing. Moving the learning-oriented SHOULD out is safe: it relaxes a recommendation, and 1.2 'audience' already asks that a tutorial say who it is for.",
+      "conformance_change": "none in keyword terms; a departure reason would become owed by one-page documents that have no separate reasoning or method section.",
+      "counterexample": "A ten-line runbook: answer, three steps, one link to the source. Today conformant without a stated departure. After removing both texts, a reviewer can ask where the 'evidence path' sections are.",
+      "alternative": "Keep 'No fixed sequence or number of files is required' in 1.3 and drop the defined term, or drop the sentence and keep the term. Not both."
+    },
+    {
+      "unit": "1.4 Consequential terms",
+      "proposal": "remove 'A separate glossary is optional'",
+      "verdict": "MODIFY",
+      "invariant": "Discoverable meaning per scope, not a particular artifact.",
+      "case_for_keeping": "The sentence is of the same kind as 'Front matter is optional' (7.1.1), 'a second metadata graph is not required' (7.1.3), and 'separate records are not mandatory for every edit' (4.2), all of which the dispositions file keeps as 'interpretation preventing over-application'. Removing one and keeping three leaves no stated criterion. 'MUST have discoverable criteria and meanings' is clear enough on its own, so the removal is safe; the objection is to the inconsistency, not to the loss.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "Either remove all four permission sentences of this form to the clause guide, or keep all four and state the criterion ('a sentence that forecloses an over-application stays') in the review record."
+    },
+    {
+      "unit": "2.2 Summaries and derived views",
+      "proposal": "keep; letter a-d",
+      "verdict": "AGREE",
+      "invariant": "Derived views faithful to their source.",
+      "case_for_keeping": "Lettering changes no requirement; 8.2 then asks citations to name the letter. Keep the sentence boundaries exactly as they are so that existing citations by quotation still match.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "Letter without rewording."
+    },
+    {
+      "unit": "2.5 Generated views, third sentence",
+      "proposal": "split: move 'Historical findings MUST distinguish the method and effective conditions used from current defaults ...' to new clause 4.4",
+      "verdict": "AGREE",
+      "invariant": "A historical finding is not re-read under today's method.",
+      "case_for_keeping": "The sentence is unconditional ('Historical findings MUST'), and its position under 'Generated views' invites the narrower reading that it binds only generated views. Moving it to proposition 4 next to 4.2 and alongside 7.2.6's 'attributed to the method' widens nothing and clarifies. Role stays author. Conditions: the changelog maps '2.5, third sentence' to 4.4 under 8.3(g), and the conformance row 'Where historical method and current defaults differ materially' is re-pointed.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "As proposed, with the mapping."
+    },
+    {
+      "unit": "2.6 Freshness of copied figures, last sentence",
+      "proposal": "remove 'This does not make tooling a condition of conformance; a summary that cannot be checked mechanically remains subject to 2.2'",
+      "verdict": "MODIFY",
+      "invariant": "A departure from the SHOULD to check mechanically does not discharge 2.2's MUST to review or date the copy.",
+      "case_for_keeping": "The first half duplicates the preface ('does not prescribe ... tooling') and 8.1 ('Reading and manual review are sufficient'); safe to remove. The second half is interpretation with a reviewer consequence: 2.6 is the clause an adopter reads when deciding what to do about copied figures, and its two SHOULDs plus a stated departure ('no check is practical here') look like the whole obligation. The sentence says the MUST in 2.2 is untouched by that departure. 2.6 was kept at 0.7.0 on an observed case from adoption feedback precisely because copied figures went stale; the sentence is what keeps a 'not practical' departure from becoming the way out.",
+      "conformance_change": "none in keyword terms; 2.2 still binds. The misreading is that a recorded departure from 2.6 covers the figure.",
+      "counterexample": "Adoption note: 'Exception to 2.6: dashboard figures copied by hand; mechanical check not practical.' The figures are then neither reviewed on change nor dated. Nonconformant under 2.2 today and after the change, but today the reviewer has one sentence in the clause that says so.",
+      "alternative": "Remove the first half; keep 'A figure that cannot be checked mechanically remains subject to 2.2.'"
+    },
+    {
+      "unit": "3.3 Nothing invented, last sentence",
+      "proposal": "move 'Editing a document does not establish that its technical content has been revalidated' into 3.4",
+      "verdict": "MODIFY",
+      "invariant": "A recent edit date, commit, or updated field is not evidence of verification.",
+      "case_for_keeping": "3.4 is conditional: it binds 'a statement that documentation content was verified'. The 3.3 sentence binds even where no such statement exists: it tells a reader and a reviewer that a page edited last week, or a record whose 7.1.1 'updated' field is fresh, has not thereby been checked. Placed inside 3.4 it can be read as a condition on verification statements only, and the page with no statement and a fresh date is left looking current and checked. The sentence also pairs with 3.3's 'MUST NOT invent ... confidence'.",
+      "conformance_change": "none",
+      "counterexample": "An agent reformats a runbook across the corpus; every page now has yesterday's commit date. A reviewer reads the dates as revalidation. Today 3.3 says no; after the move the sentence sits in a clause the reviewer does not open because no page claims verification.",
+      "alternative": "Keep in 3.3, or move with unconditional wording: 'An edit, including one that changes a date or revision, is not a verification statement and does not establish that technical content was revalidated.'"
+    },
+    {
+      "unit": "4.3 Dated facts and a review route, second sentence",
+      "proposal": "split: keep dated facts as 4.3; move the review-route sentence into 8.1 as a declared item",
+      "verdict": "MODIFY",
+      "invariant": "Every adopted corpus has a named maintainer or review route AND stated conditions that trigger review.",
+      "case_for_keeping": "The MUST is preserved only if the words 'and the conditions that trigger review, such as a release, incident, new evidence, or changed dependency' are carried into the text of 8.1. If 8.1 says only 'review route ... as described in conformance', the triggers survive solely as a bullet in conformance.md: still normative, but no longer citable by clause and letter, and 8.2's citation guidance then has no clause to point at. The example list is interpretation that makes 'conditions' concrete; without it 'we review when needed' passes. Placement in 4 is also not arbitrary: the triggers are the events that make dated facts and derived views stale, and the Subject term and the conformance question 'Is there a review route, and were affected summaries considered? 4.3, 2.2' rely on that pairing. Under 8 it reads as declaration paperwork.",
+      "conformance_change": "none if the triggers are in 8.1's text; otherwise a note naming a reviewer but no triggers is citable only against conformance.md.",
+      "counterexample": "Adoption note: 'Review route: the platform team.' No triggers. Today a 4.3 finding. After a merge that reads 'MUST declare ... a review route as described in conformance', the reviewer must cite a bullet list.",
+      "alternative": "Accept the move with this 8.1 text: '(e) a maintainer or review route for the corpus, and the conditions that trigger review, such as a release, incident, new evidence, or changed dependency.' Update the Subject term's '(4.3)' and the conformance rows. Otherwise keep as 4.3(b)."
+    },
+    {
+      "unit": "new 4.4 Historical method",
+      "proposal": "move from 2.5",
+      "verdict": "AGREE",
+      "invariant": "As for 2.5 third sentence.",
+      "case_for_keeping": "See 2.5. A new clause number is an addition under 8.3(e) paired with a retirement in 2.5; the changelog names both.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "As proposed."
+    },
+    {
+      "unit": "5.2 Run identity, third sentence",
+      "proposal": "remove 'The identifier scheme SHOULD be chosen before the first run is stored'",
+      "verdict": "AGREE",
+      "invariant": "Means toward the MUST NOT on overwriting; not a property a reviewer can see on the page.",
+      "case_for_keeping": "Safe. A reviewer cannot tell from the corpus whether the scheme preceded the first run except by history, which the admission test's question 5 classes as guidance. The artifact guide carries it. The maintainer role in the parentheses still has work in 5.2 through 'The storage layout MUST NOT allow ...'.",
+      "conformance_change": "none (a SHOULD relaxed)",
+      "counterexample": "",
+      "alternative": "Remove."
+    },
+    {
+      "unit": "5.2 Run identity, fourth sentence",
+      "proposal": "remove 'A storage label is an identifier, not a timestamp; actual collection times are recorded separately' to the artifact guide",
+      "verdict": "OBJECT",
+      "invariant": "A run's identifier and its collection time are different facts; the label is never the basis for a collection date.",
+      "case_for_keeping": "This is the sentence that connects 5.2 to 3.1 (basis), 3.3 ('MUST NOT invent ... collection dates'), and 4.3 (the date material to a fact). Both schemes the artifact guide allows produce labels that look like times: 'results/2026-10-02-2/' and high-resolution timestamps. A run that crosses midnight, a directory created when results were copied in a day later, a migrated evidence tree: in each the label and the collection time differ. With the sentence, a report that says 'collected 2026-10-02' on the strength of the directory name has no basis under 3.1 and has invented a collection date under 3.3. Without it, the directory name is a plausible basis, and the reviewer has no normative text to say otherwise; the artifact guide is informative and 'the requirements take precedence' over it. This is interpretation-bearing text, not explanation: it decides what the label means for the three clauses above.",
+      "conformance_change": "A report whose only stated collection date is a storage label is nonconformant today (3.1, 3.3) and conformant after the change, because the label becomes an acceptable basis.",
+      "counterexample": "results/2026-10-02-1/ holds a scan that started 2026-10-02 23:40 and finished 2026-10-03 01:10; the directory was allocated at start. The report states 'Collected 2026-10-02' citing the path. The deployment under test changed at 2026-10-03 00:30.",
+      "alternative": "Keep the sentence in 5.2 as it stands. If a keyword is wanted, it is a strengthening and needs its own admission: 'A storage label identifies a run and MUST NOT be relied on as its collection time.'"
+    },
+    {
+      "unit": "5.3, adoption-note SHOULD",
+      "proposal": "keep (alternative considered: move to 8.1 list)",
+      "verdict": "AGREE",
+      "invariant": "A reader of evidence knows where redaction records are kept.",
+      "case_for_keeping": "Keep where it is: it binds only a project that holds evidence, which the 8.1 list does not condition on.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "Keep."
+    },
+    {
+      "unit": "6.1, research-claims sentence",
+      "proposal": "remove 'Research claims MUST state limitations relevant to their interpretation' as a duplicate of 3.2 and 7.2.1",
+      "verdict": "AGREE",
+      "invariant": "A limitation that affects interpretation is disclosed, for any claim, with or without the research-report profile.",
+      "case_for_keeping": "For a corpus without 7.2, 3.2's 'Known contradictions and limitations that affect interpretation MUST be disclosed' binds the same author to the same thing; 'known' adds no gap, since an unknown limitation cannot be stated under either clause. What 6.1 adds is locus: the proposition 6 Why says the claim must carry what the reader needs 'at the point they need it', but the clause itself says only 'state', so the locus was never normative. The removal is safe. Three consequences to carry: rewrite the proposition 6 Why so it no longer mentions research claims; re-point the conformance row for 6.1; and replace the clause guide's 8.2 example, which says 'clause 6.1 holds four requirements' and will be false.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "Remove, with the three consequential edits."
+    },
+    {
+      "unit": "6.1, quantities sentence",
+      "proposal": "split: quantities become new clause 3.7 under proposition 3",
+      "verdict": "AGREE",
+      "invariant": "A number carries unit, scope, time or revision, and source; denominators and aggregation explained.",
+      "case_for_keeping": "No requirement changes. Under 3 the sentence sits with basis and scope, which is where a reviewer reading 'source' will look; 'time or revision' overlaps 4.3 as it already did. Map 6.1 to 3.7 in the changelog and re-point the conformance row 'Do changing facts and quantitative results ... 4.3, 6.1'.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "As proposed."
+    },
+    {
+      "unit": "7.1.4 Supersession",
+      "proposal": "rewrite: remove the inverse-reading explanation and 'This deliberate two-way navigation supports readers arriving at either page'",
+      "verdict": "AGREE",
+      "invariant": "Superseded-by is the same relation as supersedes, not a second vocabulary entry.",
+      "case_for_keeping": "The one interpretation-bearing part, that the reverse link is 'the same relation read from either end' and not 'a second relation name', is stated in registry/relationships.md, which is normative under the profile 7.1.4 belongs to. A project writing 'Superseded by' is therefore still inside the vocabulary, and 7.1.3's 'document a local extension' is not triggered. Safe. Keep 'On the superseded record this link is the statement required by 4.1' as proposed; that sentence is what makes 7.1.4 satisfy 4.1(a) without a second notice.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "As proposed."
+    },
+    {
+      "unit": "7.1.5 Status and decisions, ADR sentence",
+      "proposal": "letter a-e; remove 'An ADR MAY use its existing identifier with a documented decision-type mapping; it need not also receive a second decision identifier'",
+      "verdict": "AGREE",
+      "invariant": "Existing decision identities survive adoption without duplication.",
+      "case_for_keeping": "The permission is carried by 7.1.2 ('document a local extension or mapping') and by the nomenclature, normative under 7.1: 'An architectural decision may use ADR mapped to type decision; do not allocate both an ADR identity and a DEC identity for the same object.' Removing a MAY makes a corpus nonconformant only if some MUST would otherwise forbid the thing, and none does. Safe. Re-point the conformance row 'Do local mappings preserve existing identities, including ADRs ... 7.1.2, 7.1.5' to 7.1.2 alone.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "As proposed."
+    },
+    {
+      "unit": "7.2.2 Reproducibility, last sentence",
+      "proposal": "keep 'A source review need not invent an experiment'; remove 'an unavailable source does not become verified through citation alone'",
+      "verdict": "AGREE",
+      "invariant": "Citation is not verification.",
+      "case_for_keeping": "Covered three times for any corpus: 3.2 marks the unsupported claim unverified, 3.1 asks the uninspected citation to say so, 3.4 asks any 'verified' statement to say what was checked. Within the profile, 'Barriers to reproduction MUST be stated' already makes an unavailable source a stated barrier of a source review. Safe.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "As proposed."
+    },
+    {
+      "unit": "7.2.6 Negative results, revision sentence",
+      "proposal": "condense 'When a different method later yields a different result, the earlier conclusion MUST be revised or superseded under 4.2 with the change attributed to the method; the earlier observation remains a valid record of what that method returned' to one short sentence",
+      "verdict": "MODIFY",
+      "invariant": "A later, different result is attributed to the method, and the earlier observation is not deleted or marked wrong.",
+      "case_for_keeping": "4.2 covers 'preserve the prior meaning and explain what replaced it and why'; the two things it does not say are 'attributed to the method' and 'the earlier observation remains a valid record'. The second is what stops an author from rewriting 'not available in region B' as an error rather than as a correct result of the older interface, which is exactly the clause guide's 4.2 example. Condense, but keep both halves.",
+      "conformance_change": "none if both halves survive",
+      "counterexample": "June report: 'not reachable via API v1'. September, via v2: reachable. The June page is edited to say 'the June test was mistaken'. Conformant with 4.2 (meaning preserved, explanation given) but it misattributes; today 7.2.6 forbids that.",
+      "alternative": "'A different result obtained later by a different method revises or supersedes the earlier conclusion under 4.2, attributed to the method; the earlier observation remains a valid record of what its method returned.'"
+    },
+    {
+      "unit": "8.1 Claiming conformance",
+      "proposal": "rewrite to add the review route merged from 4.3",
+      "verdict": "MODIFY",
+      "invariant": "As for 4.3: route and triggers both required, both citable by clause.",
+      "case_for_keeping": "See the 4.3 item. Keep 'Tools MAY assist later; tool output cannot establish that reasoning or evidence is sound' as proposed; it is the sentence that keeps the optional link check from being read as a conformance check.",
+      "conformance_change": "none if the triggers are in the clause text",
+      "counterexample": "",
+      "alternative": "Letter 8.1 so that the review route and triggers are one lettered item."
+    },
+    {
+      "unit": "8.3 Versioning of KADS, (a) and (b)",
+      "proposal": "remove the VERSION file, the v<version> tag, and 'described in the changelog' to CONTRIBUTING; keep SemVer, 'a released version is identifiable and immutable', and (c) to (g)",
+      "verdict": "MODIFY",
+      "invariant": "A released version can be pinned and never changes; a changelog exists for (d) and (g) to write into.",
+      "case_for_keeping": "The mechanics are implementation and can go, with two conditions. First, the immutability property must remain a MUST on the editors, because 8.6(c) ('provided the version the project declares stays a released one') and the conformance list ('pinned commit or tag') depend on 'released' meaning something fixed; 'is identifiable and immutable' as a bare statement without a keyword binds nobody. Second, (d) and (g) say 'in the changelog'; if (b) no longer establishes that each release is described in a changelog, those two MUSTs refer to a document whose existence is assumed. One clause of (b) can stay as 'Each released version MUST be described in the changelog'. The VERSION sentence can go: the 'About this specification' tail already names the canonical value.",
+      "conformance_change": "none for adopters",
+      "counterexample": "",
+      "alternative": "(a) SemVer. (b) 'A released version MUST be identifiable by an immutable reference and MUST NOT change after release; each released version MUST be described in the changelog.' Tag form and VERSION to CONTRIBUTING."
+    },
+    {
+      "unit": "8.4 Versioning of derived documents",
+      "proposal": "UNRESOLVED: keep as decided 2026-10-02, or weaken to pin + record pin change + SemVer only if a version is declared",
+      "verdict": "MODIFY",
+      "invariant": "A reader of a derived document can tell which KADS version its clause citations and exceptions refer to, and can tell when a change to that document changes what they must do.",
+      "case_for_keeping": "The dispositions file presents a wider choice than the text requires. The first sentence of 8.4 already reads 'MUST also use Semantic Versioning 2.0.0 wherever it declares a version of its own': it is conditional today. What makes a number mandatory for the adoption note is conformance.md ('it carries its own Semantic Versioning number') together with 'A derived document that changes which KADS version it follows MUST record that as at least a minor change', which presupposes a number. The maintainer's decision that SemVer is always enforced is honored by the existing conditional plus the conformance sentence; nothing there needs weakening. The sentence that costs the most and protects the least is 'MUST state what counts as a breaking change for its own readers': a twelve-line note must define 'breaking' for itself, and the definition will be the same every time, namely 8.3(c) applied to the note's local rules, mappings, and exceptions. Supply that definition as the default and let a note override it; that keeps SemVer always, keeps the pin, keeps the minor bump on re-pin, and turns one MUST into a default. This is a relaxation under 8.3(c): every note that states its own definition stays conformant, and notes that did not state one stop being nonconformant.",
+      "conformance_change": "Under the alternative: an adoption note that carries a version and a pin but no statement of what is breaking becomes conformant. Under the proposal's weakening: a note with no version number at all becomes conformant, which contradicts the 2026-10-02 decision and the adoption guide's outline.",
+      "counterexample": "A README adoption note: 'Adoption note version 1.2.0. KADS 0.8.0, tag v0.8.0. Profiles: none. Exceptions: 2.4 for docs/legacy, expires 2026-12-31.' Nonconformant today because it does not say what counts as breaking for its readers.",
+      "alternative": "'8.4 (a) A derived document MUST pin the KADS version it derives from. (b) Where it declares a version of its own, that version MUST follow Semantic Versioning 2.0.0, and a change of the pinned KADS version is at least a minor change. (c) For a derived document, a breaking change is one under 8.3(c) applied to its local rules, mappings, and exceptions, unless the document states otherwise.' Whether the adoption note must declare a version at all stays where it is, in conformance.md, as the maintainer decided."
+    },
+    {
+      "unit": "8.6 (c) Changing KADS",
+      "proposal": "replace the proposals/ path with 'the route that KADS names for proposals'",
+      "verdict": "AGREE",
+      "invariant": "Adding a proposal file to a pinned copy is not an alteration under 8.6(a).",
+      "case_for_keeping": "The carve-out works only if (c) still says that a proposal is a new file and that adding that file to a copy is not an alteration; the directory name is not what carries the meaning. Keep 'a new file' and 'adding that file to a copy ... is not an alteration under (a)'. The route can be named in CONTRIBUTING; a later change of route then changes no rule.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "'(c) A proposal is a new file sent by the route CONTRIBUTING names. Adding that file to a copy in order to send it is not an alteration under (a), provided the version the project declares stays a released one.'"
+    },
+    {
+      "unit": "Term: Subject",
+      "proposal": "keep definition and separability test; move nesting, document-as-subject, and the 'whether other descriptions must then be reviewed' sentence to the guide",
+      "verdict": "OBJECT",
+      "invariant": "Dependency between descriptions is not identity of subject; one subject per home is judged by separability, not by what must be reviewed after a change.",
+      "case_for_keeping": "The separability test reads 'without that change being part of a change to another subject's description'. The most common corpus shape, a reference page for an interface plus a how-to guide that must be updated when the interface changes, invites the argument that the guide's change is 'part of' the interface change, so they are one subject, so two pages are two homes, so 2.1 fails. The closing sentence, 'Whether other descriptions must then be reviewed is a matter of derived views (2.2) and review triggers (4.3), not of identity', is what closes that argument, and the clause guide's 2.1 table (the interface row) depends on it. It is interpretation of 2.1's conformance condition, not explanation. The nesting sentence does similar work against the opposite over-application: a reviewer demanding a separate home for every nested part. The example 'as this specification is the subject of the clause guide' and the 'representation is not a subject merely because' sentence can move; the three-things distinction stays as proposed.",
+      "conformance_change": "A corpus with a reference page and a dependent guide page can be found nonconformant under 2.1 once the identity-versus-review sentence is gone; today the sentence settles it.",
+      "counterexample": "docs/api/export.md (the interface) and docs/howto/export-nightly.md (uses it). A reviewer argues the how-to cannot be changed 'without that change being part of' an interface change, treats both as one subject, and records a 2.1 finding.",
+      "alternative": "Keep in Terms: the three-things distinction, the separability test, 'Subjects nest, and a corpus chooses the grain at which it keeps a home for each', and the closing sentence on 2.2 and 4.3. Move the clause-guide example and the specification-as-subject illustration."
+    },
+    {
+      "unit": "Term: Agent-drafted",
+      "proposal": "keep the test; move 'the test is what the change did to the meaning, not which tool made it' and the examples to the clause guide",
+      "verdict": "AGREE",
+      "invariant": "Agent-drafted is decided by effect on meaning, with doubt resolving to disclosure.",
+      "case_for_keeping": "The preceding sentence ('A transformation that preserves material meaning ... does not by itself make content agent-drafted') already carries tool-neutrality; the clause removed is a restatement. The examples are in the clause guide's 3.5 table. Safe, provided 'When it is unclear whether an agent shaped the meaning, the content is treated as agent-drafted' stays, since that is the sentence that decides the borderline case.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "As proposed."
+    },
+    {
+      "unit": "Term: Material claim",
+      "proposal": "trim to the definition; keep the adjective sentence",
+      "verdict": "AGREE",
+      "invariant": "One sense of 'material' across the rules.",
+      "case_for_keeping": "What is trimmed is the link to the learning guide. Navigation, but the clause guide and conformance already link there. Safe.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "As proposed."
+    },
+    {
+      "unit": "Term: Evidence path",
+      "proposal": "drop the defined term; say it in plain words in 1.3",
+      "verdict": "MODIFY",
+      "invariant": "The path names what is reachable from an answer, not an order of files or headings.",
+      "case_for_keeping": "See 1.3. The term's second sentence, 'It describes what must be reachable, not a required order of files or headings', is the interpretation the proposal relies on when it removes 'No fixed sequence or number of files is required' from 1.3. One of the two must survive. The term is also used by the learning guide and ADR-002 as a phrase with a fixed meaning; dropping the definition leaves those uses pointing at nothing, which is 1.4 applied to KADS itself. Dropping the 'Index, What, Why, How, Sources' label is fine; it never bound anyone.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "Drop the term and keep 'No fixed sequence or number of files is required' in 1.3, reworded if wanted: 'The path from the answer to its context, reasoning, method, and sources SHOULD be explicit where those layers are relevant; no sequence or number of files is required.' Update the learning guide and ADR-002 to plain words."
+    },
+    {
+      "unit": "Term: Architecture decision record (ADR)",
+      "proposal": "remove from Terms once the 7.1.5 sentence goes",
+      "verdict": "AGREE",
+      "invariant": "An ADR is a decision record; acceptance, implementation, validation distinct.",
+      "case_for_keeping": "The distinction is in 7.1.5 itself; the ADR mapping is in the nomenclature, normative under the profile. conformance.md's row 'including ADRs' remains intelligible through the nomenclature. Safe.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "Remove."
+    },
+    {
+      "unit": "Paragraph after Terms: 'Canonicality is a maintenance responsibility, not proof of truth ...'",
+      "proposal": "move to the knowledge model",
+      "verdict": "AGREE",
+      "invariant": "A canonical home is authoritative for maintenance, not exempt from 3.x.",
+      "case_for_keeping": "The second and third sentences are explanation, and the lowercase 'must' is non-binding by the keywords paragraph; 3.2 carries the disclosure of contradictions. The first sentence is a four-word interpretation worth keeping at zero cost inside the Canonical home term, so that nobody reads 'authoritative' as 'true'.",
+      "conformance_change": "none",
+      "counterexample": "",
+      "alternative": "Move the paragraph; append to the Canonical home term: 'Authoritative for maintenance, not proof of truth.'"
+    }
+  ],
+  "unresolved": [
+    "8.4: whether the adoption note must carry its own version number at all (decided 2026-10-02 as yes; the specification text is conditional, conformance.md is not), and whether 'MUST state what counts as a breaking change for its own readers' is replaced by a default drawn from 8.3(c).",
+    "Whether the four permission sentences of the form 'X is optional / not required' (1.4, 4.2, 7.1.1, 7.1.3) all stay or all move; the dispositions file treats them differently without a stated criterion.",
+    "Whether the review route and its triggers live under proposition 4 or proposition 8; the MUST is unaffected either way provided the triggers are in clause text.",
+    "ADR-001 to ADR-003 ratification, listed as unresolved in the dispositions file and not examined here."
+  ]
+}

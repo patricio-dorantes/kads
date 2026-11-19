@@ -1,0 +1,384 @@
+{
+  "role": "principle",
+  "overall": "Section 7 should not enter the specification in this release; the 4.6 sentence is the only part with a KADS-internal basis, and the rest should be published as guidance and recorded as a deferred proposal. Every candidate's adopter evidence is 'anticipated only', which is the same thin basis on which the five-clause Procedure profile was cut from 0.6.0, and the reopening condition of J-029 (an adopter in a regulated domain needs an independence rule) has not occurred. The public cases do not show that records are causal: NASA had the most elaborate waiver, readiness, and risk-acceptance records of any organization cited and failed anyway, and Vaughan's account (prior knowledge, not inspected for this report) is that deviance was normalized through the formal documented process, not around it. The profile is satisfiable with zero records, because the routine level requires nothing and a reviewer of a corpus cannot detect a change that was never recorded, so 'conforms to the KADS Assurance profile' would state more than its support. Clause 7.3 (d) to (g) prescribe what an engineer must think about (failure modes, recovery, risk ownership, examination), which is engineering method that clause 1.1 excludes, and 7.4 (a) makes KADS conformance depend on how a project waives its own non-KADS policies. Several principles are false or harmful as worded (P-03, P-05, P-10) and are only rescued by mechanisms that restate 3.3.1, 3.3.2, 3.3.5, 3.5.4 and 5.7. Two clauses are actively wrong when followed mechanically: 7.4 (c) makes a continuing departure vanish from the list of exceptions on its expiry date, and the definition of critical captures every package publish, sent message, and deletion. Three levels can be replaced by two trigger conditions written into the guidance itself, with no classification step and no new defined term.",
+  "clause_verdicts": [
+    {
+      "clause": "4.6 sentence",
+      "verdict": "REWORD",
+      "reason": "The only proposal with a KADS-internal basis (the decision guide already tells authors to mark unknown rationale, and the nomenclature already defines a decision record as recording rationale). Detection is by reading one page. Two defects: 'not recorded' is a strange thing to write in a record being written now by someone who knows the reasons, and nothing separates reasons held at the time from reasons reconstructed later, which is where rationalization enters. It is breaking for tracked-record corpora and binds trivial decisions too, so the escape must stay cheap.",
+      "replacement": "An accepted decision MUST state the reasons for the choice, or state that they are unknown. (Guide sentence, not normative: reasons written after the choice took effect are marked as reconstructed; 'chosen arbitrarily among equivalent options' is a valid reason.)"
+    },
+    {
+      "clause": "7.1",
+      "verdict": "MOVE",
+      "reason": "A profile adds a decision to every adoption (admission question 3) and this one rests on no adopter case. Its conformance claim is empty by construction: nothing is required at routine and unrecorded changes are invisible to a reviewer. The name 'Assurance' borrows prestige and will be read by outsiders as a claim about engineering quality. Move the content to the decision guide as an informative section and record section 7 as a deferred proposal with a reopening condition.",
+      "replacement": "If a profile survives anyway: 'Use this profile when ... (as drafted). A claim of conformance to this profile does not establish that every consequential decision was recorded, that any decision was sound, or that any examination took place.' Rename to 'Consequential-decision records profile'."
+    },
+    {
+      "clause": "7.2(a)",
+      "verdict": "REWORD",
+      "reason": "'and who assigns them' is a role-staffing requirement, which 7.1 says the profile does not make. Criteria in the adoption note are harmless but unverifiable against practice: a reviewer reads the criteria and cannot see the changes they were never applied to. Preferred outcome is deletion with the levels (see M-11); the rewording is the fallback.",
+      "replacement": "A project applying this profile MUST state in its adoption note the conditions under which a decision record carries the content of clause 7.3."
+    },
+    {
+      "clause": "7.2(b)",
+      "verdict": "DELETE",
+      "reason": "A per-record level label is a new defined term that will collide with existing local severity and change-type vocabularies (the two-meanings problem of 3.1.3), and it is the lever for gaming: the label is chosen by the person who then has to write the fields it triggers. If the trigger conditions are written into 7.3 itself, the record needs no label; the reader sees the condition ('this cannot be undone') directly.",
+      "replacement": ""
+    },
+    {
+      "clause": "7.2(c)",
+      "verdict": "DELETE",
+      "reason": "The NASA tie rule is imported from a domain where over-classification is an accepted cost. In a product team it inflates: with ten prompting factors, almost any change has one that 'points higher', everything drifts to critical, and the signal the level was meant to carry is gone. The SRE source the proposal cites is evidence against uniform heaviness. A SHOULD also demands a recorded reason for each departure (clause 1.2), which is ceremony per classification.",
+      "replacement": ""
+    },
+    {
+      "clause": "7.3(a)-(e)",
+      "verdict": "MOVE",
+      "reason": "(a) is 3.3.2 applied to decisions (inference and decision already MUST remain distinguishable); (b) is 3.3.1 plus the limitation duty of 3.3.2 and 3.6.1; (c) is 3.3.1's 'explicit assumption'; only (d) who accepted the risk and (e) undo-or-contain are new, and both are engineering content, not properties of documentation. A MUST list that checks presence and not adequacy is a template promoted to a rule; 'claim: ready; evidence: none' conforms. The existing decision outline already prompts for assumptions, evidence, risks, accepted uncertainty and validation, so the block asks for the same things twice.",
+      "replacement": "Decision guide, informative: 'Where being wrong would reach beyond the deciding team, a decision record is more useful later if it also says what the evidence does not cover, who accepted the remaining risk, and how the effect would be undone or contained, or that it cannot be. These are applications of clauses 3.3.1, 3.3.2 and 3.5.4, not additional requirements.'"
+    },
+    {
+      "clause": "7.3(f)",
+      "verdict": "MOVE",
+      "reason": "This prescribes engineering analysis (the proposal admits it is 'the candidate closest to prescribing engineering thought'). A prose list of foreseen failures gives a false sense of completeness; the failures that matter are the ones nobody listed (in the GitLab case the undetected failure was rejected notification mail, which no pre-change failure list would plausibly have named). 'Could fail in unknown ways; monitoring' conforms.",
+      "replacement": "Decision guide, informative: 'For a change that cannot be undone, say what would show that it went wrong.'"
+    },
+    {
+      "clause": "7.3(g)",
+      "verdict": "DOWNGRADE",
+      "reason": "J-029 rejected this ground two days of repository history ago and set a reopening condition that has not occurred; the proposal reopens it on its own authority. Clause 3.3.5 already governs any statement that a review happened and 3.3.4 already forces automated review to be named. The only new duty is the negative statement, which in a solo or two-person project (including KADS itself) becomes 'no one' on every record, boilerplate that normalizes the absence it was meant to expose. Presence-only checking also rewards a named outsider who 'found nothing'.",
+      "replacement": "Guidance: 'A record of a decision that cannot be undone SHOULD say whether anyone other than its authors examined the reasoning (clauses 3.3.4 and 3.3.5 apply to what is said).' Not a MUST, not in the specification."
+    },
+    {
+      "clause": "7.3(h)",
+      "verdict": "DOWNGRADE",
+      "reason": "It binds only disagreement 'recorded before acceptance', so the cheapest way to comply is to keep objections oral: the rule creates an incentive against the behavior it wants. The prevailing side writes 'the reason it did not prevail', so the loser's position is summarized by the winner. Detection means searching chat, tickets and review threads of unknown extent, which is redoing the work, so by the admission test it is guidance. Clause 3.3.2 already requires known contradictions that affect interpretation to be disclosed. In the Challenger case the dissent was known and recorded at the contractor; the failure was that it did not travel to the deciders, which a field in the decider's record does not fix.",
+      "replacement": "Guidance: 'Where an objection that could have changed the choice was raised, the decision record SHOULD state it in words its author accepts, or link to the author's own statement, with the reason it did not prevail.' Keep the sentence 'The absence of recorded disagreement does not establish agreement' as guidance."
+    },
+    {
+      "clause": "7.3(i)",
+      "verdict": "MOVE",
+      "reason": "The mechanism is sound and is the correct form of P-05, but it is clause 5.7 and 3.3.1 applied outside a research report, plus the scope and interval duty of 3.5.2. It does not need a profile to exist. If anything in section 7 deserves normative force it is this sentence, and the place for it is one sentence in an existing clause, not a new profile.",
+      "replacement": "Decision guide, informative, citing 5.7: 'A statement that no failure was observed is a negative result: say what was watched, over what period or exposure, and how a failure would have shown.' Reopen as one sentence in 3.3.1 or 5.7 when an adopter case is recorded."
+    },
+    {
+      "clause": "7.4(a)",
+      "verdict": "MOVE",
+      "reason": "It extends the conformance exception from KADS clauses to 'any requirement a project treats as binding', so KADS conformance would turn on how a team waives its credential-rotation or coding policy. That is governance of other policies, outside clause 1.1 and 3.6.3. 'A requirement the project treats as binding' is not identifiable by a reviewer, and an unrecorded exception is undetectable, so the MUST fails admission question 5 for the cases that matter. The fields are also not 'the same six': conformance asks for consequence and responsible role, 7.4 for risk accepted and who accepted it, giving two near-identical regimes.",
+      "replacement": "Guidance plus the fixed label only: 'A project that records exceptions to its own requirements can reuse the conformance exception fields and the label Exception to:.' No clause."
+    },
+    {
+      "clause": "7.4(b)",
+      "verdict": "DELETE",
+      "reason": "Proposer already lists it among the first removals. A permanent exception for a system that is out of the requirement's intended scope is legitimate and the requirement should not be bent around one legacy case; a SHOULD makes each such case owe a justification under clause 1.2.",
+      "replacement": ""
+    },
+    {
+      "clause": "7.4(c)",
+      "verdict": "REWORD",
+      "reason": "As written it makes the corpus less true. When the date passes, the legacy service still does not rotate credentials; the rule's effect (worked example 5 says so) is that the index of exceptions stops listing it. A continuing departure becomes invisible exactly when nobody is looking after it. The opposite failure is the renewal ritual: a calendar reminder and a one-line renewal every 90 days is the flight-by-flight waiver the Rogers finding describes. And an exception with only a review condition never trips the rule.",
+      "replacement": "Guidance (or, if a clause survives): 'An exception whose expiry date has passed without a recorded renewal MUST be identified as expired wherever it is listed. Expiry does not establish that the departure has ended.'"
+    },
+    {
+      "clause": "7.4(d)",
+      "verdict": "DELETE",
+      "reason": "Covered by 3.5.5 (reachable from the entry point) and by conformance ('Claims MUST disclose exceptions'). Proposer lists it for early removal.",
+      "replacement": ""
+    },
+    {
+      "clause": "7.5(a)",
+      "verdict": "DOWNGRADE",
+      "reason": "The four dispositions copy tracker state into a document: 'pending, tracked at X' is a volatile fact whose canonical home is the tracker (3.2.1), and a record marked complete with a 'pending' row is stale the day the ticket closes or dies. A disposition MUST per lesson also biases every investigation toward producing an action per finding; shallow actions (one more alert, one more runbook step) accumulate into the alert fatigue and procedure bloat that cause later incidents. It is cheap to comply by drawing fewer lessons.",
+      "replacement": "One row in the existing investigation outline, informative: 'For each lesson: what changed (link), where the change is tracked (link, without restating its status), or why nothing changes.'"
+    },
+    {
+      "clause": "7.5(b)",
+      "verdict": "MOVE",
+      "reason": "Undetectable by a reviewer (proposer agrees), so it is guidance by the admission test. A SHOULD still owes a reason for each departure under clause 1.2.",
+      "replacement": "Guide sentence: 'Where an incident shows that an assumption behind a recorded decision did not hold, link the two.'"
+    },
+    {
+      "clause": "7.5(c)",
+      "verdict": "DELETE",
+      "reason": "No observed case, weakest detection, first on the proposer's own removal list. It also creates a permanently open obligation on a record ('later what was observed') that nobody owns once the change has shipped.",
+      "replacement": ""
+    }
+  ],
+  "candidates": [
+    {
+      "id": "P-01",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Proportionality depends on an ex ante consequence estimate made by the people with the least information and the strongest incentive to estimate low. Large outages are commonly traced to changes that were classed as ordinary (configuration pushes, routine maintenance commands); the GitLab deletion cited by the proposal happened during routine replication repair. Rigor scaled by a prior label is therefore pointed away from where failures actually come from. The principle is already carried by 'material claim' in section 2.",
+      "counterexample": "A one-line configuration change deployed through the usual pipeline with automatic rollback 'the team has used many times' is routine by the proposed definition and requires nothing, yet it reaches every customer at once and the rollback path depends on the system it just broke. A team following the scale mechanically records nothing for it and a page for a low-traffic schema split.",
+      "gaming": "Classify everything routine. Conformance is then complete with zero records.",
+      "recommended_change": "Keep one sentence in foundations.md as a design constraint on the standard, without the clause 'the assurance profile is the only place where that scale is explicit'. No normative text, no levels."
+    },
+    {
+      "id": "P-02",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "Recorded reasons are often not the operative reasons. A mandatory rationale field invites post hoc justification that reads as history, which is worse for a later reader than an honest blank because it is believed. The proposal has no adopter case; its basis is a sentence in KADS's own decision guide.",
+      "counterexample": "A team must pick one of two equivalent message formats so that work can continue; the real reason is 'someone had to pick'. Under a mechanical MUST the author writes three plausible technical advantages. A later engineer treats those as constraints and refuses a migration that the original deciders would have accepted without argument. Second case: an on-call engineer makes an emergency decision at night; the reasons written next morning are a reconstruction and are not marked as one.",
+      "gaming": "'Because we agreed', 'see discussion', or 'reasons not recorded' pasted into every record.",
+      "recommended_change": "Adopt the 4.6 sentence with the escape reworded to 'or state that they are unknown', and add guide text that reconstructed reasons are marked as such and that an arbitrary choice may say so. This is the tracked-record profile, not a new one."
+    },
+    {
+      "id": "P-03",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "'GO is a conclusion, not an opinion' is false as stated: GO is a choice under uncertainty that includes risk appetite, cost of delay and values, and the proposal itself concedes this by separating claim from choice. What remains after that concession is clause 3.3.2 (inference and decision distinguishable), 3.3.1 (basis) and 5.6 (execution is not satisfaction of a criterion). The Challenger launch decision did not lack presented evidence; the dispute was over who carried the burden of proof, which no record field changes.",
+      "counterexample": "A fix for an actively exploited vulnerability is ready after a partial regression run. Shipping now with incomplete evidence is safer than waiting for a full run. A team applying 'no GO without evidence' mechanically either delays the fix or attaches a green dashboard screenshot as evidence theater so the field is filled.",
+      "gaming": "Evidence field filled with links to whatever the pipeline produced; 'claim: ready' restated as its own evidence.",
+      "recommended_change": "One sentence in the decision guide: a readiness statement is an inference and needs its basis; the choice to proceed is a decision and needs its authority (3.3.1, 3.3.2, 4.6). No clause."
+    },
+    {
+      "id": "P-04",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Explicit, signed risk acceptance is exactly what NASA had. The O-ring condition was formally dispositioned as an acceptable risk and the launch constraint was formally waived flight after flight (Rogers report as extracted in the proposal; Vaughan from prior knowledge, not inspected). The cited case shows that a recorded acceptance procedure can be the vehicle of normalization, so it cannot be offered as evidence that recording acceptance prevents it. The KADS conformance exception already covers departures from KADS; departures from a project's other policies are not KADS's business (1.1, 3.6.3).",
+      "counterexample": "A team with an exception form finds departing from the rule becomes a paperwork step with a known owner and a 90-day renewal. Departures that used to feel illicit and get fixed now feel authorized and stay. The number of standing exceptions rises after the rule is introduced.",
+      "gaming": "A named manager 'accepts' every exception in bulk; the review condition is 'when resources allow'.",
+      "recommended_change": "Keep the conformance exception as the only normative exception. Offer its fields and the label 'Exception to:' in guidance for projects that want to reuse them."
+    },
+    {
+      "id": "P-05",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "As worded the principle is wrong. Absence of failure is evidence, with weight set by exposure and by the power to detect a failure; long operational history at scale is frequently the best evidence available and safety practice recognizes field-experience arguments (prior knowledge, not inspected). The slogan teaches engineers to discount operating history. The corrected form (state exposure and detection) is 5.7 and 3.3.1 already.",
+      "counterexample": "A team must choose between a library with ten years of heavy production use and a newly rewritten replacement with a full test suite. Applying the slogan, the reviewer dismisses the operating history as 'not evidence' and prefers the rewrite, which fails on inputs the tests never imagined.",
+      "gaming": "A stock sentence: 'observed 30 days in production; monitoring would have alerted', with no check that the monitoring could see the failure in question.",
+      "recommended_change": "Restate as 'a no-failure statement carries its exposure and its detection means' and place it in the decision guide with a pointer to 5.7. Reopen as one sentence in 5.7 or 3.3.1 on the first adopter case."
+    },
+    {
+      "id": "P-06",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "It is a sound engineering habit and not a documentation property. Clause 1.1 says KADS does not prescribe method; asking a record to contain a failure analysis is asking for the analysis. No adopter case, and the public case does not support causality: the failure that hid the GitLab backup problem is not one a pre-change list would have contained.",
+      "counterexample": "During an active credential compromise a critical rotation must be executed within minutes. Writing 'how could this fail and how would we detect it' first delays containment. Written afterwards, it is a reconstruction that later readers take for foresight. Second case: the written list anchors the post-incident investigator on the foreseen modes and away from the real one.",
+      "gaming": "A copied list of generic failure modes and the word 'monitoring'.",
+      "recommended_change": "One prompt in the decision outline for changes that cannot be undone. No clause."
+    },
+    {
+      "id": "P-07",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "'Designed before deployment' is a timing rule on engineering that the proposal itself admits it cannot deliver. The record half invites fiction: a stated rollback that was never run is more dangerous than an admitted absence, because the reader relies on it. Clauses 3.5.4 (a), (b), (c) and 3.3.5 already cover irreversible effects, recovery statements, and unexecuted procedures. For many systems roll-forward is the only safe direction and a recorded rollback path is a liability.",
+      "counterexample": "A migration starts accepting writes in the new format. Rolling back would discard or corrupt those writes; the safe response to a defect is a forward fix. A team required to state 'how the effect will be undone' writes a reverse script to fill the field, and under incident pressure someone runs it.",
+      "gaming": "'Undo: revert the commit' on changes with data or external side effects.",
+      "recommended_change": "Decision-guide sentence: a recovery path named in a record is a procedure, so say whether it has been executed (3.3.5, 3.5.4 c), and say so when the safe direction is forward. No clause."
+    },
+    {
+      "id": "P-08",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Rejected as J-029 in the 0.6.0 evaluation with the reopening condition 'an adopter in a regulated domain needs an independence rule'. No such adopter exists; the proposal treats the phrase 'that would be a profile' as permission. Independent challenge also has a known cost that the proposal does not weigh: authors relax because a checker exists and checkers assume the author checked (prior knowledge, not inspected).",
+      "counterexample": "A two-person team, or a solo maintainer assisted by agents, makes an irreversible decision. The only available outsider lacks the context to challenge anything and returns 'looks fine'. The record now names an external examiner who 'found nothing', and reads as independently checked. Without the rule it would have honestly read as the authors' own judgment.",
+      "gaming": "A named examiner with no findings; or 'no one' as permanent boilerplate.",
+      "recommended_change": "Leave J-029 closed. If anything, one guide sentence that a record of an irreversible decision is more useful when it says whether anyone else examined it; 3.3.4 and 3.3.5 govern whatever is said."
+    },
+    {
+      "id": "P-09",
+      "validity": "REFINE",
+      "expression": "SHOULD",
+      "placement": "GUIDANCE",
+      "strongest_objection": "A duty that attaches only to written dissent taxes writing dissent down. People who know an objection becomes a permanent attributed entry, summarized by the side that overruled it, will raise it in conversation instead. Clause 3.3.2 already requires disclosure of known contradictions that affect interpretation, and both decision outlines already mention dissent.",
+      "counterexample": "A junior engineer objects in a review thread on a ground that turns out to be a misunderstanding and is resolved in five minutes of conversation. Under the rule the accepted record must carry the objection and 'why it did not prevail' permanently. Next time the engineer asks in private, and the record of the next decision shows no disagreement at all.",
+      "gaming": "The prevailing side writes a weak version of the objection and refutes it; or objections are routed to calls.",
+      "recommended_change": "Guidance only: the objector's own words or a link to them, plus the non-requirement sentence that absence of recorded disagreement does not establish agreement."
+    },
+    {
+      "id": "P-10",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The principle carries an action bias. 'Incidents shall change the system' makes change the default and 'no change' the outcome that needs defending, yet control added per incident is how alerting, runbooks and process grow without limit, the same monotonic growth M-22 exists to resist in KADS itself. The closure rule is process KADS cannot own, and the proposal's only KADS-side evidence is a positive example, not a failure.",
+      "counterexample": "A third-party provider has a two-hour outage inside the availability the team knowingly accepted when it chose a single provider. There is no lesson; the accepted risk materialized. A team following the principle mechanically adds an alert and a runbook step so the postmortem has dispositions; after ten such incidents the on-call engineer ignores the alert channel.",
+      "gaming": "Every lesson gets 'pending, tracked at' with a ticket nobody will work; or investigators stop drawing lessons.",
+      "recommended_change": "Restate as 'an incident record says what became of each lesson, including nothing' and put it as one row in the existing investigation outline."
+    },
+    {
+      "id": "M-11",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The scale folds two independent axes (reversibility and reach) into one line and misfires at both ends. 'Critical: could cause an effect that cannot be undone' captures every package publish, sent notification, and deletion of anything; 'routine: undo by a path it has used before' makes every first-time action non-routine. Under-classification of a change that was never recorded is undetectable, so the MUSTs bind only volunteers. The term will collide with local severity and change-class vocabularies.",
+      "counterexample": "Publishing a patch release of an internal library to a registry that forbids unpublishing is irreversible, so it is critical: claim, evidence, assumptions, risk owner, failure modes, outside examiner, dissent, outcome check, for a version bump. The team either writes the page for every release or learns to ignore the definition, and then ignores it for the data deletion too.",
+      "gaming": "Downward classification by the author, who is also the default classifier; or splitting one critical change into several routine ones.",
+      "recommended_change": "No levels, no defined term. State two conditions in guidance where the extra prompts apply: the effect reaches beyond the deciding team, or it cannot be undone and matters. A project that already has severity or change classes uses those."
+    },
+    {
+      "id": "M-12",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "A list of required statements that checks existence and not adequacy is a template with MUST on it; the proposal says as much about 15026-2, a standard it did not inspect. The structure also misdescribes how many good decisions are made: an expert's judgment is not decomposed into claim, evidence and assumptions at the time, and forcing that shape produces a tidy account that is less true than 'the senior engineer judged it safe, for these reasons'.",
+      "counterexample": "An experienced operator decides to fail over a database based on a pattern she recognizes from two earlier incidents. The honest record is two sentences. The structured record has a claim, three links gathered afterwards as 'evidence', and an assumptions line; a later reader believes the decision rested on those links.",
+      "gaming": "One word or 'n/a' per field; fields filled by an agent from the diff.",
+      "recommended_change": "Fold three or four prompts into the existing sections of templates/decision.md (which already asks for assumptions, evidence, risks, accepted uncertainty, validation, revisit). No clause 7.3."
+    },
+    {
+      "id": "M-13",
+      "validity": "REFINE",
+      "expression": "NONE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The proposal already declines the object, correctly. What remains still assumes a decision record per significant deployment, placed in a pull request description: a location that is normally outside the declared corpus, unmaintained, unreachable from the entry point (3.5.5), and lacking the fields of 4.2. Either the profile governs material outside the corpus or its worked example 2 does not conform.",
+      "counterexample": "A team deploying many times a day treats its pipeline (tests, canary analysis, automatic rollback) as the readiness judgment. Requiring a written readiness statement per significant deployment either slows delivery to batch size, which increases risk per deployment, or yields an auto-generated block nobody reads.",
+      "gaming": "A bot fills the block from pipeline metadata.",
+      "recommended_change": "Keep only the guide sentence that a go/no-go statement is a decision and its readiness claim is an inference needing a basis. State plainly whether pull request descriptions are inside a corpus."
+    },
+    {
+      "id": "M-14",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "It creates a second exception regime beside the conformance one, with slightly different fields, and applies KADS to waivers of non-KADS policy. 'Exceptions expire unless renewed' is implemented as a presentation rule that hides a continuing departure, and the proposal names its own hole: a review condition never expires.",
+      "counterexample": "The credential-rotation exception of worked example 5 passes its date. Nothing changed in the service. Following 7.4 (c), the index stops listing it. An auditor reading the index six months later concludes all services rotate credentials.",
+      "gaming": "'Review condition: when the service is replaced'; or a scheduled one-line renewal.",
+      "recommended_change": "No new object and no template file. Guidance: reuse the conformance exception fields; show an expired exception as expired, not as absent."
+    },
+    {
+      "id": "M-15",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Five role names are imported from review-board practice and then declared non-binding, so the paragraph adds vocabulary without a requirement or a reader question (admission question 7 in spirit). Naming an individual 'risk owner' on each record sits badly with the blameless framing the incident outline asks for.",
+      "counterexample": "A solo maintainer's record lists the same name as author, reviewer, challenger, approver and risk owner. Five labels for one fact, and a reader skimming sees five checks.",
+      "gaming": "Role fields filled with team aliases.",
+      "recommended_change": "Keep one sentence: 'The number of approvers is not evidence; say when the people named are the same person or an automated agent.' Drop the role list."
+    },
+    {
+      "id": "M-16",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The loop (outcome, telemetry, anomaly, analysis, new knowledge, updated control) assumes each incident has a locatable cause that maps to a fixable artifact. Many do not. A mandatory disposition table also duplicates tracker state in a document that is then marked complete and never updated.",
+      "counterexample": "An incident arises from the interaction of three individually reasonable decisions under unusual load. The useful output is an explanation that changes how engineers think. The disposition table has nowhere to put it except 'no change', which reads as 'nothing learned'.",
+      "gaming": "Lessons phrased so that an already-merged change satisfies them.",
+      "recommended_change": "Add a lessons row to templates/investigation.md; link trackers without restating status; drop 7.5 (b) and (c) to guide sentences or nothing."
+    },
+    {
+      "id": "M-17",
+      "validity": "INVALID",
+      "expression": "NONE",
+      "placement": "NONE",
+      "strongest_objection": "Agreeing with the proposal that no relation is added, the proposed mapping paragraph is itself harmful: it stretches 'answers' to mean 'mitigates' and 'contradicts' to mean 'invalidates', which changes the meaning of existing relations in a normative registry (a breaking change under 6.2) by way of an 'informative' note. No real document has raised a question the eleven relations cannot answer.",
+      "counterexample": "A reader searching for 'Answered by' on a question record finds a decision that merely mitigates a risk and treats the question as resolved.",
+      "gaming": "not applicable: nothing normative is proposed.",
+      "recommended_change": "Publish no mapping. Keep the existing 'Exception to:' spelling in clause-examples.md and nothing else."
+    },
+    {
+      "id": "M-18",
+      "validity": "REFINE",
+      "expression": "NONE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "One profile is better than five addenda, but the right number today is zero. The previous round removed a profile of the same size for thin evidence; this one has none from adopters, cannot be exercised in the KADS repository itself (no deployments, no incidents), and was researched through model-made extractions with four of its sources uninspected. A documentation standard that defines assurance levels has moved from 'how knowledge is recorded' to 'what engineers must consider', and it competes with change-management and reliability practice that teams already own.",
+      "counterexample": "A three-person project adopting KADS for its docs must now decide, in its adoption note, whether to apply an 'Assurance profile'. Declining reads as 'no assurance'; accepting commits it to classification criteria it has no use for. Either way the name has done harm that a guide section would not.",
+      "gaming": "Declare the profile, classify nothing, and cite conformance to it.",
+      "recommended_change": "Adopt the proposer's own fallback: the 4.6 sentence plus guidance, with section 7 recorded as deferred. Reopening condition: two independent adopters each report a decision that could not be reconstructed although 3.3.1, 3.3.2, 3.3.5 and 4.6 were met, and each has used the guidance block for at least one release cycle."
+    },
+    {
+      "id": "M-19",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The assurance block duplicates the existing decision outline, which already prompts for assumptions and supporting evidence (Context and rationale), risks and accepted uncertainty (Alternatives and consequences), validation, and review triggers. Two new files in a directory of eleven with no usage evidence for the existing ones is proliferation.",
+      "counterexample": "An author using the amended outline writes assumptions under Context and rationale, then meets an Assumptions field in the Assurance block, and either repeats them or splits them, leaving two partial lists a reader must merge.",
+      "gaming": "The block is left in with placeholders, or deleted on every record as 'routine'.",
+      "recommended_change": "Zero new files. Add the missing prompts to existing sections of decision.md and adr.md; add a lessons row to investigation.md; an exception is a decision record with the 'Exception to:' line."
+    },
+    {
+      "id": "M-20",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Agreeing that no states are added, 'a candidate for removal at each release review' is toothless: with one adopter, observed cases will not arrive, and a review performed by the same drafting process will keep what it wrote. The proposal asks exceptions to expire unless renewed but lets unevidenced rules persist unless removed.",
+      "counterexample": "A rule admitted on the harm ground (3.5.4 a, irreversible steps) never gets an observed case precisely because it works. A mechanical 'no observed case, remove' rule deletes the most protective clause in the core.",
+      "gaming": "Any anecdote is logged as the 'observed case' to clear the mark.",
+      "recommended_change": "CONTRIBUTING sentence: a rule admitted on an anticipated failure only lapses after two minor releases unless the release record renews it with a stated reason (an observed case, or the harm ground). Apply the same default to rules as to exceptions."
+    },
+    {
+      "id": "M-21",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The ten signals cannot be collected without instrumentation KADS refuses to require, so the list is decoration (the proposer says so). 'Would we add this today?' asked by the process that drafted the rules is confirmation, not challenge. And the assurance content cannot be dogfooded at all in a documentation repository.",
+      "counterexample": "At each release an agent reviews forty-eight clauses, finds each 'would still be added', and records forty-eight confirmations. The review exists, costs time, and has removed nothing; it now serves as evidence that the clauses were re-examined.",
+      "gaming": "A release note line 'all clauses reviewed, none retired'.",
+      "recommended_change": "Keep the two CONTRIBUTING sentences; drop the ten-signal list; require the release record to name at least the clause that came closest to retirement and why it stayed."
+    },
+    {
+      "id": "M-22",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "TOOLING",
+      "strongest_objection": "Already practiced, and the unit is wrong. Counting clauses rewards packing: proposed 7.3 is one clause holding nine lettered requirements, and the proposal's own table reports '8 MUST' for a design with 17 required fields. Counts become a target and the standard grows inside clauses.",
+      "counterexample": "A release reports 'clauses: +0' after adding three lettered items to existing clauses and four mandatory fields to a template. The accounting shows no growth.",
+      "gaming": "Lettered sub-items, long clauses, and 'informative' registry paragraphs that carry rules.",
+      "recommended_change": "Count individually citable requirements (each lettered item and each normative sentence), required fields, and defined terms, added and removed. Generate the table by a small script over the specification so it cannot be hand-tuned; the script is optional tooling."
+    }
+  ],
+  "existing_rules_to_challenge": [
+    {
+      "clause_or_artifact": "Clause 6.3 (derived documents, including every adoption note, MUST carry a Semantic Versioning number and state what counts as a breaking change)",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "It protects none of the five properties named in the admission test, fails question 4 for a three-page repository, and question 6 for the author of a short adoption note, who must now define 'breaking' for a paragraph. The useful part is one requirement: a derived document MUST pin the KADS version it follows. Keep that; move the rest to guidance."
+    },
+    {
+      "clause_or_artifact": "The repeated non-requirement sentence 'the absence of X does not establish Y' in 3.1.4 (d), 3.3.6, 3.5.4 (c), and now proposed again in 7.3",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "Four copies of one idea, with a fifth proposed. One general sentence in section 1 or 3.3.3 ('the absence of a mark, statement, or record never establishes the condition the mark would have denied') carries all of them and stops the pattern being re-added clause by clause."
+    },
+    {
+      "clause_or_artifact": "Relation 'related-to' in registry/relationships.md",
+      "question": "would we add this today?",
+      "verdict": "RETIRE",
+      "reason": "Clause 4.4 says ordinary navigation links need no relationship label, and 'related-to' is defined as an association 'without a stronger claim', so it is a label that says a link is a link. It fails admission question 7: no reader question is answered by it. It is also the place a stretched mapping hides. Retire it in the pre-1.0 restructuring as a marked breaking change."
+    },
+    {
+      "clause_or_artifact": "Evidence record statuses 'available', 'restricted', 'unavailable' in registry/nomenclature.md",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "Clause 4.6 says status MUST describe lifecycle. These three values describe access, which 3.5.1 already requires to be stated in text. A reader cannot tell from 'available' whether the record is current. Reduce to a lifecycle value and leave access to 3.5.1. Judgment is from the types table only; the rest of the nomenclature was not read for this report."
+    },
+    {
+      "clause_or_artifact": "templates/ directory: eleven outlines, including artifact.md, artifact-bundle.md and evidence.md",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "The proposal lists 'abandoned templates' as a signal to watch and then adds two files. No usage evidence for the existing eleven is recorded. Three outlines of 14 to 27 lines cover adjacent objects (artifact, artifact bundle, evidence) and could be one. Judgment is from file names and lengths; their contents were not read for this report, so treat this as a question for the next release review, not a finding."
+    },
+    {
+      "clause_or_artifact": "Clause 3.3.6 (uninspected sources SHOULD be identified)",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "Admitted with no observed failure. In use it produces the boilerplate visible in this proposal's own research table, where one disclaimer of about forty words is repeated on twelve rows. The duty is a special case of 3.3.1 ('identifiable basis') and 3.3.3 ('MUST NOT invent sources'); one sentence in 3.3.1 allowing a single collective statement per source list would carry it."
+    },
+    {
+      "clause_or_artifact": "decisions/standards/: 31 separate J records, 12 of them rejections, several with reopening condition 'None expected'",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "J-019's own reopening condition is that the records are read as rules. A rejected proposal with no reopening condition has no future informational value beyond its row in the index table, which is the brief's test for a permanent process artifact. Collapse rejected records with 'None expected' into the index; keep full records only where a reopening condition exists."
+    }
+  ],
+  "dissent_to_preserve": [
+    "Scope: a documentation standard should not contain an assurance profile. Clause 1.1 excludes method, 3.6.3 excludes authority, and 7.3 (d) to (g) and 7.4 (a) are requirements about what engineers consider and how a project waives its own policies, phrased as record content. The research-report profile is not a precedent: a report is the knowledge product, while a deployment decision is an operational transaction whose records live outside the corpus. If this content is wanted, it belongs in a team's engineering handbook or a separate companion document that cites KADS, where it can be wrong without making KADS conformance mean less.",
+    "What would change my mind on scope: (1) two independent adopters, each documenting a case where a consequential decision could not be reconstructed although 3.3.1, 3.3.2, 3.3.5 and 4.6 were satisfied; (2) evidence from a trial of the guidance block that the fields are filled with non-boilerplate content and are actually consulted after an incident; (3) an adopter who needs a conformance claim, not just a template, for an external party. One of these would justify a SHOULD-level profile; all three a MUST-level one.",
+    "The public cases are used as prestige, not evidence. NASA's record regime was heavier than anything proposed and did not prevent either accident; the Rogers and CAIB material shows failures of judgment, hierarchy and burden of proof inside a fully documented process. Citing them supports 'records are not sufficient', and says nothing on whether lighter records in a software team are causal. My statements about Vaughan, CAIB, field-experience arguments in safety practice, and reviewer complacency are from prior knowledge and were not inspected for this report.",
+    "A profile whose lowest level requires nothing, and whose trigger is self-classification of events outside the corpus, can be conformed to with no records at all. Any MUST inside it fails the admission test's detection condition for the case that matters (the consequential change that was not recorded). 'Conforms to the Assurance profile' would therefore be stated more firmly than its support, which is the property KADS exists to protect.",
+    "J-029 was closed with a specific reopening condition that has not occurred. Reopening it by relabeling the request as a profile sets the precedent that reopening conditions do not bind, which devalues every 'Reopen when' cell in the standards index.",
+    "7.4 (c) as drafted makes a corpus less truthful: an expired exception whose departure continues must remain visible as expired, never drop out of the list.",
+    "Principles P-03, P-05 and P-10 are false or biased as worded, and the proposal quietly replaces each with a different, weaker statement. If any text is adopted, the slogans must not appear in KADS, even in foundations, because slogans are what teams follow mechanically.",
+    "This report is automated review by a single agent given an adversarial role; it is not verification by a person (clause 3.3.4). It read candidates.md, proposal.md, the specification, conformance, the admission test, J-029, the standards index, the relationship registry, the nomenclature types table, and templates/decision.md at commit e93b3c0, and nothing else."
+  ]
+}

@@ -1,0 +1,385 @@
+{
+  "role": "architecture-consistency",
+  "overall": "The proposal's restraint on vocabulary (no types, no statuses, no relations) is structurally right, but the container and several homes are wrong. Section 7 bundles three things whose natural homes already exist: decision content belongs with clause 4.6 and the two decision outlines, the exception already has a normative definition in docs/conformance.md, and an incident investigation is already an investigation under the research-report profile (5.1, 5.2), which the proposal never mentions. As drafted it creates a second exception concept with a fourth divergent field list, an Assurance block that repeats five of nine prompts the decision and ADR outlines already carry, a second negative-result rule beside 5.7, a per-record scoping device (levels) beside the per-path profile scoping KADS already has, and no canonical home for an accepted risk, which will be restated in the decision, the exception, and the incident disposition. The claim that the profile works without tracked records is false in practice: every lifecycle answer it gives (accepted, deprecated, superseded, complete, depends-on a question record, reason for a status change) is borrowed from section 4 and the nomenclature. Four of the eleven relation mappings are forced, and publishing them in the normative registry would change the meaning of answers, implemented-by, and contradicts, which clause 6.2 calls breaking. The cleanest incorporation is: one reworded sentence in 4.6; one exception definition, in conformance.md, extended with expiry; one sentence in 5.7; prompts merged into existing template sections with no new template files; a reduced profile of at most three clauses that honestly leans on section 4, or guidance only; and CONTRIBUTING changes that point to decisions/standards/ instead of restating reopening conditions in the changelog.",
+  "clause_verdicts": [
+    {
+      "clause": "4.6 sentence",
+      "verdict": "REWORD",
+      "reason": "Correct home: the nomenclature already gives type D the responsibility 'choice, authority, rationale, and consequences', so this makes an existing responsibility checkable. But 'MUST state the reasons' pushes authors to restate reasons whose canonical home is a finding, RFC, or review thread, against 3.2.1 and the decision guide ('Link requirements, constraints, and findings rather than reproducing their full history'). It is also a change to the tracked-record profile, not part of section 7, and must be listed separately as breaking.",
+      "replacement": "An accepted decision MUST state the reasons for the choice or link to where they are stated, or state that they are not recorded."
+    },
+    {
+      "clause": "7.1",
+      "verdict": "REWORD",
+      "reason": "'It can be used with or without tracked records' does not survive the proposal's own reuse table: accepted, deprecated, superseded, complete, depends-on a question record, and 'a material status change keeps its reason' are all section 4 or nomenclature. Without section 4 the words 'acceptance' in 7.3(h) and 'in force' in 7.4(c) have no defined meaning. Say the dependency honestly. Remove exceptions and incidents from the scope sentence if they move to their existing homes.",
+      "replacement": "7.1 Use this profile for the decisions a project names in its adoption note as ones whose reasoning a later reader must be able to reconstruct: what was believed, on what evidence, and which risks were accepted and by whom. The profile states what a record of such a decision makes discoverable. It does not require that a review be held, a role staffed, or a change approved (clause 3.6.3). Where the decision is a tracked record, section 4 supplies its identity, status, and supersession; this profile adds no type, status, or relation. Where it is not, the record states in words what section 4 would have supplied."
+    },
+    {
+      "clause": "7.2(a)",
+      "verdict": "REWORD",
+      "reason": "Two homes for what a level means: the three definitions 'as a list under the clause' and the project's criteria in the adoption note, with no rule for which governs. Nothing says what happens to written records when criteria change; clause 5.4 already solved the same problem for test criteria ('Changing the criterion MUST NOT silently change the interpretation of a historical run'). 3.1.3 already requires discoverable criteria for any evaluative term, so the only new content is the home (adoption note) and the non-retroactivity rule. 'significant' also collides with 'architecturally significant' in the decision guide, which there means costly to reverse, the opposite of the proposed 'significant' (can be undone by a known path).",
+      "replacement": "7.2 (a) A project applying this profile MUST state in its adoption note the criteria by which it assigns the levels and who assigns them. The definitions in this clause give the meaning of each level; the project's criteria say how it recognizes them. A level is assigned under the criteria in force on the date of the record. A later change of criteria is a change to the adoption note (clause 6.3) and does not change the level of a record already written."
+    },
+    {
+      "clause": "7.2(b)",
+      "verdict": "REWORD",
+      "reason": "The level is a fact about one decision, so the record is its canonical home; that is right. But the rule that lowering a level keeps its reason exists only in the proposal's prose and leans on a nomenclature sentence that is normative only for tracked records. Put it in the clause.",
+      "replacement": "(b) A record made under clause 7.3 MUST state its level and the factor that decided it. A later change of that level MUST keep the earlier level and give the reason."
+    },
+    {
+      "clause": "7.2(c)",
+      "verdict": "MOVE",
+      "reason": "A tie rule is a rule about the act of classifying, not about what a record makes discoverable, so it contradicts the form 7.1 promises. As a SHOULD it also demands a recorded reason at every departure (clause 1.2). It belongs with the criteria, which live in the adoption note, with the advice in the decision guide.",
+      "replacement": "Decision guide: 'Where criteria point to different levels, assign the higher, or say in the adoption note what the project does instead.' Keep the MAY sentence on mapping local classes in 7.2, and let a record cite the local class directly instead of both names."
+    },
+    {
+      "clause": "7.3(a)-(e)",
+      "verdict": "REWORD",
+      "reason": "Only evidence is told to be linked, not copied. Assumptions, risks, and the recovery path also have homes elsewhere (a question record, an issue or risk register, a runbook under 3.5.4) and will be restated. (b) 'what the evidence does not cover' duplicates the evidence's own limits (3.6.1, evidence outline 'what does it not establish'); the decision should own only the gap between the evidence and this claim. (d) introduces a second authority beside the 4.6 authorizer without saying whether they may be the same statement. (a) allows the claim to live both in the decision and in a conclusion record.",
+      "replacement": "7.3 A record of a decision to make or proceed with a change at the significant or critical level MUST make the following discoverable, on the page or through links: (a) the claim the decision rests on, such as that the change is ready, stated separately from the choice to proceed, or a link to the conclusion that states it; (b) the evidence for that claim, and which part of the claim no evidence covers; (c) the assumptions relied on; (d) the known risks that remain, and who accepted them, which may be the authority of clause 4.6 if the record says so; (e) how the effect will be undone or contained, by link to the procedure where one exists, or that it cannot be. A claim, assumption, risk, or procedure that is maintained elsewhere is linked, not restated (clause 3.2.1)."
+    },
+    {
+      "clause": "7.3(f)",
+      "verdict": "REWORD",
+      "reason": "'How the change could fail' and (d) 'the known risks that remain' are the same facts asked twice in one record at the critical level, and the decision outline already asks for 'risks, and accepted uncertainty' under Alternatives and consequences. Keep only what (d) does not ask: detection.",
+      "replacement": "(f) for each risk named under (d), how its occurrence would be detected, or that present means would not detect it;"
+    },
+    {
+      "clause": "7.3(g)",
+      "verdict": "REWORD",
+      "reason": "Structurally sound as the negative complement of 3.3.5. One defect: 'what they found' invites a summary by the author of someone else's review; the finding's home is the review itself and 3.2.2 forbids stating it more firmly than its source.",
+      "replacement": "(g) who other than its authors examined the reasoning, with a link to what they found where that is recorded, or that no one did;"
+    },
+    {
+      "clause": "7.3(h)",
+      "verdict": "REWORD",
+      "reason": "A dissent is an alternative that was not selected, with an advocate; both outlines already have that section and the ADR outline already says 'dissent that could change the choice'. Clause 3.3.2 already requires known contradictions to be disclosed. The clause should attach to those and require a link to the dissenter's own words where they exist, since the author of record of the decision is not the author of the dissent.",
+      "replacement": "(h) each disagreement recorded before acceptance that could change the choice, linked where it was recorded or quoted with attribution, with the reason it did not prevail."
+    },
+    {
+      "clause": "7.3(i)",
+      "verdict": "MOVE",
+      "reason": "This is a second negative-result rule in a second profile beside 5.7; two rules for one concept will drift. The scope of an observation is a fact about the evidence, whose home is the evidence or report, not each decision that cites it. State the rule once in 5.7 and reference it.",
+      "replacement": "Append to 5.7: 'A statement that no failure was observed is a negative result: it MUST state what was observed, over what period or exposure, and how a failure would have been detected.' In 7.3(b) add: 'Where that evidence is that no failure was observed, clause 5.7 applies to it, whether or not the research-report profile is otherwise applied.'"
+    },
+    {
+      "clause": "7.4(a)",
+      "verdict": "MOVE",
+      "reason": "Second exception concept. conformance.md lists clause identifier and scope, reason, consequence, responsible role, condition for review. 7.4(a) lists requirement, scope, reason, risk accepted, who accepted it, expiry date or review condition. The adoption-note outline says requirement, scope, reason, consequence, owner, revisit condition. The proposed template uses a fourth set of labels. The proposal's statement that these are 'the same six' is not accurate: consequence is not risk accepted, responsible role is not who accepted it, and expiry is new. The closing sentence 'this clause adds no field to it' leaves open whether (c) and (d) bind a KADS-clause exception. There must be exactly one definition, in conformance.md, and 7.4(a) must be a pointer.",
+      "replacement": "conformance.md, Review outcome: 'An exception MUST record the requirement departed from, by clause identifier for a KADS clause, and its scope, reason, consequence, the role that accepted that consequence, and an expiry date or condition for review.' Clause 7.4(a), if a profile clause is kept: 'An exception to a requirement the project treats as binding MUST record what conformance requires of an exception.' Section 2 term: 'Exception: a recorded, accepted departure from an adopted requirement for a stated scope; its content is defined in conformance.' Align the Exceptions line of the adoption-note outline to the same words."
+    },
+    {
+      "clause": "7.4(b)",
+      "verdict": "DOWNGRADE",
+      "reason": "A permanent exception is a statement about the requirement's scope, and the canonical home of scope is the requirement. This is advice about where a fact belongs, not a detectable record property; a SHOULD here costs a recorded reason at every departure.",
+      "replacement": "Adoption guide: 'An exception with no end is a scope statement in the wrong place. Change the requirement's stated scope, or say in the exception why the requirement cannot be changed.'"
+    },
+    {
+      "clause": "7.4(c)",
+      "verdict": "REWORD",
+      "reason": "As drafted a conformant corpus becomes nonconformant by the passage of time with no edit, and the record's status field (accepted) contradicts the clause without anyone having changed it; no KADS status changes by clock. Every list of exceptions under (d) is a derived view (3.2.2) that silently goes stale on the expiry date. Use the interpretive form KADS already uses in 3.1.4(d) and 3.5.4(c), and make the date visible wherever the exception is listed so that the reader can evaluate it.",
+      "replacement": "(c) An exception that states an expiry date is not in force after that date unless a dated renewal, naming who renewed it and the new date, is recorded with it; its status or its presence in a list does not establish otherwise. A list of exceptions MUST show each expiry date or review condition."
+    },
+    {
+      "clause": "7.4(d)",
+      "verdict": "REWORD",
+      "reason": "'Where the requirement is stated' is a required-in-practice reverse link; the registry says supersedes is the only relation with one, and a list beside each requirement is a second maintained direction. Clause 6.1 and the adoption note already give exceptions a declared home (the Exceptions entry). Use it for all exceptions.",
+      "replacement": "(d) Exceptions SHOULD be listed in, or reachable from, the Exceptions entry of the adoption note."
+    },
+    {
+      "clause": "7.5(a)",
+      "verdict": "REWORD",
+      "reason": "Three structural defects. (1) 'A risk accepted, naming who accepted it' makes the incident record a home for a risk acceptance that never expires and has no decision lifecycle; it is the route around 7.4. (2) 'Pending' duplicates state whose home is the tracker; nomenclature defines complete as 'work is finished, regardless of its result', so a complete incident record will carry stale 'pending' rows. (3) An incident investigation is an investigation under 5.1; the clause should say how it relates to 5.2. If section 7 is not adopted, this attaches to the investigation outline and the evaluation guide.",
+      "replacement": "7.5 (a) A record of an incident investigation MUST state, for each lesson it draws, one disposition and its date: a change made, with a link to it; a change pending, with a link to where it is tracked; a risk accepted, with a link to the decision or exception that records the acceptance; or no change, with the reason. The tracking location, not the incident record, states the current state of a pending change. Status complete describes the investigation, not its lessons."
+    },
+    {
+      "clause": "7.5(b)",
+      "verdict": "REWORD",
+      "reason": "The link is at the wrong end for the failure M-16 names ('a decision record keeps an assumption that an incident disproved; the next reader trusts it'): that reader opens the decision, not the incident. Clause 3.3.2 already requires the decision to disclose a known contradiction. The clause is also silent on which relation the link carries, which 4.4 requires; contradicts is accurate only if the target is the assumption or evidence statement, not the choice.",
+      "replacement": "(b) Where an incident shows that an assumption or evidence relied on by a recorded decision did not hold, the incident record SHOULD link to that statement in the decision, and the decision record carries the disclosure that clause 3.3.2 requires, with a link back."
+    },
+    {
+      "clause": "7.5(c)",
+      "verdict": "MOVE",
+      "reason": "Misfiled: it is a rule about a critical decision record placed in the incident clause. Both outlines already have 'Implementation and validation' ('State validation separately') and 'Revisit and history' ('State review triggers'), and 4.6 already separates acceptance from validation. It is a prompt, not a clause.",
+      "replacement": "templates/decision.md and templates/adr.md, Implementation and validation: add 'For a decision that cannot be undone: when and how the outcome will be checked, and later, what was observed, with its date.'"
+    }
+  ],
+  "candidates": [
+    {
+      "id": "P-01",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The proposed foundations sentence says the assurance profile is 'the only place where that scale is explicit'. That is a claim in an informative page about the structure of the normative one, and it becomes false the moment another clause scales with consequence (3.5.4 already does, and 'material claim' already is a proportionality device).",
+      "counterexample": "A one-line feature-flag flip that exposes all tenants: by size and habit it is classed routine, and 'proportional' rigor then licenses recording nothing for the change with the widest reach.",
+      "gaming": "Classify downward; proportionality then justifies the absence of a record.",
+      "recommended_change": "One sentence in docs/foundations.md under the design constraint, without 'the only place': 'Where KADS asks more of a record, it asks in proportion to the consequence of the record being wrong.'"
+    },
+    {
+      "id": "P-02",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "Three overlapping statements of why would exist in one record: the 4.6 reasons, the 7.3(a) claim, and the outline's 'Context and rationale'. The proposal never says how they relate, and 'MUST state' pulls rationale out of its canonical home (a finding, RFC, or review thread) into a copy.",
+      "counterexample": "A decision whose reasoning is a twenty-page RFC: to satisfy 'MUST state the reasons' the author writes a three-line paraphrase that is firmer than the RFC (3.2.2) and is not updated when the RFC is corrected.",
+      "gaming": "'Reasons: agreed by the team.'",
+      "recommended_change": "Attach to clause 4.6 (tracked-record profile, not section 7) with 'state the reasons or link to where they are stated'. Say in the decision guide that the 7.3(a) claim is part of the reasons, not an additional statement."
+    },
+    {
+      "id": "P-03",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "The readiness claim is a conclusion, and KADS has a home for a tracked conclusion (type C). The reuse table allows the claim 'inside the decision, or a conclusion record', which is two homes for one finding with no rule that the decision links instead of restating.",
+      "counterexample": "A delivery pipeline whose gate criteria are the readiness claim and whose run is the evidence: the canonical claim lives in pipeline configuration, and a prose copy in a record drifts from the gate that actually decided.",
+      "gaming": "'Claim: ready. Evidence: CI green', which clause 5.6 already warns is execution presented as satisfaction.",
+      "recommended_change": "7.3(a) as reworded: the claim is stated in the record or linked to the conclusion or gate definition that states it; never both maintained."
+    },
+    {
+      "id": "P-04",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "CORE",
+      "strongest_objection": "The exception already exists as a normative object in conformance.md. 7.4 creates a second one with a different field list, a different home (decision record versus adoption-note entry), and different lifecycle (expiry versus condition for review). 'Risk accepted' then appears as 'consequence' in one and 'risk accepted' in the other.",
+      "counterexample": "An exception to KADS clause 3.5.4(a) is written as a 7.4 decision record with an expiry and also disclosed in the adoption-note Exceptions row as 6.1 requires. The record expires; the row still lists it. A reader cannot tell which governs.",
+      "gaming": "Give a review condition ('when circumstances change') instead of a date; 7.4(c) never trips.",
+      "recommended_change": "One exception definition in conformance.md, extended with 'the role that accepted that consequence' and 'an expiry date or condition for review'. A project MAY apply the same form to its own requirements (adoption guide). No separate concept."
+    },
+    {
+      "id": "P-05",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "It duplicates clause 5.7 in another profile and puts the scope of an observation in the decision record, when that scope is a property of the evidence and belongs with it.",
+      "counterexample": "The decision says 'no reads in 30 days of access logs'. The evidence record is later corrected: the logs covered 21 days. The decision's restated scope is now wrong and nobody is prompted to fix it, because the rule placed the fact in the citing record.",
+      "gaming": "Boilerplate: 'monitored in production for two weeks; alerts would have fired'.",
+      "recommended_change": "One sentence appended to 5.7 (research-report profile) making a no-failure statement a negative result; 7.3(b) refers to 5.7. Cross-link from the evaluation guide section 'Classify a negative observation before generalizing'."
+    },
+    {
+      "id": "P-06",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "'How the change could fail' restates 'the known risks that remain' (7.3 d) and the outline's existing 'risks, and accepted uncertainty'. A team with a maintained hazard analysis or threat model gets a third copy.",
+      "counterexample": "A payment change with a maintained threat model: the record summarizes four failure modes, the model later gains a fifth, and the accepted record now reads as the complete analysis.",
+      "gaming": "'Could fail in unforeseen ways; detected by monitoring.'",
+      "recommended_change": "Reduce 7.3(f) to detection per risk already named under (d); failure analysis maintained elsewhere is linked."
+    },
+    {
+      "id": "P-07",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "A recovery path is a procedure. Its home is the runbook, where clauses 3.5.2 and 3.5.4 already govern it, including whether it was executed as written. Describing the path and its execution state in the decision record creates a second home for both.",
+      "counterexample": "The decision says 'reverse script, executed once on the copy'. The script is then changed; the runbook correctly says 'not executed as written'; the decision still reads as tested recovery.",
+      "gaming": "'Undo: revert the commit.'",
+      "recommended_change": "7.3(e) as reworded: link the procedure where one exists; the execution statement lives with the procedure (3.5.4 c) and is cited by date, not restated as current."
+    },
+    {
+      "id": "P-08",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "Clauses 3.3.4 and 3.3.5 already govern any statement that a review occurred; the only new content is the negative statement. 'What they found' makes the decision author summarize another person's review, a derived view that 3.2.2 constrains and that will be firmer than its source.",
+      "counterexample": "The record says 'examined by X, who found one missed path, now fixed'. X's review thread also raised a concern left open. The summary is the only thing later readers see.",
+      "gaming": "Name a colleague who skimmed the page; or an agent, described without the word automated.",
+      "recommended_change": "7.3(g) as reworded: who, and a link to what they found where recorded, or that no one did. Cite 3.3.4 and 3.3.5 in the clause instead of repeating them in the template."
+    },
+    {
+      "id": "P-09",
+      "validity": "VALID",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "Dissent already has a home: 'Alternatives and consequences' in the decision outline and 'dissent that could change the choice' in the ADR outline, backed by 3.3.2. A separate Disagreement field in an Assurance block is a second place for the same statement, and mapping a separate dissent record to contradicts misuses a symmetric relation between findings for a position against a choice.",
+      "counterexample": "A dissenter writes a careful objection in the review thread. The decision author paraphrases it weakly in the record with a strong rebuttal. The record conforms and the dissent has been rewritten by its opponent.",
+      "gaming": "'None recorded', after holding the discussion in a call.",
+      "recommended_change": "7.3(h) as reworded (link or attributed quotation), attached to the existing alternatives section of both outlines. No relation; a separate dissent document is a plain labeled link."
+    },
+    {
+      "id": "P-10",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "The disposition table makes the incident record a second home for tracker state and for risk acceptance. Status complete, defined as 'finished, regardless of its result', cannot express 'lessons pending', so the exact failure the candidate names (the postmortem exists and is complete) remains representable and conformant.",
+      "counterexample": "A lesson is marked 'pending, tracked at X'. Six months later X is closed as will-not-fix. The complete incident record still says pending; a reader assumes the fix is coming.",
+      "gaming": "'No change: risk accepted by the team' for every lesson; or pending forever.",
+      "recommended_change": "7.5(a) as reworded: dated dispositions, accepted risk linked to a decision or exception, tracker named as the home of current state. The lesson (a finding) lives in the incident record; the resulting guidance lives in the changed requirement, test, or runbook, which is linked, never copied."
+    },
+    {
+      "id": "M-11",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "Levels are a second scoping device inside a profile, beside the one KADS already has (profiles declared per path or kind in the adoption note), and the definition of Profile says 'Profiles are not maturity levels'. The level's meaning has two homes (clause list and adoption-note criteria) and no rule for records written under superseded criteria. 'significant' collides with 'architecturally significant' in the decision guide, where it means costly to reverse.",
+      "counterexample": "After an incident the project widens 'critical' to include authentication changes. Twenty earlier records marked significant now look under-classified or under-documented, and nothing on them says which criteria applied.",
+      "gaming": "Never record the level: an unrecorded decision is routine by default and 7.3 never binds. The rule only constrains records that volunteer a label.",
+      "recommended_change": "Home of a level: the record, dated. Home of criteria: the adoption note, versioned under 6.3, non-retroactive (7.2 a as reworded). Let a record cite the project's existing class (severity, change type) under the documented mapping instead of carrying both names. Rename 'significant' or state the difference from the decision guide's use (3.1.3)."
+    },
+    {
+      "id": "M-12",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "PROFILE",
+      "strongest_objection": "The Assurance block duplicates sections the outlines already have. Evidence and Assumptions repeat 'Context and rationale' ('objectives, constraints, assumptions, and supporting evidence'); Remaining risk repeats 'Alternatives and consequences' ('risks, and accepted uncertainty'); Disagreement repeats the ADR's 'dissent that could change the choice'; Outcome check repeats 'Implementation and validation' and 'Revisit and history'. Only Level, Claim, Undo or contain, and Examined by are new.",
+      "counterexample": "An ADR filled in the normal way and then given the block: assumptions appear under Context and again under Assurance; a later edit updates one. The record now contradicts itself on a page meant to prevent that.",
+      "gaming": "Fill the block with 'see above'.",
+      "recommended_change": "No block. Add a 'Level:' line to the header of both outlines, and add the four new prompts to the sections where their neighbours already live: Claim in Context and rationale; Undo or contain and detection in Alternatives and consequences; Examined by in Authority and effect; outcome check in Implementation and validation."
+    },
+    {
+      "id": "M-13",
+      "validity": "VALID",
+      "expression": "NONE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Rejecting the readiness object is right, but 'readiness is the decision' ignores that readiness recurs per deployment while a decision record is per choice. The existing home of readiness guidance is docs/evaluation-guide.md, which already names 'readiness assessment' in its first line; the proposal puts the sentence only in the decision guide.",
+      "counterexample": "A significant migration run in fifty tenants: fifty decision records each restating the same claim, assumptions, and risks. The shared part should be one record and each go a link plus what differed.",
+      "gaming": "Copy the previous record's block and change the date.",
+      "recommended_change": "Guide sentence in docs/evaluation-guide.md (Operational documentation), cross-linked from the decision guide: a repeated go decision links the standing decision that carries the shared claim, assumptions, and risks, and records only what is specific to this run."
+    },
+    {
+      "id": "M-14",
+      "validity": "REFINE",
+      "expression": "MUST",
+      "placement": "CORE",
+      "strongest_objection": "Second exception concept, as under P-04. The proposed exception outline is typed decision but drops 'Authority and effect', so an accepted exception has no effective date and fails clause 4.6; 'Accepted by' and the 4.6 authority are two names for what is, for an exception, one fact. Expiry by clock contradicts the status field without an edit.",
+      "counterexample": "An exception record with status accepted, expiry last month, no renewal. Clause 7.4(c) says it is not in force; clause 4.6 says status describes the lifecycle; the page says accepted. Two normative statements disagree about one record.",
+      "gaming": "A one-word renewal note every quarter; the clause as drafted does not say a renewal names who and a new date.",
+      "recommended_change": "Single definition in conformance.md; 7.4(c) in interpretive form with visible dates in lists; no templates/exception.md: the fields are a labeled block usable in the adoption-note entry or inside a decision record, where for an exception the acceptance of the consequence is the 4.6 authorization."
+    },
+    {
+      "id": "M-15",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "KADS already has five role-like terms with homes: author of record (section 2), authority (4.6), responsible role (conformance), maintainer or review route (3.4.3), and owner (adoption outline). Five more names in the decision guide, unmapped, double the vocabulary for the same people.",
+      "counterexample": "Approver and risk owner are one person recorded under two labels in two sections; after a reorganization one is updated.",
+      "gaming": "List five names; the record looks examined.",
+      "recommended_change": "The guide paragraph maps instead of adding: author is the author of record; approver is the 4.6 authority; risk owner is the role that accepted the consequence; challenger and reviewer are whoever 7.3(g) names. No other role words."
+    },
+    {
+      "id": "M-16",
+      "validity": "REFINE",
+      "expression": "SHOULD",
+      "placement": "PROFILE",
+      "strongest_objection": "An incident investigation is an investigation, and where a project applies section 5 it must meet 5.2 (method, limitations, current answer). The proposed incident outline omits those and would be a second, incompatible outline for type J. The J-as-container precedent (decisions/standards uses J records with a Disposition field) already bends the type toward holding decisions; this repeats it.",
+      "counterexample": "A project applies the research-report profile to docs/investigations/. Its incident records, written from templates/incident.md, lack method and limitations and fail 5.2, or the project keeps two outlines for one type and readers cannot predict which they will meet.",
+      "gaming": "One lesson per incident, disposition 'no change'.",
+      "recommended_change": "No templates/incident.md. Add to templates/investigation.md under 'Result and follow-up' the lesson, disposition, where prompt, and to 'Analysis and limitations' the prompt 'which recorded assumption, evidence, or decision did not hold; link it'. 7.5(b) as reworded so the disclosure appears at the decision."
+    },
+    {
+      "id": "M-17",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Zero new relations is right, but four mappings are forced and the proposal would print them in the normative registry. (1) mitigates as answers: answers means 'resolves the target question'; a mitigated risk is not resolved, and the question record would move to answered. (2) incident changes requirement as 'lesson implemented-by requirement': the registry says a factual conclusion need not have an implementation, and a requirement is not one. (3) dissent as contradicts: contradicts is symmetric and relates incompatible findings; a position against a choice is a different kind of statement. (4) incident produces evidence as inverse evidenced-by: an incident record is analysis, not the material recording an observation. Extending those meanings is a breaking change under 6.2. 'Exception to:' as a fixed, searchable, required-target label described in the registry is a twelfth relation admitted without question 7.",
+      "counterexample": "A risk tracked as Q-014 is linked 'Answers: Q-014' from a mitigation decision and set to answered. The team's review of open questions no longer shows a live, partly mitigated risk: a problem closed in tracking while unresolved, the Rogers case the proposal cites.",
+      "gaming": "Use related-to for everything; conformant under 4.4 and meaningless.",
+      "recommended_change": "Accurate as mapped: supported-by (decision to evidence; evidenced-by only from a statement of observation to raw output), depends-on (assumption as question record), supersedes, and accepted-by as the 4.6 field. Acceptable with a stated target: contradicts from the incident's observation to the assumption statement, never to the choice; implemented-by from a proceed decision to the change. Replace: changed requirement supported-by incident record, with a plain link in the disposition table; later decisions supported-by the incident record. Plain text or plain labeled link, no relation: mitigates, challenges. 'Exception to' is a field of the exception, defined once with the exception in conformance.md, not in the registry. Put the mapping paragraph in the decision guide; leave registry/relationships.md unchanged."
+    },
+    {
+      "id": "M-18",
+      "validity": "REFINE",
+      "expression": "NONE",
+      "placement": "PROFILE",
+      "strongest_objection": "A profile is defined as requirements 'for a kind of work'. Section 7 is not a kind of work; it is a depth setting on one record type plus two riders (exceptions, incidents) whose homes are conformance.md and the investigation record. It is all-or-nothing, it depends on section 4 for every lifecycle answer while saying it does not, and its three parts will be wanted separately.",
+      "counterexample": "A project that wants only expiring, visible exceptions must adopt the profile and therefore write level criteria in its adoption note (7.2 a is a MUST) that it will never use.",
+      "gaming": "Declare the profile for a path that holds no decisions.",
+      "recommended_change": "Decomposition by existing home: (1) 4.6 sentence, section 4; (2) exception content and expiry, conformance.md, for everyone; (3) no-failure sentence, 5.7; (4) incident dispositions, investigation outline and evaluation guide as guidance, with a clause only when an adopter case exists; (5) what remains, 7.1 to 7.3, is a three-clause 'decision assurance' profile that states its reliance on section 4. If the admission test is applied strictly (anticipated only in adoption), (5) is guidance in the decision guide and the clause text is kept as a proposed ADR in docs/adr/, which already has the proposed status for exactly this."
+    },
+    {
+      "id": "M-19",
+      "validity": "REFINE",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Both new files are second outlines for existing types (D and J) that omit what the type's first outline and the governing clauses require: exception.md has no authority-and-effect section (4.6), incident.md has no method or limitations (5.2, investigation outline). The block duplicates five existing prompts in each of two outlines, so the duplication is itself duplicated.",
+      "counterexample": "An author starts an exception from templates/exception.md, sets status accepted, and the record fails the conformance question 'Does an accepted decision identify its authority and effective date'.",
+      "gaming": "Not applicable to an informative outline; the risk is abandonment and divergence, not gaming.",
+      "recommended_change": "Zero new template files. Four prompts and a Level line merged into decision.md and adr.md; exception fields as an optional labeled block inside decision.md and as the Exceptions line of the adoption-note outline, same words; disposition prompt in investigation.md. Template count stays at eleven."
+    },
+    {
+      "id": "M-20",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "The changelog becomes a second home for reopening and review conditions, whose declared home is decisions/standards/ (CONTRIBUTING: 'recorded with its reason and the condition that would reopen it'; index column 'Reopen when'). A changelog entry is history and is not edited; a condition is living. And 'experimental' already exists: a proposed ADR in docs/adr/.",
+      "counterexample": "A review condition is refined in the standards index after adopter feedback. The released changelog entry still shows the old wording; a reader of the changelog acts on a condition that no longer applies.",
+      "gaming": "Cite any public incident as the 'observed case' so nothing is ever marked anticipated only; the proposal does this for most of section 7.",
+      "recommended_change": "CONTRIBUTING, after the admission test: 'A rule admitted on an anticipated failure only is marked so in the index of decisions/standards/, with its review condition there; the changelog entry links to that record and does not restate the condition.' Add a 'Basis' column (observed in adoption, observed publicly, anticipated) to the index. Observed cases are recorded in docs/reviews/, their existing home."
+    },
+    {
+      "id": "M-21",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "'Every clause still marked anticipated only' presumes a single place where that mark lives; without the index column there is none. The review trigger is added to CONTRIBUTING while the declared home of review triggers is the README adoption note. If section 7 enters the specification as five anticipated-only clauses, the rule makes all five removal candidates at the next release, and clause 1.4 retires their numbers forever.",
+      "counterexample": "Section 7 ships in 0.7.0, is cut to two clauses in 0.8.0 for lack of adopter cases: 7.2, 7.4, 7.5 are retired numbers in a section that has existed for one release, each removal a breaking change under 6.2.",
+      "gaming": "'Reviewed; all retained', with no per-clause statement.",
+      "recommended_change": "CONTRIBUTING Review route sentence as proposed, with the output home named: 'recorded in decisions/standards/'. Add the trigger to the README adoption note's Review triggers entry instead of a second list. Keep anticipated-only clause text out of the numbered specification until a case exists. Drop the ten signals from the adoption guide or reduce them to one sentence inviting feedback."
+    },
+    {
+      "id": "M-22",
+      "validity": "VALID",
+      "expression": "GUIDANCE",
+      "placement": "GUIDANCE",
+      "strongest_objection": "Counts are hand-copied volatile figures (3.6.4) with no stated counting method. The proposal's own table shows the problem: the eight lettered requirements of 7.3 are counted as two MUSTs, and a claimed 'same six' fields are not the same six.",
+      "counterexample": "A later release adds items (j) and (k) to clause 7.3. Clauses, MUSTs, terms, types, statuses, relations, and templates are all unchanged; the accounting reports zero growth.",
+      "gaming": "Grow by lettered items and template prompts, which no column counts.",
+      "recommended_change": "CONTRIBUTING release step 2 as proposed, plus 'lettered requirements' as a counted item and one sentence defining the method (each lettered item and each keyword sentence counts once). The table lives only in the changelog; the README does not repeat it."
+    }
+  ],
+  "existing_rules_to_challenge": [
+    {
+      "clause_or_artifact": "docs/adoption-guide.md, adoption note outline, line 'Exceptions: <none or requirement, scope, reason, consequence, owner, revisit condition>' against docs/conformance.md 'clause identifier and scope, reason, consequence, responsible role, and condition for review'",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "Two spellings of one normative field list already exist (owner versus responsible role, revisit condition versus condition for review). The proposal would add a third and a fourth. Make conformance.md the only list and have the outline use its words verbatim."
+    },
+    {
+      "clause_or_artifact": "docs/adr/ (ADR-001 to ADR-003, still proposed) and decisions/standards/ (J-001 to J-031 with a Disposition field) as two homes for decisions about the standard",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "A reader asking 'was this idea considered and what was decided' has two places to look, and the J records are investigations used to hold decisions, which bends type J and is the precedent the incident-as-J proposal copies. One decision home with one type; evaluations link to it."
+    },
+    {
+      "clause_or_artifact": "templates/adr.md beside templates/decision.md",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "Two outlines for one type with the same sections in a different order; every change to decision content (this proposal included) must be made twice and will drift. The decision guide already says the ADR is a specialization, not a second record. One outline with a two-line note on architectural scope and existing ADR identity."
+    },
+    {
+      "clause_or_artifact": "Clause 5.7 (negative results), placed in the research-report profile",
+      "question": "would we add this today?",
+      "verdict": "SIMPLIFY",
+      "reason": "Negative results are stated in decisions, runbooks, and status pages, not only in research reports; its placement is why the proposal felt the need for 7.3(i). Keep one negative-result rule, let other clauses reference it by number regardless of profile, and extend it by one sentence to cover 'no failure observed'."
+    },
+    {
+      "clause_or_artifact": "docs/evaluation-guide.md, Operational documentation: 'A limitation or known issue should identify the affected scope, observed condition, consequence, workaround or next action, owner/review route, and closure evidence'",
+      "question": "would we add this today?",
+      "verdict": "MERGE",
+      "reason": "This is already a field list for a known risk, near-identical to the exception list and to 7.3(d). It should be the single guidance home for 'a risk or known issue is stated once, with a native ID, and linked', and the exception and decision texts should point to it instead of each listing fields."
+    },
+    {
+      "clause_or_artifact": "registry/nomenclature.md, paragraph mapping a tracked assumption to a question record in status open, linked with depends-on",
+      "question": "would we add this today?",
+      "verdict": "KEEP",
+      "reason": "It is the only existing mechanism that produces a review list when an assumption fails, and the proposal relies on it. But it is normative only under section 4, which is the concrete reason the assurance profile cannot honestly claim to work without tracked records. Keep it and state the dependency."
+    },
+    {
+      "clause_or_artifact": "Section 2 definition 'Profile ... Profiles are not maturity levels' and conformance.md 'adding metadata does not make documentation more trustworthy'",
+      "question": "would we add this today?",
+      "verdict": "KEEP",
+      "reason": "Keep, and apply it to this proposal: a profile that contains graded levels stamped on records will be read as a trust grade. If levels stay, the definition of assurance level must repeat that it grades required content, not confidence, where the level appears on the record outline, not only in section 2."
+    }
+  ],
+  "dissent_to_preserve": [
+    "There must be exactly one exception concept and one field list, in docs/conformance.md. Clause 7.4 as drafted is a second concept; its claim to list 'the same six' fields is inaccurate, and with the adoption-note outline and the proposed template there would be four divergent lists.",
+    "The profile depends on the tracked-record profile in practice. Saying 'with or without tracked records' is a claim the proposal's own reuse table refutes; publish the dependency or supply untracked equivalents in the clause.",
+    "An accepted risk has no canonical home in this design. It is restated as a sentence in the decision (7.3 d), as a field in the exception (7.4 a), and as a disposition in the incident (7.5 a), with a possibly different acceptor each time. Risk acceptance is a decision; the incident and any other record must link to the decision or exception that records it. The incident disposition 'risk accepted, naming who accepted it' is otherwise an exception that never expires.",
+    "Do not publish the eleven-row mapping in registry/relationships.md. Four rows (mitigates as answers, changes as implemented-by, challenges as contradicts, produces as inverse evidenced-by) stretch registry meanings, and changing the meaning of a relation is breaking under clause 6.2. 'Exception to:' is a field of the exception, not a registry entry.",
+    "Clause 7.4(c) makes a corpus nonconformant by the passage of time with no edit and contradicts the record's own status field. Use the interpretive form of 3.1.4(d) and 3.5.4(c) and require the date to be visible wherever the exception is listed.",
+    "An incident investigation falls under clause 5.1 where the research-report profile is applied. A separate incident outline that omits method and limitations is a second, incompatible outline for type J. Status complete will coexist with pending lessons; say so in the clause or the P-10 failure remains conformant.",
+    "No new template files and no Assurance block. Five of its nine prompts already exist in the decision and ADR outlines; add the four missing prompts to the sections where their neighbours live.",
+    "Reopening and review conditions have one home, decisions/standards/. The changelog links to it; it must not carry its own copy. Anticipated-only clause text should wait in docs/adr/ as a proposed ADR, not enter the numbered specification, because clause 1.4 makes every later removal a permanently retired number.",
+    "The level name 'significant' conflicts with 'architecturally significant' in the decision guide (costly to reverse). Under the proposed definitions an architecturally significant decision is critical, not significant. Clause 3.1.3 forbids one term carrying two meanings in one scope without saying so."
+  ]
+}

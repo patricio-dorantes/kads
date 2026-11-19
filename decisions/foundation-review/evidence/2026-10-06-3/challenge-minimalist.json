@@ -1,0 +1,182 @@
+{
+  "role": "minimalist",
+  "objective_verdict": "revise",
+  "objective_notes": "Four of the five separations are already what the clauses protect: from the author (1.1 a, 3.5 a, proposition 1 Why), from original context (1.1 a and c, 1.2 a, 4.3 b), from time (4.1, 4.2, 4.3 a, 8.1 e), from transformation (2.2 a to d, 2.4 a, 5.1 b). The path from answer to basis is 3.1 a and b, 3.6 a, 6.3, and 2.3's second sentence. Two words overreach. 'Survive' promises that the knowledge stays valid; KADS promises only that a reader can see what it rests on (knowledge model: canonicality is a maintenance responsibility, not proof of truth; foundations: evidence access does not establish validity). 'Skeptical inspection' is not a separation the knowledge undergoes; it is what the reader does with the path, and no clause can make a claim pass it. A third overreach is 'technical knowledge' as the thing that survives: the clauses act on documents and records, and the 'How to read' paragraph already states the normative scope as organized, presented, traced to its basis, and maintained. The objective should live in docs/foundations.md as the opening sentence of 'Design constraint', where the cost sentence it generalizes already sits, with README line 5 as its reader-facing paraphrase. It fails the five-function test of CONTRIBUTING 'What belongs in the specification' (truth and rationale are not sufficient), so not the preface. The knowledge model is about statement kinds and identity, not purpose, so not there either.",
+  "objective_revised": "KADS exists so that technical knowledge written down once stays usable and checkable by a reader who was not its author, is not in its original context, reads it later, or reads it through a summary or transformation: the reader can tell what the document is, what it applies to, whether it has been replaced, and on what basis each material claim stands, and can reach that basis.",
+  "regression_verdict": "safe",
+  "regression_evidence": "The removed sentence was a SHOULD conditioned on 'where those layers are relevant', a condition no reviewer can test from the page (admission test question 5). Each layer it named is carried by a stronger or equally strong clause wherever a violation is detectable: sources by 3.1 a (MUST, basis) and 3.1 b (SHOULD, specific passage); context by 1.1 a, 1.2 a, and 4.3 b; reasoning, for a factual claim whose basis is a derivation, by 3.1 a, which lists 'a derivation' as a basis that MUST be identifiable, and under the research-report profile by 7.2.1 (MUST, reasoning from results to each material conclusion); method by 7.2.1 and 7.2.2 where a method exists to show, by 4.3 b where a past method differs from the current one, by 3.4 a for verification statements, and by 6.1 b for quantities. What 0.8.0 had and 0.9.0 lacks is a SHOULD that reasoning and method be explicit on an ordinary page when neither a derivation, a report, a verification statement, nor a quantity is involved; that case is a recommendation or an opinion, and for those Core never required reasoning in any version. The removal is recorded three times: J-034 row 1.3 with the guardian's objection and the reply, the 0.9.0 changelog SHOULD row (1.3 evidence path), and the defined-terms row (evidence path). The navigation aid itself moved, not vanished: README line 62 and authoring guide line 48 ('Reveal context, reasoning, method, and sources as the reader needs them'). So: not accidental, and not a relocation of a requirement, because the requirement content was already elsewhere; a safe simplification. One residue is noted under readme: the path's canonical home is now the README, which is a derived view with no source to derive from.",
+  "reader_items": [
+    {
+      "item": "What the knowledge is about",
+      "protected_by": "1.1 (a), 1.2 (a)",
+      "intentional_gap": false,
+      "note": "1.1 a is a SHOULD (what it is, what question, what it applies to); 1.2 a makes purpose a MUST at corpus level."
+    },
+    {
+      "item": "Its scope",
+      "protected_by": "1.2 (a), 1.1 (c), Terms: Scope",
+      "intentional_gap": false,
+      "note": "Scope MUST be discoverable; a document may inherit shared scope from the corpus if it links to where that is stated."
+    },
+    {
+      "item": "Which description is authoritative",
+      "protected_by": "2.1 (a) and (b), 2.4 (a)",
+      "intentional_gap": false,
+      "note": "One canonical home per subject; copies MUST NOT present as equally authoritative; generated views MUST name their sources."
+    },
+    {
+      "item": "Whether it is current, provisional, historical, or superseded",
+      "protected_by": "4.1 (a) to (d), 1.2 (b), 3.2 (b), 3.4 (a); 7.1.5 (a) under the tracked-record profile",
+      "intentional_gap": true,
+      "note": "Superseded content MUST say so where met; provisional claims MUST be marked. There is no positive currency signal in Core: 4.1 d says absence of a marker proves nothing. Intentional: a MUST to date every page would be the edit-date trap that 3.4 b closes. The reader can tell 'replaced' and 'checked when', not 'still true'."
+    },
+    {
+      "item": "What was observed, inferred, assumed, recommended, or decided",
+      "protected_by": "3.2 (a), 2.2 (d)",
+      "intentional_gap": false,
+      "note": "MUST remain distinguishable wherever combining them would mislead; derived views keep the standing. The 'wherever misleading' condition is the proportionality that keeps a ten-line how-to free of labels."
+    },
+    {
+      "item": "What basis supports each material claim",
+      "protected_by": "3.1 (a), 3.3 (a)",
+      "intentional_gap": false,
+      "note": "MUST have an identifiable basis; the list includes 'a derivation', so reasoning is a basis when reasoning is what the claim rests on."
+    },
+    {
+      "item": "What method produced a result when method matters",
+      "protected_by": "4.3 (b), 3.4 (a), 6.1 (b), 3.6 (a) in Core; 7.2.1, 7.2.2 under the research-report profile",
+      "intentional_gap": true,
+      "note": "Core requires method only where a past method differs from the current one (4.3 b), for a verification statement (3.4 a), and as source and scope of a quantity (6.1 b). A full method MUST is profile-only. Intentional: foundations put 'domain rigor in profiles'; conformance says a project may apply profiles to parts of its corpus, so the page that reports a result can be under 7.2 without the how-to beside it."
+    },
+    {
+      "item": "What has and has not been verified",
+      "protected_by": "3.4 (a) and (b), 3.2 (b), 3.3 (b), 3.5 (b) and (c)",
+      "intentional_gap": false,
+      "note": "A verification statement MUST say what, against what, when, or what is not recorded; an edit is not verification; unsupported claims MUST be marked."
+    },
+    {
+      "item": "What limitations, contradictions, exclusions, and uncertainty remain",
+      "protected_by": "3.2 (c), 3.6 (a), 3.3 (b), 6.1 (b); 7.2.1, 7.2.4 (a), 7.2.6 under the research-report profile",
+      "intentional_gap": true,
+      "note": "Contradictions and limitations that affect interpretation MUST be disclosed in Core. 'Exclusions' as a category is profile-only (7.2.4 a exclusion policy); in Core an exclusion that affects interpretation is a limitation under 3.2 c or a denominator under 6.1 b. Intentional."
+    },
+    {
+      "item": "How to reach the reasoning, method, evidence, artifacts, and sources needed to assess the answer",
+      "protected_by": "3.1 (a) and (b), 3.6 (a), 6.3 (a) and (b), 2.3 second sentence, 2.4 (a); 7.2.1 and 7.1.5 (c) under the profiles",
+      "intentional_gap": true,
+      "note": "Evidence, artifacts, and sources: protected (basis identifiable, artifact location and role discoverable, links resolve, evidence reached through the citing document). Reasoning: protected for a factual claim whose basis is a derivation (3.1 a) and for a report (7.2.1); recommended for a decision (7.1.5 c). Not protected for a recommendation or opinion on an ordinary page. Intentional: proposition 7 and the admission test's ten-line how-to; requiring reasoning behind every 'use X' would force invented rationale against 3.3 a."
+    }
+  ],
+  "counterexamples": [
+    {
+      "case": "Every claim has a citation but the reasoning from evidence to conclusion cannot be found",
+      "prevented_by": "3.1 (a) read with conformance 'follow the links needed to assess its material claims'",
+      "conforms": false,
+      "disposition": "acceptable",
+      "smallest_change": "None in the specification. If the cited source states the conclusion, the citation is the reasoning. If the cited sources state only premises, the conclusion's basis is a derivation and 3.1 a requires that derivation to be identifiable; a reviewer finds the violation by following the citation and seeing that it does not say what the page says. This depends on reviewer judgment, which is the design (foundations: manual review first). A clause-guide note on row 3.1 can say it: when the basis is a derivation, the derivation is the basis, not only its inputs. Burden on a ten-line how-to: none."
+    },
+    {
+      "case": "The answer is clear but the method is unreachable",
+      "prevented_by": "7.2.1, 7.2.2 under the research-report profile; in Core only 4.3 (b), 3.4 (a), 6.1 (b)",
+      "conforms": true,
+      "disposition": "profile",
+      "smallest_change": "None. A page that states a measured or investigated result without its method is a report of findings; the project declares 7.2 for that part of its corpus (conformance: 'A project may apply different profiles to different parts of its corpus'). Guidance can make the trigger explicit in the research guide: a result obtained by a method is a report whether or not it is called one. A Core MUST for method would ask every how-to to name a method it does not have."
+    },
+    {
+      "case": "Evidence exists but its relation to a conclusion is implicit",
+      "prevented_by": "3.6 (a) ('role'), 3.1 (b), 2.3 second sentence",
+      "conforms": false,
+      "disposition": "acceptable",
+      "smallest_change": "None. 3.6 a makes the artifact's role and interpretation limits a MUST; an artifact whose relation to the claim cannot be told has no discoverable role. For text sources 3.1 b is a SHOULD, which is proportionate: a citation to a whole book is a departure that needs a reason, not a nonconformance."
+    },
+    {
+      "case": "A decision records authorization but no reconstructable rationale",
+      "prevented_by": "none in Core; 7.1.5 (c) SHOULD under the tracked-record profile",
+      "conforms": true,
+      "disposition": "acceptable",
+      "smallest_change": "None. 7.1.5 c already offers three honest states: reasons stated, linked, or declared not recorded. Raising it to MUST would force invented rationale for legacy decisions (3.3 a) and is reviewed and kept at SHOULD in J-034. Core has no decision clause by design (proposition 7); the decision guide and consequence guide carry the advice. Burden on a how-to: none."
+    },
+    {
+      "case": "Canonical homes exist but provenance becomes opaque through derived views",
+      "prevented_by": "2.2 (a), (c), (d); 2.4 (a); 2.1 (b)",
+      "conforms": false,
+      "disposition": "acceptable",
+      "smallest_change": "None. Every derived view MUST identify its source and transformations and keep the standing of claims, so a chain of views is traversable link by link to the home. A view that drops the source link is nonconformant at 2.4 a or 2.2 c."
+    },
+    {
+      "case": "Every requirement passes but the reader cannot tell why a material conclusion deserves confidence",
+      "prevented_by": "none, by design",
+      "conforms": true,
+      "disposition": "acceptable",
+      "smallest_change": "None. KADS makes the basis (3.1), kind (3.2 a), unverified status (3.2 b), verification scope (3.4), and limits (3.2 c, 3.6 a) visible; whether the conclusion then deserves confidence is the reader's judgment. Knowledge model: canonicality is not proof of truth; foundations: evidence access does not establish validity. A standard that promised otherwise would be promising soundness, which no document rule can test. This is the overreach in 'survive skeptical inspection'."
+    }
+  ],
+  "concession": {
+    "gap_is_real": false,
+    "wording": "If the panel reads 3.1 (a) as satisfied by naming the inputs of a derivation without the derivation, the smallest closure is one phrase appended to 3.1 (a): '...or an explicit assumption awaiting verification; where the basis is a derivation, the derivation itself is identifiable, not only its inputs.'",
+    "placement": "First choice: clause guide, row 3.1, as an interpretation note; no requirement changes. Second choice, only if the panel judges the interpretation contested: the phrase above in 3.1 (a), a clarification under 8.3 (f), not a new clause.",
+    "why_not_duplicate": "3.1 (a) already lists 'a derivation' as a basis but does not say whether identifying the derivation's inputs satisfies it; the phrase settles that reading and adds no new object. 3.1 (b) is about how precisely a citation points, not about what the basis is. 6.3 is about links resolving, not about what must be linked. 2.3 is about documents being reachable from the entry point, not about a claim reaching its basis. 7.2.1 requires reasoning for every material conclusion of a report, with no derivation condition and only under a declared profile. The phrase is narrower than all five: it binds only when the claim rests on reasoning, and asks for nothing a how-to that cites a source directly does not already have."
+  },
+  "readme": [
+    {
+      "statement": "link to it from everywhere else (line 54)",
+      "clause": "2.1 (b), 2.3",
+      "classification": "strengthened",
+      "replacement": "Maintain each subject in one place, within a stated scope; other pages quote or summarize it with a link instead of keeping a second copy."
+    },
+    {
+      "statement": "notes about the document itself come last (line 53)",
+      "clause": "1.1 (b)",
+      "classification": "preserved",
+      "replacement": "Optional tightening to the clause's own list: 'its history, authorship, and contribution notes come last'."
+    },
+    {
+      "statement": "date facts that change (line 56)",
+      "clause": "4.3 (a)",
+      "classification": "strengthened",
+      "replacement": "and date facts that change when the date matters."
+    },
+    {
+      "statement": "A project does not edit its own copy of KADS (line 75)",
+      "clause": "8.6 (a)",
+      "classification": "strengthened",
+      "replacement": "A project should not alter its own copy of KADS beyond adding a proposal file; a departure is recorded in its own corpus as an exception or a local rule."
+    },
+    {
+      "statement": "KADS and documents derived from it follow Semantic Versioning 2.0.0 (line 100)",
+      "clause": "8.3 (a), 8.4 (a) and (b)",
+      "classification": "strengthened",
+      "replacement": "KADS follows Semantic Versioning 2.0.0, and so does any document derived from it that declares a version of its own; every derived document pins the KADS version it follows, so pin a release tag when adopting."
+    },
+    {
+      "statement": "tell four things: ... and whether it is still current (line 5), and 'Mark what has been replaced' (line 56)",
+      "clause": "4.1 (a) to (d), 3.4 (a)",
+      "classification": "strengthened",
+      "replacement": "Line 5: '...where each important claim comes from, and whether it has been replaced.' Line 56 is preserved as written. 4.1 d says absence of a marker does not establish currency, so the README must not promise a currency verdict."
+    },
+    {
+      "statement": "Technical documentation usually fails in a few recurring ways (line 9)",
+      "clause": "none; 3.2 (b) and 3.3 (a) applied to KADS's own text (CONTRIBUTING: KADS follows its own first two principles)",
+      "classification": "unsupported",
+      "replacement": "Technical documentation fails in recurring ways. These are the ones KADS is written against:"
+    },
+    {
+      "statement": "Each KADS rule exists to prevent one of these (line 19)",
+      "clause": "none; the invariant column of J-034 is the nearest source",
+      "classification": "unsupported",
+      "replacement": "The rules exist to prevent failures like these; the list is not complete (nothing above covers overwritten evidence, 5.2, a step that cannot be undone, 6.2, or how a project says what it follows, 8). Either add those three bullets or write: 'Each rule under propositions 1 to 4 exists to prevent one of these; the rest guard evidence, procedures, and the adoption claim.'"
+    },
+    {
+      "statement": "How to cite: ... version 0.9.0, tag v0.9.0 (line 103), with Status 'draft, before 1.0' (line 101)",
+      "clause": "8.3 (b), 8.4 (b) as applied to KADS's own copies (CONTRIBUTING release step 1); the specification's own About section already says 'draft of this version, not yet released'",
+      "classification": "unsupported",
+      "replacement": "Status: 'draft of 0.9.0, not yet released; the latest release is v0.8.0.' How to cite: 'version 0.9.0, tag v0.9.0 once released; until then cite the commit.' The tag list on this branch ends at v0.8.0."
+    },
+    {
+      "statement": "A reader may follow the path Index -> What -> Why -> How -> Sources ... one page may answer all five (line 62)",
+      "clause": "none since 0.9.0 removed the Evidence path term; authoring guide line 48 is the nearest informative source",
+      "classification": "canonical-source missing",
+      "replacement": "Keep the sentence but give it a home: add the same sentence to the authoring guide beside 'Reveal context, reasoning, method, and sources as the reader needs them', or to foundations under 'Flexible reading paths', and let the README summarize it. An entry point should not be the only place an idea is maintained (2.1 a applied to KADS)."
+    }
+  ]
+}

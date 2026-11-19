@@ -1,0 +1,285 @@
+{
+  "role": "traceability",
+  "overall": "The package is strongest where it adds reader-facing status (J-027) and weakest where it declares a traceability concern 'already covered' on the strength of a clause that only partly reaches it (J-010, J-019, J-024, J-029). The central epistemic proposal, J-015, mostly restates 3.2.2 and 3.3.2 while leaving the actual holes open: hypothesis and assumption are not named in 3.3.2, three documents carry three different lists of epistemic kinds, and no clause requires a basis when a statement is promoted at its canonical home. The rejections of typed states, PROV metadata, schemas, and chain of custody are correct on cost, but each discards a cheap residue worth keeping: a mapping for tracked assumptions and hypotheses, inverse labels so 'why does this exist' can be written from the implementation side, a digest for evidence outside version control, and the corpus revision in the review record. The deferral of J-026 is the least defensible position: exceptions and findings must cite clauses today, several clauses hold three or four requirements, and sentence lettering fixes this without renumbering while the package itself adds more multi-requirement clauses. The admission test in J-031 is applied unevenly, admitting three Core SHOULDs without a failure instance while deferring a defect visible in the current text. I found no credible counterargument on J-005, J-006, J-007, J-009, J-013, J-022, and J-025.",
+  "candidates": [
+    {
+      "id": "J-001",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Clause 1.2 already adopts BCP 14 and already says the reason for departing from a SHOULD belongs with the departure. A restraint rule in CONTRIBUTING gives later maintainers a stated test for why a rule is a MUST.",
+      "argument_against": "The test 'breaks a property the standard exists to protect' cannot be applied or audited because the protected properties are not enumerated anywhere normative. A maintainer in two years cannot determine why a given MUST passed the test, because nothing requires the justification to be recorded.",
+      "failure_mode": "Every proposer asserts their rule protects a core property; the rule becomes a rhetorical formula and the MUST count keeps growing with no inspectable rationale per MUST.",
+      "recommended_change": "List the protected properties by name in CONTRIBUTING (for example: findable current guidance, identifiable basis for material claims, preserved history, undisclosed alteration of evidence prevented). Require the changelog entry for each new or strengthened MUST to name the property and one concrete failure case it prevents."
+    },
+    {
+      "id": "J-002",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "Synonyms hide contradictions: two pages that disagree cannot be recognized as conflicting if they name the subject differently. A SHOULD-level rule with a stated mapping is cheap and makes conflicts detectable by search.",
+      "argument_against": "'Stated once' does not say where, so the mapping is not findable from the place the synonym appears, and it is lost when a section is read out of context. The clause also ignores redefinition over time: a term whose meaning changes makes historical records silently mean something else, which is a traceability failure the proposal does not touch. Each new Core SHOULD also creates a duty under 1.2 to record reasons for departures.",
+      "failure_mode": "A corpus states the mapping once in a glossary nobody links to; older records use a term under its previous meaning and are read with the new one.",
+      "recommended_change": "Reword the last sentence: 'Where a synonym, vendor term, or translation must appear, its mapping to the preferred term SHOULD be discoverable from where it is used.' Add: 'A change to the meaning of a defined term that affects how existing material is read is a change under 3.4.1.'"
+    },
+    {
+      "id": "J-003",
+      "stance": "ADOPT",
+      "layer": "GUIDANCE",
+      "argument_for": "As a universal rule it is uncheckable and would punish ordinary prose. Limiting it to procedure steps and individually cited normative statements targets exactly the places where one sentence must be one traceable unit.",
+      "argument_against": "The author treats this as authoring advice for adopters while the KADS specification itself is the worst offender: its clauses are cited individually yet pack several requirements per paragraph. Rejecting J-003 as normative and deferring J-026 together leaves the one place where singularity matters for traceability with no commitment at all.",
+      "failure_mode": "Guidance tells adopters to write singular citeable statements while the spec keeps adding multi-MUST clauses (proposed 3.1.5 and 3.3.5 each carry two obligations).",
+      "recommended_change": "Keep as guidance for adopters, but add to CONTRIBUTING a binding drafting rule for KADS itself: each new normative sentence states one requirement. See J-026."
+    },
+    {
+      "id": "J-004",
+      "stance": "MODIFY",
+      "layer": "PROFILE",
+      "argument_for": "Clause 3.5.2 says what a procedure contains but not how steps are ordered or whether the procedure was ever run. An optional profile adds domain rigor where it is needed and 7.6 gives readers an inspectable execution claim.",
+      "argument_against": "7.6 as worded goes stale invisibly: 'executed as written, when, against which version or environment' does not identify which revision of the procedure text was executed, so a later edit inherits a verification it never had (contrary to the spirit of 3.3.3). The profile also omits why a non-obvious step exists, which is the main thing a future maintainer needs before deleting or reordering it. Finally, an unexecuted procedure is a universal risk; hiding that disclosure in an optional profile lets core-only adopters stay silent.",
+      "failure_mode": "A runbook says 'executed 2026-03-01 on v4'; three steps are edited in June; readers still trust the execution statement. A maintainer removes a 'pointless' wait step whose reason was never recorded.",
+      "recommended_change": "7.6: add 'and which revision of the procedure was executed; a later substantive edit to the steps makes the statement historical unless the procedure is executed again'. Add 7.7: 'A step whose purpose is not evident from the action SHOULD state or link its reason.' Add to 7.4 that a hazard statement SHOULD identify its basis (incident, vendor notice, analysis). Add a one-line SHOULD to 3.5.2 that a procedure never executed as written says so."
+    },
+    {
+      "id": "J-005",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "A controlled dictionary and sentence-length limits address translation and second-language reading in aerospace maintenance, not provenance, basis, or history. Rejecting them costs KADS nothing in inspectability.",
+      "argument_against": "No credible counterargument: none of the five traceability questions (origin of a claim, basis of a decision, superseded versus current, conflict detection, reason for existence) is served by word lists or length limits, and enforcing them needs tooling that clause 1.1 excludes.",
+      "failure_mode": "If adopted, reviewers would spend review effort counting words while unsupported claims pass.",
+      "recommended_change": "none"
+    },
+    {
+      "id": "J-006",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "The knowledge model already ties splitting to independent maintenance, reuse, provenance, or review, so modularity is available exactly when provenance needs it.",
+      "argument_against": "Weak objection only: a claim can be cited precisely only if the unit containing it is addressable, and heading anchors change when headings are reworded. Clause 3.5.1 (internal links MUST resolve) already catches the breakage, so I find no credible argument for more modularity.",
+      "failure_mode": "Mandatory modules would multiply files and metadata, and each split creates a new derived-summary relationship that must be kept consistent under 3.2.2.",
+      "recommended_change": "none"
+    },
+    {
+      "id": "J-007",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Identifiers that encode meaning break when the meaning changes, and a broken identifier breaks every trace that passes through it. Clause 4.3 and the nomenclature already take the correct position.",
+      "argument_against": "No credible counterargument for structured codes. One inconsistency worth recording: the type prefix (C, D, J, T, E, Q) is itself meaning-bearing, so a record that changes type cannot keep its ID without the prefix becoming false.",
+      "failure_mode": "A conclusion later treated as a decision keeps a C- prefix that misdescribes it, or gets a new D- ID and loses its inbound references.",
+      "recommended_change": "No new rule. Add one sentence to the nomenclature: when a record's type changes, create the new record and link it with supersedes; do not relabel the prefix."
+    },
+    {
+      "id": "J-008",
+      "stance": "ADOPT",
+      "layer": "GUIDANCE",
+      "argument_for": "Clause 3.1.1 already makes scope a MUST; a consistent 'Applies to:' line in the template makes that scope findable in a predictable place without any machinery.",
+      "argument_against": "A scope line asserts applicability but not when or against what it was last confirmed, so a reader cannot tell a checked scope from one copied from the template three versions ago. A page-level line also misleads when one section has a narrower scope than its page.",
+      "failure_mode": "'Applies to: v2.x' stays on the page after v3 ships; nobody can tell whether it was ever checked against 2.4.",
+      "recommended_change": "In the template show 'Applies to: <scope>' with an optional 'checked <date> against <version>' and note that a section whose scope differs from the page states its own scope under its heading."
+    },
+    {
+      "id": "J-009",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Canonical home (3.2.1), derived view, and 3.6.2 (generated views MUST identify maintained sources and transformations) already let a reader of a published view trace back to its source.",
+      "argument_against": "No credible counterargument: the traceability need here is 'from a rendered or generated view, find the maintained source', and 3.6.2 states it as a MUST. A CSDB-style separation would add tooling without adding any trace that is missing today.",
+      "failure_mode": "A new rule would duplicate 3.6.2 and produce two clauses to cite for one finding.",
+      "recommended_change": "Record the mapping as proposed; no clause change."
+    },
+    {
+      "id": "J-010",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "Keeping lifecycle and verification separate is right, and 7.6 gives procedures an explicit execution statement. Avoiding a mandatory QA-status field keeps one-person projects viable.",
+      "argument_against": "The proposal leaves verification as the only assessment in KADS with a prohibition (3.3.3: editing does not establish revalidation) and no positive form. In the tracked-record profile 'updated' is defined as explicitly not the verification date, so a reader of an accepted record has no required way to learn when, against what, or by whom its content was last checked. Guidance-only means that the words 'verified' or 'tested' can appear with no inspectable referent.",
+      "failure_mode": "Pages carry 'verified' badges or 'last reviewed' dates that mean a typo fix; readers treat them as revalidation and the corpus cannot show otherwise.",
+      "recommended_change": "Add a conditional Core clause that costs nothing unless a claim is made: 'A statement that content has been verified, reviewed, or tested MUST say when, against which version, revision, or environment, and by whom or by what method. Where no such statement is present, readers MUST NOT be led to infer verification from an edit date or status.' Keep 7.6 for procedures and add the matching question to the conformance table."
+    },
+    {
+      "id": "J-011",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "A fixed layout has value only across many adopters sharing readers; KADS has no such evidence and 1.1 disclaims layout. Recording the condition that would change the answer is itself good traceable practice.",
+      "argument_against": "No credible counterargument for a standard layout. One narrow gap remains: the adoption note 'MAY live in an existing documentation index', so a maintainer cannot reliably find the declared exceptions and review route, which are the starting point of every conformance trace.",
+      "failure_mode": "An auditor or new maintainer cannot locate the adoption note and so cannot tell which departures are declared exceptions and which are defects.",
+      "recommended_change": "No layout rule. Add to 6.1 or conformance: 'The adoption note MUST be reachable from the corpus entry point.'"
+    },
+    {
+      "id": "J-012",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Separating epistemic kinds from document kinds explains why a how-to can contain both observations and decisions, and it does so without requiring type metadata.",
+      "argument_against": "It would create a third inconsistent list of epistemic kinds: 3.3.2 names observation, inference, recommendation, decision; the knowledge model names observation, inference, conclusion, decision; J-015 adds assumption and hypothesis; this table lists eight. That violates the proposed J-002 inside the standard itself and leaves a reviewer unable to say which kinds 3.3.2 actually obliges authors to distinguish.",
+      "failure_mode": "A reviewer cites the informative table to demand that 'hypothesis' be distinguished; the author answers that 3.3.2 does not name it; neither can be shown wrong.",
+      "recommended_change": "Define the epistemic kinds once, in specification section 2, and make 3.3.2, the knowledge model, and the new table refer to that one list. The table stays informative but adds no kind that section 2 does not define; 'procedure knowledge' and 'question' go on the document or record axis or are dropped."
+    },
+    {
+      "id": "J-013",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "Transclusion needs tooling and, unmarked, actively hides where text came from. Link plus scope qualifier (3.2.1) keeps the source visible to the reader, and 3.6.2 covers projects that transclude anyway.",
+      "argument_against": "No credible counterargument: transclusion reduces drift but reduces visible provenance unless the rendered output marks the included passage, which is exactly what 3.6.2 already requires of transformed views.",
+      "failure_mode": "A mandated include mechanism would make rendered pages whose paragraphs have invisible origins.",
+      "recommended_change": "none"
+    },
+    {
+      "id": "J-014",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Readers and retrieval systems land mid-page; advice to restate scope and referents is cheap and helps the reader determine what a statement applies to.",
+      "argument_against": "Guidance about openings does not carry status or provenance into a chunk. A retrieved section of a superseded page has no banner (J-027 puts it before the content, at the top), and a section with 'as measured above' has lost its source. The proposal treats retrieval as a readability matter when the larger risk is a chunk presented as current, sourced knowledge.",
+      "failure_mode": "An assistant retrieves section 4 of a superseded design note and quotes it as current; the status line at the top of the page was never in the chunk.",
+      "recommended_change": "Add to the 'Writing for retrieval' section: a section that makes material claims keeps its citation or link in the same section rather than relying on an earlier one; a section whose status or scope differs from its page says so under its own heading; a long superseded page repeats the status marker under major headings where practical."
+    },
+    {
+      "id": "J-015",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "Role laundering through restatement is a real and common failure, and a rule aimed at derived views names it directly. Adding the terms to section 2 closes a vocabulary hole.",
+      "argument_against": "As drafted, 3.3.5 is largely a restatement: 3.2.2 already requires a summary to preserve material qualifications, and 3.3.2 already requires roles to stay distinguishable. The real gaps are elsewhere. (1) 3.3.2 never names hypothesis, assumption, or conclusion, so the new clause forbids laundering roles the base clause does not require anyone to mark. (2) 'The role a statement had at its canonical home' presumes the home marked it, but 3.3.2 applies only 'wherever combining them would mislead', so there may be nothing to carry. (3) Nothing covers legitimate promotion: when a hypothesis becomes a conclusion, no clause requires the basis for the change to be identified, which is exactly where laundering happens in the canonical home itself.",
+      "failure_mode": "The canonical page itself is edited from 'we suspect' to 'the cause is' with no new evidence; every summary then faithfully carries the laundered role and 3.3.5 is satisfied.",
+      "recommended_change": "Amend 3.3.2 to read 'Observation, inference, assumption, hypothesis, conclusion, recommendation, and decision MUST remain distinguishable wherever combining them would mislead.' Replace the proposed 3.3.5 with: 'A restatement MUST NOT give a statement a stronger role than it has at its source. A change of role at the canonical home, such as a hypothesis becoming a conclusion or an assumption becoming an observation, MUST identify the evidence or reasoning that justifies the change.' Define all seven terms in section 2 and update the conformance question that currently says 'observation, inference, and choice'."
+    },
+    {
+      "id": "J-016",
+      "stance": "MODIFY",
+      "layer": "PROFILE",
+      "argument_for": "Per-statement labels and new prefixes would add metadata that does not make content more trustworthy, and rejecting 'fact' as a type is correct because the word hides the basis.",
+      "argument_against": "Outright rejection loses a specific trace. 3.3.1 admits 'an explicit assumption awaiting verification' as a basis, yet an assumption has no home in the tracked-record profile: it cannot be given a lifecycle, and when it is falsified nothing lets a maintainer find the decisions and conclusions that rested on it. The same holds for a hypothesis under test. The author's answer (no H- or A- prefix) is right about prefixes and silent about the mapping, so adopters will each invent one.",
+      "failure_mode": "An assumption written in prose inside one decision record turns out false; four other records that relied on it are never revisited because no link identified the dependency.",
+      "recommended_change": "No new types or prefixes. Add to the nomenclature a documented mapping: a tracked hypothesis is a C record in status draft or provisional whose text states what would confirm or refute it; a tracked assumption awaiting verification is a Q record in status open, and records that rely on it link to it with depends-on. State that when such a Q is answered against the assumption, the depends-on links are the review list. Keep 'fact' rejected and record the reason."
+    },
+    {
+      "id": "J-017",
+      "stance": "REJECT",
+      "layer": "GUIDANCE",
+      "argument_for": "Required PROV entity-activity-agent metadata would be a second graph next to the prose, contrary to 4.4, and needs tooling to be useful. The informative correspondence preserves the option of a later mapping.",
+      "argument_against": "The rejection is right on cost, but the existing correspondence covers only three relations and omits agent and activity, which are the parts of PROV that answer 'who or what produced this, in which run'. KADS already has the corresponding concepts (author of record in 3.3.4, run identifier in 3.4.4, authorizer in 4.6) and does not say so, so the claimed 'documented starting point' for interchange is incomplete. One real gap also surfaces: no clause requires the collector of evidence to be identifiable; 3.6.1 lists location, version, role, and limits only.",
+      "failure_mode": "A later mapping effort discovers that half the PROV model has no stated KADS counterpart and invents one inconsistently per adopter.",
+      "recommended_change": "Keep the rejection. Extend the informative correspondence: author of record and decision authority to prov:Agent with wasAttributedTo, a preserved run (3.4.4) to prov:Activity, collection time to startedAtTime or generatedAtTime. Add 'who or what collected it, when known' to the artifact guide's catalog-entry list."
+    },
+    {
+      "id": "J-018",
+      "stance": "MODIFY",
+      "layer": "PROFILE",
+      "argument_for": "Inverses and near-synonyms would double the vocabulary without adding meaning, and the maintainer's ruling that supersedes has one name with two readings is sound. Deferring until a concrete case appears follows the J-023 admission test.",
+      "argument_against": "Two objections. First, 'refines' is not expressible today: partial supersedes carries lifecycle consequences (a required reverse link under 4.5 and a 'superseded' reading of the target) that are false when the earlier record stays fully current and the new one only narrows or elaborates it, and related-to throws away direction and meaning. The deferral therefore rests on a claim that does not hold. Second, rejecting implements, supports, and evidence_for as 'inverses' is only valid if the inverse reading may actually be written; the registry spells out an inverse label for supersedes alone, so a maintainer standing at code or a procedure has no sanctioned way to write the link that answers 'why does this exist'.",
+      "failure_mode": "Authors record an elaboration as partial supersedes, readers treat the parent decision as replaced, or they use related-to and the reasoning chain from general decision to specific decision is unrecoverable. Implementations carry no back-link to the decision that caused them.",
+      "recommended_change": "Add a general sentence to the registry: 'Any relation MAY be written from the target using its inverse label (Supports, Evidence for, Implements, Tests, Summarized by, Answered by); the inverse label is the same relation, not a new one', with an inverse-label column in the table. For refines, either add it now defined as 'narrows or elaborates the target, which remains current; no status change to the target', or keep the deferral but record it as a rejected-for-now decision that states this exact case and the competency question ('which current records elaborate this one without replacing it?')."
+    },
+    {
+      "id": "J-019",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Keeping rejected proposals with reasons is how a future maintainer learns that an idea was considered and why it failed. The nomenclature status 'rejected: retain the reason' already expresses it.",
+      "argument_against": "'Already covered' overstates it. The rule lives only in a status definition of the optional tracked-record profile; nothing in Core or CONTRIBUTING obliges KADS or an adopter to keep a rejected alternative at all. And the present evaluation's rejections live in workbench/candidates.md, a working file with no ID, status, or link from the changelog, so 'apply it by keeping these as records' is an intention, not a mechanism.",
+      "failure_mode": "The workbench is cleaned up after release; in a year someone proposes PROV metadata again and nobody can find the earlier reasoning or the condition that would reopen it.",
+      "recommended_change": "Record this evaluation as one decision record (or ADR) in docs/adr with a table of the 31 candidates: outcome, reason, and 'what would change the answer' for each rejected or deferred item; link it from the changelog entry. Add to CONTRIBUTING: a rejected proposal to change KADS is recorded with its reason and reopening condition."
+    },
+    {
+      "id": "J-020",
+      "stance": "ADOPT",
+      "layer": "CORE",
+      "argument_for": "Comparison between revisions is what makes 3.4.1's 'version history MAY provide that preservation' actually usable; a source that cannot be diffed cannot show what changed or when. SHOULD strength with an escape clause is proportionate.",
+      "argument_against": "The clause addresses format but not retention. 3.4.1 lets version history stand in for preserved prior meaning, yet nothing says the history relied upon must itself survive; a squash, rewrite, or tool migration silently deletes the only record of a reversed decision. The proposal also creates one more Core SHOULD whose departures need recorded reasons under 1.2.",
+      "failure_mode": "A project relies on wiki page history for superseded decisions, migrates to another platform, and loses every prior version while remaining nominally conformant.",
+      "recommended_change": "Adopt 3.5.4 as drafted and add one sentence to 3.4.1: 'Where version history is relied on for this preservation, the cited revisions MUST remain retrievable; if they will not, the prior meaning is preserved in the corpus first.'"
+    },
+    {
+      "id": "J-021",
+      "stance": "ADOPT",
+      "layer": "CORE",
+      "argument_for": "An unreachable page cannot be reviewed, cannot be found when its sources change, and is the typical location of stale contradictory claims. A SHOULD is cheap and is checkable by reading or by a link crawl.",
+      "argument_against": "'Maintained document' lets historical and superseded material fall outside the rule, yet that is exactly what 3.4.1 preserves and what readers must be able to find to see why something changed. The rule is also one-directional: it says nothing about evidence that is cited by a claim but then moved, though 3.5.1 covers that.",
+      "failure_mode": "Superseded decisions are 'preserved' in a folder nothing links to; the history exists but no reader can trace to it from the current decision.",
+      "recommended_change": "Reword: 'Each maintained document, and retained historical or superseded material, SHOULD be reachable by following links from the corpus entry point.'"
+    },
+    {
+      "id": "J-022",
+      "stance": "DEFER",
+      "layer": "NONE",
+      "argument_for": "KADS removed its schema and linter in 0.2.0 for cause; labeled Markdown links are inspectable by any reader, and a machine graph adds a second copy that drifts from the prose.",
+      "argument_against": "No credible counterargument against deferral: every traceability question KADS asks can be answered by reading and following links. The one cost of having no schema is that free-form labels ('Backed by', 'See evidence') defeat text search, which is the only tool-free way to find all dependents of a changed source.",
+      "failure_mode": "A source changes and the maintainer searches for 'Supported by' but half the corpus used other wording, so dependent conclusions are missed.",
+      "recommended_change": "Keep the deferral and its reopening condition. Add one sentence to the registry: use the registry labels verbatim so that a plain text search finds every use of a relation."
+    },
+    {
+      "id": "J-023",
+      "stance": "ADOPT",
+      "layer": "GUIDANCE",
+      "argument_for": "Asking 'which reader question can the existing vocabulary not answer' gives every vocabulary addition a recorded reason for existing, which is traceability applied to the standard itself.",
+      "argument_against": "The test is proposed for future contributors but was not visibly applied in this package: J-018 rejects ten relations and J-016 nine types without stating the competency question each fails. A test that is not applied to its own batch has no worked example and its results cannot be audited.",
+      "failure_mode": "The competency question becomes a form field filled with a restatement of the proposed term ('answers: what refines what?').",
+      "recommended_change": "Adopt, and require the question plus one concrete instance from a real corpus. Record the question and the verdict for each relation and type considered under J-016 and J-018 in the decision record proposed under J-019."
+    },
+    {
+      "id": "J-024",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "Pinned versions for citations (3.3.1), historical claims (3.5.1), and the standard itself (6.2, 6.3) cover references outward; a general baseline rule would duplicate them.",
+      "argument_against": "One baseline is missing and it is the one a conformance trace depends on: the review record required by 6.4 and conformance.md carries scope, date, reviewer, and unresolved exceptions, but not the revision of the corpus that was reviewed. Covered paths identify where, not which state. A reader cannot tell whether a page was in its present form when the review passed it.",
+      "failure_mode": "A review is recorded in March; the corpus changes heavily; the adoption note still cites the March review and nobody can determine what it actually covered.",
+      "recommended_change": "No new clause. Amend the review-outcome requirement in conformance.md: 'the review scope, the corpus revision or date-stamped state reviewed, date, reviewer or reviewing process, and unresolved exceptions'."
+    },
+    {
+      "id": "J-025",
+      "stance": "REJECT",
+      "layer": "NONE",
+      "argument_for": "5.4 already requires disclosure when a criterion was chosen after observation and forbids silent reinterpretation of historical runs; 5.2 and 5.7 keep negative and inconclusive results; 3.4.4 prevents overwriting a run.",
+      "argument_against": "No credible counterargument for a new rule. The residual risk is selective retention (dropping an unfavorable run rather than overwriting it), and that is already reached by 3.4.2 (removal leaves a description of the gap) and 5.5 (exclusion policy discoverable). A preregistration mechanism would cost far more than the remaining gap.",
+      "failure_mode": "A preregistration requirement would be satisfied by backdated criteria files, which 3.3.3 already forbids and which no rule can detect.",
+      "recommended_change": "none"
+    },
+    {
+      "id": "J-026",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "A full split of 43 clauses is disruptive, and 1.4 promises that numbers are stable, so restructuring deserves care.",
+      "argument_against": "The ambiguity is present today, not hypothetical. conformance.md requires an exception to record 'the affected clause identifier', and 6.4 requires unresolved findings by clause, yet 3.3.2 holds three independent MUSTs, 3.4.4 holds two MUSTs and a SHOULD, 3.5.2 four, 4.6 four. An exception to '3.4.4' does not say whether run identity or overwrite protection is waived. The cost argument is also inverted: sub-identifiers need no renumbering (3.3.2 stays valid as the parent), and the cost of splitting only rises as adopters accumulate citations. 'No adopter evidence' is weak when the standard is pre-1.0 with few adopters, and this package adds more multi-requirement clauses (3.1.5, 3.3.5, 7.4, 7.6).",
+      "failure_mode": "A project declares 'exception: 3.3.2' meaning it does not mark provisional claims; a reviewer reads it as waiving contradiction disclosure too; the exception record cannot settle which.",
+      "recommended_change": "Do the cheap part now. Add to 1.4: 'Where a clause contains more than one requirement, an exception, finding, or review note MUST identify the requirement concerned, by sentence letter (for example 3.3.2(b)) or by quoting it.' Letter the sentences of existing multi-requirement clauses in place without changing clause numbers, write every new clause with one requirement per lettered sentence, and defer only the full restructuring."
+    },
+    {
+      "id": "J-027",
+      "stance": "MODIFY",
+      "layer": "CORE",
+      "argument_for": "This closes the largest current gap for 'can superseded be distinguished from current': 3.1.1 protects only readers who arrive through the entry point, and 4.5 only tracked records. A MUST is justified because the failure is silent and the reader cannot detect it.",
+      "argument_against": "The wording collides with other clauses and omits the trace. 'In the material itself' cannot be met for preserved evidence, logs, PDFs, or binaries, and editing them conflicts with 3.4.2 (preserve as collected); 3.4.5 already solved this with 'or in a note or manifest at the same location'. The clause requires a pointer forward but not when or why the material stopped being current, so the reader learns that it is superseded but cannot trace the reason, which 3.4.1 requires only for reversed decisions and replaced findings. It also holds two requirements in one clause (see J-026).",
+      "failure_mode": "Teams banner raw evidence files, altering them, or skip the rule for anything not Markdown. Pages say 'DEPRECATED' with no date, no reason, and a link to an index instead of the replacement.",
+      "recommended_change": "3.1.5: '(a) Material that is historical, superseded, deprecated, or a dated snapshot MUST say so before its content, in the material itself or, where the material cannot or should not be altered, in a note at the same location. (b) The statement MUST point to the current guidance where it exists, or say that none exists. (c) It SHOULD give the date or revision from which the material ceased to be current and the reason or a link to it.' Add the question to the conformance table."
+    },
+    {
+      "id": "J-028",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Formal chain of custody is a legal-evidence regime with signatures and handover logs; it would exclude nearly every adopter and the artifact guide is right that a checksum identifies bytes but does not authenticate collection.",
+      "argument_against": "Rejecting the whole candidate discards its cheap half. 3.4.2 says evidence SHOULD be preserved as collected and 3.4.5 requires disclosure of changes, but both depend entirely on the honesty and memory of whoever changed the file: with no recorded digest or revision at the time of citation, an undisclosed alteration is undetectable by any later reader. Evidence inside version control gets this for free; evidence in object stores, shared drives, or ticket attachments gets nothing. Collector identity is also not required anywhere (3.6.1 lists location, version, role, limits).",
+      "failure_mode": "A log bundle cited by an accepted conclusion is re-exported with different filters to the same path; the conclusion still links to it and nothing reveals that the bytes are not the ones that were analyzed.",
+      "recommended_change": "Reject chain of custody. Add to the artifact guide (informative): for evidence held outside version control and cited for a material claim, record at the point of citation a content digest or immutable revision identifier, the collection time, and who or what collected it. Note that a commit ID already serves for in-repository evidence."
+    },
+    {
+      "id": "J-029",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "Mandated independence would exclude one-person projects, and KADS already makes the reviewer and any self-review identifiable, which is what a reader needs to weigh the review.",
+      "argument_against": "Disclosure is narrower than the author says. The reviewer-identification duty in conformance.md applies to review of the conformance claim, and 3.3.4 applies to agent self-review; nothing makes the reviewer of an individual consequential decision or finding identifiable, and nothing makes a project's own policy on independence inspectable. 'Review depth should follow consequence' is unverifiable when the project never states what its consequence threshold is.",
+      "failure_mode": "A project's highest-risk runbook and its typo fixes get the same author-merges-own-change review; a reader of the adoption note cannot tell, because the review route says only 'pull request'.",
+      "recommended_change": "No independence mandate. Add to the adoption guide's review-route outline: state whether any class of material requires a reviewer other than its author, and which; 'none' is an acceptable answer. Add to the decision and report templates a 'Reviewed by' line that distinguishes author, other person, and generating agent."
+    },
+    {
+      "id": "J-030",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "The rules that matter for agent-drafted content (no invented sources or results, author of record, self-review identified) apply to every author and belong in Core; a separate profile would duplicate them and imply they are optional elsewhere.",
+      "argument_against": "Rejecting the profile is right, but the rejection assumes 3.3.4 is sufficient and it is weak where inspection matters: stating which content was generated and which was verified is only a SHOULD, 'substantially drafted' has no test, and nothing asks for the identity of the generating system or the sources it was given. When an agent-drafted page is later found wrong, a maintainer cannot determine which tool and version produced it or what it was grounded on, so cannot find sibling pages with the same defect.",
+      "failure_mode": "A model with a known defect drafted forty pages over two months; after the defect is discovered no record distinguishes those pages from the rest of the corpus.",
+      "recommended_change": "No profile. Add guidance to the authoring guide and the agent instruction snippet: where an agent drafted material content, record the tool or model and version, the date, and the sources supplied to it, in the document or its change record. Consider raising the 'which content was verified by a person, and how' part of 3.3.4 to MUST for material claims in a later minor version, and record that as an open question."
+    },
+    {
+      "id": "J-031",
+      "stance": "MODIFY",
+      "layer": "GUIDANCE",
+      "argument_for": "A stated admission test and layering rule let every later proposal be judged on the same recorded basis, which is traceability for the standard's own evolution.",
+      "argument_against": "'More cognitive or epistemic cost than the rule itself' has no observable on either side, so it can justify any outcome and cannot be audited afterward. In this package it is applied asymmetrically: three new Core SHOULDs (3.1.4, 3.5.4, 3.5.5) pass with no cited failure instance, while J-026, which has a demonstrable ambiguity in the current text, is deferred for 'no adopter evidence'. The layering rule also ignores that each Core SHOULD carries a hidden duty under 1.2 to record reasons for departures.",
+      "failure_mode": "The test becomes a closing formula in proposals; in two years nobody can reconstruct what cost was weighed for any given rule.",
+      "recommended_change": "Adopt with an evidentiary form: each accepted, rejected, or deferred proposal records (a) one concrete failure instance the rule prevents or would have prevented, (b) what the rule costs an adopter to satisfy and to review, (c) the layer chosen and why not the one below, and (d) what would change the answer. Apply it retroactively to this package in the J-019 decision record."
+    }
+  ]
+}
